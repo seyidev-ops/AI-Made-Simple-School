@@ -51,11 +51,7 @@
   --shadow: 0 8px 48px rgba(0,0,0,0.1);
 }
 
-/* ─────────────────────────────────────────────
-   RESET & BASE
-───────────────────────────────────────────── */
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -67,9 +63,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ─────────────────────────────────────────────
-   NOISE TEXTURE OVERLAY
-───────────────────────────────────────────── */
 body::before {
   content: '';
   position: fixed;
@@ -99,935 +92,479 @@ nav {
   transition: background var(--transition);
 }
 
-.nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-}
-
-.nav-logo {
-  width: 32px;
-  height: 32px;
-  background: var(--gold);
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Space Mono', monospace;
-  font-size: 14px;
-  font-weight: 700;
-  color: #0E0E10;
-  flex-shrink: 0;
-}
-
-.nav-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--text);
-  letter-spacing: 0.02em;
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.nav-link {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  text-decoration: none;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  transition: color var(--transition);
-}
-
+.nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.nav-logo { width:32px;height:32px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#0E0E10;flex-shrink:0; }
+.nav-name { font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--text);letter-spacing:0.02em; }
+.nav-right { display:flex;align-items:center;gap:1rem; }
+.nav-link { font-size:0.85rem;font-weight:500;color:var(--text-secondary);text-decoration:none;letter-spacing:0.05em;text-transform:uppercase;transition:color var(--transition); }
 .nav-link:hover { color: var(--gold); }
 
 .btn-nav {
-  background: var(--gold);
-  color: #0E0E10;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 4px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 600;
-  cursor: pointer;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: opacity var(--transition), transform var(--transition);
+  background: var(--gold); color:#0E0E10; border:none; padding:8px 18px;
+  border-radius:4px; font-family:'DM Sans',sans-serif; font-size:0.82rem;
+  font-weight:600; cursor:pointer; letter-spacing:0.06em; text-transform:uppercase;
+  text-decoration:none; transition:opacity var(--transition), transform var(--transition);
 }
+.btn-nav:hover { opacity:0.88; transform:translateY(-1px); }
 
-.btn-nav:hover { opacity: 0.88; transform: translateY(-1px); }
-
-/* THEME TOGGLE */
-.theme-toggle {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  background: var(--bg3);
-  border-radius: 20px;
-  padding: 3px;
-  border: 1px solid var(--border);
-}
-
-.theme-btn {
-  width: 28px;
-  height: 24px;
-  border: none;
-  border-radius: 16px;
-  background: transparent;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  transition: background var(--transition);
-  color: var(--text-muted);
-}
-
-.theme-btn.active {
-  background: var(--gold);
-  color: #0E0E10;
-}
+.theme-toggle { display:flex;align-items:center;gap:2px;background:var(--bg3);border-radius:20px;padding:3px;border:1px solid var(--border); }
+.theme-btn { width:28px;height:24px;border:none;border-radius:16px;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:background var(--transition);color:var(--text-muted); }
+.theme-btn.active { background:var(--gold);color:#0E0E10; }
 
 /* ─────────────────────────────────────────────
-   HERO SECTION
+   HERO
 ───────────────────────────────────────────── */
 .hero {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 100px clamp(1.5rem, 8vw, 6rem) 80px;
-  position: relative;
-  overflow: hidden;
+  display: flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center;
+  padding: 100px clamp(1.5rem,8vw,6rem) 80px;
+  position:relative; overflow:hidden;
 }
 
 .hero::before {
-  content: '';
-  position: absolute;
-  top: -200px; left: 50%;
-  transform: translateX(-50%);
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 65%);
-  pointer-events: none;
+  content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);
+  width:800px;height:800px;
+  background:radial-gradient(ellipse,rgba(201,168,76,0.08) 0%,transparent 65%);
+  pointer-events:none;
 }
 
 .hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--badge-bg);
-  border: 1px solid rgba(201,168,76,0.25);
-  border-radius: 100px;
-  padding: 6px 14px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 2rem;
-  animation: fadeUp 0.6s ease forwards;
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--badge-bg);border:1px solid rgba(201,168,76,0.25);
+  border-radius:100px;padding:6px 14px;font-size:0.75rem;font-weight:500;
+  letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:2rem;animation:fadeUp 0.6s ease forwards;
 }
-
-.hero-badge span { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+.hero-badge span { width:5px;height:5px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite; }
 
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
 @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-@keyframes fadeIn { from{opacity:0} to{opacity:1} }
 
 .hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3rem, 8vw, 6.5rem);
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  color: var(--text);
-  max-width: 900px;
-  animation: fadeUp 0.6s 0.1s ease both;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3rem,8vw,6.5rem);font-weight:700;line-height:1.05;
+  letter-spacing:-0.02em;color:var(--text);max-width:900px;
+  animation:fadeUp 0.6s 0.1s ease both;
 }
-
-.hero-title em {
-  font-style: italic;
-  color: var(--gold);
-}
+.hero-title em { font-style:italic; color:var(--gold); }
 
 .hero-sub {
-  max-width: 600px;
-  font-size: clamp(0.95rem, 2vw, 1.1rem);
-  font-weight: 300;
-  color: var(--text-secondary);
-  line-height: 1.75;
-  margin: 1.5rem auto 2.5rem;
-  animation: fadeUp 0.6s 0.2s ease both;
+  max-width:600px;font-size:clamp(0.95rem,2vw,1.1rem);font-weight:300;
+  color:var(--text-secondary);line-height:1.75;margin:1.5rem auto 2.5rem;
+  animation:fadeUp 0.6s 0.2s ease both;
 }
 
-.hero-cta {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  animation: fadeUp 0.6s 0.3s ease both;
-}
+.hero-cta { display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;animation:fadeUp 0.6s 0.3s ease both; }
 
 .btn-primary {
-  background: var(--gold);
-  color: #0E0E10;
-  border: none;
-  padding: 14px 32px;
-  border-radius: 4px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  background:var(--gold);color:#0E0E10;border:none;padding:14px 32px;border-radius:4px;
+  font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;
+  letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;
+  transition:all 0.2s ease;display:inline-flex;align-items:center;gap:8px;
 }
-
-.btn-primary:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
+.btn-primary:hover { opacity:0.88;transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,0.3); }
 
 .btn-secondary {
-  background: transparent;
-  color: var(--text);
-  border: 1px solid var(--border);
-  padding: 14px 32px;
-  border-radius: 4px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: all 0.2s ease;
+  background:transparent;color:var(--text);border:1px solid var(--border);
+  padding:14px 32px;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.9rem;
+  font-weight:500;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;
+  text-decoration:none;transition:all 0.2s ease;
 }
+.btn-secondary:hover { border-color:var(--gold);color:var(--gold); }
 
-.btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
-
-/* STATS BAR */
-.hero-stats {
-  display: flex;
-  gap: 3rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 4rem;
-  animation: fadeUp 0.6s 0.4s ease both;
-}
-
-.stat-item { text-align: center; }
-
-.stat-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--gold);
-  line-height: 1;
-}
-
-.stat-label {
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-top: 4px;
-}
+.hero-stats { display:flex;gap:3rem;flex-wrap:wrap;justify-content:center;margin-top:4rem;animation:fadeUp 0.6s 0.4s ease both; }
+.stat-item { text-align:center; }
+.stat-num { font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;color:var(--gold);line-height:1; }
+.stat-label { font-size:0.75rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:4px; }
 
 /* ─────────────────────────────────────────────
    SECTION LAYOUT
 ───────────────────────────────────────────── */
-section {
-  padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 8vw, 6rem);
-  position: relative;
-}
+section { padding:clamp(4rem,10vw,8rem) clamp(1.5rem,8vw,6rem);position:relative; }
 
-.section-header {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto 4rem;
-}
-
-.section-tag {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 0.75rem;
-  display: block;
-}
-
-.section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 700;
-  line-height: 1.1;
-  color: var(--text);
-  letter-spacing: -0.01em;
-}
-
-.section-desc {
-  font-size: 1rem;
-  color: var(--text-secondary);
-  font-weight: 300;
-  line-height: 1.7;
-  margin-top: 1rem;
-}
-
-/* DIVIDER */
-.divider {
-  width: 48px;
-  height: 2px;
-  background: var(--gold);
-  margin: 1.5rem auto 0;
-}
+.section-header { text-align:center;max-width:700px;margin:0 auto 4rem; }
+.section-tag { font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;display:block; }
+.section-title { font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;line-height:1.1;color:var(--text);letter-spacing:-0.01em; }
+.section-desc { font-size:1rem;color:var(--text-secondary);font-weight:300;line-height:1.7;margin-top:1rem; }
+.divider { width:48px;height:2px;background:var(--gold);margin:1.5rem auto 0; }
 
 /* ─────────────────────────────────────────────
    PROGRAM CARDS
 ───────────────────────────────────────────── */
-.programs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+.programs-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.5rem;max-width:1200px;margin:0 auto; }
 
 .program-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-  display: flex;
-  flex-direction: column;
+  background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;
+  overflow:hidden;transition:transform 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease;
+  display:flex;flex-direction:column;
 }
-
-.program-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow);
-  border-color: rgba(201,168,76,0.3);
-}
-
-.program-card.featured {
-  border-color: rgba(201,168,76,0.4);
-  position: relative;
-}
+.program-card:hover { transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(201,168,76,0.3); }
+.program-card.featured { border-color:rgba(201,168,76,0.4);position:relative; }
 
 .featured-badge {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: var(--gold);
-  color: #0E0E10;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 100px;
+  position:absolute;top:16px;right:16px;background:var(--gold);color:#0E0E10;
+  font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  padding:4px 10px;border-radius:100px;
 }
 
-.program-header {
-  padding: 2rem 2rem 1.5rem;
-  border-bottom: 1px solid var(--border);
-}
+.program-header { padding:2rem 2rem 1.5rem;border-bottom:1px solid var(--border); }
+.program-icon { width:44px;height:44px;background:var(--gold-dim);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:1rem; }
+.program-name { font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:0.5rem; }
+.program-tagline { font-size:0.85rem;color:var(--text-muted);font-weight:300;line-height:1.5; }
+.program-body { padding:1.5rem 2rem;flex:1; }
+.program-desc { font-size:0.9rem;color:var(--text-secondary);line-height:1.7;margin-bottom:1.25rem; }
 
-.program-icon {
-  width: 44px;
-  height: 44px;
-  background: var(--gold-dim);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  margin-bottom: 1rem;
-}
-
-.program-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
-}
-
-.program-tagline {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  font-weight: 300;
-  line-height: 1.5;
-}
-
-.program-body {
-  padding: 1.5rem 2rem;
-  flex: 1;
-}
-
-.program-desc {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: 1.25rem;
-}
-
-/* SYLLABUS ACCORDION */
 .syllabus-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 10px 14px;
-  cursor: pointer;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  transition: all 0.2s ease;
-  width: 100%;
-  text-align: left;
-  margin-bottom: 0.75rem;
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--bg3);border:1px solid var(--border);border-radius:6px;
+  padding:10px 14px;cursor:pointer;font-size:0.8rem;font-weight:600;
+  letter-spacing:0.06em;text-transform:uppercase;color:var(--text-secondary);
+  transition:all 0.2s ease;width:100%;text-align:left;margin-bottom:0.75rem;
 }
+.syllabus-toggle:hover { border-color:var(--gold);color:var(--gold); }
+.syllabus-toggle .arrow { transition:transform 0.3s ease;font-size:10px; }
+.syllabus-toggle.open .arrow { transform:rotate(180deg); }
+.syllabus-content { max-height:0;overflow:hidden;transition:max-height 0.4s ease; }
+.syllabus-content.open { max-height:800px; }
 
-.syllabus-toggle:hover { border-color: var(--gold); color: var(--gold); }
-.syllabus-toggle .arrow { transition: transform 0.3s ease; font-size: 10px; }
-.syllabus-toggle.open .arrow { transform: rotate(180deg); }
+.syllabus-list { list-style:none;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:1rem; }
+.syllabus-list li { padding:8px 14px;font-size:0.82rem;color:var(--text-secondary);border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:8px;line-height:1.4; }
+.syllabus-list li:last-child { border-bottom:none; }
+.syllabus-list li::before { content:'';width:5px;height:5px;background:var(--gold);border-radius:50%;margin-top:6px;flex-shrink:0; }
 
-.syllabus-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-}
-
-.syllabus-content.open { max-height: 800px; }
-
-.syllabus-list {
-  list-style: none;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  overflow: hidden;
-  margin-bottom: 1rem;
-}
-
-.syllabus-list li {
-  padding: 8px 14px;
-  font-size: 0.82rem;
-  color: var(--text-secondary);
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  line-height: 1.4;
-}
-
-.syllabus-list li:last-child { border-bottom: none; }
-
-.syllabus-list li::before {
-  content: '';
-  width: 5px;
-  height: 5px;
-  background: var(--gold);
-  border-radius: 50%;
-  margin-top: 6px;
-  flex-shrink: 0;
-}
-
-/* TIER PRICING on card */
-.tier-select {
-  margin-top: 1rem;
-}
-
-.tier-label {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-.tier-options {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
+.tier-select { margin-top:1rem; }
+.tier-label { font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem;display:block; }
+.tier-options { display:flex;flex-direction:column;gap:0.5rem; }
 
 .tier-option {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 14px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  background: transparent;
-  text-decoration: none;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 14px;border:1px solid var(--border);border-radius:6px;
+  cursor:pointer;transition:all 0.2s ease;background:transparent;text-decoration:none;
 }
+.tier-option:hover { border-color:var(--gold);background:var(--gold-dim); }
+.tier-name { font-size:0.82rem;font-weight:500;color:var(--text); }
+.tier-price { font-family:'Space Mono',monospace;font-size:0.78rem;color:var(--gold);font-weight:700; }
 
-.tier-option:hover,
-.tier-option.selected { border-color: var(--gold); background: var(--gold-dim); }
-
-.tier-name {
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--text);
-}
-
-.tier-price {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.78rem;
-  color: var(--gold);
-  font-weight: 700;
-}
-
-.program-footer {
-  padding: 1.25rem 2rem;
-  border-top: 1px solid var(--border);
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
+.program-footer { padding:1.25rem 2rem;border-top:1px solid var(--border);display:flex;gap:0.75rem;flex-wrap:wrap; }
 
 .btn-enroll {
-  flex: 1;
-  background: var(--gold);
-  color: #0E0E10;
-  border: none;
-  padding: 11px 20px;
-  border-radius: 5px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 700;
-  cursor: pointer;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  text-decoration: none;
-  text-align: center;
-  transition: all 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  min-width: 120px;
+  flex:1;background:var(--gold);color:#0E0E10;border:none;padding:11px 20px;
+  border-radius:5px;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:700;
+  cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;
+  text-align:center;transition:all 0.2s ease;display:inline-flex;align-items:center;
+  justify-content:center;gap:6px;min-width:120px;
 }
-
-.btn-enroll:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-enroll:hover { opacity:0.85;transform:translateY(-1px); }
 
 .btn-details {
-  background: transparent;
-  color: var(--text-secondary);
-  border: 1px solid var(--border);
-  padding: 11px 16px;
-  border-radius: 5px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 500;
-  cursor: pointer;
-  letter-spacing: 0.03em;
-  text-decoration: none;
-  text-align: center;
-  transition: all 0.2s ease;
+  background:transparent;color:var(--text-secondary);border:1px solid var(--border);
+  padding:11px 16px;border-radius:5px;font-family:'DM Sans',sans-serif;font-size:0.82rem;
+  font-weight:500;cursor:pointer;letter-spacing:0.03em;text-decoration:none;
+  text-align:center;transition:all 0.2s ease;
 }
-
-.btn-details:hover { border-color: var(--gold); color: var(--gold); }
+.btn-details:hover { border-color:var(--gold);color:var(--gold); }
 
 /* ─────────────────────────────────────────────
    INVESTMENT SECTION
 ───────────────────────────────────────────── */
-.investment-section {
-  background: var(--bg2);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-.pricing-tiers {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  max-width: 1000px;
-  margin: 0 auto;
-}
+.investment-section { background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border); }
+.pricing-tiers { display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;max-width:1000px;margin:0 auto; }
 
 .pricing-tier {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 2rem;
-  transition: all 0.2s ease;
-  position: relative;
-  overflow: hidden;
+  background:var(--card-bg);border:1px solid var(--border);border-radius:12px;
+  padding:2rem;transition:all 0.2s ease;position:relative;overflow:hidden;
 }
-
-.pricing-tier.recommended {
-  border-color: var(--gold);
-}
-
+.pricing-tier.recommended { border-color:var(--gold); }
 .pricing-tier.recommended::before {
-  content: 'RECOMMENDED';
-  position: absolute;
-  top: 0; left: 50%;
-  transform: translateX(-50%);
-  background: var(--gold);
-  color: #0E0E10;
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  padding: 3px 14px;
-  border-radius: 0 0 6px 6px;
+  content:'RECOMMENDED';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  background:var(--gold);color:#0E0E10;font-size:0.62rem;font-weight:700;
+  letter-spacing:0.15em;padding:3px 14px;border-radius:0 0 6px 6px;
 }
 
-.tier-program-tag {
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 0.5rem;
-  display: block;
-}
+.tier-program-tag { font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;display:block; }
+.tier-tier-name { font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:0.25rem; }
+.tier-amount { font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:700;color:var(--gold);margin:0.75rem 0 0.25rem; }
+.tier-period { font-size:0.78rem;color:var(--text-muted);margin-bottom:1.25rem; }
 
-.tier-tier-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 0.25rem;
-}
+.tier-features { list-style:none;margin-bottom:1.5rem; }
+.tier-features li { font-size:0.83rem;color:var(--text-secondary);padding:5px 0;display:flex;align-items:flex-start;gap:8px;line-height:1.4; }
+.tier-features li::before { content:'✓';color:var(--gold);font-weight:700;font-size:0.8rem;flex-shrink:0; }
 
-.tier-amount {
-  font-family: 'Space Mono', monospace;
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--gold);
-  margin: 0.75rem 0 0.25rem;
-}
+/* PAYMENT SECTION */
+.payment-section { max-width:900px;margin:4rem auto 0;padding:2.5rem;background:var(--card-bg);border:1px solid var(--border);border-radius:12px; }
+.payment-title { font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:0.5rem;text-align:center; }
+.payment-sub { font-size:0.85rem;color:var(--text-muted);text-align:center;margin-bottom:2rem; }
+.payment-grid { display:grid;grid-template-columns:1fr 1fr;gap:2rem; }
+@media (max-width:600px) { .payment-grid { grid-template-columns:1fr; } }
 
-.tier-period {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  margin-bottom: 1.25rem;
-}
+.payment-method h4 { font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border); }
+.paystack-links { display:flex;flex-direction:column;gap:0.5rem; }
 
-.tier-features {
-  list-style: none;
-  margin-bottom: 1.5rem;
-}
+.paystack-link { display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;text-decoration:none;transition:all 0.2s ease; }
+.paystack-link:hover { border-color:var(--gold); }
+.paystack-link-name { font-size:0.8rem;color:var(--text);font-weight:500; }
+.paystack-link-btn { font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);background:var(--gold-dim);padding:3px 10px;border-radius:4px; }
 
-.tier-features li {
-  font-size: 0.83rem;
-  color: var(--text-secondary);
-  padding: 5px 0;
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  line-height: 1.4;
-}
-
-.tier-features li::before {
-  content: '✓';
-  color: var(--gold);
-  font-weight: 700;
-  font-size: 0.8rem;
-  flex-shrink: 0;
-}
-
-/* ─────────────────────────────────────────────
-   PAYMENT SECTION
-───────────────────────────────────────────── */
-.payment-section {
-  max-width: 900px;
-  margin: 4rem auto 0;
-  padding: 2.5rem;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-}
-
-.payment-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 0.5rem;
-  text-align: center;
-}
-
-.payment-sub {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.payment-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-}
-
-@media (max-width: 600px) {
-  .payment-grid { grid-template-columns: 1fr; }
-}
-
-.payment-method h4 {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.paystack-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.paystack-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 14px;
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.paystack-link:hover { border-color: var(--gold); }
-
-.paystack-link-name {
-  font-size: 0.8rem;
-  color: var(--text);
-  font-weight: 500;
-}
-
-.paystack-link-btn {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gold);
-  background: var(--gold-dim);
-  padding: 3px 10px;
-  border-radius: 4px;
-}
-
-.bank-details {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 1.25rem;
-}
-
-.bank-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 6px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 0.83rem;
-}
-
-.bank-row:last-child { border-bottom: none; }
-
-.bank-key {
-  color: var(--text-muted);
-  font-weight: 400;
-}
-
-.bank-val {
-  color: var(--text);
-  font-weight: 600;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.78rem;
-  text-align: right;
-}
-
-.proof-note {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  text-align: center;
-  margin-top: 1.25rem;
-  padding: 10px;
-  background: var(--gold-dim);
-  border-radius: 6px;
-  border: 1px solid rgba(201,168,76,0.2);
-}
+.bank-details { background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:1.25rem; }
+.bank-row { display:flex;justify-content:space-between;align-items:flex-start;padding:6px 0;border-bottom:1px solid var(--border);font-size:0.83rem; }
+.bank-row:last-child { border-bottom:none; }
+.bank-key { color:var(--text-muted);font-weight:400; }
+.bank-val { color:var(--text);font-weight:600;font-family:'Space Mono',monospace;font-size:0.78rem;text-align:right; }
+.proof-note { font-size:0.78rem;color:var(--text-muted);text-align:center;margin-top:1.25rem;padding:10px;background:var(--gold-dim);border-radius:6px;border:1px solid rgba(201,168,76,0.2); }
 
 /* ─────────────────────────────────────────────
    MASTERCLASSES GRID
 ───────────────────────────────────────────── */
-.masterclasses-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1rem;
-  max-width: 1200px;
+.masterclasses-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;max-width:1200px;margin:0 auto; }
+
+.mc-card { background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:1.25rem;transition:all 0.2s ease;cursor:default; }
+.mc-card:hover { border-color:rgba(201,168,76,0.3);transform:translateY(-2px); }
+.mc-num { font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--gold);font-weight:700;letter-spacing:0.1em;margin-bottom:0.5rem; }
+.mc-name { font-size:0.9rem;font-weight:600;color:var(--text);margin-bottom:0.35rem;line-height:1.3; }
+.mc-desc { font-size:0.78rem;color:var(--text-muted);line-height:1.5; }
+
+/* ─────────────────────────────────────────────
+   FAQ SECTION
+───────────────────────────────────────────── */
+.faq-section { background: var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+
+.faq-grid {
+  max-width: 860px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
-.mc-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 1.25rem;
-  transition: all 0.2s ease;
-  cursor: default;
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
 }
 
-.mc-card:hover {
-  border-color: rgba(201,168,76,0.3);
-  transform: translateY(-2px);
+.faq-item:first-child { border-top: 1px solid var(--border); }
+
+.faq-question {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 1.4rem 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s ease;
 }
 
-.mc-num {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.68rem;
-  color: var(--gold);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.5rem;
-}
+.faq-question:hover .faq-q-text { color: var(--gold); }
 
-.mc-name {
-  font-size: 0.9rem;
+.faq-q-text {
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
   font-weight: 600;
   color: var(--text);
-  margin-bottom: 0.35rem;
-  line-height: 1.3;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+  flex: 1;
 }
 
-.mc-desc {
-  font-size: 0.78rem;
+.faq-item.open .faq-q-text { color: var(--gold); }
+
+.faq-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 14px;
   color: var(--text-muted);
-  line-height: 1.5;
+  transition: all 0.3s ease;
+  background: var(--bg3);
+  margin-top: 1px;
+}
+
+.faq-item.open .faq-icon {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #0E0E10;
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-answer.open { max-height: 600px; }
+
+.faq-answer-inner {
+  padding: 0 0 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.faq-answer-inner p { margin-bottom: 0.75rem; }
+.faq-answer-inner p:last-child { margin-bottom: 0; }
+
+.faq-answer-inner strong { color: var(--text); font-weight: 600; }
+
+.faq-answer-inner .faq-highlight {
+  display: inline-block;
+  background: var(--gold-dim);
+  border-left: 3px solid var(--gold);
+  padding: 10px 14px;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.85rem;
+  color: var(--text);
+  margin: 0.5rem 0;
+  width: 100%;
+}
+
+/* CTA row inside FAQ */
+.faq-cta-row {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.faq-cta-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+/* ─────────────────────────────────────────────
+   WHATSAPP FLOATING BUTTON
+───────────────────────────────────────────── */
+.wa-float {
+  position: fixed;
+  bottom: 1.75rem;
+  right: 1.75rem;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  cursor: pointer;
+  text-decoration: none;
+  filter: drop-shadow(0 4px 16px rgba(37,211,102,0.35));
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.wa-float:hover {
+  filter: drop-shadow(0 6px 24px rgba(37,211,102,0.55));
+  transform: translateY(-3px);
+}
+
+/* The green circle button */
+.wa-btn-circle {
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Ripple ring */
+.wa-btn-circle::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(37,211,102,0.4);
+  animation: wa-ripple 2.5s ease-out infinite;
+}
+
+@keyframes wa-ripple {
+  0%   { transform: scale(1);   opacity: 0.7; }
+  70%  { transform: scale(1.3); opacity: 0;   }
+  100% { transform: scale(1.3); opacity: 0;   }
+}
+
+/* WhatsApp SVG icon */
+.wa-icon {
+  width: 28px;
+  height: 28px;
+  fill: #fff;
+}
+
+/* Tooltip label */
+.wa-label {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px 8px 8px 0;
+  padding: 8px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  position: absolute;
+  right: 68px;
+  bottom: 50%;
+  transform: translateY(50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, right 0.2s ease;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.wa-float:hover .wa-label { opacity: 1; right: 72px; }
+
+/* Notification dot */
+.wa-dot {
+  position: absolute;
+  top: 3px; right: 3px;
+  width: 11px; height: 11px;
+  background: #ff4444;
+  border-radius: 50%;
+  border: 2px solid var(--bg);
 }
 
 /* ─────────────────────────────────────────────
    FOOTER
 ───────────────────────────────────────────── */
-footer {
-  background: var(--bg2);
-  border-top: 1px solid var(--border);
-  padding: 3rem clamp(1.5rem, 8vw, 6rem);
-}
-
-.footer-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.footer-brand {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text);
-}
-
-.footer-copy {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  text-align: center;
-}
-
-.footer-links {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.footer-links a {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: color var(--transition);
-}
-
-.footer-links a:hover { color: var(--gold); }
+footer { background:var(--bg2);border-top:1px solid var(--border);padding:3rem clamp(1.5rem,8vw,6rem); }
+.footer-inner { max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap; }
+.footer-brand { font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--text); }
+.footer-copy { font-size:0.78rem;color:var(--text-muted);text-align:center; }
+.footer-links { display:flex;gap:1.5rem; }
+.footer-links a { font-size:0.78rem;color:var(--text-muted);text-decoration:none;transition:color var(--transition); }
+.footer-links a:hover { color:var(--gold); }
 
 /* ─────────────────────────────────────────────
    RESPONSIVE
 ───────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .nav-link { display: none; }
-  .programs-grid { grid-template-columns: 1fr; }
-  .hero-stats { gap: 2rem; }
-  .footer-inner { flex-direction: column; text-align: center; }
-  .footer-links { justify-content: center; }
+@media (max-width:768px) {
+  .nav-link { display:none; }
+  .programs-grid { grid-template-columns:1fr; }
+  .hero-stats { gap:2rem; }
+  .footer-inner { flex-direction:column;text-align:center; }
+  .footer-links { justify-content:center; }
+  .wa-label { display:none; }
 }
 
-@media (max-width: 480px) {
-  .hero-cta { flex-direction: column; align-items: center; }
-  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+@media (max-width:480px) {
+  .hero-cta { flex-direction:column;align-items:center; }
+  .btn-primary, .btn-secondary { width:100%;justify-content:center; }
 }
 
 /* ─────────────────────────────────────────────
    SCROLL ANIMATIONS
 ───────────────────────────────────────────── */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
+.reveal { opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease; }
+.reveal.visible { opacity:1;transform:translateY(0); }
 
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ─────────────────────────────────────────────
-   MOBILE MENU
-───────────────────────────────────────────── */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 4px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 4px;
-}
-
-.hamburger span {
-  width: 20px;
-  height: 2px;
-  background: var(--text);
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-@media (max-width: 768px) {
-  .hamburger { display: flex; }
-  .btn-nav { display: none; }
+@media (max-width:768px) {
+  .hamburger { display:flex; }
+  .btn-nav { display:none; }
 }
 </style>
 </head>
@@ -1043,7 +580,7 @@ footer {
     <a href="#programs" class="nav-link">Programs</a>
     <a href="#pricing" class="nav-link">Pricing</a>
     <a href="#masterclasses" class="nav-link">Masterclasses</a>
-    <!-- Theme Toggle -->
+    <a href="#faq" class="nav-link">FAQ</a>
     <div class="theme-toggle" role="group" aria-label="Theme selector">
       <button class="theme-btn" id="themeLight" onclick="setTheme('light')" title="Light mode">☀</button>
       <button class="theme-btn active" id="themeDark" onclick="setTheme('dark')" title="Dark mode">●</button>
@@ -1055,7 +592,7 @@ footer {
 
 <!-- ─── HERO ─── -->
 <section class="hero">
-  <div class="hero-badge"><span></span> 🇳🇬 Nigeria's Premier AI Learning School </div>
+  <div class="hero-badge"><span></span> 🇳🇬 Nigeria's Premier AI Learning School</div>
   <h1 class="hero-title">Learn <em>AI</em> in 30 Minutes a Day</h1>
   <p class="hero-sub">From a total beginner to AI-proficient in 90 days. Three custom-focused programmes — from everyday AI skills to income-generating mastery. All practical. All step-by-step. All built for results.</p>
   <div class="hero-cta">
@@ -1063,22 +600,10 @@ footer {
     <a href="login.html" class="btn-secondary">Access Your Course</a>
   </div>
   <div class="hero-stats">
-    <div class="stat-item">
-      <div class="stat-num">90</div>
-      <div class="stat-label">Day Programme</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">30+</div>
-      <div class="stat-label">AI Tools Covered</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">9</div>
-      <div class="stat-label">Masterclasses</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">₦5k+</div>
-      <div class="stat-label">Income Potential / Mo</div>
-    </div>
+    <div class="stat-item"><div class="stat-num">90</div><div class="stat-label">Day Programme</div></div>
+    <div class="stat-item"><div class="stat-num">30+</div><div class="stat-label">AI Tools Covered</div></div>
+    <div class="stat-item"><div class="stat-num">9</div><div class="stat-label">Masterclasses</div></div>
+    <div class="stat-item"><div class="stat-num">₦5k+</div><div class="stat-label">Income Potential / Mo</div></div>
   </div>
 </section>
 
@@ -1092,7 +617,6 @@ footer {
   </div>
 
   <div class="programs-grid">
-
     <!-- CARD 1: AI Expert User -->
     <div class="program-card reveal">
       <div class="program-header">
@@ -1102,10 +626,7 @@ footer {
       </div>
       <div class="program-body">
         <p class="program-desc">A structured 90-day beginner-to-expert journey covering Text AI, Image AI, Productivity, Audio/Video, Automation, and advanced integrations. Perfect for professionals, entrepreneurs, and lifelong learners.</p>
-
-        <button class="syllabus-toggle" onclick="toggleSyllabus(this)">
-          View Syllabus <span class="arrow">▼</span>
-        </button>
+        <button class="syllabus-toggle" onclick="toggleSyllabus(this)">View Syllabus <span class="arrow">▼</span></button>
         <div class="syllabus-content">
           <ul class="syllabus-list">
             <li>Month 1 — Foundations: Text AI, Image AI, Productivity & Multimedia</li>
@@ -1125,7 +646,6 @@ footer {
             <li>Week 12: Final Capstone — The AI Solo-preneur Mini Launch Project</li>
           </ul>
         </div>
-
         <div class="tier-select">
           <span class="tier-label">Investment</span>
           <div class="tier-options">
@@ -1152,10 +672,7 @@ footer {
       </div>
       <div class="program-body">
         <p class="program-desc">A unified 90-day programme merging AI tool mastery with 7 proven income-generating business models. Every day you learn something. Every week you earn something. Built by Mentorine School.</p>
-
-        <button class="syllabus-toggle" onclick="toggleSyllabus(this)">
-          View Syllabus <span class="arrow">▼</span>
-        </button>
+        <button class="syllabus-toggle" onclick="toggleSyllabus(this)">View Syllabus <span class="arrow">▼</span></button>
         <div class="syllabus-content">
           <ul class="syllabus-list">
             <li>Phase 1 (Days 1–30): AI Foundations + First Income — $0 to $300</li>
@@ -1177,7 +694,6 @@ footer {
             <li>Week 12: Final Capstone — The AI Solo-preneur Launch</li>
           </ul>
         </div>
-
         <div class="tier-select">
           <span class="tier-label">Choose Your Tier</span>
           <div class="tier-options">
@@ -1211,10 +727,7 @@ footer {
       </div>
       <div class="program-body">
         <p class="program-desc">Standalone 2–3 hour masterclasses, each focused on a high-value AI application. Perfect for professionals who want targeted skill upgrades without committing to a full programme.</p>
-
-        <button class="syllabus-toggle" onclick="toggleSyllabus(this)">
-          View All Classes <span class="arrow">▼</span>
-        </button>
+        <button class="syllabus-toggle" onclick="toggleSyllabus(this)">View All Classes <span class="arrow">▼</span></button>
         <div class="syllabus-content">
           <ul class="syllabus-list">
             <li>Class 1: AI Social Media & WhatsApp Lead Automations</li>
@@ -1228,7 +741,6 @@ footer {
             <li>Class 9: AI E-Learning & Course Creation</li>
           </ul>
         </div>
-
         <div class="tier-select">
           <span class="tier-label">Investment</span>
           <div class="tier-options">
@@ -1244,7 +756,6 @@ footer {
         <a href="login.html" class="btn-details">Login</a>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -1272,7 +783,6 @@ footer {
       </ul>
       <a href="https://paystack.shop/pay/aimadesimple" target="_blank" class="btn-enroll">Pay via Paystack</a>
     </div>
-
     <div class="pricing-tier reveal">
       <span class="tier-program-tag">AI Mastery to Money</span>
       <div class="tier-tier-name">Self-Study</div>
@@ -1287,7 +797,6 @@ footer {
       </ul>
       <a href="https://paystack.shop/pay/aimadesimple" target="_blank" class="btn-enroll">Pay via Paystack</a>
     </div>
-
     <div class="pricing-tier recommended reveal">
       <span class="tier-program-tag">AI Mastery to Money</span>
       <div class="tier-tier-name">Standard</div>
@@ -1302,7 +811,6 @@ footer {
       </ul>
       <a href="https://paystack.shop/pay/aim2mstandard" target="_blank" class="btn-enroll">Pay via Paystack</a>
     </div>
-
     <div class="pricing-tier reveal">
       <span class="tier-program-tag">AI Mastery to Money</span>
       <div class="tier-tier-name">VIP</div>
@@ -1319,7 +827,6 @@ footer {
     </div>
   </div>
 
-  <!-- PAYMENT OPTIONS -->
   <div class="payment-section reveal">
     <div class="payment-title">Payment Options</div>
     <p class="payment-sub">Pay securely via Paystack (cards, transfers, USSD) or direct bank transfer.</p>
@@ -1343,7 +850,7 @@ footer {
             <span class="paystack-link-name">AI Mastery to Money — VIP</span>
             <span class="paystack-link-btn">Pay Now ↗</span>
           </a>
-          <a href="https://paystack.shop/pay/aishortcourse" target="_blank" class="paystack-link">
+          <a href="https://paystack.shop/pay/aishortcourses" target="_blank" class="paystack-link">
             <span class="paystack-link-name">AI Masterclasses</span>
             <span class="paystack-link-btn">Pay Now ↗</span>
           </a>
@@ -1352,26 +859,12 @@ footer {
       <div class="payment-method">
         <h4>🏦 Bank Transfer — GTBank</h4>
         <div class="bank-details">
-          <div class="bank-row">
-            <span class="bank-key">Bank</span>
-            <span class="bank-val">Guaranty Trust Bank</span>
-          </div>
-          <div class="bank-row">
-            <span class="bank-key">Account Number</span>
-            <span class="bank-val">0710642377</span>
-          </div>
-          <div class="bank-row">
-            <span class="bank-key">Account Name</span>
-            <span class="bank-val">Ona Services Limited</span>
-          </div>
-          <div class="bank-row">
-            <span class="bank-key">Reference</span>
-            <span class="bank-val">Your Name + Programme</span>
-          </div>
+          <div class="bank-row"><span class="bank-key">Bank</span><span class="bank-val">Guaranty Trust Bank</span></div>
+          <div class="bank-row"><span class="bank-key">Account Number</span><span class="bank-val">0710642377</span></div>
+          <div class="bank-row"><span class="bank-key">Account Name</span><span class="bank-val">Ona Services Limited</span></div>
+          <div class="bank-row"><span class="bank-key">Reference</span><span class="bank-val">Your Name + Programme</span></div>
         </div>
-        <div class="proof-note">
-          After payment, send proof to Ona Services Limited via WhatsApp to receive your access credentials.
-        </div>
+        <div class="proof-note">After payment, send proof to Ona Services Limited via WhatsApp to receive your access credentials.</div>
       </div>
     </div>
   </div>
@@ -1401,6 +894,181 @@ footer {
   </div>
 </section>
 
+<!-- ─── FAQ SECTION ─── -->
+<section id="faq" class="faq-section">
+  <div class="section-header reveal">
+    <span class="section-tag">Got Questions?</span>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-desc">Everything you need to know before you take the most important step in your AI journey.</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="faq-grid">
+
+    <!-- Q1 -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Do I need any technical background or coding skills to start?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p><strong>Absolutely not.</strong> AI Made Simple was built specifically for people who have never written a single line of code. Every tool in our curriculum has a free or trial tier, works in a web browser, and is operated by clicking — not coding.</p>
+          <div class="faq-highlight">If you can send a WhatsApp message and use Google, you already have 100% of the technical skills needed to start Day 1.</div>
+          <p>Our students include teachers, traders, civil servants, stay-at-home parents, and business owners — the vast majority had zero technical background before they started. By Week 2, they were generating images, writing copy, and building automation workflows.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How exactly does the 30-minutes-a-day model work? Can I really learn AI that fast?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>The 30-minute model is not a shortcut — it is a <strong>precision learning system</strong>. Every daily lesson is structured into three parts: a 10-minute concept introduction, a 15-minute hands-on tool exercise, and a 5-minute business application reflection.</p>
+          <p>Research consistently shows that <strong>short, consistent, applied sessions outperform marathon study binges</strong> for skill retention. You do not need to clear your calendar. You need to protect 30 minutes — the length of a lunch break or a commute.</p>
+          <div class="faq-highlight">By Day 30 alone, you will have hands-on experience with 20+ AI tools. Most people in the market don't have that after a year of casual use.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Is the income target of $5,000/month in 90 days realistic for a Nigerian?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Yes — and the location advantage actually works <strong>in your favour</strong>. AI services are priced in dollars globally. A $500 chatbot project from a UK or US client pays you the same whether you are in Lagos, Abuja, or Port Harcourt. Your cost of living is significantly lower than your client's, which means your profit margin is higher.</p>
+          <p>The programme does not promise overnight millions. It gives you a <strong>structured 90-day execution plan</strong> with daily income tasks and weekly targets. Students who complete all exercises and follow the client acquisition sprints consistently hit the milestones outlined.</p>
+          <div class="faq-highlight">The income models — freelancing, content clipping, automation, chatbots, agency, SaaS, and digital products — are all accessible from Nigeria with a laptop and internet.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What is the difference between AI Expert User, AI Mastery to Money, and the Masterclasses?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p><strong>AI Expert User</strong> is for people who want to become highly competent with AI for their current career, business, or daily life — without a specific goal of creating a new income stream from AI. Think of it as becoming fluent in a powerful new language.</p>
+          <p><strong>AI Mastery to Money</strong> is for people who want to use AI to build a new income. It layers business strategy, client acquisition, pricing, and service delivery on top of the same tool training — and runs for the full 90 days across three phases.</p>
+          <p><strong>AI Masterclasses</strong> are standalone 2–3 hour intensives. They are ideal if you already have a specific use case in mind — writing a book, building a YouTube channel, generating leads on WhatsApp — and want to go deep on that one skill fast, without a full programme commitment.</p>
+          <div class="faq-highlight">Not sure which fits you? Message us on WhatsApp and we will tell you in under 5 minutes which programme matches your goals.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How soon after payment will I get access? What does the learning platform look like?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Access is granted <strong>within hours of payment confirmation</strong> — usually within the same business day. Once you send proof of payment via WhatsApp, your login credentials are activated manually by our team.</p>
+          <p>The learning portal is a clean, structured dashboard that tracks your daily progress, shows today's task, measures your streak, and shows your completion percentage across all 90 days. It works on any device — phone, tablet, or laptop — and can be saved to your home screen as an app.</p>
+          <div class="faq-highlight">Everything is self-paced. You can start on Day 1 on a Monday and take a day off on a Sunday — the platform remembers exactly where you are.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Will the AI tools taught in this programme cost me extra money?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>The curriculum is designed to use <strong>free or freemium tools wherever possible</strong>, especially in Phase 1. Tools like ChatGPT (free tier), Gemini, Ideogram, Canva, CapCut, Fireflies, and Make.com all have fully functional free plans that are sufficient for the learning exercises.</p>
+          <p>As you move into Phase 2 and Phase 3 and begin working with paying clients, certain tools become worth the investment — for example, MidJourney at $10/month or GoHighLevel at $97/month. But by then, a single client project typically covers these costs several times over.</p>
+          <div class="faq-highlight">We clearly mark tool costs in the curriculum so you always know what is free and what is optional. You will never be surprised.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">I have a full-time job. Can I realistically do this alongside my current work?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p><strong>Yes — this programme was built for exactly this situation.</strong> The 30-minute daily structure means you never need to carve out large chunks of time. Many of our enrolled students are bankers, civil servants, teachers, and 9-to-5 employees who complete their daily lesson during a lunch break, evening wind-down, or weekend catch-up session.</p>
+          <p>The income activities in the early weeks — publishing a digital product, listing a Fiverr gig — are also things you can do evenings and weekends. By the time your income starts to grow meaningfully in Phase 2 and 3, you will naturally decide whether you want to transition, scale, or just earn on the side.</p>
+          <div class="faq-highlight">The programme builds at a pace that respects your existing life — not one that requires you to abandon it.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What makes AI Made Simple different from YouTube tutorials or other online AI courses?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>YouTube tutorials give you random information. Other online courses give you content to watch. <strong>AI Made Simple gives you a system with daily execution steps, real business assets, and income targets.</strong></p>
+          <p>Three things set us apart. First, the curriculum is structured for the Nigerian and African market — the tools, payment methods, client acquisition channels, and income models are all relevant to your context, not just US or UK scenarios. Second, every single lesson produces a tangible output — a product, a gig, a pitch, a workflow — not just knowledge. Third, the programme is sequenced: Day 1 builds the foundation for Day 7, which builds the foundation for Day 30. You are not choosing what to watch next — you are following a proven roadmap.</p>
+          <div class="faq-highlight">The question is not whether you can find AI content for free. You can. The question is whether random content will get you to your first client, your first income, and your first scalable business in 90 days. Our structure will.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What if I fall behind? Can I restart or pause my progress?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Life happens. The platform is fully self-paced, meaning <strong>your Day 1 starts when you start</strong> — not on a fixed calendar. If you miss a day, the lesson is there waiting. If you need to repeat a week, you can. There are no penalties, no group deadlines, and no pressure to keep up with other students.</p>
+          <p>Your streak and progress are saved in your account so you always know exactly where you are. The dashboard also shows you how far you've come — not just how far you have left to go — which keeps motivation high even when life gets busy.</p>
+          <div class="faq-highlight">The goal is completion, not speed. A student who finishes in 120 days still has every tool, skill, and business asset they built along the way.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Is there any support if I get stuck, or am I completely on my own?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>You are not alone. Support levels depend on your chosen tier. <strong>Self-Study students</strong> have access to the WhatsApp enquiries channel for general questions. <strong>Standard students</strong> also attend a weekly 30-minute group session with live Q&A. <strong>VIP students</strong> get a direct 1:1 kickoff session, done-for-you templates, and priority response from the mentorship team.</p>
+          <p>Regardless of tier, you can always reach us on WhatsApp for time-sensitive questions. We pride ourselves on fast, practical responses — not automated bots.</p>
+          <div class="faq-highlight">The higher your tier, the faster you progress — because accountability and direct guidance compress the learning curve dramatically.</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end faq-grid -->
+
+  <!-- CTA row -->
+  <div class="faq-cta-row reveal">
+    <p class="faq-cta-text">Still have a question not covered here?</p>
+    <a href="https://wa.me/message/OF4HWNSJM6ZTK1" target="_blank" class="btn-primary" style="display:inline-flex;gap:10px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Ask Us on WhatsApp
+    </a>
+  </div>
+
+</section>
+
 <!-- ─── FOOTER ─── -->
 <footer>
   <div class="footer-inner">
@@ -1411,20 +1079,29 @@ footer {
       <a href="login.html">Login</a>
       <a href="dashboard.html">Dashboard</a>
       <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
     </div>
   </div>
 </footer>
 
+<!-- ─── WHATSAPP FLOATING BUTTON ─── -->
+<a href="https://wa.me/message/OF4HWNSJM6ZTK1" target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Chat with us on WhatsApp">
+  <div class="wa-label">Chat with us 💬</div>
+  <div class="wa-btn-circle">
+    <div class="wa-dot"></div>
+    <svg class="wa-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </div>
+</a>
+
 <script>
-/* ─────────────────────────────────────────────
-   THEME SYSTEM — persists to localStorage
-   Options: 'dark' | 'light' | 'system'
-───────────────────────────────────────────── */
+/* ─── THEME SYSTEM ─── */
 function setTheme(mode) {
   localStorage.setItem('ams-theme', mode);
   applyTheme(mode);
   document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
-  const map = { light: 'themeLight', dark: 'themeDark', system: 'themeSystem' };
+  const map = { light:'themeLight', dark:'themeDark', system:'themeSystem' };
   document.getElementById(map[mode])?.classList.add('active');
 }
 
@@ -1434,29 +1111,24 @@ function applyTheme(mode) {
   document.documentElement.setAttribute('data-theme', resolved);
 }
 
-// Init theme on load
 (function() {
   const saved = localStorage.getItem('ams-theme') || 'dark';
   applyTheme(saved);
-  const map = { light: 'themeLight', dark: 'themeDark', system: 'themeSystem' };
+  const map = { light:'themeLight', dark:'themeDark', system:'themeSystem' };
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(map[saved])?.classList.add('active');
   });
 })();
 
-// Listen for system changes
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
   if (localStorage.getItem('ams-theme') === 'system') applyTheme('system');
 });
 
-/* ─────────────────────────────────────────────
-   SYLLABUS ACCORDION
-───────────────────────────────────────────── */
+/* ─── SYLLABUS ACCORDION ─── */
 function toggleSyllabus(btn) {
   const content = btn.nextElementSibling;
   const isOpen = content.classList.contains('open');
-  // Close all others
   document.querySelectorAll('.syllabus-content.open').forEach(c => {
     c.classList.remove('open');
     c.previousElementSibling.classList.remove('open');
@@ -1467,17 +1139,38 @@ function toggleSyllabus(btn) {
   }
 }
 
-/* ─────────────────────────────────────────────
-   SCROLL REVEAL
-───────────────────────────────────────────── */
+/* ─── FAQ ACCORDION ─── */
+function toggleFaq(btn) {
+  const item   = btn.parentElement;
+  const answer = btn.nextElementSibling;
+  const isOpen = item.classList.contains('open');
+
+  /* Close all */
+  document.querySelectorAll('.faq-item.open').forEach(el => {
+    el.classList.remove('open');
+    el.querySelector('.faq-answer').classList.remove('open');
+  });
+
+  /* Open clicked one if it was closed */
+  if (!isOpen) {
+    item.classList.add('open');
+    answer.classList.add('open');
+    /* Smooth scroll so question stays in view */
+    setTimeout(() => {
+      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 50);
+  }
+}
+
+/* ─── SCROLL REVEAL ─── */
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      setTimeout(() => e.target.classList.add('visible'), i * 60);
       observer.unobserve(e.target);
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
