@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — AI Made Simple</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#C9A84C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --gold: #C9A84C;
+  --gold-light: #E8C97E;
+  --gold-dim: rgba(201,168,76,0.15);
+  --transition: 0.3s ease;
+}
+
+[data-theme="dark"] {
+  --bg: #0E0E10;
+  --bg2: #141416;
+  --bg3: #1C1C20;
+  --border: rgba(255,255,255,0.07);
+  --text: #F0EDE6;
+  --text-muted: #7A7870;
+  --text-secondary: #B8B5AE;
+  --card-bg: #16161A;
+  --card-border: rgba(201,168,76,0.12);
+  --nav-bg: rgba(14,14,16,0.95);
+  --badge-bg: rgba(201,168,76,0.1);
+  --input-bg: #1C1C20;
+  --shadow: 0 8px 48px rgba(0,0,0,0.5);
+  --sidebar-bg: #121214;
+  --locked-overlay: rgba(14,14,16,0.82);
+}
+
+[data-theme="light"] {
+  --bg: #F8F6F1;
+  --bg2: #EEEBE4;
+  --bg3: #E4E1DA;
+  --border: rgba(0,0,0,0.08);
+  --text: #1A1914;
+  --text-muted: #8A877E;
+  --text-secondary: #4A4740;
+  --card-bg: #FAFAF7;
+  --card-border: rgba(201,168,76,0.25);
+  --nav-bg: rgba(248,246,241,0.95);
+  --badge-bg: rgba(201,168,76,0.12);
+  --input-bg: #EEEBE4;
+  --shadow: 0 8px 48px rgba(0,0,0,0.1);
+  --sidebar-bg: #EEEBE4;
+  --locked-overlay: rgba(248,246,241,0.88);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background var(--transition), color var(--transition);
+  overflow-x: hidden;
+}
+
+/* ─────────────────────────────────────────────
+   TOP NAV
+───────────────────────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 1.5rem;
+  height: 60px;
+  display: flex; align-items: center; gap: 1rem;
+  transition: background var(--transition);
+}
+
+.nav-brand { display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0; }
+.nav-logo { width:30px;height:30px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:#0E0E10; }
+.nav-name { font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--text); }
+
+.nav-center { flex: 1; display:flex; align-items:center; justify-content:center; }
+
+.progress-bar-nav {
+  width: 200px;
+  max-width: 40vw;
+  height: 4px;
+  background: var(--bg3);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.progress-pct {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--gold);
+  margin-left: 8px;
+  font-weight: 700;
+}
+
+.nav-right { display:flex;align-items:center;gap:0.75rem;flex-shrink:0; }
+.nav-user { font-size:0.82rem;color:var(--text-secondary); }
+.nav-user strong { color:var(--text);font-weight:600; }
+
+.theme-toggle { display:flex;align-items:center;gap:2px;background:var(--bg3);border-radius:20px;padding:3px;border:1px solid var(--border); }
+.theme-btn { width:26px;height:22px;border:none;border-radius:16px;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:11px;transition:background var(--transition);color:var(--text-muted); }
+.theme-btn.active { background:var(--gold);color:#0E0E10; }
+
+.btn-logout { background:transparent;border:1px solid var(--border);color:var(--text-muted);padding:5px 12px;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:500;cursor:pointer;transition:all var(--transition); }
+.btn-logout:hover { border-color: var(--gold); color:var(--gold); }
+
+/* ─────────────────────────────────────────────
+   LAYOUT
+───────────────────────────────────────────── */
+.app-layout {
+  flex: 1;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+/* ─────────────────────────────────────────────
+   SIDEBAR
+───────────────────────────────────────────── */
+.sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  position: sticky;
+  top: 60px;
+  height: calc(100vh - 60px);
+  padding: 1.5rem 0;
+  transition: transform 0.3s ease, background var(--transition);
+}
+
+.sidebar-section {
+  margin-bottom: 0.25rem;
+}
+
+.sidebar-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 1.25rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.sidebar-section-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.sidebar-section-arrow { font-size: 9px; color:var(--text-muted); transition: transform 0.3s; }
+.sidebar-section.open .sidebar-section-arrow { transform: rotate(180deg); }
+
+.sidebar-lessons {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.sidebar-section.open .sidebar-lessons { max-height: 1000px; }
+
+.sidebar-lesson {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 1.25rem 8px 2.5rem;
+  cursor: pointer;
+  transition: background var(--transition);
+  border-left: 2px solid transparent;
+  margin-left: -2px;
+  text-decoration: none;
+}
+
+.sidebar-lesson:hover { background: var(--gold-dim); }
+.sidebar-lesson.active { border-left-color: var(--gold); background: var(--gold-dim); }
+.sidebar-lesson.completed .lesson-dot { background: var(--gold); }
+.sidebar-lesson.locked { opacity: 0.5; cursor: not-allowed; }
+
+.lesson-dot {
+  width: 8px; height: 8px;
+  border: 2px solid var(--text-muted);
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background var(--transition);
+}
+
+.lesson-dot.done { background: var(--gold); border-color: var(--gold); }
+.lesson-dot.current { border-color: var(--gold); box-shadow: 0 0 6px rgba(201,168,76,0.5); }
+
+.lesson-title {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.3;
+  flex: 1;
+}
+
+.sidebar-lesson.active .lesson-title { color: var(--text); font-weight: 500; }
+.sidebar-lesson.locked .lesson-title { color: var(--text-muted); }
+
+.lesson-lock { font-size: 10px; color: var(--text-muted); }
+.lesson-check { font-size: 11px; color: var(--gold); }
+
+/* ─────────────────────────────────────────────
+   MAIN CONTENT
+───────────────────────────────────────────── */
+.main-content {
+  flex: 1;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  min-width: 0;
+  overflow-y: auto;
+}
+
+/* ─────────────────────────────────────────────
+   PAYMENT GATE — shown if not paid
+───────────────────────────────────────────── */
+.payment-gate {
+  background: var(--card-bg);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 12px;
+  padding: 2.5rem;
+  text-align: center;
+  max-width: 560px;
+  margin: 2rem auto;
+}
+
+.gate-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+.gate-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+
+.gate-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.gate-actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+.btn-pay {
+  background: var(--gold);
+  color: #0E0E10;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 5px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+
+.btn-pay:hover { opacity: 0.88; transform: translateY(-1px); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ─────────────────────────────────────────────
+   DASHBOARD CONTENT
+───────────────────────────────────────────── */
+.dashboard-header {
+  margin-bottom: 2rem;
+}
+
+.welcome-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.welcome-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.welcome-sub {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+/* STATS ROW */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.stat-card-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.stat-card-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.stat-card-sub {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+/* TODAY CARD */
+.today-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.today-header {
+  background: var(--gold-dim);
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.today-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.today-timer {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.timer-display {
+  background: var(--bg3);
+  border-radius: 4px;
+  padding: 3px 10px;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.88rem;
+  min-width: 64px;
+  text-align: center;
+}
+
+.today-body { padding: 1.5rem; }
+
+.today-day {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.35rem;
+}
+
+.today-lesson-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.today-tool-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 3px 12px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.06em;
+  margin-bottom: 1rem;
+}
+
+.today-content {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+.today-task {
+  margin: 1.25rem 0;
+  background: var(--bg3);
+  border-left: 3px solid var(--gold);
+  padding: 1rem 1.25rem;
+  border-radius: 0 6px 6px 0;
+}
+
+.task-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.35rem;
+}
+
+.task-text {
+  font-size: 0.85rem;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.today-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-complete {
+  background: var(--gold);
+  color: #0E0E10;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 5px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  display: flex; align-items: center; gap: 6px;
+}
+
+.btn-complete:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-complete:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
+.btn-complete.done { background: #4a7c59; }
+
+.btn-next {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-next:hover { border-color: var(--gold); color: var(--gold); }
+
+/* PROGRESS RINGS */
+.phase-progress {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.phase-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.ring-container {
+  position: relative;
+  width: 70px; height: 70px;
+  margin: 0 auto 0.75rem;
+}
+
+.ring-svg { transform: rotate(-90deg); }
+
+.ring-bg { fill: none; stroke: var(--bg3); stroke-width: 5; }
+.ring-fill { fill: none; stroke: var(--gold); stroke-width: 5; stroke-linecap: round; transition: stroke-dashoffset 0.8s ease; }
+
+.ring-text {
+  position: absolute;
+  inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.phase-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.phase-name {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* NOTIFICATION BANNER */
+.notification-bar {
+  background: var(--gold-dim);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2rem;
+  font-size: 0.83rem;
+  color: var(--text-secondary);
+  animation: slideDown 0.4s ease;
+}
+
+@keyframes slideDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+
+.notif-icon { font-size: 18px; flex-shrink: 0; }
+.notif-text { flex: 1; }
+.notif-close { background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:16px; flex-shrink:0; }
+.notif-close:hover { color: var(--text); }
+
+.btn-enable-notifs {
+  background: var(--gold);
+  color: #0E0E10;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+/* WEEKLY TRACKER */
+.week-tracker {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.tracker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.tracker-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.tracker-streak {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--gold);
+  background: var(--gold-dim);
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+
+.week-days {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.day-circle {
+  flex: 1;
+  aspect-ratio: 1;
+  max-width: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+}
+
+.day-circle.done { background: var(--gold); border-color: var(--gold); }
+.day-circle.today { border-color: var(--gold); box-shadow: 0 0 10px rgba(201,168,76,0.3); }
+.day-circle.missed { border-color: rgba(224,90,90,0.4); background: rgba(224,90,90,0.06); }
+
+.day-name { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.05em; color: var(--text-muted); }
+.day-check { font-size: 14px; }
+.day-circle.done .day-name { color: #0E0E10; }
+
+/* LOCKED OVERLAY */
+.locked-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--locked-overlay);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+  z-index: 10;
+  gap: 0.5rem;
+}
+
+.locked-icon { font-size: 2rem; }
+.locked-title { font-size: 0.82rem; font-weight: 600; color: var(--text); }
+.locked-sub { font-size: 0.75rem; color: var(--text-muted); }
+
+.module-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 0.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.module-card:hover { border-color: rgba(201,168,76,0.2); }
+.module-card.unlocked { border-color: rgba(201,168,76,0.15); }
+.module-card.completed { border-color: rgba(74,124,89,0.25); }
+
+.module-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.module-phase {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.module-status {
+  font-size: 0.68rem;
+  padding: 2px 8px;
+  border-radius: 100px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.status-locked   { background:rgba(120,120,120,0.1); color:var(--text-muted); }
+.status-active   { background:rgba(201,168,76,0.1);  color:var(--gold); }
+.status-done     { background:rgba(74,124,89,0.1);   color:#5fd48a; }
+
+.module-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+
+.module-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.module-progress {
+  height: 3px;
+  background: var(--bg3);
+  border-radius: 3px;
+  margin-top: 0.75rem;
+  overflow: hidden;
+}
+
+.module-progress-fill {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+/* PWA EXIT BUTTON */
+.pwa-btn {
+  position: fixed;
+  bottom: 1.5rem; right: 1.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  z-index: 999;
+  transition: all 0.2s ease;
+  color: var(--text-muted);
+}
+
+.pwa-btn:hover { border-color: var(--gold); color: var(--gold); transform: scale(1.05); }
+
+/* MOBILE SIDEBAR TOGGLE */
+.sidebar-toggle {
+  display: none;
+  background: none; border: none;
+  font-size: 18px; color: var(--text-muted);
+  cursor: pointer; padding: 4px;
+}
+
+.sidebar-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 150;
+}
+
+/* FOOTER */
+footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 1.25rem 1.5rem;
+}
+
+.footer-inner { display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+.footer-copy { font-size:0.72rem; color:var(--text-muted); }
+.footer-links { display:flex; gap:1.25rem; }
+.footer-links a { font-size:0.72rem; color:var(--text-muted); text-decoration:none; transition:color var(--transition); }
+.footer-links a:hover { color:var(--gold); }
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .sidebar {
+    position: fixed;
+    top: 60px; left: 0; bottom: 0;
+    z-index: 160;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar-overlay { display: block; }
+  .sidebar-toggle { display: flex; }
+  .progress-bar-nav { display: none; }
+  .progress-pct { display: none; }
+}
+
+@media (max-width: 540px) {
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .phase-progress { grid-template-columns: repeat(3, 1fr); }
+  .week-days { gap: 0.25rem; }
+  .day-circle { max-width: 36px; }
+  .day-name { font-size: 0.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── TOP NAV ─── -->
+<nav>
+  <button class="sidebar-toggle" onclick="toggleSidebar()" id="sidebarToggle">☰</button>
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo">AI</div>
+    <span class="nav-name" style="display:none;" id="navName">AI Made Simple</span>
+  </a>
+  <div class="nav-center">
+    <div class="progress-bar-nav">
+      <div class="progress-bar-fill" id="globalProgressBar" style="width:0%"></div>
+    </div>
+    <span class="progress-pct" id="globalProgressPct">0%</span>
+  </div>
+  <div class="nav-right">
+    <span class="nav-user"><strong id="navUserName">Guest</strong></span>
+    <div class="theme-toggle">
+      <button class="theme-btn" id="themeLight" onclick="setTheme('light')" title="Light">☀</button>
+      <button class="theme-btn active" id="themeDark" onclick="setTheme('dark')" title="Dark">●</button>
+      <button class="theme-btn" id="themeSystem" onclick="setTheme('system')" title="System">⊙</button>
+    </div>
+    <button class="btn-logout" onclick="handleLogout()">Sign Out</button>
+  </div>
+</nav>
+
+<!-- SIDEBAR OVERLAY -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()" style="opacity:0;pointer-events:none;transition:opacity 0.3s;"></div>
+
+<!-- ─── LAYOUT ─── -->
+<div class="app-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <!-- Phase 1 -->
+    <div class="sidebar-section open" id="phase1Section">
+      <div class="sidebar-section-header" onclick="togglePhase(this)">
+        <span class="sidebar-section-title">Phase 1 — Foundations</span>
+        <span class="sidebar-section-arrow">▼</span>
+      </div>
+      <div class="sidebar-lessons" id="phase1Lessons">
+        <!-- Generated by JS -->
+      </div>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="sidebar-section" id="phase2Section">
+      <div class="sidebar-section-header" onclick="togglePhase(this)">
+        <span class="sidebar-section-title">Phase 2 — Business</span>
+        <span class="sidebar-section-arrow">▼</span>
+      </div>
+      <div class="sidebar-lessons" id="phase2Lessons"></div>
+    </div>
+
+    <!-- Phase 3 -->
+    <div class="sidebar-section" id="phase3Section">
+      <div class="sidebar-section-header" onclick="togglePhase(this)">
+        <span class="sidebar-section-title">Phase 3 — Mastery</span>
+        <span class="sidebar-section-arrow">▼</span>
+      </div>
+      <div class="sidebar-lessons" id="phase3Lessons"></div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content" id="mainContent">
+
+    <!-- PAYMENT GATE (shown if not paid) -->
+    <div class="payment-gate" id="paymentGate" style="display:none;">
+      <div class="gate-icon">🔒</div>
+      <div class="gate-title">Unlock Your Programme</div>
+      <div class="gate-desc">
+        Your account has been created but payment is pending. Complete your payment to access the full 90-day curriculum, daily lessons, and progress tracking.
+      </div>
+      <div class="gate-actions">
+        <a href="https://paystack.shop/pay/aimadesimple" target="_blank" class="btn-pay">Pay Now — ₦50,000/mo ↗</a>
+        <button class="btn-outline" onclick="simulatePayment()">Simulate Payment ✓</button>
+      </div>
+      <p style="font-size:0.72rem;color:var(--text-muted);margin-top:1.5rem;">After payment, your access will be confirmed within minutes. Contact us on WhatsApp if you've already paid.</p>
+    </div>
+
+    <!-- DASHBOARD (shown if paid) -->
+    <div id="dashboardContent" style="display:none;">
+
+      <!-- NOTIFICATION BAR -->
+      <div class="notification-bar" id="notifBar" style="display:none;">
+        <span class="notif-icon">🔔</span>
+        <span class="notif-text">Enable daily reminders to stay on track with your 30-minute learning sessions.</span>
+        <button class="btn-enable-notifs" onclick="requestNotifications()">Enable</button>
+        <button class="notif-close" onclick="dismissNotif()">✕</button>
+      </div>
+
+      <!-- HEADER -->
+      <div class="dashboard-header">
+        <div class="welcome-tag">Your Learning Dashboard</div>
+        <div class="welcome-title" id="welcomeTitle">Good morning! ☀</div>
+        <div class="welcome-sub" id="welcomeSub">You are on track. Today's 30-minute session is ready for you.</div>
+      </div>
+
+      <!-- STATS -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-card-label">Current Day</div>
+          <div class="stat-card-value" id="statCurrentDay">1</div>
+          <div class="stat-card-sub">of 90 days</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Days Completed</div>
+          <div class="stat-card-value" id="statDaysCompleted">0</div>
+          <div class="stat-card-sub">lessons done</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Streak</div>
+          <div class="stat-card-value" id="statStreak">0</div>
+          <div class="stat-card-sub">day streak 🔥</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Overall Progress</div>
+          <div class="stat-card-value" id="statProgress">0%</div>
+          <div class="stat-card-sub">towards completion</div>
+        </div>
+      </div>
+
+      <!-- WEEKLY TRACKER -->
+      <div class="week-tracker">
+        <div class="tracker-header">
+          <span class="tracker-title">This Week's Engagement</span>
+          <span class="tracker-streak" id="streakBadge">🔥 0-day streak</span>
+        </div>
+        <div class="week-days" id="weekDays">
+          <!-- Generated by JS -->
+        </div>
+      </div>
+
+      <!-- PHASE PROGRESS RINGS -->
+      <div class="phase-progress">
+        <div class="phase-card">
+          <div class="ring-container">
+            <svg class="ring-svg" viewBox="0 0 70 70" width="70" height="70">
+              <circle class="ring-bg" cx="35" cy="35" r="30"/>
+              <circle class="ring-fill" id="ring1" cx="35" cy="35" r="30" stroke-dasharray="188.5" stroke-dashoffset="188.5"/>
+            </svg>
+            <div class="ring-text" id="ringPct1">0%</div>
+          </div>
+          <div class="phase-label">Phase 1</div>
+          <div class="phase-name">Foundations</div>
+        </div>
+        <div class="phase-card">
+          <div class="ring-container">
+            <svg class="ring-svg" viewBox="0 0 70 70" width="70" height="70">
+              <circle class="ring-bg" cx="35" cy="35" r="30"/>
+              <circle class="ring-fill" id="ring2" cx="35" cy="35" r="30" stroke-dasharray="188.5" stroke-dashoffset="188.5"/>
+            </svg>
+            <div class="ring-text" id="ringPct2">0%</div>
+          </div>
+          <div class="phase-label">Phase 2</div>
+          <div class="phase-name">Business</div>
+        </div>
+        <div class="phase-card">
+          <div class="ring-container">
+            <svg class="ring-svg" viewBox="0 0 70 70" width="70" height="70">
+              <circle class="ring-bg" cx="35" cy="35" r="30"/>
+              <circle class="ring-fill" id="ring3" cx="35" cy="35" r="30" stroke-dasharray="188.5" stroke-dashoffset="188.5"/>
+            </svg>
+            <div class="ring-text" id="ringPct3">0%</div>
+          </div>
+          <div class="phase-label">Phase 3</div>
+          <div class="phase-name">Mastery</div>
+        </div>
+      </div>
+
+      <!-- TODAY'S LESSON CARD -->
+      <div class="today-card" id="todayCard">
+        <div class="today-header">
+          <span class="today-label">Today's Lesson</span>
+          <div class="today-timer">
+            <span>Session time:</span>
+            <span class="timer-display" id="sessionTimer">00:00</span>
+            <button id="timerToggle" onclick="toggleTimer()" style="background:var(--bg3);border:1px solid var(--border);color:var(--text-secondary);padding:3px 10px;border-radius:4px;font-size:0.72rem;cursor:pointer;font-family:inherit;">Start</button>
+          </div>
+        </div>
+        <div class="today-body" id="todayBody">
+          <!-- Generated by JS -->
+        </div>
+        <div class="today-footer">
+          <button class="btn-complete" id="markDoneBtn" onclick="markDayComplete()">
+            ✓ Mark as Complete
+          </button>
+          <button class="btn-next" onclick="goToNextLesson()">Next Lesson →</button>
+          <button class="btn-next" onclick="goToPrevLesson()" style="margin-left:auto;">← Previous</button>
+        </div>
+      </div>
+
+      <!-- ALL MODULES -->
+      <div style="margin-bottom:1rem;">
+        <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem;">All Modules</div>
+        <div id="modulesList">
+          <!-- Generated by JS -->
+        </div>
+      </div>
+
+    </div><!-- end dashboardContent -->
+
+  </main>
+</div>
+
+<!-- PWA EXIT BUTTON -->
+<button class="pwa-btn" onclick="pwaExit()" title="Exit / Install App">⊞</button>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">© 2026 Ona Services Ltd. Created by Oluwaseyi Ashiru.</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="login.html">Account</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ─────────────────────────────────────────────
+   THEME SYSTEM
+───────────────────────────────────────────── */
+function setTheme(mode) {
+  localStorage.setItem('ams-theme', mode);
+  applyTheme(mode);
+  document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+  const map = { light:'themeLight', dark:'themeDark', system:'themeSystem' };
+  document.getElementById(map[mode])?.classList.add('active');
+}
+
+function applyTheme(mode) {
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const resolved = mode === 'system' ? (prefersDark ? 'dark' : 'light') : mode;
+  document.documentElement.setAttribute('data-theme', resolved);
+}
+
+(function() {
+  const saved = localStorage.getItem('ams-theme') || 'dark';
+  applyTheme(saved);
+  const map = { light:'themeLight', dark:'themeDark', system:'themeSystem' };
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(map[saved])?.classList.add('active');
+  });
+})();
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+  if (localStorage.getItem('ams-theme') === 'system') applyTheme('system');
+});
+
+/* ─────────────────────────────────────────────
+   CURRICULUM DATA — AI Expert User (90 days)
+   Structure: { day, week, phase, title, tool, task, income }
+───────────────────────────────────────────── */
+const CURRICULUM = [
+  // PHASE 1 - Days 1-30
+  { day:1, week:1, phase:1, title:'The Basics of Prompting', tool:'ChatGPT / Gemini', task:'Sign up and learn the "Persona-Context-Task" prompt formula. Ask the AI to rewrite a difficult email or summarize a complex article.', income:'$0 — Setup day' },
+  { day:2, week:1, phase:1, title:'AI as a Search Engine', tool:'Perplexity AI', task:'Use Perplexity to research a hobby or business topic. Compare the results to a standard Google search. Note the citations provided.', income:'$0 — Research' },
+  { day:3, week:1, phase:1, title:'The Writing Assistant', tool:'Claude / ChatGPT', task:'Draft a blog post, cover letter, or LinkedIn update. Experiment with changing the tone (e.g., professional vs. witty).', income:'First product live 🎯' },
+  { day:4, week:1, phase:1, title:'Summarisation & Learning', tool:'ChatPDF / Gemini PDF', task:'Upload a 10+ page PDF document and ask the AI to "Explain the top 5 key takeaways to a 12-year-old."', income:'$0–$50 from product' },
+  { day:5, week:1, phase:1, title:'Tone & Voice Control', tool:'ChatGPT / Claude', task:'Solve a real-life problem using text AI — create a 3-day meal plan or draft a 7-day study schedule.', income:'Monitor sales' },
+  { day:6, week:2, phase:1, title:'AI Art Generation', tool:'MidJourney / Ideogram', task:'Generate a simple image: "A futuristic coffee shop in Tokyo, neon lights, rainy night." Experiment with aspect ratios.', income:'Portfolio ready' },
+  { day:7, week:2, phase:1, title:'AI Photo Editing', tool:'Adobe Firefly / Canva AI', task:'Take an existing photo and use Generative Fill to add or remove an object.', income:'Gig live 🎯' },
+  { day:8, week:2, phase:1, title:'Design for Non-Designers', tool:'Canva Magic Studio', task:'Create an Instagram post or birthday card using only a text prompt.', income:'Second product ready' },
+  { day:9, week:2, phase:1, title:'Logo & Brand Identity', tool:'Looka / Ideogram', task:'Generate 5 logo concepts for a fictional "Space Pizza" brand.', income:'$0–$75 freelancing' },
+  { day:10, week:2, phase:1, title:'Weekly Image Challenge', tool:'MidJourney + ChatGPT', task:'Create a "Movie Poster" for your life — AI image for the visual, AI text for the tagline.', income:'5 outreach sent' },
+  { day:11, week:3, phase:1, title:'AI Second Brain', tool:'Notion AI', task:'Create a Notion page and use AI to "Draft a meeting agenda" or "Brainstorm 10 marketing ideas."', income:'Systems built' },
+  { day:12, week:3, phase:1, title:'Presentation Power', tool:'Gamma App / Tome', task:'Generate a full 8-slide presentation on "The History of Coffee" in under 5 minutes.', income:'Proposal deck ready' },
+  { day:13, week:3, phase:1, title:'Task & Project Management', tool:'ClickUp AI / Motion', task:'Input a brain dump of tasks and ask AI to prioritize them or break them into sub-tasks.', income:'Workflow templated' },
+  { day:14, week:3, phase:1, title:'Meeting Transcription', tool:'Fireflies.ai / Otter.ai', task:'Record a 5-minute monologue of your goals, transcribe it, and ask AI to extract "Action Items."', income:'Sales script ready' },
+  { day:15, week:3, phase:1, title:'The 1-Hour Workday', tool:'All tools', task:'"The 1-Hour Workday" — Complete a task that usually takes 2 hours in 30 minutes using AI tools.', income:'Close first sale 🎯' },
+  { day:16, week:4, phase:1, title:'AI Voice & TTS', tool:'ElevenLabs', task:'Turn a paragraph of text into a high-quality audio file using a pre-made voice.', income:'New service added' },
+  { day:17, week:4, phase:1, title:'Talking Avatars', tool:'HeyGen / D-ID', task:'Upload a photo and make it say a short welcome message as a talking avatar.', income:'Video asset created' },
+  { day:18, week:4, phase:1, title:'AI Music Generation', tool:'Suno / Udio', task:'Generate a 30-second jingle for the "Space Pizza" brand created in Week 2.', income:'Upsell added' },
+  { day:19, week:4, phase:1, title:'AI Video Editing Assistant', tool:'CapCut / Descript', task:'Take a short video clip and use AI to add auto-captions or remove background noise.', income:'Clipping pipeline' },
+  { day:20, week:4, phase:1, title:'Phase 1 Capstone', tool:'All Phase 1 tools', task:'Create a multimedia package for a fictional business: Text description (ChatGPT), logo (Ideogram), short promo video (HeyGen/CapCut).', income:'Portfolio complete 🎯' },
+  { day:21, week:5, phase:1, title:'Advanced Prompting', tool:'ChatGPT / Claude', task:'Build a personal prompt library with 10 reusable templates across categories.', income:'Prompt library built' },
+  { day:22, week:5, phase:1, title:'AI Tool Ecosystem Map', tool:'Notion + Research', task:'Create a visual map of all AI tools by category. Identify your top 5 for your use case.', income:'Tool map complete' },
+  { day:23, week:5, phase:1, title:'Prompt Engineering for Business', tool:'ChatGPT / Claude', task:'Create 5 business-specific prompt templates (email, proposals, reports, social posts, research).', income:'Templates ready' },
+  { day:24, week:5, phase:1, title:'AI Ethics & Reliability', tool:'Reading + reflection', task:'Research AI bias, hallucination, and responsible use. Document your personal AI policy.', income:'Policy documented' },
+  { day:25, week:5, phase:1, title:'Personal Branding with AI', tool:'ChatGPT + Canva', task:'Create a complete personal brand kit: bio, headshots (AI), tagline, colour palette.', income:'Brand kit live' },
+  { day:26, week:6, phase:1, title:'Cold Outreach Sprint', tool:'LinkedIn / Instagram', task:'Send 20 targeted outreach messages offering AI services. Track responses in Notion.', income:'20 outreach sent' },
+  { day:27, week:6, phase:1, title:'Proposal Mastery', tool:'ChatGPT + Canva', task:'Write 3 professional service proposals using AI. Include pricing, scope, and timeline.', income:'3 proposals ready' },
+  { day:28, week:6, phase:1, title:'Pricing Psychology', tool:'Research + reflection', task:'Research value-based pricing, anchoring, and decoy pricing. Lock your service rates.', income:'Pricing locked' },
+  { day:29, week:6, phase:1, title:'Review & Close Leads', tool:'All platforms', task:'Follow up on all outreach. Push for a first paid project or product sale today.', income:'First paid work 🎯' },
+  { day:30, week:6, phase:1, title:'Phase 1 Final Review', tool:'Portfolio + reflection', task:'Audit your portfolio. Document every tool learned, asset created, and income earned. Set Phase 2 targets.', income:'Roadmap set' },
+  // PHASE 2 - Days 31-60
+  { day:31, week:7, phase:2, title:'Freelancing Market Research', tool:'Fiverr / Upwork', task:'Identify the 3 most in-demand AI services in your niche. Lock your freelancing niche.', income:'Niche locked' },
+  { day:32, week:7, phase:2, title:'Service Architecture', tool:'ChatGPT + Notion', task:'Design 3 service packages (starter, pro, premium) with deliverables and pricing.', income:'Packages built' },
+  { day:33, week:7, phase:2, title:'Portfolio Expansion', tool:'All AI tools', task:'Create 3 portfolio pieces that demonstrate your best AI service skills.', income:'Portfolio updated' },
+  { day:34, week:7, phase:2, title:'Upwork Proposal Mastery', tool:'Upwork', task:'Send 10 highly targeted Upwork proposals using the AI-optimized template.', income:'10 proposals sent' },
+  { day:35, week:7, phase:2, title:'First Client Delivery', tool:'Service tools', task:'Deliver a freelance project to your first client. Document the process.', income:'First delivery 🎯' },
+  { day:36, week:8, phase:2, title:'AI Clipping Pipeline', tool:'Opus Clip', task:'Take a 10-minute long-form video and create 5 short-form clips optimised for TikTok/Reels.', income:'Pipeline understood' },
+  { day:37, week:8, phase:2, title:'Caption & Branding', tool:'Descript / CapCut', task:'Apply consistent branding (fonts, colours, logo) to your content clipping templates.', income:'Brand template ready' },
+  { day:38, week:8, phase:2, title:'Platform Formatting', tool:'CapCut / Canva', task:'Create platform-specific versions of the same clip (TikTok 9:16, YouTube Shorts, LinkedIn).', income:'Packages priced' },
+  { day:39, week:8, phase:2, title:'Client Acquisition for Clipping', tool:'Instagram / LinkedIn', task:'DM 10 content creators or businesses offering a free clipping demo.', income:'10 demos sent' },
+  { day:40, week:8, phase:2, title:'Retainer Pitch for Clipping', tool:'Notion + Google Drive', task:'Send your first retainer pitch for monthly content clipping at ₦150,000–₦250,000/month.', income:'First retainer pitch 🎯' },
+  { day:41, week:9, phase:2, title:'Automation Fundamentals', tool:'Make.com Academy', task:'Complete the Make.com onboarding. Build your first scenario: form submission → email notification.', income:'First scenario built' },
+  { day:42, week:9, phase:2, title:'Lead Capture Automation', tool:'Make + Airtable', task:'Build a lead capture system: Instagram DM → Airtable CRM → Welcome email.', income:'Package ready' },
+  { day:43, week:9, phase:2, title:'Service Menu for Automation', tool:'Notion + Google Docs', task:'Create a service menu listing 5 automation packages with scope and pricing.', income:'Service sheet done' },
+  { day:44, week:9, phase:2, title:'The Free Audit Process', tool:'Google Forms + Loom', task:'Create a "free automation audit" framework. Record a 3-minute Loom explainer.', income:'Audit tool ready' },
+  { day:45, week:9, phase:2, title:'Build for Mock Client', tool:'Make + Loom', task:'Build a complete automation demo for a mock restaurant client. Record the walkthrough.', income:'Demo asset built 🎯' },
+  { day:46, week:10, phase:2, title:'Chatbot Architecture', tool:'Voiceflow (intro)', task:'Complete Voiceflow onboarding. Design the conversation flow for a FAQ chatbot on paper.', income:'Architecture understood' },
+  { day:47, week:10, phase:2, title:'Conversation Design', tool:'Paper + Voiceflow', task:'Script a 10-step chatbot conversation for a fictional e-commerce store.', income:'Bot scripted' },
+  { day:48, week:10, phase:2, title:'Connecting AI to Bots', tool:'Voiceflow + OpenAI API', task:'Add an AI step to your chatbot so it can answer questions dynamically using GPT.', income:'AI step connected' },
+  { day:49, week:10, phase:2, title:'Digital Product — E-book', tool:'ChatGPT + Canva', task:'Write and design a 20-page e-book in your niche. List it on Selar or Payhip.', income:'Second product live 🎯' },
+  { day:50, week:10, phase:2, title:'Product Marketing — SEO', tool:'Selar / Etsy + eRank', task:'Optimise your digital product listings with SEO keywords and compelling thumbnails.', income:'SEO optimised' },
+  { day:51, week:11, phase:2, title:'20-Outreach Sprint', tool:'LinkedIn / IG / Email', task:'Send 20 personalised outreach messages targeting your primary service niche.', income:'20 messages sent' },
+  { day:52, week:11, phase:2, title:'Proposal Finalisation', tool:'ChatGPT + Canva', task:'Create 2 professional proposals using AI and branded Canva templates.', income:'2 proposals sent' },
+  { day:53, week:11, phase:2, title:'Discovery Call Practice', tool:'Zoom + script', task:'Practise a 15-minute discovery call script until it feels natural. Record yourself.', income:'Call script mastered' },
+  { day:54, week:11, phase:2, title:'Delivery System Build', tool:'Notion + Loom', task:'Build a client onboarding workflow: intake form, welcome video, delivery timeline.', income:'Workflow documented' },
+  { day:55, week:11, phase:2, title:'First Client Delivery', tool:'Service tools', task:'Deliver your primary service to a paying client. Request a testimonial.', income:'First delivery done 🎯' },
+  { day:56, week:11, phase:2, title:'Collecting Social Proof', tool:'Email + platform', task:'Follow up with clients for testimonials. Add 3 testimonials to your profile/portfolio.', income:'Testimonial collected' },
+  { day:57, week:12, phase:2, title:'Retainer Conversion', tool:'Proposal + Calendly', task:'Pitch your existing client on a monthly retainer. Send the proposal today.', income:'Retainer pitched' },
+  { day:58, week:12, phase:2, title:'Scaling Your Income', tool:'Platform analytics', task:'Analyse your Upwork/Fiverr stats. Identify top-performing services and raise prices 20%.', income:'Roadmap written' },
+  { day:59, week:12, phase:2, title:'Phase 2 Portfolio Audit', tool:'Portfolio folder', task:'Update your portfolio with all Phase 2 deliverables, testimonials, and case studies.', income:'Portfolio updated' },
+  { day:60, week:12, phase:2, title:'Phase 2 Capstone', tool:'Gamma / Canva', task:'Create a 10-slide Phase 2 review presentation. Present your income achieved and Phase 3 goals.', income:'Phase 2 complete 🏆' },
+  // PHASE 3 - Days 61-90
+  { day:61, week:13, phase:3, title:'Full Chatbot Build', tool:'Voiceflow', task:'Build a production-grade chatbot with 15+ conversation flows, FAQs, and lead capture.', income:'Bot built & tested' },
+  { day:62, week:13, phase:3, title:'Bot Integration Layer', tool:'Voiceflow + Calendly', task:'Connect your chatbot to Calendly for booking, and to an email list.', income:'Integrations live' },
+  { day:63, week:13, phase:3, title:'Deployment', tool:'Carrd + Voiceflow', task:'Deploy your chatbot live on a one-page website. Test all flows end-to-end.', income:'Bot deployed live' },
+  { day:64, week:13, phase:3, title:'Chatbot Service Packages', tool:'Canva + Notion', task:'Create a professional chatbot service menu with 3 tiers at $500, $1,500, and $3,000.', income:'Packages priced' },
+  { day:65, week:13, phase:3, title:'Chatbot Client Acquisition', tool:'Google Maps + Email', task:'Find 5 local businesses using Google Maps. Send cold email with your chatbot demo link.', income:'5 pitches sent 🎯' },
+  { day:66, week:14, phase:3, title:'Agency Niche Selection', tool:'Research + ChatGPT', task:'Define your AI agency niche (restaurants, clinics, coaches, e-commerce). Write your ICP.', income:'Niche defined' },
+  { day:67, week:14, phase:3, title:'GoHighLevel Setup', tool:'GoHighLevel (trial)', task:'Set up your GHL account, sub-account, and configure pipelines for your niche.', income:'GHL configured' },
+  { day:68, week:14, phase:3, title:'AI Delivery Stack', tool:'ChatGPT + AdCreative.ai', task:'Build your agency delivery system: ad creatives, copywriting, reporting templates.', income:'Delivery system built' },
+  { day:69, week:14, phase:3, title:'Discovery Call Framework', tool:'Calendly + script', task:'Create your agency discovery call script. Practise handling objections.', income:'Sales script ready' },
+  { day:70, week:14, phase:3, title:'First Agency Client', tool:'GHL + outreach', task:'Send 20 outreach messages to your ICP. Aim to close your first agency pilot client.', income:'Pilot client 🎯' },
+  { day:71, week:15, phase:3, title:'3-Filter Validation', tool:'Research + Interviews', task:'Validate your Micro-SaaS idea using the 3-filter test: problem, willingness to pay, buildable in <60 days.', income:'Idea validated' },
+  { day:72, week:15, phase:3, title:'MVP Specification', tool:'Notion', task:'Write a 2-page MVP spec: user persona, core features (max 3), monetisation model.', income:'Spec written' },
+  { day:73, week:15, phase:3, title:'No-Code App Building', tool:'Lovable.dev / Bubble.io', task:'Build a working prototype of your SaaS idea using Lovable or Bubble.', income:'Prototype live' },
+  { day:74, week:15, phase:3, title:'Payments & Pricing Page', tool:'Stripe + Carrd', task:'Connect Stripe to your app. Create a pricing page with at least 2 tiers.', income:'Payments live' },
+  { day:75, week:15, phase:3, title:'Beta Launch', tool:'Reddit + Product Hunt', task:'Announce your beta to Reddit communities and Product Hunt. Collect first 10 sign-ups.', income:'Beta launched 🎯' },
+  { day:76, week:16, phase:3, title:'Business Model Decision', tool:'Reflection + planning', task:'Decide your primary income model (agency, SaaS, or hybrid). Write your 90-day post-program plan.', income:'Decision committed' },
+  { day:77, week:16, phase:3, title:'Market Validation', tool:'Perplexity + ChatGPT', task:'Research your target market size. Write your Unique Value Proposition in one sentence.', income:'UVP locked' },
+  { day:78, week:16, phase:3, title:'Brand Identity Launch', tool:'MidJourney + Canva', task:'Launch your full brand: logo, colour system, typography, website, and social profiles.', income:'Brand live' },
+  { day:79, week:16, phase:3, title:'Content Engine Setup', tool:'TikTok / LinkedIn / IG', task:'Record and publish your first 3 pieces of content showcasing your AI expertise.', income:'Content engine started' },
+  { day:80, week:16, phase:3, title:'Serious Acquisition Push', tool:'All platforms', task:'Run your biggest outreach sprint: 30 messages across all platforms. Follow up relentlessly.', income:'Pipeline built' },
+  { day:81, week:17, phase:3, title:'Feedback & Iteration', tool:'Notion', task:'Review client and community feedback. Refine your offer based on real input.', income:'Offer refined' },
+  { day:82, week:17, phase:3, title:'Business Automation', tool:'Make / Zapier', task:'Automate 3 recurring tasks in your business: invoicing, onboarding, social posting.', income:'Automation live' },
+  { day:83, week:17, phase:3, title:'Financial Projections', tool:'Google Sheets', task:'Build a 6-month income projection spreadsheet for your chosen business model.', income:'Projections built' },
+  { day:84, week:17, phase:3, title:'Email List Foundation', tool:'Beehiiv', task:'Launch a free newsletter. Send your first issue to your existing contacts.', income:'Newsletter launched' },
+  { day:85, week:17, phase:3, title:'Peer Review & Accountability', tool:'Community / partner', task:'Find an accountability partner. Schedule weekly check-ins for the next 3 months.', income:'Accountability set' },
+  { day:86, week:18, phase:3, title:'Full Portfolio Audit', tool:'Portfolio folder', task:'Compile all 90 days of work into a master portfolio. Include case studies, testimonials, and income proof.', income:'Master portfolio complete' },
+  { day:87, week:18, phase:3, title:'Content Calendar — 3 Weeks', tool:'Canva + scheduling', task:'Plan 30 days of content across your platforms. Schedule the first week.', income:'30 days planned' },
+  { day:88, week:18, phase:3, title:'Systems for Scale', tool:'Notion + SOP template', task:'Write 3 Standard Operating Procedures for your most recurring tasks.', income:'3 SOPs written' },
+  { day:89, week:18, phase:3, title:'90-Day Review + Plan', tool:'Notion + reflection', task:'Write your 90-day review: income earned, tools mastered, lessons learned, next 90-day goals.', income:'Review complete' },
+  { day:90, week:18, phase:3, title:'FINAL CAPSTONE LAUNCH', tool:'Gamma / Canva', task:'Create and present your Final Capstone: a professional business pitch deck and income report. You are launched. 🚀', income:'LAUNCHED 🏆' },
+];
+
+/* ─────────────────────────────────────────────
+   STATE MANAGEMENT
+───────────────────────────────────────────── */
+let state = {
+  currentDay: 1,
+  completedDays: [],
+  streak: 0,
+  lastEngaged: null,
+  timerRunning: false,
+  timerSeconds: 0,
+  timerInterval: null,
+};
+
+function loadState() {
+  const saved = localStorage.getItem('ams-progress');
+  if (saved) state = { ...state, ...JSON.parse(saved) };
+}
+
+function saveStateData() {
+  localStorage.setItem('ams-progress', JSON.stringify(state));
+}
+
+function getSession() {
+  return JSON.parse(localStorage.getItem('ams-session') || 'null');
+}
+
+/* ─────────────────────────────────────────────
+   SIDEBAR
+───────────────────────────────────────────── */
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const isOpen = sidebar.classList.contains('open');
+  sidebar.classList.toggle('open', !isOpen);
+  overlay.style.opacity = isOpen ? '0' : '1';
+  overlay.style.pointerEvents = isOpen ? 'none' : 'all';
+}
+
+function closeSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  sidebar.classList.remove('open');
+  overlay.style.opacity = '0';
+  overlay.style.pointerEvents = 'none';
+}
+
+function togglePhase(header) {
+  const section = header.parentElement;
+  section.classList.toggle('open');
+}
+
+/* ─────────────────────────────────────────────
+   BUILD SIDEBAR
+───────────────────────────────────────────── */
+function buildSidebar(isPaid) {
+  const phases = [1, 2, 3];
+  phases.forEach(phase => {
+    const container = document.getElementById(`phase${phase}Lessons`);
+    if (!container) return;
+    container.innerHTML = '';
+    CURRICULUM.filter(l => l.phase === phase).forEach(lesson => {
+      const isCompleted = state.completedDays.includes(lesson.day);
+      const isCurrent = lesson.day === state.currentDay;
+      const isLocked = !isPaid && lesson.day > 5; // Free preview: first 5 days
+      const el = document.createElement('div');
+      el.className = `sidebar-lesson ${isCompleted ? 'completed' : ''} ${isCurrent ? 'active' : ''} ${isLocked ? 'locked' : ''}`;
+      el.innerHTML = `
+        <div class="lesson-dot ${isCompleted ? 'done' : isCurrent ? 'current' : ''}"></div>
+        <div class="lesson-title">Day ${lesson.day}: ${lesson.title}</div>
+        ${isLocked ? '<span class="lesson-lock">🔒</span>' : ''}
+        ${isCompleted ? '<span class="lesson-check">✓</span>' : ''}
+      `;
+      if (!isLocked) {
+        el.onclick = () => { state.currentDay = lesson.day; renderCurrentLesson(); buildSidebar(isPaid); closeSidebar(); };
+      }
+      container.appendChild(el);
+    });
+  });
+}
+
+/* ─────────────────────────────────────────────
+   RENDER CURRENT LESSON
+───────────────────────────────────────────── */
+function renderCurrentLesson() {
+  const lesson = CURRICULUM.find(l => l.day === state.currentDay) || CURRICULUM[0];
+  const isCompleted = state.completedDays.includes(lesson.day);
+  const todayBody = document.getElementById('todayBody');
+
+  todayBody.innerHTML = `
+    <div class="today-day">DAY ${lesson.day} OF 90 — WEEK ${lesson.week} — PHASE ${lesson.phase}</div>
+    <div class="today-lesson-title">${lesson.title}</div>
+    <div class="today-tool-badge">🔧 ${lesson.tool}</div>
+    <div class="today-content">
+      <p>Today's focus continues to build on your growing AI skillset. Take 30 minutes — no more, no less — to work through today's task with intention.</p>
+      <div class="today-task">
+        <div class="task-label">📋 Today's 30-Minute Task</div>
+        <div class="task-text">${lesson.task}</div>
+      </div>
+      <p><strong>Business Application:</strong> ${lesson.income}</p>
+    </div>
+  `;
+
+  const btn = document.getElementById('markDoneBtn');
+  if (isCompleted) {
+    btn.classList.add('done');
+    btn.innerHTML = '✓ Completed';
+    btn.disabled = true;
+  } else {
+    btn.classList.remove('done');
+    btn.innerHTML = '✓ Mark as Complete';
+    btn.disabled = false;
+  }
+
+  updateStats();
+}
+
+/* ─────────────────────────────────────────────
+   MARK DAY COMPLETE
+───────────────────────────────────────────── */
+function markDayComplete() {
+  if (state.completedDays.includes(state.currentDay)) return;
+  state.completedDays.push(state.currentDay);
+
+  // Update streak
+  const today = new Date().toDateString();
+  if (state.lastEngaged !== today) {
+    const yesterday = new Date(Date.now() - 86400000).toDateString();
+    if (state.lastEngaged === yesterday) {
+      state.streak = (state.streak || 0) + 1;
+    } else {
+      state.streak = 1;
+    }
+    state.lastEngaged = today;
+  }
+
+  saveStateData();
+
+  // Advance to next lesson
+  if (state.currentDay < 90) {
+    state.currentDay++;
+  }
+
+  renderCurrentLesson();
+  buildSidebar(true);
+  buildModulesList(true);
+  updateWeekTracker();
+  updateProgressRings();
+  updateStats();
+
+  // Stop timer
+  if (state.timerRunning) toggleTimer();
+
+  // Show completion toast
+  showToast('Day ' + (state.currentDay - 1) + ' complete! Great work 🎉');
+}
+
+function goToNextLesson() {
+  if (state.currentDay < 90) { state.currentDay++; renderCurrentLesson(); buildSidebar(true); }
+}
+
+function goToPrevLesson() {
+  if (state.currentDay > 1) { state.currentDay--; renderCurrentLesson(); buildSidebar(true); }
+}
+
+/* ─────────────────────────────────────────────
+   UPDATE STATS
+───────────────────────────────────────────── */
+function updateStats() {
+  const completed = state.completedDays.length;
+  const pct = Math.round((completed / 90) * 100);
+  document.getElementById('statCurrentDay').textContent = state.currentDay;
+  document.getElementById('statDaysCompleted').textContent = completed;
+  document.getElementById('statStreak').textContent = state.streak || 0;
+  document.getElementById('statProgress').textContent = pct + '%';
+  document.getElementById('globalProgressBar').style.width = pct + '%';
+  document.getElementById('globalProgressPct').textContent = pct + '%';
+}
+
+/* ─────────────────────────────────────────────
+   WEEK TRACKER (last 7 days)
+───────────────────────────────────────────── */
+function updateWeekTracker() {
+  const container = document.getElementById('weekDays');
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const today = new Date().getDay(); // 0=Sun, 1=Mon...
+  container.innerHTML = '';
+  days.forEach((d, i) => {
+    const dayIdx = (i + 1) % 7; // Mon=1
+    const isToday = dayIdx === today;
+    const isDone = state.completedDays.includes(state.currentDay - (isToday ? 0 : (today - dayIdx)));
+    // Simple approximation: mark as done if it's a completed lesson day
+    const circle = document.createElement('div');
+    circle.className = `day-circle ${isToday ? 'today' : ''}`;
+    circle.style.cssText = 'display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px;min-width:36px;';
+    circle.innerHTML = `<span class="day-name" style="font-size:0.58rem;font-weight:700;letter-spacing:0.04em;color:var(--text-muted);">${d}</span>`;
+    container.appendChild(circle);
+  });
+  // Mark completed days in the week
+  const weekStart = state.currentDay - 6;
+  for (let i = 0; i < 7; i++) {
+    const dayNum = weekStart + i;
+    if (state.completedDays.includes(dayNum)) {
+      const circles = container.querySelectorAll('.day-circle');
+      if (circles[i]) circles[i].classList.add('done');
+    }
+  }
+  document.getElementById('streakBadge').textContent = `🔥 ${state.streak || 0}-day streak`;
+}
+
+/* ─────────────────────────────────────────────
+   PROGRESS RINGS
+───────────────────────────────────────────── */
+function updateProgressRings() {
+  const circumference = 188.5;
+  [1, 2, 3].forEach((phase, idx) => {
+    const phaseStart = [1, 31, 61][idx];
+    const phaseEnd   = [30, 60, 90][idx];
+    const total = phaseEnd - phaseStart + 1;
+    const done = state.completedDays.filter(d => d >= phaseStart && d <= phaseEnd).length;
+    const pct = Math.round((done / total) * 100);
+    const offset = circumference - (pct / 100) * circumference;
+    const ring = document.getElementById(`ring${phase}`);
+    const pctEl = document.getElementById(`ringPct${phase}`);
+    if (ring) ring.style.strokeDashoffset = offset;
+    if (pctEl) pctEl.textContent = pct + '%';
+  });
+}
+
+/* ─────────────────────────────────────────────
+   MODULES LIST
+───────────────────────────────────────────── */
+function buildModulesList(isPaid) {
+  const container = document.getElementById('modulesList');
+  const modules = [
+    { phase:1, name:'Weeks 1–4: AI Foundations', sub:'Text AI · Image AI · Productivity · Multimedia', start:1, end:20 },
+    { phase:1, name:'Days 21–30: First Client Sprint', sub:'Advanced prompting · Outreach · Proposals', start:21, end:30 },
+    { phase:2, name:'Weeks 5–6: Freelancing & Clipping', sub:'Fiverr · Upwork · Opus Clip · Descript', start:31, end:40 },
+    { phase:2, name:'Weeks 7–8: Automation & Chatbots', sub:'Make.com · Zapier · Voiceflow · OpenAI API', start:41, end:50 },
+    { phase:2, name:'Days 51–60: Client Sprint II', sub:'Outreach · Discovery calls · Delivery systems', start:51, end:60 },
+    { phase:3, name:'Weeks 9–10: Chatbots & Agency', sub:'Voiceflow Pro · GoHighLevel · AdCreative.ai', start:61, end:70 },
+    { phase:3, name:'Week 11: Micro-SaaS Build', sub:'Lovable.dev · Bubble · Stripe payments', start:71, end:75 },
+    { phase:3, name:'Week 12: Final Capstone', sub:'Brand launch · Content engine · $5k/mo system', start:76, end:90 },
+  ];
+
+  container.innerHTML = '';
+  modules.forEach(mod => {
+    const totalDays = mod.end - mod.start + 1;
+    const doneDays = state.completedDays.filter(d => d >= mod.start && d <= mod.end).length;
+    const pct = Math.round((doneDays / totalDays) * 100);
+    const isLocked = !isPaid && mod.start > 5;
+    const isActive = state.currentDay >= mod.start && state.currentDay <= mod.end;
+    const isCompleted = doneDays === totalDays;
+
+    const card = document.createElement('div');
+    card.className = `module-card ${isLocked ? '' : isCompleted ? 'completed' : isActive ? 'unlocked' : 'unlocked'}`;
+    card.innerHTML = `
+      <div class="module-header">
+        <span class="module-phase">PHASE ${mod.phase} · DAYS ${mod.start}–${mod.end}</span>
+        <span class="module-status ${isLocked ? 'status-locked' : isCompleted ? 'status-done' : isActive ? 'status-active' : 'status-locked'}">
+          ${isLocked ? '🔒 Locked' : isCompleted ? '✓ Done' : isActive ? '● Active' : '◦ Upcoming'}
+        </span>
+      </div>
+      <div class="module-title">${mod.name}</div>
+      <div class="module-sub">${mod.sub}</div>
+      ${!isLocked ? `<div class="module-progress"><div class="module-progress-fill" style="width:${pct}%"></div></div>` : ''}
+    `;
+    if (!isLocked) {
+      card.style.cursor = 'pointer';
+      card.onclick = () => { state.currentDay = mod.start; renderCurrentLesson(); buildSidebar(isPaid); };
+    }
+    container.appendChild(card);
+  });
+}
+
+/* ─────────────────────────────────────────────
+   SESSION TIMER (30-minute tracker)
+───────────────────────────────────────────── */
+function toggleTimer() {
+  const btn = document.getElementById('timerToggle');
+  if (state.timerRunning) {
+    clearInterval(state.timerInterval);
+    state.timerRunning = false;
+    btn.textContent = 'Resume';
+  } else {
+    state.timerRunning = true;
+    btn.textContent = 'Pause';
+    state.timerInterval = setInterval(() => {
+      state.timerSeconds++;
+      updateTimerDisplay();
+      if (state.timerSeconds >= 1800) { // 30 minutes
+        clearInterval(state.timerInterval);
+        state.timerRunning = false;
+        btn.textContent = 'Done!';
+        showToast('30 minutes complete! You can now mark this lesson as done.');
+      }
+    }, 1000);
+  }
+}
+
+function updateTimerDisplay() {
+  const m = Math.floor(state.timerSeconds / 60).toString().padStart(2, '0');
+  const s = (state.timerSeconds % 60).toString().padStart(2, '0');
+  document.getElementById('sessionTimer').textContent = `${m}:${s}`;
+}
+
+/* ─────────────────────────────────────────────
+   NOTIFICATIONS
+───────────────────────────────────────────── */
+function requestNotifications() {
+  if (!('Notification' in window)) {
+    showToast('Notifications not supported in this browser.');
+    return;
+  }
+  Notification.requestPermission().then(perm => {
+    if (perm === 'granted') {
+      localStorage.setItem('ams-notifs', '1');
+      dismissNotif();
+      showToast('Daily reminders enabled! We\'ll remind you every day at 8 AM. 🔔');
+      scheduleNotification();
+    }
+  });
+}
+
+function scheduleNotification() {
+  // Schedule a daily notification (simplified — in production use a service worker)
+  if (Notification.permission === 'granted') {
+    const now = new Date();
+    const next8am = new Date(now);
+    next8am.setHours(8, 0, 0, 0);
+    if (next8am <= now) next8am.setDate(next8am.getDate() + 1);
+    const delay = next8am - now;
+    setTimeout(() => {
+      new Notification('AI Made Simple — Daily Reminder', {
+        body: `Time for your 30-minute AI session! You're on Day ${state.currentDay} of 90.`,
+        icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="%23C9A84C"/><text x="16" y="22" text-anchor="middle" font-size="16" fill="%23000">AI</text></svg>'
+      });
+    }, delay);
+  }
+}
+
+function dismissNotif() {
+  document.getElementById('notifBar').style.display = 'none';
+}
+
+/* ─────────────────────────────────────────────
+   TOAST NOTIFICATION
+───────────────────────────────────────────── */
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.style.cssText = 'position:fixed;bottom:5rem;right:1.5rem;background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;padding:12px 16px;font-size:0.82rem;color:var(--text);box-shadow:var(--shadow);z-index:9998;max-width:300px;animation:slideDown 0.3s ease;';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 3500);
+}
+
+/* ─────────────────────────────────────────────
+   SIMULATE PAYMENT (dev tool)
+   In production: Paystack webhook sets user.paid = true
+───────────────────────────────────────────── */
+function simulatePayment() {
+  const session = getSession();
+  if (!session) return;
+  const users = JSON.parse(localStorage.getItem('ams-users') || '{}');
+  if (users[session.email]) {
+    users[session.email].paid = true;
+    localStorage.setItem('ams-users', JSON.stringify(users));
+  }
+  session.paid = true;
+  localStorage.setItem('ams-session', JSON.stringify(session));
+  initDashboard();
+  showToast('✓ Payment verified! Full access unlocked.');
+}
+
+/* ─────────────────────────────────────────────
+   PWA EXIT
+───────────────────────────────────────────── */
+function pwaExit() {
+  if (window.matchMedia('(display-mode: standalone)').matches) {
+    // Running as PWA
+    if (confirm('Exit AI Made Simple?')) window.close();
+  } else {
+    // Show install prompt
+    if (window._deferredInstallPrompt) {
+      window._deferredInstallPrompt.prompt();
+    } else {
+      showToast('To install as an app: use your browser\'s "Add to Home Screen" option.');
+    }
+  }
+}
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  window._deferredInstallPrompt = e;
+});
+
+/* ─────────────────────────────────────────────
+   LOGOUT
+───────────────────────────────────────────── */
+function handleLogout() {
+  if (confirm('Sign out of AI Made Simple?')) {
+    localStorage.removeItem('ams-session');
+    window.location.href = 'login.html';
+  }
+}
+
+/* ─────────────────────────────────────────────
+   INIT DASHBOARD
+───────────────────────────────────────────── */
+function initDashboard() {
+  const session = getSession();
+
+  // If not logged in at all, redirect
+  if (!session) {
+    window.location.href = 'login.html';
+    return;
+  }
+
+  // Set user name
+  const firstName = (session.name || session.email || 'User').split(' ')[0];
+  document.getElementById('navUserName').textContent = firstName;
+
+  // Greeting
+  const h = new Date().getHours();
+  const greet = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+  document.getElementById('welcomeTitle').textContent = `${greet}, ${firstName}! ${h < 12 ? '☀' : h < 17 ? '🌤' : '🌙'}`;
+
+  loadState();
+
+  // Ensure currentDay is valid
+  if (!state.currentDay || state.currentDay < 1) state.currentDay = 1;
+  if (state.currentDay > 90) state.currentDay = 90;
+
+  const isPaid = session.paid === true;
+
+  if (isPaid || session.demo) {
+    // Show dashboard
+    document.getElementById('paymentGate').style.display = 'none';
+    document.getElementById('dashboardContent').style.display = 'block';
+
+    // Notification bar (show if not dismissed and not already enabled)
+    if (!localStorage.getItem('ams-notifs') && Notification.permission !== 'granted') {
+      setTimeout(() => {
+        document.getElementById('notifBar').style.display = 'flex';
+      }, 2000);
+    }
+
+    buildSidebar(isPaid);
+    renderCurrentLesson();
+    buildModulesList(isPaid);
+    updateWeekTracker();
+    updateProgressRings();
+    updateStats();
+
+  } else {
+    // Show payment gate
+    document.getElementById('paymentGate').style.display = 'block';
+    document.getElementById('dashboardContent').style.display = 'none';
+
+    // Still build a locked sidebar
+    buildSidebar(false);
+  }
+
+  // Update welcome sub
+  const completed = state.completedDays.length;
+  const pct = Math.round((completed / 90) * 100);
+  document.getElementById('welcomeSub').textContent = isPaid
+    ? `Day ${state.currentDay} of 90 · ${completed} lessons complete · ${pct}% progress`
+    : 'Complete payment to unlock your full programme.';
+}
+
+document.addEventListener('DOMContentLoaded', initDashboard);
+</script>
+</body>
+</html>
