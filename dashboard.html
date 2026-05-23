@@ -152,7 +152,21 @@ nav{position:sticky;top:0;z-index:200;background:var(--nav-bg);backdrop-filter:b
 .mc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem;margin-bottom:1.5rem;}
 .mc-card{background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:1.125rem;position:relative;overflow:hidden;transition:all 0.2s;}
 .mc-card:hover:not(.locked){border-color:rgba(201,168,76,0.3);transform:translateY(-2px);}
-.mc-card.locked{opacity:0.5;}
+.mc-card.locked{opacity:1;}
+.mc-card.locked .mc-name,.mc-card.locked .mc-desc{opacity:0.75;}
+.mc-syllabus-toggle{display:flex;align-items:center;justify-content:space-between;background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:7px 12px;cursor:pointer;font-size:0.68rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-secondary);width:100%;transition:all 0.2s;margin-bottom:0.5rem;}
+.mc-syllabus-toggle:hover{border-color:var(--gold);color:var(--gold);}
+.mc-syllabus-toggle.open{border-radius:5px 5px 0 0;border-color:var(--gold);color:var(--gold);}
+.mc-syllabus-toggle .sarrow{font-size:8px;transition:transform 0.3s;}
+.mc-syllabus-toggle.open .sarrow{transform:rotate(180deg);}
+.mc-syllabus-list{max-height:0;overflow:hidden;transition:max-height 0.35s ease;}
+.mc-syllabus-list.open{max-height:500px;}
+.mc-syllabus-inner{border:1px solid var(--gold);border-top:none;border-radius:0 0 5px 5px;overflow:hidden;margin-bottom:0.75rem;}
+.mc-syllabus-item{display:flex;align-items:center;gap:8px;padding:6px 12px;border-bottom:1px solid var(--border);font-size:0.75rem;color:var(--text-secondary);}
+.mc-syllabus-item:last-child{border-bottom:none;}
+.mc-syllabus-item::before{content:'';width:5px;height:5px;background:var(--gold);border-radius:50%;flex-shrink:0;}
+.mc-upgrade-btn{display:inline-flex;align-items:center;gap:6px;background:var(--gold-dim);border:1px solid rgba(201,168,76,0.35);color:var(--gold);padding:7px 14px;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;text-decoration:none;transition:all 0.2s;width:100%;justify-content:center;}
+.mc-upgrade-btn:hover{background:var(--gold);color:#0E0E10;}
 .mc-num{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--gold);font-weight:700;letter-spacing:0.1em;margin-bottom:0.35rem;}
 .mc-name{font-size:0.87rem;font-weight:600;color:var(--text);margin-bottom:0.3rem;line-height:1.3;}
 .mc-desc{font-size:0.73rem;color:var(--text-muted);line-height:1.5;margin-bottom:0.75rem;}
@@ -549,9 +563,10 @@ function getAcc(){const s=getSession();return s?.access||{};}
 function isDemo(){return getSession()?.demo===true;}
 function hasExpertMonth(m){return getAcc().expert?.months?.includes(m)||isDemo();}
 function hasM2MPhase(p){return getAcc().m2m?.phases?.includes(p)||(isDemo()&&p===1);}
-function hasMC(id){return getAcc().masterclasses?.classes?.includes(id)||(isDemo()&&id<=2);}
+function hasMC(id){return getAcc().masterclasses?.classes?.includes(id)||(isDemo()&&id===1);}
 function isUnlocked(lesson){
-  if(isDemo()) return lesson.ph===1&&lesson.d<=5||lesson.mo===1&&lesson.d<=5;
+  // Demo: Week 1 only — Days 1–7
+  if(isDemo()) return lesson.d<=7;
   const p=ST.currentProg;
   if(p==='expert') return hasExpertMonth(lesson.mo);
   if(p==='m2m') return hasM2MPhase(lesson.ph);
@@ -692,14 +707,36 @@ function toggleNotes(btn){const c=btn.nextElementSibling;const o=c.classList.tog
 function renderMCMain(main){
   const cards=MC.map(mc=>{
     const u=hasMC(mc.id);
+    // Syllabus: module titles always visible
+    const syllabusItems=mc.mods.map(m=>`<div class="mc-syllabus-item"><span>${m.n} — ${m.t} <span style="color:var(--text-muted);font-size:0.68rem;">(${m.d})</span></span></div>`).join('');
+    const syllabusHTML=`
+      <button class="mc-syllabus-toggle" onclick="toggleMCSyllabus(this)">
+        View Syllabus <span class="sarrow">▼</span>
+      </button>
+      <div class="mc-syllabus-list">
+        <div class="mc-syllabus-inner">${syllabusItems}</div>
+      </div>`;
+    // CTA: open full notes (unlocked) or upgrade prompt (locked)
+    const ctaHTML=u
+      ?`<button class="mc-open-btn" onclick="openMC(${mc.id})">Open Full Class Notes →</button>`
+      :`<a href="https://paystack.shop/pay/aishortcourses" target="_blank" class="mc-upgrade-btn">🔒 Unlock This Class — ₦30,000 ↗</a>`;
     return `<div class="mc-card ${!u?'locked':''}">
-      <div class="mc-num">CLASS ${String(mc.id).padStart(2,'0')}</div>
+      <div class="mc-num">CLASS ${String(mc.id).padStart(2,'0')} · ${mc.dur}</div>
       <div class="mc-name">${mc.t}</div>
       <div class="mc-desc">${mc.desc}</div>
-      ${u?`<button class="mc-open-btn" onclick="openMC(${mc.id})">Open Class →</button>`:`<div class="mc-lock-badge">🔒 Not Unlocked</div>`}
+      ${syllabusHTML}
+      ${ctaHTML}
     </div>`;
   }).join('');
-  main.innerHTML=`<div class="dash-header"><div class="welcome-tag">AI Masterclasses</div><div class="welcome-title">Your Intensive Classes</div><div class="welcome-sub">2–3 hour deep dives. Each includes participant notes and step-by-step guides.</div></div><div class="mc-detail" id="mcDetail"></div><div class="mc-grid">${cards}</div>`;
+  main.innerHTML=`
+    <div class="dash-header">
+      <div class="welcome-tag">AI Masterclasses</div>
+      <div class="welcome-title">Your Intensive Classes</div>
+      <div class="welcome-sub">2–3 hour deep dives. Expand any class to preview the syllabus — unlock for full participant notes.</div>
+    </div>
+    <div class="mc-detail" id="mcDetail"></div>
+    <div class="mc-grid">${cards}</div>
+  `;
 }
 
 function openMC(id){
@@ -713,6 +750,18 @@ function openMC(id){
 }
 
 function closeMCDetail(){const d=document.getElementById('mcDetail');if(d)d.className='mc-detail';ST.openMcId=null;}
+
+function toggleMCSyllabus(btn){
+  const list=btn.nextElementSibling;
+  const isOpen=list.classList.toggle('open');
+  btn.classList.toggle('open',isOpen);
+  // Close other open syllabuses
+  document.querySelectorAll('.mc-syllabus-list.open').forEach(el=>{
+    if(el!==list){el.classList.remove('open');el.previousElementSibling.classList.remove('open');}
+  });
+  // Re-open this one if it was toggled off by the loop above
+  if(isOpen){list.classList.add('open');btn.classList.add('open');}
+}
 
 /* ══ STATS ══ */
 function updateStats(){
