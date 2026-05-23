@@ -6,477 +6,92 @@
 <title>Login — AI Made Simple</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-
 <style>
-:root {
-  --gold: #C9A84C;
-  --gold-light: #E8C97E;
-  --gold-dim: rgba(201,168,76,0.15);
-  --transition: 0.3s ease;
-}
-
-[data-theme="dark"] {
-  --bg: #0E0E10;
-  --bg2: #141416;
-  --bg3: #1C1C20;
-  --border: rgba(255,255,255,0.07);
-  --text: #F0EDE6;
-  --text-muted: #7A7870;
-  --text-secondary: #B8B5AE;
-  --card-bg: #16161A;
-  --card-border: rgba(201,168,76,0.12);
-  --nav-bg: rgba(14,14,16,0.92);
-  --badge-bg: rgba(201,168,76,0.1);
-  --input-bg: #1C1C20;
-  --shadow: 0 8px 48px rgba(0,0,0,0.5);
-}
-
-[data-theme="light"] {
-  --bg: #F8F6F1;
-  --bg2: #EEEBE4;
-  --bg3: #E4E1DA;
-  --border: rgba(0,0,0,0.08);
-  --text: #1A1914;
-  --text-muted: #8A877E;
-  --text-secondary: #4A4740;
-  --card-bg: #FAFAF7;
-  --card-border: rgba(201,168,76,0.25);
-  --nav-bg: rgba(248,246,241,0.92);
-  --badge-bg: rgba(201,168,76,0.12);
-  --input-bg: #EEEBE4;
-  --shadow: 0 8px 48px rgba(0,0,0,0.1);
-}
-
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  transition: background var(--transition), color var(--transition);
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.4;
-}
-
-/* NAV */
-nav {
-  position: sticky;
-  top: 0; z-index: 100;
-  background: var(--nav-bg);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 clamp(1.5rem, 5vw, 4rem);
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: background var(--transition);
-}
-
-.nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
-.nav-logo { width:32px;height:32px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#0E0E10; }
-.nav-name { font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--text);letter-spacing:0.02em; }
-.nav-right { display:flex;align-items:center;gap:1rem; }
-.nav-back { font-size:0.82rem;font-weight:500;color:var(--text-muted);text-decoration:none;letter-spacing:0.05em;transition:color var(--transition); }
-.nav-back:hover { color:var(--gold); }
-
-.theme-toggle { display:flex;align-items:center;gap:2px;background:var(--bg3);border-radius:20px;padding:3px;border:1px solid var(--border); }
-.theme-btn { width:28px;height:24px;border:none;border-radius:16px;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:background var(--transition);color:var(--text-muted); }
-.theme-btn.active { background:var(--gold);color:#0E0E10; }
-
-/* MAIN LAYOUT */
-main {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 3rem 1.5rem;
-  position: relative;
-  overflow: hidden;
-}
-
-main::before {
-  content: '';
-  position: absolute;
-  top: -100px; left: 50%;
-  transform: translateX(-50%);
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(ellipse, rgba(201,168,76,0.06) 0%, transparent 65%);
-  pointer-events: none;
-}
-
-/* CARD WRAPPER */
-.auth-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 16px;
-  width: 100%;
-  max-width: 460px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  animation: slideUp 0.4s ease both;
-}
-
-@keyframes slideUp {
-  from { opacity:0; transform:translateY(16px); }
-  to   { opacity:1; transform:translateY(0); }
-}
-
-.auth-header {
-  padding: 2.5rem 2.5rem 1.5rem;
-  border-bottom: 1px solid var(--border);
-  text-align: center;
-}
-
-.auth-logo {
-  width: 52px; height: 52px;
-  background: var(--gold);
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Space Mono', monospace;
-  font-size: 18px; font-weight: 700;
-  color: #0E0E10;
-  margin: 0 auto 1rem;
-}
-
-.auth-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.2;
-}
-
-.auth-subtitle {
-  font-size: 0.83rem;
-  color: var(--text-muted);
-  margin-top: 0.4rem;
-  line-height: 1.5;
-}
-
-/* TABS */
-.auth-tabs {
-  display: flex;
-  border-bottom: 1px solid var(--border);
-}
-
-.auth-tab {
-  flex: 1;
-  padding: 14px;
-  border: none;
-  background: transparent;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  transition: all var(--transition);
-}
-
-.auth-tab.active {
-  color: var(--gold);
-  border-bottom-color: var(--gold);
-  background: var(--gold-dim);
-}
-
-/* FORMS */
-.auth-form {
-  padding: 2rem 2.5rem;
-  display: none;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.auth-form.active { display: flex; }
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.form-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.form-input {
-  background: var(--input-bg);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 11px 14px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.9rem;
-  color: var(--text);
-  outline: none;
-  transition: border-color var(--transition);
-  width: 100%;
-}
-
-.form-input:focus { border-color: var(--gold); }
-.form-input::placeholder { color: var(--text-muted); }
-
-.form-input.error { border-color: #e05a5a; }
-
-/* SELECT */
-.form-select {
-  background: var(--input-bg);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 11px 14px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.9rem;
-  color: var(--text);
-  outline: none;
-  transition: border-color var(--transition);
-  width: 100%;
-  cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A84C' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  padding-right: 36px;
-}
-
-.form-select:focus { border-color: var(--gold); }
-.form-select option { background: var(--bg2); color: var(--text); }
-
-/* PASSWORD FIELD */
-.password-field {
-  position: relative;
-}
-
-.password-toggle {
-  position: absolute;
-  right: 12px; top: 50%;
-  transform: translateY(-50%);
-  background: none; border: none;
-  color: var(--text-muted);
-  cursor: pointer; font-size: 14px;
-  transition: color var(--transition);
-}
-
-.password-toggle:hover { color: var(--gold); }
-
-/* ERROR MESSAGE */
-.form-error {
-  font-size: 0.75rem;
-  color: #e05a5a;
-  margin-top: 2px;
-  display: none;
-}
-
-.form-error.visible { display: block; }
-
-/* SUBMIT BUTTON */
-.btn-submit {
-  background: var(--gold);
-  color: #0E0E10;
-  border: none;
-  padding: 13px 20px;
-  border-radius: 6px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.88rem;
-  font-weight: 700;
-  cursor: pointer;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  transition: all 0.2s ease;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 0.25rem;
-}
-
-.btn-submit:hover { opacity: 0.88; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(201,168,76,0.3); }
-.btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-.btn-submit.loading::after {
-  content: '';
-  width: 14px; height: 14px;
-  border: 2px solid rgba(0,0,0,0.3);
-  border-top-color: #0E0E10;
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-  margin-left: 4px;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* ACCESS NOTICE */
-.access-notice {
-  background: var(--gold-dim);
-  border: 1px solid rgba(201,168,76,0.25);
-  border-radius: 6px;
-  padding: 12px 14px;
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-}
-
-.access-notice-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-
-.access-notice-text {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
-
-.access-notice-text a {
-  color: var(--gold);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.access-notice-text a:hover { text-decoration: underline; }
-
-/* FORGOT PASSWORD */
-.forgot-link {
-  font-size: 0.78rem;
-  color: var(--gold);
-  text-decoration: none;
-  text-align: right;
-  margin-top: -8px;
-  display: block;
-}
-
-.forgot-link:hover { text-decoration: underline; }
-
-/* DIVIDER TEXT */
-.divider-text {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.divider-text::before,
-.divider-text::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-}
-
-/* SUCCESS / ERROR ALERT */
-.alert {
-  border-radius: 6px;
-  padding: 12px 14px;
-  font-size: 0.82rem;
-  display: none;
-  align-items: center;
-  gap: 8px;
-}
-
-.alert.visible { display: flex; }
-.alert.success { background: rgba(76,201,112,0.1); border: 1px solid rgba(76,201,112,0.25); color: #5fd48a; }
-.alert.error   { background: rgba(224,90,90,0.1);  border: 1px solid rgba(224,90,90,0.25); color: #e05a5a; }
-
-/* ADMIN SECTION */
-.admin-toggle {
-  text-align: center;
-  padding: 1rem 2.5rem 2rem;
-  border-top: 1px solid var(--border);
-}
-
-.admin-link {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: color var(--transition);
-  background: none;
-  border: none;
-  font-family: inherit;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.admin-link:hover { color: var(--gold); }
-
-/* ADMIN PANEL */
-.admin-panel {
-  display: none;
-  padding: 0 2.5rem 2rem;
-  flex-direction: column;
-  gap: 1rem;
-  border-top: 1px solid var(--border);
-  margin-top: -1px;
-}
-
-.admin-panel.visible { display: flex; }
-
-.admin-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  padding-top: 1.5rem;
-}
-
-.admin-badge {
-  background: var(--gold);
-  color: #0E0E10;
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  padding: 2px 7px;
-  border-radius: 100px;
-}
-
-/* FOOTER */
-footer {
-  background: var(--bg2);
-  border-top: 1px solid var(--border);
-  padding: 1.5rem clamp(1.5rem, 5vw, 4rem);
-}
-
-.footer-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.footer-copy { font-size:0.75rem; color:var(--text-muted); }
-.footer-links { display:flex; gap:1.25rem; }
-.footer-links a { font-size:0.75rem; color:var(--text-muted); text-decoration:none; transition:color var(--transition); }
-.footer-links a:hover { color:var(--gold); }
+:root { --gold:#C9A84C; --gold-dim:rgba(201,168,76,0.15); --transition:0.3s ease; }
+[data-theme="dark"] { --bg:#0E0E10; --bg2:#141416; --bg3:#1C1C20; --border:rgba(255,255,255,0.07); --text:#F0EDE6; --text-muted:#7A7870; --text-secondary:#B8B5AE; --card-bg:#16161A; --card-border:rgba(201,168,76,0.12); --nav-bg:rgba(14,14,16,0.92); --input-bg:#1C1C20; --shadow:0 8px 48px rgba(0,0,0,0.5); }
+[data-theme="light"] { --bg:#F8F6F1; --bg2:#EEEBE4; --bg3:#E4E1DA; --border:rgba(0,0,0,0.08); --text:#1A1914; --text-muted:#8A877E; --text-secondary:#4A4740; --card-bg:#FAFAF7; --card-border:rgba(201,168,76,0.25); --nav-bg:rgba(248,246,241,0.92); --input-bg:#EEEBE4; --shadow:0 8px 48px rgba(0,0,0,0.1); }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;transition:background var(--transition),color var(--transition);}
+nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 clamp(1.5rem,5vw,4rem);height:64px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo{width:32px;height:32px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#0E0E10;}
+.nav-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--text);}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.nav-back{font-size:0.82rem;color:var(--text-muted);text-decoration:none;transition:color var(--transition);}
+.nav-back:hover{color:var(--gold);}
+.theme-toggle{display:flex;align-items:center;gap:2px;background:var(--bg3);border-radius:20px;padding:3px;border:1px solid var(--border);}
+.theme-btn{width:28px;height:24px;border:none;border-radius:16px;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:background var(--transition);color:var(--text-muted);}
+.theme-btn.active{background:var(--gold);color:#0E0E10;}
+main{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:3rem 1.5rem;overflow-y:auto;}
+.auth-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;width:100%;max-width:520px;overflow:hidden;box-shadow:var(--shadow);animation:slideUp 0.4s ease both;margin:auto;}
+@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.auth-header{padding:2.5rem 2.5rem 1.5rem;border-bottom:1px solid var(--border);text-align:center;}
+.auth-logo{width:52px;height:52px;background:var(--gold);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:18px;font-weight:700;color:#0E0E10;margin:0 auto 1rem;}
+.auth-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--text);}
+.auth-subtitle{font-size:0.83rem;color:var(--text-muted);margin-top:0.4rem;}
+.auth-tabs{display:flex;border-bottom:1px solid var(--border);}
+.auth-tab{flex:1;padding:14px;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all var(--transition);}
+.auth-tab.active{color:var(--gold);border-bottom-color:var(--gold);background:var(--gold-dim);}
+.auth-form{padding:2rem 2.5rem;display:none;flex-direction:column;gap:1.25rem;}
+.auth-form.active{display:flex;}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-label{font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);}
+.form-input{background:var(--input-bg);border:1px solid var(--border);border-radius:6px;padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--text);outline:none;transition:border-color var(--transition);width:100%;}
+.form-input:focus{border-color:var(--gold);}
+.form-input::placeholder{color:var(--text-muted);}
+.form-select{background:var(--input-bg);border:1px solid var(--border);border-radius:6px;padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--text);outline:none;width:100%;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A84C' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;transition:border-color var(--transition);}
+.form-select:focus{border-color:var(--gold);}
+.form-select option{background:var(--bg2);color:var(--text);}
+.password-field{position:relative;}
+.password-toggle{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:14px;}
+.form-error{font-size:0.75rem;color:#e05a5a;margin-top:2px;display:none;}
+.form-error.visible{display:block;}
+.btn-submit{background:var(--gold);color:#0E0E10;border:none;padding:13px 20px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;transition:all 0.2s ease;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:0.25rem;}
+.btn-submit:hover{opacity:0.88;transform:translateY(-1px);}
+.btn-submit:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+.btn-submit.loading::after{content:'';width:14px;height:14px;border:2px solid rgba(0,0,0,0.3);border-top-color:#0E0E10;border-radius:50%;animation:spin 0.7s linear infinite;margin-left:4px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.access-notice{background:var(--gold-dim);border:1px solid rgba(201,168,76,0.25);border-radius:6px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;}
+.access-notice-text{font-size:0.8rem;color:var(--text-secondary);line-height:1.5;}
+.access-notice-text a{color:var(--gold);font-weight:600;text-decoration:none;}
+.forgot-link{font-size:0.78rem;color:var(--gold);text-decoration:none;text-align:right;margin-top:-8px;display:block;}
+.divider-text{display:flex;align-items:center;gap:10px;font-size:0.72rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;}
+.divider-text::before,.divider-text::after{content:'';flex:1;height:1px;background:var(--border);}
+.alert{border-radius:6px;padding:12px 14px;font-size:0.82rem;display:none;align-items:center;gap:8px;}
+.alert.visible{display:flex;}
+.alert.success{background:rgba(76,201,112,0.1);border:1px solid rgba(76,201,112,0.25);color:#5fd48a;}
+.alert.error{background:rgba(224,90,90,0.1);border:1px solid rgba(224,90,90,0.25);color:#e05a5a;}
+/* Admin section */
+.admin-toggle{text-align:center;padding:1rem 2.5rem 1.5rem;border-top:1px solid var(--border);}
+.admin-link{font-size:0.75rem;color:var(--text-muted);cursor:pointer;background:none;border:none;font-family:inherit;text-decoration:underline;text-underline-offset:3px;}
+.admin-link:hover{color:var(--gold);}
+.admin-panel{display:none;padding:0 2rem 2rem;flex-direction:column;gap:1rem;}
+.admin-panel.visible{display:flex;}
+.admin-header{display:flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);padding-top:1.5rem;border-top:1px solid var(--border);}
+.admin-badge{background:var(--gold);color:#0E0E10;font-size:0.6rem;font-weight:700;letter-spacing:0.08em;padding:2px 7px;border-radius:100px;}
+/* Granular access checkboxes */
+.access-group{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:1rem;}
+.access-group-title{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;display:block;}
+.access-options{display:flex;flex-wrap:wrap;gap:0.5rem;}
+.access-check{display:flex;align-items:center;gap:6px;cursor:pointer;}
+.access-check input[type="checkbox"]{width:14px;height:14px;accent-color:var(--gold);cursor:pointer;}
+.access-check label{font-size:0.8rem;color:var(--text-secondary);cursor:pointer;}
+.access-check:hover label{color:var(--text);}
+.access-divider{width:100%;height:1px;background:var(--border);margin:0.5rem 0;}
+.programme-tabs-admin{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.5rem;}
+.ptab{padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;font-size:0.75rem;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all 0.2s;font-family:inherit;}
+.ptab.active{background:var(--gold-dim);border-color:var(--gold);color:var(--gold);}
+.access-panel{display:none;}
+.access-panel.active{display:flex;flex-direction:column;gap:0.75rem;}
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem clamp(1.5rem,5vw,4rem);}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.footer-copy{font-size:0.75rem;color:var(--text-muted);}
+.footer-links{display:flex;gap:1.25rem;}
+.footer-links a{font-size:0.75rem;color:var(--text-muted);text-decoration:none;transition:color var(--transition);}
+.footer-links a:hover{color:var(--gold);}
 </style>
 </head>
 <body>
-
-<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-brand">
     <div class="nav-logo">AI</div>
@@ -485,120 +100,91 @@ footer {
   <div class="nav-right">
     <a href="index.html" class="nav-back">← Back to Home</a>
     <div class="theme-toggle">
-      <button class="theme-btn" id="themeLight" onclick="setTheme('light')" title="Light">☀</button>
-      <button class="theme-btn active" id="themeDark" onclick="setTheme('dark')" title="Dark">●</button>
-      <button class="theme-btn" id="themeSystem" onclick="setTheme('system')" title="System">⊙</button>
+      <button class="theme-btn" id="themeLight" onclick="setTheme('light')">☀</button>
+      <button class="theme-btn active" id="themeDark" onclick="setTheme('dark')">●</button>
+      <button class="theme-btn" id="themeSystem" onclick="setTheme('system')">⊙</button>
     </div>
   </div>
 </nav>
 
-<!-- MAIN -->
 <main>
   <div class="auth-card">
-
     <div class="auth-header">
       <div class="auth-logo">AI</div>
       <div class="auth-title">Welcome Back</div>
       <div class="auth-subtitle">Sign in to access your learning dashboard</div>
     </div>
 
-    <!-- TABS -->
     <div class="auth-tabs">
       <button class="auth-tab active" onclick="switchTab('login')">Sign In</button>
       <button class="auth-tab" onclick="switchTab('register')">Register</button>
     </div>
 
-    <!-- ─── LOGIN FORM ─── -->
+    <!-- LOGIN -->
     <form class="auth-form active" id="loginForm" onsubmit="handleLogin(event)">
-      <!-- Alert -->
       <div class="alert" id="loginAlert"></div>
-
-      <!-- Access Notice -->
       <div class="access-notice">
-        <span class="access-notice-icon">🔐</span>
-        <div class="access-notice-text">
-          Access is granted after payment confirmation. Don't have an account yet?
-          <a href="index.html#pricing">Choose a programme →</a>
-        </div>
+        <span style="font-size:16px;flex-shrink:0;">🔐</span>
+        <div class="access-notice-text">Access is granted after payment confirmation. <a href="index.html#pricing">Choose a programme →</a></div>
       </div>
-
       <div class="form-group">
         <label class="form-label">Email Address</label>
-        <input type="email" class="form-input" id="loginEmail" placeholder="yourname@email.com" autocomplete="email" required>
-        <span class="form-error" id="loginEmailErr">Please enter a valid email.</span>
+        <input type="email" class="form-input" id="loginEmail" placeholder="yourname@email.com" required>
       </div>
-
       <div class="form-group">
         <label class="form-label">Password</label>
         <div class="password-field">
-          <input type="password" class="form-input" id="loginPassword" placeholder="••••••••" autocomplete="current-password" required>
-          <button type="button" class="password-toggle" onclick="togglePassword('loginPassword', this)">👁</button>
+          <input type="password" class="form-input" id="loginPassword" placeholder="••••••••" required>
+          <button type="button" class="password-toggle" onclick="togglePassword('loginPassword',this)">👁</button>
         </div>
-        <span class="form-error" id="loginPassErr">Password must be at least 6 characters.</span>
       </div>
-
       <a href="#" class="forgot-link" onclick="handleForgot(event)">Forgot password?</a>
-
       <button type="submit" class="btn-submit" id="loginBtn">Sign In →</button>
-
-      <div class="divider-text">or continue with</div>
-
-      <button type="button" class="btn-submit" style="background:var(--input-bg);color:var(--text);border:1px solid var(--border);" onclick="handleDemoLogin()">
-        🎓 Demo Access (Preview Only)
-      </button>
+      <div class="divider-text">or</div>
+      <button type="button" class="btn-submit" style="background:var(--input-bg);color:var(--text);border:1px solid var(--border);" onclick="handleDemoLogin()">🎓 Demo Access (Preview)</button>
     </form>
 
-    <!-- ─── REGISTER FORM ─── -->
+    <!-- REGISTER -->
     <form class="auth-form" id="registerForm" onsubmit="handleRegister(event)">
       <div class="alert" id="registerAlert"></div>
-
       <div class="access-notice">
-        <span class="access-notice-icon">💳</span>
-        <div class="access-notice-text">
-          Register your account first, then complete payment to unlock your programme.
-          <a href="index.html#pricing">View pricing →</a>
-        </div>
+        <span style="font-size:16px;flex-shrink:0;">💳</span>
+        <div class="access-notice-text">Register first, then complete payment to unlock your programme. <a href="index.html#pricing">View pricing →</a></div>
       </div>
-
       <div class="form-group">
         <label class="form-label">Full Name</label>
-        <input type="text" class="form-input" id="regName" placeholder="Your full name" autocomplete="name" required>
+        <input type="text" class="form-input" id="regName" placeholder="Your full name" required>
       </div>
-
       <div class="form-group">
         <label class="form-label">Email Address</label>
-        <input type="email" class="form-input" id="regEmail" placeholder="yourname@email.com" autocomplete="email" required>
+        <input type="email" class="form-input" id="regEmail" placeholder="yourname@email.com" required>
       </div>
-
       <div class="form-group">
-        <label class="form-label">Programme</label>
+        <label class="form-label">Primary Programme</label>
         <select class="form-select" id="regProgramme" required>
           <option value="">Select your programme…</option>
           <option value="expert">AI Expert User — ₦50,000/mo</option>
-          <option value="m2m-self">AI Mastery to Money — Self-Study ₦50,000/mo</option>
+          <option value="m2m">AI Mastery to Money — Self-Study ₦50,000/mo</option>
           <option value="m2m-standard">AI Mastery to Money — Standard ₦300,000</option>
           <option value="m2m-vip">AI Mastery to Money — VIP ₦500,000</option>
           <option value="masterclass">AI Masterclasses</option>
         </select>
       </div>
-
       <div class="form-group">
         <label class="form-label">Password</label>
         <div class="password-field">
-          <input type="password" class="form-input" id="regPassword" placeholder="Create a password (min. 8 chars)" autocomplete="new-password" required>
-          <button type="button" class="password-toggle" onclick="togglePassword('regPassword', this)">👁</button>
+          <input type="password" class="form-input" id="regPassword" placeholder="Min. 8 characters" required>
+          <button type="button" class="password-toggle" onclick="togglePassword('regPassword',this)">👁</button>
         </div>
       </div>
-
       <div class="form-group">
         <label class="form-label">Confirm Password</label>
         <div class="password-field">
-          <input type="password" class="form-input" id="regConfirm" placeholder="Repeat your password" autocomplete="new-password" required>
-          <button type="button" class="password-toggle" onclick="togglePassword('regConfirm', this)">👁</button>
+          <input type="password" class="form-input" id="regConfirm" placeholder="Repeat password" required>
+          <button type="button" class="password-toggle" onclick="togglePassword('regConfirm',this)">👁</button>
         </div>
         <span class="form-error" id="regConfirmErr">Passwords do not match.</span>
       </div>
-
       <button type="submit" class="btn-submit" id="registerBtn">Create Account →</button>
     </form>
 
@@ -607,334 +193,339 @@ footer {
       <button class="admin-link" onclick="toggleAdminPanel()">Admin access</button>
     </div>
 
-    <!-- ─── ADMIN PANEL ─── -->
+    <!-- ADMIN PANEL -->
     <div class="admin-panel" id="adminPanel">
-      <div class="admin-header">
-        <span>Admin Panel</span>
-        <span class="admin-badge">RESTRICTED</span>
-      </div>
-
       <!-- Admin Login -->
       <div id="adminLoginSection">
-        <form onsubmit="handleAdminLogin(event)" style="display:flex;flex-direction:column;gap:0.75rem;">
+        <div class="admin-header"><span>Admin Panel</span><span class="admin-badge">RESTRICTED</span></div>
+        <form onsubmit="handleAdminLogin(event)" style="display:flex;flex-direction:column;gap:0.75rem;margin-top:1rem;">
           <div class="alert" id="adminAlert"></div>
           <input type="text" class="form-input" id="adminUser" placeholder="Admin username" autocomplete="off">
           <div class="password-field">
             <input type="password" class="form-input" id="adminPass" placeholder="Admin password" autocomplete="off">
-            <button type="button" class="password-toggle" onclick="togglePassword('adminPass', this)">👁</button>
+            <button type="button" class="password-toggle" onclick="togglePassword('adminPass',this)">👁</button>
           </div>
           <button type="submit" class="btn-submit" style="font-size:0.78rem;">Admin Sign In</button>
         </form>
       </div>
 
       <!-- Grant Access Panel (shown after admin login) -->
-      <div id="grantAccessSection" style="display:none;flex-direction:column;gap:0.75rem;">
-        <div class="alert success visible">✓ Admin authenticated. You can now grant access.</div>
+      <div id="grantAccessSection" style="display:none;flex-direction:column;gap:1rem;">
+        <div class="admin-header"><span>Grant / Manage Access</span><span class="admin-badge">ADMIN</span></div>
+        <div class="alert success visible" style="margin-top:0.5rem;">✓ Authenticated. Grant granular access below.</div>
+
         <div class="form-group">
-          <label class="form-label">Grant Access to Email</label>
-          <input type="email" class="form-input" id="grantEmail" placeholder="user@email.com">
+          <label class="form-label">Student Email</label>
+          <input type="email" class="form-input" id="grantEmail" placeholder="student@email.com">
         </div>
-        <div class="form-group">
-          <label class="form-label">Programme</label>
-          <select class="form-select" id="grantProgramme">
-            <option value="expert">AI Expert User</option>
-            <option value="m2m-self">AI Mastery to Money — Self-Study</option>
-            <option value="m2m-standard">AI Mastery to Money — Standard</option>
-            <option value="m2m-vip">AI Mastery to Money — VIP</option>
-            <option value="masterclass">AI Masterclasses</option>
-          </select>
+
+        <!-- Programme tab selector -->
+        <div>
+          <label class="form-label" style="margin-bottom:0.5rem;display:block;">Programme</label>
+          <div class="programme-tabs-admin">
+            <button class="ptab active" onclick="switchAdminTab('expert',this)">AI Expert User</button>
+            <button class="ptab" onclick="switchAdminTab('m2m',this)">AI Mastery to Money</button>
+            <button class="ptab" onclick="switchAdminTab('mc',this)">Masterclasses</button>
+          </div>
         </div>
+
+        <!-- AI EXPERT USER access panel -->
+        <div class="access-panel active" id="panel-expert">
+          <div class="access-group">
+            <span class="access-group-title">AI Expert User — Grant by Month</span>
+            <div class="access-options">
+              <label class="access-check"><input type="checkbox" id="expert-all" onchange="toggleAll('expert',this)"><label for="expert-all">All 3 Months (Full Access)</label></label>
+              <div class="access-divider"></div>
+              <label class="access-check"><input type="checkbox" class="expert-month" value="1"><label>Month 1 — Foundations (Weeks 1–4)</label></label>
+              <label class="access-check"><input type="checkbox" class="expert-month" value="2"><label>Month 2 — Business Integration (Weeks 5–8)</label></label>
+              <label class="access-check"><input type="checkbox" class="expert-month" value="3"><label>Month 3 — Advanced Mastery (Weeks 9–12)</label></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI MASTERY TO MONEY access panel -->
+        <div class="access-panel" id="panel-m2m">
+          <div class="access-group">
+            <span class="access-group-title">AI Mastery to Money — Tier</span>
+            <select class="form-select" id="m2m-tier">
+              <option value="self">Self-Study (₦50,000/mo)</option>
+              <option value="standard">Standard — ₦300,000</option>
+              <option value="vip">VIP — ₦500,000</option>
+            </select>
+          </div>
+          <div class="access-group">
+            <span class="access-group-title">Grant by Phase</span>
+            <div class="access-options">
+              <label class="access-check"><input type="checkbox" id="m2m-all" onchange="toggleAll('m2m',this)"><label for="m2m-all">All 3 Phases (Full Programme)</label></label>
+              <div class="access-divider"></div>
+              <label class="access-check"><input type="checkbox" class="m2m-phase" value="1"><label>Phase 1 — Days 1–30: Foundations</label></label>
+              <label class="access-check"><input type="checkbox" class="m2m-phase" value="2"><label>Phase 2 — Days 31–60: Business</label></label>
+              <label class="access-check"><input type="checkbox" class="m2m-phase" value="3"><label>Phase 3 — Days 61–90: Mastery</label></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- MASTERCLASSES access panel -->
+        <div class="access-panel" id="panel-mc">
+          <div class="access-group">
+            <span class="access-group-title">Grant Specific Masterclasses</span>
+            <div class="access-options">
+              <label class="access-check"><input type="checkbox" id="mc-all" onchange="toggleAll('mc',this)"><label for="mc-all">All 9 Masterclasses</label></label>
+              <div class="access-divider"></div>
+              <label class="access-check"><input type="checkbox" class="mc-class" value="1"><label>Class 1 — AI Social Media & WhatsApp Lead Automations</label></label>
+              <label class="access-check"><input type="checkbox" class="mc-class" value="2"><label>Class 2 — AI Book Writing & Amazon KDP</label></label>
+              <label class="access-check"><input type="checkbox" class="mc-class" value="3"><label>Class 3 — Viral Short-Form Video Creation</label></label>
+              <label class="access-check"><input type="checkbox" class="mc-class" value="4"><label>Class 4 — AI Faceless YouTube Content</label></label>
+              <label class="access-check"><input type="checkbox" class="mc-class" value="5"><label>Class 5 — AI Resume & LinkedIn Makeovers</label></label>
+              <label class="access-check"><input type="checkbox" class="mc-class" value="6"><label>Class 6 — Automated CRM & Lead Follow-ups</label></label>
+              <label class="access-check"><input type="checkbox" class="mc-class" value="7"><label>Class 7 — AI Business Proposals & Grants</label></label>
+              <label class="access-check"><input type="checkbox" class="mc-class" value="8"><label>Class 8 — AI Data Analysis & Dashboards</label></label>
+              <label class="access-check"><input type="checkbox" class="mc-class" value="9"><label>Class 9 — AI E-Learning & Course Creation</label></label>
+            </div>
+          </div>
+        </div>
+
         <div class="alert" id="grantAlert"></div>
-        <button type="button" class="btn-submit" onclick="grantAccess()" style="font-size:0.8rem;">Grant Access</button>
-        <button type="button" class="btn-submit" onclick="adminLogout()" style="background:var(--input-bg);color:var(--text);border:1px solid var(--border);font-size:0.78rem;">Sign Out Admin</button>
+
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+          <button type="button" class="btn-submit" onclick="grantAccess()" style="flex:1;font-size:0.8rem;">✓ Grant Access</button>
+          <button type="button" class="btn-submit" onclick="revokeAccess()" style="flex:0 0 auto;background:rgba(224,90,90,0.15);color:#e05a5a;border:1px solid rgba(224,90,90,0.3);font-size:0.78rem;padding:13px 16px;">Revoke</button>
+        </div>
+
+        <!-- View current students -->
+        <div style="margin-top:0.5rem;">
+          <button type="button" onclick="toggleStudentList()" style="background:none;border:none;color:var(--gold);font-size:0.78rem;cursor:pointer;font-family:inherit;text-decoration:underline;text-underline-offset:3px;">View enrolled students</button>
+          <div id="studentList" style="display:none;margin-top:0.75rem;max-height:200px;overflow-y:auto;"></div>
+        </div>
+
+        <button type="button" class="btn-submit" onclick="adminLogout()" style="background:var(--input-bg);color:var(--text);border:1px solid var(--border);font-size:0.78rem;margin-top:0.25rem;">Sign Out Admin</button>
       </div>
     </div>
-
   </div>
 </main>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-copy">© 2026 Ona Services Ltd. Created by Oluwaseyi Ashiru.</div>
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="index.html#pricing">Pricing</a>
-      <a href="dashboard.html">Dashboard</a>
-    </div>
+    <div class="footer-copy">© 2026 Ona Services Ltd. Coded by Oluwaseyi Ashiru.</div>
+    <div class="footer-links"><a href="index.html">Home</a><a href="index.html#pricing">Pricing</a><a href="dashboard.html">Dashboard</a></div>
   </div>
 </footer>
 
 <script>
-/* ─────────────────────────────────────────────
-   THEME SYSTEM
-───────────────────────────────────────────── */
-function setTheme(mode) {
-  localStorage.setItem('ams-theme', mode);
-  applyTheme(mode);
-  document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
-  const map = { light:'themeLight', dark:'themeDark', system:'themeSystem' };
-  document.getElementById(map[mode])?.classList.add('active');
-}
+/* ── THEME ── */
+function setTheme(m){localStorage.setItem('ams-theme',m);applyTheme(m);document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));const map={light:'themeLight',dark:'themeDark',system:'themeSystem'};document.getElementById(map[m])?.classList.add('active');}
+function applyTheme(m){const d=window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',m==='system'?(d?'dark':'light'):m);}
+(function(){const s=localStorage.getItem('ams-theme')||'dark';applyTheme(s);const map={light:'themeLight',dark:'themeDark',system:'themeSystem'};document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));document.getElementById(map[s])?.classList.add('active');});})();
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(localStorage.getItem('ams-theme')==='system')applyTheme('system');});
 
-function applyTheme(mode) {
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const resolved = mode === 'system' ? (prefersDark ? 'dark' : 'light') : mode;
-  document.documentElement.setAttribute('data-theme', resolved);
-}
+function switchTab(t){document.querySelectorAll('.auth-tab').forEach((b,i)=>b.classList.toggle('active',(i===0&&t==='login')||(i===1&&t==='register')));document.getElementById('loginForm').classList.toggle('active',t==='login');document.getElementById('registerForm').classList.toggle('active',t==='register');}
+function togglePassword(id,btn){const i=document.getElementById(id);i.type=i.type==='password'?'text':'password';btn.textContent=i.type==='password'?'👁':'🙈';}
+function showAlert(id,type,msg){const e=document.getElementById(id);if(!e)return;e.className=`alert ${type} visible`;e.textContent=msg;setTimeout(()=>e.classList.remove('visible'),5000);}
 
-(function() {
-  const saved = localStorage.getItem('ams-theme') || 'dark';
-  applyTheme(saved);
-  const map = { light:'themeLight', dark:'themeDark', system:'themeSystem' };
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById(map[saved])?.classList.add('active');
-  });
-})();
+/* ── DATA ── */
+function getUsers(){return JSON.parse(localStorage.getItem('ams-users')||'{}');}
+function saveUsers(u){localStorage.setItem('ams-users',JSON.stringify(u));}
+function getSession(){return JSON.parse(localStorage.getItem('ams-session')||'null');}
+function saveSession(d){localStorage.setItem('ams-session',JSON.stringify(d));}
 
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-  if (localStorage.getItem('ams-theme') === 'system') applyTheme('system');
-});
-
-/* ─────────────────────────────────────────────
-   TAB SWITCHING
-───────────────────────────────────────────── */
-function switchTab(tab) {
-  document.querySelectorAll('.auth-tab').forEach((t, i) => {
-    t.classList.toggle('active', (i === 0 && tab === 'login') || (i === 1 && tab === 'register'));
-  });
-  document.getElementById('loginForm').classList.toggle('active', tab === 'login');
-  document.getElementById('registerForm').classList.toggle('active', tab === 'register');
-}
-
-/* ─────────────────────────────────────────────
-   PASSWORD TOGGLE
-───────────────────────────────────────────── */
-function togglePassword(fieldId, btn) {
-  const input = document.getElementById(fieldId);
-  input.type = input.type === 'password' ? 'text' : 'password';
-  btn.textContent = input.type === 'password' ? '👁' : '🙈';
-}
-
-/* ─────────────────────────────────────────────
-   SHOW ALERT
-───────────────────────────────────────────── */
-function showAlert(id, type, message) {
-  const el = document.getElementById(id);
-  el.className = `alert ${type} visible`;
-  el.textContent = message;
-  setTimeout(() => el.classList.remove('visible'), 5000);
-}
-
-/* ─────────────────────────────────────────────
-   ACCESS CONTROL LOGIC
-   ─────────────────────────────────────────────
-   Users are stored in localStorage with structure:
-   ams-users: { email: { name, password, programme, paid, createdAt } }
-   ams-session: { email, name, programme, paid }
-   Admin can also grant/revoke paid status via email.
-───────────────────────────────────────────── */
-function getUsers() {
-  return JSON.parse(localStorage.getItem('ams-users') || '{}');
-}
-
-function saveUsers(users) {
-  localStorage.setItem('ams-users', JSON.stringify(users));
-}
-
-function getSession() {
-  return JSON.parse(localStorage.getItem('ams-session') || 'null');
-}
-
-function saveSession(data) {
-  localStorage.setItem('ams-session', JSON.stringify(data));
-}
-
-/* ─────────────────────────────────────────────
-   LOGIN
-───────────────────────────────────────────── */
-function handleLogin(e) {
+/* ── LOGIN ── */
+function handleLogin(e){
   e.preventDefault();
-  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
-  const password = document.getElementById('loginPassword').value;
-  const btn = document.getElementById('loginBtn');
-
-  btn.classList.add('loading'); btn.disabled = true;
-
-  setTimeout(() => {
-    btn.classList.remove('loading'); btn.disabled = false;
-
-    const users = getUsers();
-    const user = users[email];
-
-    if (!user) {
-      showAlert('loginAlert', 'error', '✗ No account found with this email. Please register first.');
-      return;
-    }
-
-    if (user.password !== btoa(password)) {
-      showAlert('loginAlert', 'error', '✗ Incorrect password. Please try again.');
-      return;
-    }
-
-    saveSession({ email, name: user.name, programme: user.programme, paid: user.paid });
-    showAlert('loginAlert', 'success', '✓ Signed in successfully. Redirecting…');
-    setTimeout(() => window.location.href = 'dashboard.html', 1200);
-  }, 900);
+  const email=document.getElementById('loginEmail').value.trim().toLowerCase();
+  const pass=document.getElementById('loginPassword').value;
+  const btn=document.getElementById('loginBtn');
+  btn.classList.add('loading');btn.disabled=true;
+  setTimeout(()=>{
+    btn.classList.remove('loading');btn.disabled=false;
+    const users=getUsers();const user=users[email];
+    if(!user){showAlert('loginAlert','error','✗ No account found. Please register first.');return;}
+    if(user.password!==btoa(pass)){showAlert('loginAlert','error','✗ Incorrect password.');return;}
+    saveSession({email,name:user.name,access:user.access||{},paid:user.paid});
+    showAlert('loginAlert','success','✓ Signed in. Redirecting…');
+    setTimeout(()=>window.location.href='dashboard.html',1200);
+  },900);
 }
 
-/* ─────────────────────────────────────────────
-   DEMO LOGIN (Preview mode, no payment required)
-───────────────────────────────────────────── */
-function handleDemoLogin() {
-  saveSession({ email: 'demo@aimadesimple.com', name: 'Demo User', programme: 'expert', paid: false, demo: true });
-  window.location.href = 'dashboard.html';
+function handleDemoLogin(){
+  saveSession({email:'demo@aimadesimple.com',name:'Demo User',demo:true,paid:false,
+    access:{expert:{months:[1]},m2m:{phases:[1],tier:'self'},masterclasses:{classes:[1,2]}}});
+  window.location.href='dashboard.html';
 }
 
-/* ─────────────────────────────────────────────
-   REGISTER
-───────────────────────────────────────────── */
-function handleRegister(e) {
+/* ── REGISTER ── */
+function handleRegister(e){
   e.preventDefault();
-  const name      = document.getElementById('regName').value.trim();
-  const email     = document.getElementById('regEmail').value.trim().toLowerCase();
-  const programme = document.getElementById('regProgramme').value;
-  const password  = document.getElementById('regPassword').value;
-  const confirm   = document.getElementById('regConfirm').value;
-  const errEl     = document.getElementById('regConfirmErr');
-  const btn       = document.getElementById('registerBtn');
-
-  errEl.classList.remove('visible');
-
-  if (password !== confirm) {
-    errEl.classList.add('visible');
-    return;
-  }
-
-  if (password.length < 8) {
-    showAlert('registerAlert', 'error', '✗ Password must be at least 8 characters.');
-    return;
-  }
-
-  btn.classList.add('loading'); btn.disabled = true;
-
-  setTimeout(() => {
-    btn.classList.remove('loading'); btn.disabled = false;
-
-    const users = getUsers();
-    if (users[email]) {
-      showAlert('registerAlert', 'error', '✗ An account with this email already exists.');
-      return;
-    }
-
-    users[email] = {
-      name,
-      password: btoa(password), // NOTE: In production use proper hashing (bcrypt via backend)
-      programme,
-      paid: false,              // Access Control: starts unpaid; admin or webhook flips this
-      createdAt: new Date().toISOString()
-    };
+  const name=document.getElementById('regName').value.trim();
+  const email=document.getElementById('regEmail').value.trim().toLowerCase();
+  const prog=document.getElementById('regProgramme').value;
+  const pass=document.getElementById('regPassword').value;
+  const conf=document.getElementById('regConfirm').value;
+  if(pass!==conf){document.getElementById('regConfirmErr').classList.add('visible');return;}
+  if(pass.length<8){showAlert('registerAlert','error','✗ Password must be at least 8 characters.');return;}
+  document.getElementById('registerBtn').classList.add('loading');
+  document.getElementById('registerBtn').disabled=true;
+  setTimeout(()=>{
+    document.getElementById('registerBtn').classList.remove('loading');
+    document.getElementById('registerBtn').disabled=false;
+    const users=getUsers();
+    if(users[email]){showAlert('registerAlert','error','✗ Account already exists.');return;}
+    users[email]={name,password:btoa(pass),primaryProgramme:prog,paid:false,access:{},createdAt:new Date().toISOString()};
     saveUsers(users);
-    saveSession({ email, name, programme, paid: false });
-
-    showAlert('registerAlert', 'success', '✓ Account created! Complete payment to unlock your programme.');
-    setTimeout(() => window.location.href = 'dashboard.html', 1800);
-  }, 900);
+    saveSession({email,name,paid:false,access:{}});
+    showAlert('registerAlert','success','✓ Account created! Complete payment to unlock your programme.');
+    setTimeout(()=>window.location.href='dashboard.html',1800);
+  },900);
 }
 
-/* ─────────────────────────────────────────────
-   FORGOT PASSWORD
-───────────────────────────────────────────── */
-function handleForgot(e) {
-  e.preventDefault();
-  const email = document.getElementById('loginEmail').value.trim();
-  if (!email) {
-    showAlert('loginAlert', 'error', '✗ Enter your email first, then click Forgot Password.');
-    return;
-  }
-  showAlert('loginAlert', 'success', '✓ If an account exists, a reset link will be sent. (Contact admin via WhatsApp for manual reset.)');
-}
+function handleForgot(e){e.preventDefault();const em=document.getElementById('loginEmail').value.trim();if(!em){showAlert('loginAlert','error','✗ Enter your email first.');return;}showAlert('loginAlert','success','✓ If an account exists, contact admin on WhatsApp for manual reset.');}
 
-/* ─────────────────────────────────────────────
-   ADMIN PANEL TOGGLE
-───────────────────────────────────────────── */
-function toggleAdminPanel() {
-  const panel = document.getElementById('adminPanel');
+/* ── ADMIN PANEL ── */
+let currentAdminProg='expert';
+
+function toggleAdminPanel(){
+  const panel=document.getElementById('adminPanel');
   panel.classList.toggle('visible');
-  if (localStorage.getItem('ams-admin-auth')) {
-    document.getElementById('adminLoginSection').style.display = 'none';
-    document.getElementById('grantAccessSection').style.display = 'flex';
+  if(localStorage.getItem('ams-admin-auth')){
+    document.getElementById('adminLoginSection').style.display='none';
+    document.getElementById('grantAccessSection').style.display='flex';
   }
 }
 
-/* ─────────────────────────────────────────────
-   ADMIN LOGIN
-   Default credentials: admin / AIMadeSimple2026
-   IMPORTANT: Change these in production via a backend API
-───────────────────────────────────────────── */
-function handleAdminLogin(e) {
+function switchAdminTab(prog,btn){
+  currentAdminProg=prog;
+  document.querySelectorAll('.ptab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.access-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+prog).classList.add('active');
+}
+
+function toggleAll(prog,cb){
+  const checked=cb.checked;
+  document.querySelectorAll('.'+prog+(prog==='mc'?'-class':prog==='m2m'?'-phase':'-month')).forEach(c=>c.checked=checked);
+}
+
+/* Admin credentials — change these in production */
+function handleAdminLogin(e){
   e.preventDefault();
-  const user = document.getElementById('adminUser').value;
-  const pass = document.getElementById('adminPass').value;
-
-  const ADMIN_USER = 'admin';
-  const ADMIN_PASS = 'AIMadeSimple2026'; // Change in production
-
-  if (user === ADMIN_USER && pass === ADMIN_PASS) {
-    localStorage.setItem('ams-admin-auth', '1');
-    document.getElementById('adminLoginSection').style.display = 'none';
-    document.getElementById('grantAccessSection').style.display = 'flex';
+  const u=document.getElementById('adminUser').value;
+  const p=document.getElementById('adminPass').value;
+  if(u==='admin'&&p==='AIMadeSimple2026'){
+    localStorage.setItem('ams-admin-auth','1');
+    document.getElementById('adminLoginSection').style.display='none';
+    document.getElementById('grantAccessSection').style.display='flex';
   } else {
-    showAlert('adminAlert', 'error', '✗ Invalid admin credentials.');
+    showAlert('adminAlert','error','✗ Invalid admin credentials.');
   }
 }
 
-/* ─────────────────────────────────────────────
-   GRANT ACCESS (Admin function)
-   Sets user.paid = true for the given email.
-   In production this would hit a backend endpoint.
-───────────────────────────────────────────── */
-function grantAccess() {
-  const email = document.getElementById('grantEmail').value.trim().toLowerCase();
-  const prog  = document.getElementById('grantProgramme').value;
-  const users = getUsers();
+/* ── GRANT ACCESS ── */
+/*
+ * ACCESS OBJECT STRUCTURE stored per user:
+ * access: {
+ *   expert:       { months: [1,2,3] },          // which months of AI Expert User
+ *   m2m:          { phases: [1,2,3], tier: 'standard' },  // which phases of M2M
+ *   masterclasses: { classes: [1,2,3,...] }      // which masterclasses
+ * }
+ */
+function grantAccess(){
+  const email=document.getElementById('grantEmail').value.trim().toLowerCase();
+  if(!email){showAlert('grantAlert','error','✗ Enter an email.');return;}
+  const users=getUsers();
+  if(!users[email]){
+    users[email]={name:email,password:'',primaryProgramme:currentAdminProg,paid:true,access:{},createdAt:new Date().toISOString(),grantedByAdmin:true};
+  }
+  users[email].paid=true;
+  if(!users[email].access) users[email].access={};
 
-  if (!email) {
-    showAlert('grantAlert', 'error', '✗ Enter an email address.');
-    return;
+  if(currentAdminProg==='expert'){
+    const months=Array.from(document.querySelectorAll('.expert-month:checked')).map(c=>parseInt(c.value));
+    if(document.getElementById('expert-all').checked||months.length===3){
+      users[email].access.expert={months:[1,2,3]};
+    } else if(months.length>0){
+      const existing=(users[email].access.expert?.months)||[];
+      users[email].access.expert={months:[...new Set([...existing,...months])]};
+    } else {
+      showAlert('grantAlert','error','✗ Select at least one month.');return;
+    }
   }
 
-  if (!users[email]) {
-    // Create user record if they haven't registered yet
-    users[email] = { name: email, password: '', programme: prog, paid: true, createdAt: new Date().toISOString(), grantedByAdmin: true };
-  } else {
-    users[email].paid = true;
-    users[email].programme = prog;
-    users[email].grantedAt = new Date().toISOString();
+  if(currentAdminProg==='m2m'){
+    const phases=Array.from(document.querySelectorAll('.m2m-phase:checked')).map(c=>parseInt(c.value));
+    const tier=document.getElementById('m2m-tier').value;
+    if(document.getElementById('m2m-all').checked||phases.length===3){
+      users[email].access.m2m={phases:[1,2,3],tier};
+    } else if(phases.length>0){
+      const existing=(users[email].access.m2m?.phases)||[];
+      users[email].access.m2m={phases:[...new Set([...existing,...phases])],tier};
+    } else {
+      showAlert('grantAlert','error','✗ Select at least one phase.');return;
+    }
   }
 
+  if(currentAdminProg==='mc'){
+    const classes=Array.from(document.querySelectorAll('.mc-class:checked')).map(c=>parseInt(c.value));
+    if(document.getElementById('mc-all').checked||classes.length===9){
+      users[email].access.masterclasses={classes:[1,2,3,4,5,6,7,8,9]};
+    } else if(classes.length>0){
+      const existing=(users[email].access.masterclasses?.classes)||[];
+      users[email].access.masterclasses={classes:[...new Set([...existing,...classes])]};
+    } else {
+      showAlert('grantAlert','error','✗ Select at least one masterclass.');return;
+    }
+  }
+
+  users[email].grantedAt=new Date().toISOString();
   saveUsers(users);
-  showAlert('grantAlert', 'success', `✓ Access granted to ${email} for "${prog}".`);
-  document.getElementById('grantEmail').value = '';
-}
 
-function adminLogout() {
-  localStorage.removeItem('ams-admin-auth');
-  document.getElementById('adminLoginSection').style.display = 'block';
-  document.getElementById('grantAccessSection').style.display = 'none';
-}
-
-/* ─────────────────────────────────────────────
-   AUTO-REDIRECT if already logged in
-───────────────────────────────────────────── */
-(function() {
-  const session = getSession();
-  if (session && session.email) {
-    // If on login page and already logged in, redirect to dashboard
-    // (removed auto-redirect to allow manual logout flow)
+  // Update live session if this is the current user
+  const session=getSession();
+  if(session&&session.email===email){
+    session.access=users[email].access;session.paid=true;
+    saveSession(session);
   }
-})();
+
+  let summary=[];
+  if(users[email].access.expert) summary.push(`Expert Months: ${users[email].access.expert.months.join(',')}`);
+  if(users[email].access.m2m) summary.push(`M2M Phases: ${users[email].access.m2m.phases.join(',')} (${users[email].access.m2m.tier})`);
+  if(users[email].access.masterclasses) summary.push(`Classes: ${users[email].access.masterclasses.classes.join(',')}`);
+  showAlert('grantAlert','success',`✓ Access granted to ${email}. ${summary.join(' | ')}`);
+  document.getElementById('grantEmail').value='';
+}
+
+function revokeAccess(){
+  const email=document.getElementById('grantEmail').value.trim().toLowerCase();
+  if(!email){showAlert('grantAlert','error','✗ Enter an email to revoke.');return;}
+  if(!confirm(`Revoke ALL access for ${email}?`))return;
+  const users=getUsers();
+  if(users[email]){users[email].paid=false;users[email].access={};saveUsers(users);}
+  showAlert('grantAlert','success',`✓ Access revoked for ${email}.`);
+}
+
+function toggleStudentList(){
+  const el=document.getElementById('studentList');
+  if(el.style.display==='none'){
+    const users=getUsers();
+    const html=Object.entries(users).map(([email,u])=>{
+      const a=u.access||{};
+      const parts=[];
+      if(a.expert) parts.push(`Expert M${(a.expert.months||[]).join(',')}`);
+      if(a.m2m) parts.push(`M2M P${(a.m2m.phases||[]).join(',')} (${a.m2m.tier||''})`);
+      if(a.masterclasses) parts.push(`MC: ${(a.masterclasses.classes||[]).join(',')}`);
+      return `<div style="padding:6px 10px;border-bottom:1px solid var(--border);font-size:0.75rem;"><span style="color:var(--text)">${u.name||email}</span> <span style="color:var(--text-muted);display:block;">${email}</span><span style="color:var(--gold);font-size:0.7rem;">${u.paid?'✓ PAID':'✗ UNPAID'} ${parts.join(' · ')}</span></div>`;
+    }).join('');
+    el.innerHTML=html||'<div style="padding:10px;font-size:0.78rem;color:var(--text-muted);">No students registered yet.</div>';
+    el.style.display='block';
+    el.style.cssText='display:block;margin-top:0.75rem;max-height:200px;overflow-y:auto;background:var(--bg3);border:1px solid var(--border);border-radius:6px;';
+  } else {
+    el.style.display='none';
+  }
+}
+
+function adminLogout(){
+  localStorage.removeItem('ams-admin-auth');
+  document.getElementById('adminLoginSection').style.display='block';
+  document.getElementById('grantAccessSection').style.display='none';
+}
 </script>
 </body>
 </html>
