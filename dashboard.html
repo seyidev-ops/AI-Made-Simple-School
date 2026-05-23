@@ -563,10 +563,10 @@ function getAcc(){const s=getSession();return s?.access||{};}
 function isDemo(){return getSession()?.demo===true;}
 function hasExpertMonth(m){return getAcc().expert?.months?.includes(m)||isDemo();}
 function hasM2MPhase(p){return getAcc().m2m?.phases?.includes(p)||(isDemo()&&p===1);}
-function hasMC(id){return getAcc().masterclasses?.classes?.includes(id)||(isDemo()&&id===1);}
+function hasMC(id){return getAcc().masterclasses?.classes?.includes(id);}
 function isUnlocked(lesson){
-  // Demo: Week 1 only — Days 1–7
-  if(isDemo()) return lesson.d<=7;
+  // Demo: Day 1 only
+  if(isDemo()) return lesson.d===1;
   const p=ST.currentProg;
   if(p==='expert') return hasExpertMonth(lesson.mo);
   if(p==='m2m') return hasM2MPhase(lesson.ph);
@@ -602,7 +602,7 @@ function buildSidebar(){
       </div>`;
     }).join('');
     const gUnlocked=p==='m2m'?hasM2MPhase(g.ph):hasExpertMonth(g.mo);
-    sec.innerHTML=`<div class="sidebar-section-hdr" onclick="this.parentElement.classList.toggle('open')"><span class="sidebar-section-title">${g.lbl}${!gUnlocked&&!isDemo()?' 🔒':''}</span><span class="sidebar-arrow">▼</span></div><div class="sidebar-lessons">${lHTML}</div>`;
+    sec.innerHTML=`<div class="sidebar-section-hdr" onclick="this.parentElement.classList.toggle('open')"><span class="sidebar-section-title">${g.lbl}${!gUnlocked?' 🔒':''}</span><span class="sidebar-arrow">▼</span></div><div class="sidebar-lessons">${lHTML}</div>`;
     c.appendChild(sec);
   });
 }
@@ -809,7 +809,7 @@ function buildModCards(){
   c.innerHTML=groups.map(g=>{
     const total=g.e-g.s+1;const done=ST.completedDays.filter(d=>d>=g.s&&d<=g.e).length;const pct=Math.round((done/total)*100);
     const unlocked=p==='m2m'?hasM2MPhase(g.ph):hasExpertMonth(g.mo);
-    const isActive=ST.currentDay>=g.s&&ST.currentDay<=g.e;const isDone=done===total;const locked=!unlocked&&!isDemo();
+    const isActive=ST.currentDay>=g.s&&ST.currentDay<=g.e;const isDone=done===total;const locked=!unlocked;
     return `<div class="module-card ${locked?'locked':''}" onclick="${locked?'':'selectLesson('+g.s+')'}">
       <div class="module-card-hdr"><span class="module-phase-tag">${p==='m2m'?'PHASE':'MONTH'} ${g.ph||g.mo} · DAYS ${g.s}–${g.e}</span><span class="module-status ${locked?'status-locked':isDone?'status-done':isActive?'status-active':'status-locked'}">${locked?'🔒 Locked':isDone?'✓ Done':isActive?'● Active':'◦ Upcoming'}</span></div>
       <div class="module-title">${g.nm}</div><div class="module-sub">${g.sub}</div>
