@@ -149,7 +149,28 @@ nav{position:sticky;top:0;z-index:200;background:var(--nav-bg);backdrop-filter:b
 .module-sub{font-size:0.73rem;color:var(--text-muted);}
 .module-bar{height:3px;background:var(--bg3);border-radius:3px;margin-top:0.65rem;overflow:hidden;}
 .module-bar-fill{height:100%;background:var(--gold);border-radius:3px;transition:width 0.6s ease;}
-
+.mc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem;margin-bottom:1.5rem;}
+.mc-card{background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:1.125rem;position:relative;overflow:hidden;transition:all 0.2s;}
+.mc-card:hover:not(.locked){border-color:rgba(201,168,76,0.3);transform:translateY(-2px);}
+.mc-card.locked{opacity:1;}
+.mc-card.locked .mc-name,.mc-card.locked .mc-desc{opacity:0.75;}
+.mc-syllabus-toggle{display:flex;align-items:center;justify-content:space-between;background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:7px 12px;cursor:pointer;font-size:0.68rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-secondary);width:100%;transition:all 0.2s;margin-bottom:0.5rem;}
+.mc-syllabus-toggle:hover{border-color:var(--gold);color:var(--gold);}
+.mc-syllabus-toggle.open{border-radius:5px 5px 0 0;border-color:var(--gold);color:var(--gold);}
+.mc-syllabus-toggle .sarrow{font-size:8px;transition:transform 0.3s;}
+.mc-syllabus-toggle.open .sarrow{transform:rotate(180deg);}
+.mc-syllabus-list{max-height:0;overflow:hidden;transition:max-height 0.35s ease;}
+.mc-syllabus-list.open{max-height:500px;}
+.mc-syllabus-inner{border:1px solid var(--gold);border-top:none;border-radius:0 0 5px 5px;overflow:hidden;margin-bottom:0.75rem;}
+.mc-syllabus-item{display:flex;align-items:center;gap:8px;padding:6px 12px;border-bottom:1px solid var(--border);font-size:0.75rem;color:var(--text-secondary);}
+.mc-syllabus-item:last-child{border-bottom:none;}
+.mc-syllabus-item::before{content:'';width:5px;height:5px;background:var(--gold);border-radius:50%;flex-shrink:0;}
+.mc-upgrade-btn{display:inline-flex;align-items:center;gap:6px;background:var(--gold-dim);border:1px solid rgba(201,168,76,0.35);color:var(--gold);padding:7px 14px;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;text-decoration:none;transition:all 0.2s;width:100%;justify-content:center;}
+.mc-upgrade-btn:hover{background:var(--gold);color:#0E0E10;}
+.mc-num{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--gold);font-weight:700;letter-spacing:0.1em;margin-bottom:0.35rem;}
+.mc-name{font-size:0.87rem;font-weight:600;color:var(--text);margin-bottom:0.3rem;line-height:1.3;}
+.mc-desc{font-size:0.73rem;color:var(--text-muted);line-height:1.5;margin-bottom:0.75rem;}
+.mc-lock-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(120,120,120,0.1);border:1px solid var(--border);border-radius:100px;padding:3px 10px;font-size:0.63rem;color:var(--text-muted);}
 .notif-bar{background:var(--gold-dim);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;font-size:0.78rem;color:var(--text-secondary);}
 .notif-icon{font-size:15px;flex-shrink:0;}
 .notif-text{flex:1;}
@@ -173,7 +194,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.125rem
 .progress-bar-nav,.progress-pct{display:none;}
 .nav-user{display:none;}
 }
-@media(max-width:540px){.stats-row{grid-template-columns:1fr 1fr;}.phase-progress{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:540px){.stats-row{grid-template-columns:1fr 1fr;}.phase-progress{grid-template-columns:repeat(3,1fr);}.mc-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -450,6 +471,66 @@ notes:[{s:'hl',x:'You have done it. 90 days. 30+ AI tools mastered. Income earne
 {s:'check',x:['Capstone deck created and exported','Shared on LinkedIn with your story','Sent to 3 best clients','Committed to next 90 days in writing']}]}
 ];
 
+/* ══ MASTERCLASSES ══ */
+const MC=[
+{id:1,t:'AI Social Media & WhatsApp Lead Automations',dur:'3 Hours',desc:'Build a live AI pipeline that captures and follows up every social media and WhatsApp lead automatically.',
+ mods:[{n:'MOD 1',t:'Strategy & Planning',d:'45 min',c:'Define your trigger post, keyword, and target audience. Set up Meta Business Suite, connect Facebook Page and Instagram Professional account. Enable messaging permissions and note your Page ID.'},
+ {n:'MOD 2',t:'Instagram & Facebook Automation',d:'60 min',c:'Create ManyChat account and connect to Facebook Page + Instagram. Build comment-triggered automation: when someone comments your keyword → ManyChat sends DM automatically. Configure DM flow with 3–5 messages leading to your offer. Link to your OpenAI API key for dynamic responses.'},
+ {n:'MOD 3',t:'WhatsApp + CRM Integration',d:'75 min',c:'Set up WATI.io (WhatsApp Business API). Connect to Make.com. Build: WhatsApp message received → lead scored by OpenAI GPT → CRM updated → personalised follow-up drafted → sent within 2 minutes. Go live and test with a real message.'}]},
+{id:2,t:'AI Book Writing & Amazon KDP',dur:'3 Hours',desc:'From blank page to published author — write, format, and publish a book on Amazon KDP using AI.',
+ mods:[{n:'MOD 1',t:'Understanding AI Writing Tools',d:'15 min',c:'What AI does well: brainstorming, outlining, first drafts, rewriting. What it does NOT: fact verification, genuine emotion, consistent memory. Critical rule: verify every fact, statistic, date, and name before publishing.'},
+ {n:'MOD 2',t:'Choosing Your Tool & Setup',d:'20 min',c:'Claude.ai vs ChatGPT for book writing. Create workspace: Google Doc titled "My Book — Master Project File." Choose your topic (something you know more about than most people). Validate on Amazon: search topic, check similar books have reviews > 50 = proven market.'},
+ {n:'MOD 3',t:'Research & Outline',d:'30 min',c:'Use Perplexity AI for research (never for writing). Build 10-chapter outline with Claude using the RISE prompt. Each chapter: 1 core concept, 3 supporting points, 1 real-world example.'},
+ {n:'MOD 4',t:'Writing with AI',d:'45 min',c:'Chapter system: paste outline → Claude writes 800-word draft → read and edit for your voice → add personal story or example → repeat. Maintain consistent tone by referencing your first chapter when prompting subsequent ones.'},
+ {n:'MOD 5',t:'Formatting & Cover Design',d:'30 min',c:'KDP format: Word document, 6×9 inches, Times New Roman 12pt, 1-inch margins, page numbers. Cover: Canva KDP template (6×9). Generate background with MidJourney or Ideogram.'},
+ {n:'MOD 6',t:'Publishing on KDP',d:'20 min',c:'Create account at kdp.amazon.com. Enter title, subtitle, description. Upload interior Word doc and cover PDF. Price: $2.99 ebooks (70% royalty). Publish. Check live within 24–72 hours.'}]},
+{id:3,t:'Viral Short-Form Video Creation',dur:'3 Hours',desc:'Create high-performing TikTok, Reels, and YouTube Shorts — algorithm, scripting, filming, editing, growth.',
+ mods:[{n:'MOD 1',t:'Platform Algorithms & Virality',d:'30 min',c:'4 signals: Retention Rate (most important), Completion Rate, Engagement (shares/saves weighted highest), Content Identity. 5-part anatomy: Hook (0–3s), Promise (3–8s), Value Body, Emotional Trigger, CTA.'},
+ {n:'MOD 2',t:'Video Concept & Ideation',d:'20 min',c:'3 proven frameworks: Tutorial, Reaction/Opinion, Story. Generate 10 hook variations with ChatGPT. Test hooks on 3 people.'},
+ {n:'MOD 3',t:'Scripting & Storyboarding',d:'20 min',c:'Script structure: Hook → Promise → 3 value points (10 seconds each) → Emotional close → CTA. Write the full script even if speaking naturally.'},
+ {n:'MOD 4',t:'Filming Fundamentals',d:'20 min',c:'Setup: horizontal stabiliser or tripod, clean lens. Lighting: face a window or ring light. Audio: phone mic or lapel mic.'},
+ {n:'MOD 5',t:'Editing Techniques',d:'40 min',c:'CapCut workflow: Import → trim silences → auto-captions → background music (volume 20%) → b-roll overlays → export 1080p.'},
+ {n:'MOD 6',t:'Publishing, Growth & Analytics',d:'50 min',c:'Posting: 1 video/day for first 30 days. Best times: 6–10am and 7–11pm local. Respond to every comment in first 3 hours.'}]},
+{id:4,t:'AI Faceless YouTube Content Creation',dur:'3 Hours',desc:'Build a profitable YouTube channel without ever showing your face — niche, scripts, voiceover, editing, monetisation.',
+ mods:[{n:'MOD 1',t:'The Faceless YouTube Business Model',d:'20 min',c:'Income streams: AdSense, affiliate marketing, digital products, sponsorships. Monetisation threshold: 1,000 subscribers + 4,000 watch hours.'},
+ {n:'MOD 2',t:'Niche Selection & Channel Strategy',d:'20 min',c:'Niche criteria: 50,000+ monthly YouTube searches, monetisation potential, scriptable with AI. Use Google Trends Nigeria to find local keyword demand.'},
+ {n:'MOD 3',t:'AI-Powered Scriptwriting',d:'30 min',c:'Script structure (10 min = ~1,500 words): Hook question → Problem setup → 5 key points × 90 seconds each → Summary → CTA.'},
+ {n:'MOD 4',t:'Visuals, Stock Footage & Animation',d:'25 min',c:'Free stock: Pexels.com, Pixabay.com. AI b-roll: Pika Labs. Screen recordings: OBS Studio (free).'},
+ {n:'MOD 5',t:'AI Voiceover & Audio Production',d:'20 min',c:'ElevenLabs: "Will" (authoritative) or "Grace" (warm) for educational content. Join audio sections in Audacity or CapCut.'},
+ {n:'MOD 6',t:'Video Editing Fundamentals',d:'30 min',c:'CapCut desktop: Import voiceover → sync b-roll → lower-third text → background music (15% volume) → export 1080p 60fps.'},
+ {n:'MOD 7',t:'Thumbnail Design & YouTube SEO',d:'20 min',c:'Thumbnail formula: large face or bold text + contrast background + number or promise. SEO: keyword in title, first 2 sentences of description, and 5 tags.'},
+ {n:'MOD 8',t:'Uploading, Growth & Monetisation',d:'15 min',c:'Upload checklist: custom thumbnail · end screen · cards at 20%, 50%, 80% · description with keyword + 3 links.'}]},
+{id:5,t:'AI Resume & LinkedIn Makeovers',dur:'3 Hours',desc:'Transform CVs and LinkedIn profiles using AI to pass ATS systems and attract global remote opportunities.',
+ mods:[{n:'BLOCK 1',t:'Decoding the ATS Algorithm',d:'30 min',c:'ATS reads your resume like a scanner. 5 Rules: single-column layout, standard headings, standard fonts, save as .docx or text-based PDF, contact info in document body.'},
+ {n:'BLOCK 2',t:'Keyword Optimisation',d:'30 min',c:'Paste target job description into Claude → extract top 15 keywords. Integrate top 8 naturally into Experience and Skills sections. Use TealHQ for automated keyword matching.'},
+ {n:'BLOCK 3',t:'Achievement Rewriting',d:'30 min',c:'CAR formula: Context + Action + Result. Prompt: "Rewrite this job duty as a quantified achievement using CAR."'},
+ {n:'BLOCK 4',t:'LinkedIn Profile Optimisation',d:'30 min',c:'Optimise: Headline · About · Experience · Skills · Featured. Mirror optimised resume in Experience section.'},
+ {n:'BLOCK 5',t:'Application Strategy',d:'30 min',c:'Target 20 roles, not 200. Customise resume for each. Track in Notion.'},
+ {n:'BLOCK 6',t:'Interview Preparation',d:'30 min',c:'STAR method for behavioural questions. Use Claude to generate practice questions from the job description.'}]},
+{id:6,t:'Automated CRM & Lead Follow-ups',dur:'3 Hours',desc:'Build a fully automated lead capture and follow-up system — no manual chasing.',
+ mods:[{n:'MOD 1',t:'CRM Selection & Setup',d:'30 min',c:'GoHighLevel or HubSpot (free tier). Create pipeline stages: Lead → Contacted → Qualified → Proposal → Won/Lost. Connect to your website form.'},
+ {n:'MOD 2',t:'Lead Capture Automation',d:'45 min',c:'Make.com: form submitted → lead added to CRM → welcome email sent → owner notified. Test with a real submission.'},
+ {n:'MOD 3',t:'AI Follow-up Sequences',d:'45 min',c:'5-email sequence: Day 1 welcome, Day 3 value, Day 5 case study, Day 7 offer, Day 14 last chance. Claude writes each email from a brief.'},
+ {n:'MOD 4',t:'Lead Scoring & Prioritisation',d:'30 min',c:'Score leads by engagement (email opens, link clicks, page visits). Prioritise high scores for personal outreach.'},
+ {n:'MOD 5',t:'Reporting Dashboard',d:'30 min',c:'Google Looker Studio connected to CRM export. Track: leads by source, conversion rate per stage, revenue per pipeline.'}]},
+{id:7,t:'AI Business Proposals & Grants',dur:'6 Hours',desc:'Research, write, design, and submit winning business proposals and grant applications using AI.',
+ mods:[{n:'SESSION 1',t:'Research & Evidence',d:'90 min',c:'Research with Perplexity AI (never ChatGPT for facts). Verify every statistic before use. Build evidence base: problem statement data, target beneficiary profile, market size, comparable funded projects.'},
+ {n:'SESSION 2',t:'Proposal Structure & Drafting',d:'90 min',c:'Structure: Executive Summary → Problem Statement → Proposed Solution → Implementation Timeline → Evaluation Framework → Team & Credentials → Budget Narrative.'},
+ {n:'SESSION 3',t:'Pitch Deck & Visual Design',d:'60 min',c:'Gamma structure: Title → Problem → Solution → How it Works → Team → Impact → Budget → Ask. Use Canva for supporting infographics.'},
+ {n:'SESSION 4',t:'Review, Refine & Submit',d:'60 min',c:'Readability: Hemingway App — aim for Grade 8 reading level. Submission checklist: all attachments, word count, formatting, contact information.'}]},
+{id:8,t:'AI Data Analysis & Dashboards',dur:'Multi-Session',desc:'Analyse real datasets and build professional dashboards — no coding required.',
+ mods:[{n:'SESSION 1',t:'Data Preparation & Cleaning',d:'2 hrs',c:'5-stage pipeline: Extract → Clean → Transform → Analyse → Visualise. Upload 30 rows to Claude for cleaning plan. Build formulas in Google Sheets with AI.'},
+ {n:'SESSION 2',t:'Analysis & Pattern Detection',d:'2 hrs',c:'Julius AI (julius.ai): upload cleaned CSV. Ask for top insights, trends, and variance. Export charts as PNG for your dashboard.'},
+ {n:'SESSION 3',t:'Dashboard Building',d:'2 hrs',c:'Google Looker Studio (free): Connect Google Sheet. Add bar chart, line chart, scorecard tiles, geo map. Design: one KPI per scorecard, 2-colour palette max.'},
+ {n:'SESSION 4',t:'Presentation & Storytelling',d:'1 hr',c:'Data story structure: Situation → Complication → Resolution. Present in Gamma — one slide per key finding.'}]},
+{id:9,t:'AI E-Learning & Course Creation',dur:'3 Hours',desc:'Design, build, and sell a complete online course using AI — from concept to published and marketed.',
+ mods:[{n:'MOD 1',t:'Introduction to AI in E-Learning',d:'25 min',c:'Your job: knowledge, personal stories, niche, quality control. AI\'s job: curriculum and scripts, study guides, voiceover, AI avatar video, sales page and email sequences.'},
+ {n:'MOD 2',t:'AI Tools Overview & Setup',d:'25 min',c:'Tool stack: Claude (curriculum) · NotebookLM (research) · ElevenLabs (voiceover) · HeyGen (AI video) · Canva (slides) · Selar or Payhip (delivery).'},
+ {n:'MOD 3',t:'Planning Your Course',d:'30 min',c:'Validation prompt: "I want to create a course about [topic] for [audience]. Is there demand?" Build 6-module outline: each module = 1 core transformation.'},
+ {n:'MOD 4',t:'Content Creation with AI',d:'35 min',c:'Lesson script prompt: "Write a 500-word lesson script for Module [X]. Learner will: [outcome]. Tone: conversational and encouraging."'},
+ {n:'MOD 5',t:'Production & Delivery',d:'30 min',c:'Recording options: Loom screen recording · Canva slides + ElevenLabs voiceover · HeyGen AI presenter. Upload to Selar or Payhip.'},
+ {n:'MOD 6',t:'Marketing & Launch',d:'25 min',c:'Sales page prompt: "Write a sales page for [course title] at ₦[price] for [audience]." Launch email sequence: Day 1 announce · Day 3 preview · Day 5 proof · Day 7 last chance.'}]}
+];
 
 /* ══ STATE ══ */
 let ST={currentDay:1,completedDays:[],streak:0,lastEngaged:null,timerRunning:false,timerSeconds:0,timerInterval:null,currentProg:'expert'};
@@ -463,6 +544,8 @@ function getAcc(){const s=getSession();return s?.access||{};}
 function isDemo(){return getSession()?.demo===true;}
 function hasExpertMonth(m){return getAcc().expert?.months?.includes(m)||isDemo();}
 function hasM2MPhase(p){return getAcc().m2m?.phases?.includes(p)||(isDemo()&&p===1);}
+/* hasMC always false — all Masterclass content is locked; visible but purchase-only */
+function hasMC(){return false;}
 function isUnlocked(lesson){
   // Demo: Day 1 only
   if(isDemo()) return lesson.d===1;
@@ -484,6 +567,7 @@ function closeSidebar(){const s=document.getElementById('sidebar');const o=docum
 function buildSidebar(){
   const c=document.getElementById('sidebarInner');c.innerHTML='';
   const p=ST.currentProg;
+  if(p==='masterclasses'){buildMCSidebar(c);return;}
   const groups=p==='m2m'?
     [{lbl:'Phase 1 — Foundations',filter:l=>l.ph===1,ph:1},{lbl:'Phase 2 — Business',filter:l=>l.ph===2,ph:2},{lbl:'Phase 3 — Mastery',filter:l=>l.ph===3,ph:3}]:
     [{lbl:'Month 1 — Foundations',filter:l=>l.mo===1,mo:1},{lbl:'Month 2 — Business',filter:l=>l.mo===2,mo:2},{lbl:'Month 3 — Mastery',filter:l=>l.mo===3,mo:3}];
@@ -507,6 +591,17 @@ function buildSidebar(){
 
 function selectLesson(day){ST.currentDay=day;saveSt();renderMain();buildSidebar();closeSidebar();}
 
+function buildMCSidebar(c){
+  const sec=document.createElement('div');sec.className='sidebar-section open';
+  const items=MC.map(mc=>`<div class="s-lesson locked">
+    <div class="s-dot"></div>
+    <div class="s-title">Class ${mc.id}: ${mc.t}</div>
+    <span class="s-lock">🔒</span>
+  </div>`).join('');
+  sec.innerHTML=`<div class="sidebar-section-hdr" onclick="this.parentElement.classList.toggle('open')"><span class="sidebar-section-title">AI Masterclasses</span><span class="sidebar-arrow">▼</span></div><div class="sidebar-lessons">${items}</div>`;
+  c.appendChild(sec);
+}
+
 /* ══ PROG TABS ══ */
 function buildProgTabs(){
   const c=document.getElementById('navProgTabs');
@@ -514,6 +609,7 @@ function buildProgTabs(){
   const tabs=[];
   if(acc.expert?.months?.length||isDemo()) tabs.push({id:'expert',lbl:'AI Expert User'});
   if(acc.m2m?.phases?.length||(isDemo())) tabs.push({id:'m2m',lbl:'AI Mastery to Money'});
+  tabs.push({id:'masterclasses',lbl:'Masterclasses'});
   if(!tabs.length) tabs.push({id:'expert',lbl:'AI Expert User'});
   c.innerHTML=tabs.map(t=>`<button class="prog-tab ${ST.currentProg===t.id?'active':''}" onclick="switchProg('${t.id}')">${t.lbl}</button>`).join('');
 }
@@ -524,6 +620,7 @@ function switchProg(p){ST.currentProg=p;saveSt();buildProgTabs();buildSidebar();
 function renderMain(){
   const session=getSession();const acc=getAcc();const main=document.getElementById('mainContent');const p=ST.currentProg;
   const hasSome=isDemo()||(p==='expert'&&acc.expert?.months?.length>0)||(p==='m2m'&&acc.m2m?.phases?.length>0);
+  if(p==='masterclasses'){renderMCMain(main);return;}
   if(!hasSome){main.innerHTML=renderGate(p);return;}
   const lesson=CUR.find(l=>l.d===ST.currentDay)||CUR[0];
   const u=isUnlocked(lesson);const done=ST.completedDays.includes(lesson.d);
@@ -584,6 +681,45 @@ function renderNotes(notes){
 }
 
 function toggleNotes(btn){const c=btn.nextElementSibling;const o=c.classList.toggle('open');btn.classList.toggle('open',o);}
+
+/* ══ MASTERCLASSES ══ */
+function renderMCMain(main){
+  const cards=MC.map(mc=>{
+    const syllabusItems=mc.mods.map(m=>`<div class="mc-syllabus-item"><span>${m.n} — ${m.t} <span style="color:var(--text-muted);font-size:0.68rem;">(${m.d})</span></span></div>`).join('');
+    const syllabusHTML=`
+      <button class="mc-syllabus-toggle" onclick="toggleMCSyllabus(this)">
+        View Syllabus <span class="sarrow">▼</span>
+      </button>
+      <div class="mc-syllabus-list">
+        <div class="mc-syllabus-inner">${syllabusItems}</div>
+      </div>`;
+    return `<div class="mc-card locked">
+      <div class="mc-num">CLASS ${String(mc.id).padStart(2,'0')} · ${mc.dur}</div>
+      <div class="mc-name">${mc.t}</div>
+      <div class="mc-desc">${mc.desc}</div>
+      ${syllabusHTML}
+      <a href="https://paystack.shop/pay/aishortcourses" target="_blank" class="mc-upgrade-btn">🔒 Unlock This Class — ₦30,000 ↗</a>
+    </div>`;
+  }).join('');
+  main.innerHTML=`
+    <div class="dash-header">
+      <div class="welcome-tag">AI Masterclasses</div>
+      <div class="welcome-title">Intensive Short Courses</div>
+      <div class="welcome-sub">2–3 hour deep dives into specialist AI skills. Preview the syllabus of any class below, then unlock to access full participant notes.</div>
+    </div>
+    <div class="mc-grid">${cards}</div>
+  `;
+}
+
+function toggleMCSyllabus(btn){
+  const list=btn.nextElementSibling;
+  const isOpen=list.classList.toggle('open');
+  btn.classList.toggle('open',isOpen);
+  document.querySelectorAll('.mc-syllabus-list.open').forEach(el=>{
+    if(el!==list){el.classList.remove('open');el.previousElementSibling.classList.remove('open');}
+  });
+  if(isOpen){list.classList.add('open');btn.classList.add('open');}
+}
 
 /* ══ STATS ══ */
 function updateStats(){
