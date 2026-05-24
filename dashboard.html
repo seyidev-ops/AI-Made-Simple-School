@@ -598,7 +598,7 @@ function buildMCSidebar(c){
     <div class="s-title">Class ${mc.id}: ${mc.t}</div>
     <span class="s-lock">🔒</span>
   </div>`).join('');
-  sec.innerHTML=`<div class="sidebar-section-hdr" onclick="this.parentElement.classList.toggle('open')"><span class="sidebar-section-title">AI Masterclasses</span><span class="sidebar-arrow">▼</span></div><div class="sidebar-lessons">${items}</div>`;
+  sec.innerHTML=`<div class="sidebar-section-hdr" onclick="this.parentElement.classList.toggle('open')"><span class="sidebar-section-title">Masterclasses</span><span class="sidebar-arrow">▼</span></div><div class="sidebar-lessons">${items}</div>`;
   c.appendChild(sec);
 }
 
@@ -703,7 +703,7 @@ function renderMCMain(main){
   }).join('');
   main.innerHTML=`
     <div class="dash-header">
-      <div class="welcome-tag">AI Masterclasses</div>
+      <div class="welcome-tag">Masterclasses</div>
       <div class="welcome-title">Intensive Short Courses</div>
       <div class="welcome-sub">2–3 hour deep dives into specialist AI skills. Preview the syllabus of any class below, then unlock to access full participant notes.</div>
     </div>
