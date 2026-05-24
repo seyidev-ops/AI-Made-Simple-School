@@ -7,9 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root { --gold:#C9A84C; --gold-dim:rgba(201,168,76,0.15); --transition:0.3s ease; }
-[data-theme="dark"] { --bg:#0E0E10; --bg2:#141416; --bg3:#1C1C20; --border:rgba(255,255,255,0.07); --text:#F0EDE6; --text-muted:#7A7870; --text-secondary:#B8B5AE; --card-bg:#16161A; --card-border:rgba(201,168,76,0.12); --nav-bg:rgba(14,14,16,0.92); --input-bg:#1C1C20; --shadow:0 8px 48px rgba(0,0,0,0.5); }
-[data-theme="light"] { --bg:#F8F6F1; --bg2:#EEEBE4; --bg3:#E4E1DA; --border:rgba(0,0,0,0.08); --text:#1A1914; --text-muted:#8A877E; --text-secondary:#4A4740; --card-bg:#FAFAF7; --card-border:rgba(201,168,76,0.25); --nav-bg:rgba(248,246,241,0.92); --input-bg:#EEEBE4; --shadow:0 8px 48px rgba(0,0,0,0.1); }
+:root{--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.15);--transition:0.3s ease;}
+[data-theme="dark"]{--bg:#0E0E10;--bg2:#141416;--bg3:#1C1C20;--border:rgba(255,255,255,0.07);--text:#F0EDE6;--text-muted:#7A7870;--text-secondary:#B8B5AE;--card-bg:#16161A;--card-border:rgba(201,168,76,0.12);--nav-bg:rgba(14,14,16,0.92);--input-bg:#1C1C20;--shadow:0 8px 48px rgba(0,0,0,0.5);}
+[data-theme="light"]{--bg:#F8F6F1;--bg2:#EEEBE4;--bg3:#E4E1DA;--border:rgba(0,0,0,0.08);--text:#1A1914;--text-muted:#8A877E;--text-secondary:#4A4740;--card-bg:#FAFAF7;--card-border:rgba(201,168,76,0.25);--nav-bg:rgba(248,246,241,0.92);--input-bg:#EEEBE4;--shadow:0 8px 48px rgba(0,0,0,0.1);}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;transition:background var(--transition),color var(--transition);}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;}
@@ -71,11 +71,13 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem c
 .footer-links{display:flex;gap:1.25rem;align-items:center;}
 .footer-links a{font-size:0.75rem;color:var(--text-muted);text-decoration:none;transition:color var(--transition);}
 .footer-links a:hover{color:var(--gold);}
-.admin-portal-link{font-size:0.65rem;color:var(--bg3) !important;letter-spacing:0.04em;transition:color 0.3s ease !important;}
-.admin-portal-link:hover{color:var(--text-muted) !important;}
+.footer-divider{width:1px;height:12px;background:var(--border);}
+.admin-entry-link{font-size:0.72rem;color:var(--text-muted);text-decoration:none;display:flex;align-items:center;gap:5px;border:1px solid var(--border);border-radius:5px;padding:4px 10px;transition:all var(--transition);}
+.admin-entry-link:hover{color:var(--gold) !important;border-color:rgba(201,168,76,0.4);background:var(--gold-dim);}
 </style>
 </head>
 <body>
+
 <nav>
   <a href="index.html" class="nav-brand">
     <div class="nav-logo">AI</div>
@@ -105,7 +107,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem c
       <button class="auth-tab" onclick="switchTab('register')">Register</button>
     </div>
 
-    <!-- LOGIN -->
+    <!-- SIGN IN -->
     <form class="auth-form active" id="loginForm" onsubmit="handleLogin(event)">
       <div class="alert" id="loginAlert"></div>
       <div class="access-notice">
@@ -182,7 +184,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem c
       <a href="index.html">Home</a>
       <a href="index.html#pricing">Pricing</a>
       <a href="dashboard.html">Dashboard</a>
-      <a href="admin-login.html" class="admin-portal-link">·</a>
+      <div class="footer-divider"></div>
+      <a href="admin-login.html" class="admin-entry-link">🛡 Admin Portal</a>
     </div>
   </div>
 </footer>
@@ -194,7 +197,7 @@ function applyTheme(m){const d=window.matchMedia('(prefers-color-scheme: dark)')
 (function(){const s=localStorage.getItem('ams-theme')||'dark';applyTheme(s);const map={light:'themeLight',dark:'themeDark',system:'themeSystem'};document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));document.getElementById(map[s])?.classList.add('active');});})();
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(localStorage.getItem('ams-theme')==='system')applyTheme('system');});
 
-/* ── UI HELPERS ── */
+/* ── HELPERS ── */
 function switchTab(t){
   document.querySelectorAll('.auth-tab').forEach((b,i)=>b.classList.toggle('active',(i===0&&t==='login')||(i===1&&t==='register')));
   document.getElementById('loginForm').classList.toggle('active',t==='login');
@@ -215,7 +218,7 @@ function saveSession(d){localStorage.setItem('ams-session',JSON.stringify(d));}
   if(s&&s.email&&!s.adminSession) window.location.href='dashboard.html';
 })();
 
-/* ── LOGIN ── */
+/* ── SIGN IN ── */
 function handleLogin(e){
   e.preventDefault();
   const email=document.getElementById('loginEmail').value.trim().toLowerCase();
