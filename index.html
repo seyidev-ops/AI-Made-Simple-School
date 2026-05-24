@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Made Simple — Learn AI in 30 Minutes a Day</title>
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+/* ─────────────────────────────────────────────
+   CSS CUSTOM PROPERTIES — THEMING SYSTEM
+───────────────────────────────────────────── */
+:root {
+  --gold: #C9A84C;
+  --gold-light: #E8C97E;
+  --gold-dim: rgba(201,168,76,0.15);
+  --transition: 0.3s ease;
+}
+
+[data-theme="dark"] {
+  --bg: #0E0E10;
+  --bg2: #141416;
+  --bg3: #1C1C20;
+  --border: rgba(255,255,255,0.07);
+  --text: #F0EDE6;
+  --text-muted: #7A7870;
+  --text-secondary: #B8B5AE;
+  --card-bg: #16161A;
+  --card-border: rgba(201,168,76,0.12);
+  --nav-bg: rgba(14,14,16,0.92);
+  --badge-bg: rgba(201,168,76,0.1);
+  --input-bg: #1C1C20;
+  --shadow: 0 8px 48px rgba(0,0,0,0.5);
+}
+
+[data-theme="light"] {
+  --bg: #F8F6F1;
+  --bg2: #EEEBE4;
+  --bg3: #E4E1DA;
+  --border: rgba(0,0,0,0.08);
+  --text: #1A1914;
+  --text-muted: #8A877E;
+  --text-secondary: #4A4740;
+  --card-bg: #FAFAF7;
+  --card-border: rgba(201,168,76,0.25);
+  --nav-bg: rgba(248,246,241,0.92);
+  --badge-bg: rgba(201,168,76,0.12);
+  --input-bg: #EEEBE4;
+  --shadow: 0 8px 48px rgba(0,0,0,0.1);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background var(--transition), color var(--transition);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* ─────────────────────────────────────────────
+   NAVIGATION
+───────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background var(--transition);
+}
+
+.nav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.nav-logo { width:32px;height:32px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#0E0E10;flex-shrink:0; }
+.nav-name { font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--text);letter-spacing:0.02em; }
+.nav-right { display:flex;align-items:center;gap:1rem; }
+.nav-link { font-size:0.85rem;font-weight:500;color:var(--text-secondary);text-decoration:none;letter-spacing:0.05em;text-transform:uppercase;transition:color var(--transition); }
+.nav-link:hover { color: var(--gold); }
+
+.btn-nav {
+  background: var(--gold); color:#0E0E10; border:none; padding:8px 18px;
+  border-radius:4px; font-family:'DM Sans',sans-serif; font-size:0.82rem;
+  font-weight:600; cursor:pointer; letter-spacing:0.06em; text-transform:uppercase;
+  text-decoration:none; transition:opacity var(--transition), transform var(--transition);
+}
+.btn-nav:hover { opacity:0.88; transform:translateY(-1px); }
+
+.theme-toggle { display:flex;align-items:center;gap:2px;background:var(--bg3);border-radius:20px;padding:3px;border:1px solid var(--border); }
+.theme-btn { width:28px;height:24px;border:none;border-radius:16px;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:background var(--transition);color:var(--text-muted); }
+.theme-btn.active { background:var(--gold);color:#0E0E10; }
+
+/* ─────────────────────────────────────────────
+   HERO  — two-column with thumbnail
+───────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: 0 3rem;
+  padding: 100px clamp(1.5rem, 6vw, 5rem) 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Glow blob stays full-bleed */
+.hero::before {
+  content:'';
+  position: fixed;
+  top: -200px; left: 50%;
+  transform: translateX(-50%);
+  width: 900px; height: 900px;
+  background: radial-gradient(ellipse,rgba(201,168,76,0.07) 0%,transparent 60%);
+  pointer-events:none;
+  z-index: 0;
+}
+
+/* Left column: badge → title → sub → cta → stats */
+.hero-left {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Right column: thumbnail */
+.hero-right {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.7s 0.35s ease both;
+}
+
+/* Thumbnail wrapper — glow + float animation */
+.hero-thumb {
+  width: 100%;
+  max-width: 540px;
+  border-radius: 16px;
+  border: 1px solid rgba(201,168,76,0.18);
+  box-shadow: 0 0 0 1px rgba(201,168,76,0.06),
+              0 24px 80px rgba(0,0,0,0.55),
+              0 0 60px rgba(201,168,76,0.06);
+  animation: thumbFloat 5s ease-in-out infinite;
+  overflow: hidden;
+  background: #111113;
+  position: relative;
+}
+
+@keyframes thumbFloat {
+  0%,100% { transform: translateY(0px) rotate(0.3deg); }
+  50%      { transform: translateY(-10px) rotate(-0.3deg); }
+}
+
+/* Reset hero text alignments for left-column */
+.hero-badge {
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--badge-bg);border:1px solid rgba(201,168,76,0.25);
+  border-radius:100px;padding:6px 14px;font-size:0.75rem;font-weight:500;
+  letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:1.75rem;animation:fadeUp 0.6s ease forwards;
+}
+.hero-badge span { width:5px;height:5px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite; }
+
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+.hero-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,5.5vw,5.5rem);font-weight:700;line-height:1.05;
+  letter-spacing:-0.02em;color:var(--text);
+  animation:fadeUp 0.6s 0.1s ease both;
+  text-align: left;
+  max-width: 560px;
+}
+.hero-title em { font-style:italic; color:var(--gold); }
+
+.hero-sub {
+  font-size:clamp(0.92rem,1.4vw,1.05rem);font-weight:300;
+  color:var(--text-secondary);line-height:1.75;
+  margin:1.25rem 0 2rem;
+  animation:fadeUp 0.6s 0.2s ease both;
+  text-align: left;
+  max-width: 480px;
+}
+
+.hero-cta {
+  display:flex;gap:1rem;flex-wrap:wrap;
+  justify-content:flex-start;
+  animation:fadeUp 0.6s 0.3s ease both;
+}
+
+.btn-primary {
+  background:var(--gold);color:#0E0E10;border:none;padding:14px 32px;border-radius:4px;
+  font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;
+  letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;
+  transition:all 0.2s ease;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary:hover { opacity:0.88;transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,0.3); }
+
+.btn-secondary {
+  background:transparent;color:var(--text);border:1px solid var(--border);
+  padding:14px 32px;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.9rem;
+  font-weight:500;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;
+  text-decoration:none;transition:all 0.2s ease;
+}
+.btn-secondary:hover { border-color:var(--gold);color:var(--gold); }
+
+.hero-stats {
+  display:flex;gap:2.5rem;flex-wrap:wrap;
+  justify-content:flex-start;
+  margin-top:3rem;
+  animation:fadeUp 0.6s 0.4s ease both;
+}
+.stat-item { text-align:left; }
+.stat-num { font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--gold);line-height:1; }
+.stat-label { font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:4px; }
+
+/* ── RESPONSIVE: collapse to single-column ── */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    text-align: center;
+    padding: 90px 1.5rem 60px;
+    gap: 3rem 0;
+  }
+  .hero-left { grid-column:1; grid-row:1; align-items:center; }
+  .hero-right { grid-column:1; grid-row:2; }
+  .hero-title  { text-align:center; max-width:100%; font-size:clamp(2.5rem,9vw,4rem); }
+  .hero-sub    { text-align:center; max-width:100%; }
+  .hero-cta    { justify-content:center; }
+  .hero-stats  { justify-content:center; }
+  .stat-item   { text-align:center; }
+  .hero-thumb  { max-width: 480px; }
+}
+
+/* ─────────────────────────────────────────────
+   SECTION LAYOUT
+───────────────────────────────────────────── */
+section { padding:clamp(4rem,10vw,8rem) clamp(1.5rem,8vw,6rem);position:relative; }
+
+.section-header { text-align:center;max-width:700px;margin:0 auto 4rem; }
+.section-tag { font-size:0.72rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;display:block; }
+.section-title { font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;line-height:1.1;color:var(--text);letter-spacing:-0.01em; }
+.section-desc { font-size:1rem;color:var(--text-secondary);font-weight:300;line-height:1.7;margin-top:1rem; }
+.divider { width:48px;height:2px;background:var(--gold);margin:1.5rem auto 0; }
+
+/* ─────────────────────────────────────────────
+   PROGRAM CARDS
+───────────────────────────────────────────── */
+.programs-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.5rem;max-width:1200px;margin:0 auto; }
+
+.program-card {
+  background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;
+  overflow:hidden;transition:transform 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease;
+  display:flex;flex-direction:column;
+}
+.program-card:hover { transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(201,168,76,0.3); }
+.program-card.featured { border-color:rgba(201,168,76,0.4);position:relative; }
+
+.featured-badge {
+  position:absolute;top:16px;right:16px;background:var(--gold);color:#0E0E10;
+  font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  padding:4px 10px;border-radius:100px;
+}
+
+.program-header { padding:2rem 2rem 1.5rem;border-bottom:1px solid var(--border); }
+.program-icon { width:44px;height:44px;background:var(--gold-dim);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:1rem; }
+.program-name { font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:0.5rem; }
+.program-tagline { font-size:0.85rem;color:var(--text-muted);font-weight:300;line-height:1.5; }
+.program-body { padding:1.5rem 2rem;flex:1; }
+.program-desc { font-size:0.9rem;color:var(--text-secondary);line-height:1.7;margin-bottom:1.25rem; }
+
+.syllabus-toggle {
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--bg3);border:1px solid var(--border);border-radius:6px;
+  padding:10px 14px;cursor:pointer;font-size:0.8rem;font-weight:600;
+  letter-spacing:0.06em;text-transform:uppercase;color:var(--text-secondary);
+  transition:all 0.2s ease;width:100%;text-align:left;margin-bottom:0.75rem;
+}
+.syllabus-toggle:hover { border-color:var(--gold);color:var(--gold); }
+.syllabus-toggle .arrow { transition:transform 0.3s ease;font-size:10px; }
+.syllabus-toggle.open .arrow { transform:rotate(180deg); }
+.syllabus-content { max-height:0;overflow:hidden;transition:max-height 0.4s ease; }
+.syllabus-content.open { max-height:800px; }
+
+.syllabus-list { list-style:none;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:1rem; }
+.syllabus-list li { padding:8px 14px;font-size:0.82rem;color:var(--text-secondary);border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:8px;line-height:1.4; }
+.syllabus-list li:last-child { border-bottom:none; }
+.syllabus-list li::before { content:'';width:5px;height:5px;background:var(--gold);border-radius:50%;margin-top:6px;flex-shrink:0; }
+
+.tier-select { margin-top:1rem; }
+.tier-label { font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem;display:block; }
+.tier-options { display:flex;flex-direction:column;gap:0.5rem; }
+
+.tier-option {
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 14px;border:1px solid var(--border);border-radius:6px;
+  cursor:pointer;transition:all 0.2s ease;background:transparent;text-decoration:none;
+}
+.tier-option:hover { border-color:var(--gold);background:var(--gold-dim); }
+.tier-name { font-size:0.82rem;font-weight:500;color:var(--text); }
+.tier-price { font-family:'Space Mono',monospace;font-size:0.78rem;color:var(--gold);font-weight:700; }
+
+.program-footer { padding:1.25rem 2rem;border-top:1px solid var(--border);display:flex;gap:0.75rem;flex-wrap:wrap; }
+
+.btn-enroll {
+  flex:1;background:var(--gold);color:#0E0E10;border:none;padding:11px 20px;
+  border-radius:5px;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:700;
+  cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;
+  text-align:center;transition:all 0.2s ease;display:inline-flex;align-items:center;
+  justify-content:center;gap:6px;min-width:120px;
+}
+.btn-enroll:hover { opacity:0.85;transform:translateY(-1px); }
+
+.btn-details {
+  background:transparent;color:var(--text-secondary);border:1px solid var(--border);
+  padding:11px 16px;border-radius:5px;font-family:'DM Sans',sans-serif;font-size:0.82rem;
+  font-weight:500;cursor:pointer;letter-spacing:0.03em;text-decoration:none;
+  text-align:center;transition:all 0.2s ease;
+}
+.btn-details:hover { border-color:var(--gold);color:var(--gold); }
+
+/* ─────────────────────────────────────────────
+   INVESTMENT SECTION
+───────────────────────────────────────────── */
+.investment-section { background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border); }
+.pricing-tiers { display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;max-width:1300px;margin:0 auto; }
+
+.pricing-tier {
+  background:var(--card-bg);border:1px solid var(--border);border-radius:12px;
+  padding:2rem;transition:all 0.2s ease;position:relative;overflow:hidden;
+}
+.pricing-tier.recommended { border-color:var(--gold); }
+.pricing-tier.recommended::before {
+  content:'RECOMMENDED';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  background:var(--gold);color:#0E0E10;font-size:0.62rem;font-weight:700;
+  letter-spacing:0.15em;padding:3px 14px;border-radius:0 0 6px 6px;
+}
+
+.tier-program-tag { font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;display:block; }
+.tier-tier-name { font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:0.25rem; }
+.tier-amount { font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:700;color:var(--gold);margin:0.75rem 0 0.25rem; }
+.tier-period { font-size:0.78rem;color:var(--text-muted);margin-bottom:1.25rem; }
+
+.tier-features { list-style:none;margin-bottom:1.5rem; }
+.tier-features li { font-size:0.83rem;color:var(--text-secondary);padding:5px 0;display:flex;align-items:flex-start;gap:8px;line-height:1.4; }
+.tier-features li::before { content:'✓';color:var(--gold);font-weight:700;font-size:0.8rem;flex-shrink:0; }
+
+/* PAYMENT SECTION */
+.payment-section { max-width:900px;margin:4rem auto 0;padding:2.5rem;background:var(--card-bg);border:1px solid var(--border);border-radius:12px; }
+.payment-title { font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:0.5rem;text-align:center; }
+.payment-sub { font-size:0.85rem;color:var(--text-muted);text-align:center;margin-bottom:2rem; }
+.payment-grid { display:grid;grid-template-columns:1fr 1fr;gap:2rem; }
+@media (max-width:600px) { .payment-grid { grid-template-columns:1fr; } }
+
+.payment-method h4 { font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border); }
+.paystack-links { display:flex;flex-direction:column;gap:0.5rem; }
+
+.paystack-link { display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;text-decoration:none;transition:all 0.2s ease; }
+.paystack-link:hover { border-color:var(--gold); }
+.paystack-link-name { font-size:0.8rem;color:var(--text);font-weight:500; }
+.paystack-link-btn { font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);background:var(--gold-dim);padding:3px 10px;border-radius:4px; }
+
+.bank-details { background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:1.25rem; }
+.bank-row { display:flex;justify-content:space-between;align-items:flex-start;padding:6px 0;border-bottom:1px solid var(--border);font-size:0.83rem; }
+.bank-row:last-child { border-bottom:none; }
+.bank-key { color:var(--text-muted);font-weight:400; }
+.bank-val { color:var(--text);font-weight:600;font-family:'Space Mono',monospace;font-size:0.78rem;text-align:right; }
+.proof-note { font-size:0.78rem;color:var(--text-muted);text-align:center;margin-top:1.25rem;padding:10px;background:var(--gold-dim);border-radius:6px;border:1px solid rgba(201,168,76,0.2); }
+
+/* ─────────────────────────────────────────────
+   MASTERCLASSES GRID
+───────────────────────────────────────────── */
+.masterclasses-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;max-width:1200px;margin:0 auto; }
+
+.mc-card { background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:1.25rem;transition:all 0.2s ease;cursor:default; }
+.mc-card:hover { border-color:rgba(201,168,76,0.3);transform:translateY(-2px); }
+.mc-num { font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--gold);font-weight:700;letter-spacing:0.1em;margin-bottom:0.5rem; }
+.mc-name { font-size:0.9rem;font-weight:600;color:var(--text);margin-bottom:0.35rem;line-height:1.3; }
+.mc-desc { font-size:0.78rem;color:var(--text-muted);line-height:1.5; }
+
+/* ─────────────────────────────────────────────
+   FAQ SECTION
+───────────────────────────────────────────── */
+.faq-section { background: var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+
+.faq-grid {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.faq-item:first-child { border-top: 1px solid var(--border); }
+
+.faq-question {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 1.4rem 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+
+.faq-question:hover .faq-q-text { color: var(--gold); }
+
+.faq-q-text {
+  font-size: clamp(0.95rem, 2vw, 1.05rem);
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+  transition: color 0.2s ease;
+  flex: 1;
+}
+
+.faq-item.open .faq-q-text { color: var(--gold); }
+
+.faq-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 14px;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+  background: var(--bg3);
+  margin-top: 1px;
+}
+
+.faq-item.open .faq-icon {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #0E0E10;
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-answer.open { max-height: 600px; }
+
+.faq-answer-inner {
+  padding: 0 0 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.faq-answer-inner p { margin-bottom: 0.75rem; }
+.faq-answer-inner p:last-child { margin-bottom: 0; }
+
+.faq-answer-inner strong { color: var(--text); font-weight: 600; }
+
+.faq-answer-inner .faq-highlight {
+  display: inline-block;
+  background: var(--gold-dim);
+  border-left: 3px solid var(--gold);
+  padding: 10px 14px;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.85rem;
+  color: var(--text);
+  margin: 0.5rem 0;
+  width: 100%;
+}
+
+/* CTA row inside FAQ */
+.faq-cta-row {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.faq-cta-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+/* ─────────────────────────────────────────────
+   WHATSAPP FLOATING BUTTON
+───────────────────────────────────────────── */
+.wa-float {
+  position: fixed;
+  bottom: 1.75rem;
+  right: 1.75rem;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  cursor: pointer;
+  text-decoration: none;
+  filter: drop-shadow(0 4px 16px rgba(37,211,102,0.35));
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.wa-float:hover {
+  filter: drop-shadow(0 6px 24px rgba(37,211,102,0.55));
+  transform: translateY(-3px);
+}
+
+/* The green circle button */
+.wa-btn-circle {
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Ripple ring */
+.wa-btn-circle::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(37,211,102,0.4);
+  animation: wa-ripple 2.5s ease-out infinite;
+}
+
+@keyframes wa-ripple {
+  0%   { transform: scale(1);   opacity: 0.7; }
+  70%  { transform: scale(1.3); opacity: 0;   }
+  100% { transform: scale(1.3); opacity: 0;   }
+}
+
+/* WhatsApp SVG icon */
+.wa-icon {
+  width: 28px;
+  height: 28px;
+  fill: #fff;
+}
+
+/* Tooltip label */
+.wa-label {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px 8px 8px 0;
+  padding: 8px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  position: absolute;
+  right: 68px;
+  bottom: 50%;
+  transform: translateY(50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, right 0.2s ease;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.wa-float:hover .wa-label { opacity: 1; right: 72px; }
+
+/* Notification dot */
+.wa-dot {
+  position: absolute;
+  top: 3px; right: 3px;
+  width: 11px; height: 11px;
+  background: #ff4444;
+  border-radius: 50%;
+  border: 2px solid var(--bg);
+}
+
+/* ─────────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────────── */
+footer { background:var(--bg2);border-top:1px solid var(--border);padding:3rem clamp(1.5rem,8vw,6rem); }
+.footer-inner { max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap; }
+.footer-brand { font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--text); }
+.footer-copy { font-size:0.78rem;color:var(--text-muted);text-align:center; }
+.footer-links { display:flex;gap:1.5rem; }
+.footer-links a { font-size:0.78rem;color:var(--text-muted);text-decoration:none;transition:color var(--transition); }
+.footer-links a:hover { color:var(--gold); }
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────────── */
+@media (max-width:768px) {
+  .nav-link { display:none; }
+  .programs-grid { grid-template-columns:1fr; }
+  .hero-stats { gap:2rem; }
+  .footer-inner { flex-direction:column;text-align:center; }
+  .footer-links { justify-content:center; }
+  .wa-label { display:none; }
+}
+
+@media (max-width:480px) {
+  .hero-cta { flex-direction:column;align-items:center; }
+  .btn-primary, .btn-secondary { width:100%;justify-content:center; }
+}
+
+/* ─────────────────────────────────────────────
+   SCROLL ANIMATIONS
+───────────────────────────────────────────── */
+.reveal { opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease; }
+.reveal.visible { opacity:1;transform:translateY(0); }
+
+@media (max-width:768px) {
+  .hamburger { display:flex; }
+  .btn-nav { display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAVIGATION ─── -->
+<nav>
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo">AI</div>
+    <span class="nav-name">AI Made Simple</span>
+  </a>
+  <div class="nav-right">
+    <a href="#programs" class="nav-link">Programs</a>
+    <a href="#pricing" class="nav-link">Pricing</a>
+    <a href="#masterclasses" class="nav-link">Masterclasses</a>
+    <a href="#faq" class="nav-link">FAQ</a>
+    <div class="theme-toggle" role="group" aria-label="Theme selector">
+      <button class="theme-btn" id="themeLight" onclick="setTheme('light')" title="Light mode">☀</button>
+      <button class="theme-btn active" id="themeDark" onclick="setTheme('dark')" title="Dark mode">●</button>
+      <button class="theme-btn" id="themeSystem" onclick="setTheme('system')" title="System mode">⊙</button>
+    </div>
+    <a href="login.html" class="btn-nav">Log In →</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+
+  <!-- LEFT: Text content -->
+  <div class="hero-left">
+    <div class="hero-badge"><span></span> 🇳🇬 Nigeria's Premier AI Learning School</div>
+    <h1 class="hero-title">Learn <em>AI</em> in 30 Minutes a Day</h1>
+    <p class="hero-sub">From a total beginner to AI-proficient in 90 days. Three custom-focused programmes — from everyday AI skills to income-generating mastery. All practical. All step-by-step. All built for results.</p>
+    <div class="hero-cta">
+      <a href="#programs" class="btn-primary">Choose Your Programme ↓</a>
+      <a href="login.html" class="btn-secondary">Access Your Course</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num">90</div><div class="stat-label">Day Programme</div></div>
+      <div class="stat-item"><div class="stat-num">30+</div><div class="stat-label">AI Tools Covered</div></div>
+      <div class="stat-item"><div class="stat-num">9</div><div class="stat-label">Masterclasses</div></div>
+      <div class="stat-item"><div class="stat-num">₦500k+</div><div class="stat-label">Income Potential / Mo</div></div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Dashboard Thumbnail -->
+  <div class="hero-right">
+    <div class="hero-thumb">
+      <svg viewBox="0 0 540 420" xmlns="http://www.w3.org/2000/svg" width="100%" style="display:block;">
+        <defs>
+          <!-- Background gradient -->
+          <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#16161A"/>
+            <stop offset="100%" stop-color="#0E0E10"/>
+          </linearGradient>
+          <!-- Gold gradient -->
+          <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#C9A84C"/>
+            <stop offset="100%" stop-color="#E8C97E"/>
+          </linearGradient>
+          <!-- Progress ring gradient -->
+          <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#C9A84C"/>
+            <stop offset="100%" stop-color="#E8C97E"/>
+          </linearGradient>
+          <!-- Green gradient for streak -->
+          <linearGradient id="greenGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#3ecf6b"/>
+            <stop offset="100%" stop-color="#5ff49e"/>
+          </linearGradient>
+          <!-- Bar gradients -->
+          <linearGradient id="bar1" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#C9A84C" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#E8C97E" stop-opacity="0.7"/>
+          </linearGradient>
+          <linearGradient id="bar2" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#C9A84C" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#C9A84C" stop-opacity="0.3"/>
+          </linearGradient>
+          <!-- Clip for card rounding -->
+          <clipPath id="cardClip">
+            <rect width="540" height="420" rx="16"/>
+          </clipPath>
+          <!-- Glow filter -->
+          <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="12" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- ── BG ── -->
+        <rect width="540" height="420" fill="url(#bgGrad)" clip-path="url(#cardClip)"/>
+
+        <!-- Top ambient glow -->
+        <ellipse cx="270" cy="-10" rx="200" ry="90" fill="#C9A84C" opacity="0.05"/>
+
+        <!-- ── TOP NAV BAR ── -->
+        <rect x="0" y="0" width="540" height="44" fill="#111113" opacity="0.95"/>
+        <rect x="0" y="43" width="540" height="1" fill="#C9A84C" opacity="0.12"/>
+        <!-- Logo badge -->
+        <rect x="16" y="11" width="24" height="24" rx="5" fill="#C9A84C"/>
+        <text x="28" y="27" text-anchor="middle" font-family="monospace" font-size="10" font-weight="700" fill="#0E0E10">AI</text>
+        <!-- Nav title -->
+        <text x="48" y="27" font-family="Georgia,serif" font-size="13" font-weight="600" fill="#F0EDE6" letter-spacing="0.3">AI Made Simple</text>
+        <!-- Nav right items -->
+        <rect x="390" y="14" width="66" height="18" rx="9" fill="#1C1C20"/>
+        <text x="423" y="26" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#7A7870">☀  ●  ⊙</text>
+        <rect x="464" y="12" width="60" height="20" rx="4" fill="#C9A84C"/>
+        <text x="494" y="25" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#0E0E10" letter-spacing="0.5">LOG IN →</text>
+
+        <!-- ── SIDEBAR ── -->
+        <rect x="0" y="44" width="148" height="376" fill="#121214" opacity="0.97"/>
+        <rect x="147" y="44" width="1" height="376" fill="#C9A84C" opacity="0.07"/>
+
+        <!-- Sidebar phase headers -->
+        <text x="14" y="70" font-family="sans-serif" font-size="7.5" font-weight="700" fill="#7A7870" letter-spacing="1">PHASE 1 — FOUND.</text>
+        <!-- Sidebar lessons -->
+        <g opacity="0.85">
+          <!-- Active lesson highlight -->
+          <rect x="0" y="76" width="147" height="20" fill="#C9A84C" opacity="0.1"/>
+          <rect x="0" y="76" width="3" height="20" fill="#C9A84C"/>
+          <circle cx="22" cy="86" r="4" fill="#C9A84C"/>
+          <text x="32" y="89" font-family="sans-serif" font-size="8" fill="#F0EDE6" font-weight="500">Day 1: Prompting Formula</text>
+
+          <circle cx="22" cy="104" r="4" fill="#C9A84C"/>
+          <text x="32" y="107" font-family="sans-serif" font-size="8" fill="#F0EDE6" opacity="0.8">Day 2: AI Search Engine</text>
+          <!-- check mark -->
+          <text x="135" y="107" font-family="sans-serif" font-size="9" fill="#C9A84C">✓</text>
+
+          <circle cx="22" cy="120" r="4" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-dasharray="2 2"/>
+          <text x="32" y="123" font-family="sans-serif" font-size="8" fill="#B8B5AE" opacity="0.7">Day 3: Writing Assistant</text>
+
+          <circle cx="22" cy="136" r="4" fill="none" stroke="#7A7870" stroke-width="1.5"/>
+          <text x="32" y="139" font-family="sans-serif" font-size="8" fill="#7A7870">Day 4: PDF Summariser</text>
+
+          <circle cx="22" cy="152" r="4" fill="none" stroke="#7A7870" stroke-width="1.5"/>
+          <text x="32" y="155" font-family="sans-serif" font-size="8" fill="#7A7870">Day 5: Voice & Tone</text>
+        </g>
+
+        <text x="14" y="175" font-family="sans-serif" font-size="7.5" font-weight="700" fill="#7A7870" letter-spacing="1">PHASE 2 — BUSINESS</text>
+        <g opacity="0.4">
+          <text x="133" y="175" font-family="sans-serif" font-size="8" fill="#7A7870">▼</text>
+          <circle cx="22" cy="189" r="4" fill="none" stroke="#3A3A3E" stroke-width="1"/>
+          <text x="32" y="192" font-family="sans-serif" font-size="8" fill="#3A3A3E">🔒 Day 31: Freelancing</text>
+          <circle cx="22" cy="205" r="4" fill="none" stroke="#3A3A3E" stroke-width="1"/>
+          <text x="32" y="208" font-family="sans-serif" font-size="8" fill="#3A3A3E">🔒 Day 36: Clipping</text>
+        </g>
+
+        <text x="14" y="228" font-family="sans-serif" font-size="7.5" font-weight="700" fill="#7A7870" letter-spacing="1">PHASE 3 — MASTERY</text>
+        <g opacity="0.3">
+          <text x="133" y="228" font-family="sans-serif" font-size="8" fill="#7A7870">▼</text>
+          <circle cx="22" cy="242" r="4" fill="none" stroke="#3A3A3E" stroke-width="1"/>
+          <text x="32" y="245" font-family="sans-serif" font-size="8" fill="#3A3A3E">🔒 Day 61: Chatbots</text>
+        </g>
+
+        <!-- ── MAIN CONTENT AREA ── -->
+        <!-- Welcome text -->
+        <text x="165" y="68" font-family="sans-serif" font-size="7.5" font-weight="700" fill="#C9A84C" letter-spacing="1">YOUR LEARNING DASHBOARD</text>
+        <text x="165" y="83" font-family="Georgia,serif" font-size="16" font-weight="700" fill="#F0EDE6">Good morning, Seyi ☀</text>
+        <text x="165" y="96" font-family="sans-serif" font-size="8.5" fill="#B8B5AE">Day 1 of 90 · 0 lessons complete · 0% progress</text>
+
+        <!-- ── STAT CARDS ROW ── -->
+        <!-- Card 1 -->
+        <rect x="165" y="106" width="80" height="50" rx="7" fill="#1C1C20" stroke="#C9A84C" stroke-opacity="0.12" stroke-width="1"/>
+        <text x="175" y="119" font-family="sans-serif" font-size="6.5" font-weight="700" fill="#7A7870" letter-spacing="0.8">CURRENT DAY</text>
+        <text x="175" y="136" font-family="Georgia,serif" font-size="22" font-weight="700" fill="#C9A84C">1</text>
+        <text x="175" y="148" font-family="sans-serif" font-size="6" fill="#7A7870">of 90 days</text>
+
+        <!-- Card 2 -->
+        <rect x="253" y="106" width="80" height="50" rx="7" fill="#1C1C20" stroke="#C9A84C" stroke-opacity="0.12" stroke-width="1"/>
+        <text x="263" y="119" font-family="sans-serif" font-size="6.5" font-weight="700" fill="#7A7870" letter-spacing="0.8">COMPLETED</text>
+        <text x="263" y="136" font-family="Georgia,serif" font-size="22" font-weight="700" fill="#C9A84C">0</text>
+        <text x="263" y="148" font-family="sans-serif" font-size="6" fill="#7A7870">lessons done</text>
+
+        <!-- Card 3 -->
+        <rect x="341" y="106" width="80" height="50" rx="7" fill="#1C1C20" stroke="#C9A84C" stroke-opacity="0.12" stroke-width="1"/>
+        <text x="351" y="119" font-family="sans-serif" font-size="6.5" font-weight="700" fill="#7A7870" letter-spacing="0.8">STREAK</text>
+        <text x="351" y="136" font-family="Georgia,serif" font-size="22" font-weight="700" fill="#C9A84C">0</text>
+        <text x="351" y="148" font-family="sans-serif" font-size="6" fill="#7A7870">day streak 🔥</text>
+
+        <!-- Card 4 -->
+        <rect x="429" y="106" width="94" height="50" rx="7" fill="#1C1C20" stroke="#C9A84C" stroke-opacity="0.12" stroke-width="1"/>
+        <text x="439" y="119" font-family="sans-serif" font-size="6.5" font-weight="700" fill="#7A7870" letter-spacing="0.8">PROGRESS</text>
+        <text x="439" y="136" font-family="Georgia,serif" font-size="22" font-weight="700" fill="#C9A84C">0%</text>
+        <text x="439" y="148" font-family="sans-serif" font-size="6" fill="#7A7870">towards completion</text>
+
+        <!-- ── WEEK TRACKER ── -->
+        <rect x="165" y="165" width="358" height="46" rx="7" fill="#1C1C20" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+        <text x="175" y="179" font-family="sans-serif" font-size="7" font-weight="700" fill="#7A7870" letter-spacing="0.8">THIS WEEK'S ENGAGEMENT</text>
+        <rect x="410" y="170" width="66" height="14" rx="7" fill="rgba(201,168,76,0.1)"/>
+        <text x="443" y="180" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#C9A84C" font-weight="700">🔥 0-day streak</text>
+        <!-- Day circles Mon-Sun -->
+        <g font-family="sans-serif" font-size="7" text-anchor="middle">
+          <!-- Mon - done -->
+          <circle cx="190" cy="198" r="10" fill="#C9A84C"/>
+          <text x="190" y="201" fill="#0E0E10" font-weight="700">M</text>
+          <!-- Tue - done -->
+          <circle cx="215" cy="198" r="10" fill="#C9A84C" opacity="0.8"/>
+          <text x="215" y="201" fill="#0E0E10" font-weight="700">T</text>
+          <!-- Wed - today active -->
+          <circle cx="240" cy="198" r="10" fill="none" stroke="#C9A84C" stroke-width="2"/>
+          <text x="240" y="201" fill="#C9A84C" font-weight="700">W</text>
+          <!-- Thu - upcoming -->
+          <circle cx="265" cy="198" r="10" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+          <text x="265" y="201" fill="#7A7870">T</text>
+          <!-- Fri -->
+          <circle cx="290" cy="198" r="10" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+          <text x="290" y="201" fill="#7A7870">F</text>
+          <!-- Sat -->
+          <circle cx="315" cy="198" r="10" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+          <text x="315" y="201" fill="#7A7870">S</text>
+          <!-- Sun -->
+          <circle cx="340" cy="198" r="10" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+          <text x="340" y="201" fill="#7A7870">S</text>
+        </g>
+
+        <!-- ── PHASE PROGRESS RINGS ── -->
+        <g transform="translate(165, 220)">
+          <!-- Phase 1 ring -->
+          <rect x="0" y="0" width="74" height="82" rx="7" fill="#1C1C20" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+          <!-- Ring track -->
+          <circle cx="37" cy="34" r="20" fill="none" stroke="#1C1C20" stroke-width="5"/>
+          <!-- Ring fill ~67% -->
+          <circle cx="37" cy="34" r="20" fill="none" stroke="url(#ringGrad)" stroke-width="5"
+                  stroke-dasharray="125.6" stroke-dashoffset="41" stroke-linecap="round"
+                  transform="rotate(-90 37 34)"/>
+          <text x="37" y="38" text-anchor="middle" font-family="monospace" font-size="8" font-weight="700" fill="#C9A84C">67%</text>
+          <text x="37" y="61" text-anchor="middle" font-family="sans-serif" font-size="6.5" font-weight="700" fill="#7A7870" letter-spacing="0.6">PHASE 1</text>
+          <text x="37" y="71" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="#B8B5AE">Foundations</text>
+
+          <!-- Phase 2 ring -->
+          <rect x="82" y="0" width="74" height="82" rx="7" fill="#1C1C20" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+          <circle cx="119" cy="34" r="20" fill="none" stroke="#1C1C20" stroke-width="5"/>
+          <circle cx="119" cy="34" r="20" fill="none" stroke="#C9A84C" stroke-width="5" stroke-opacity="0.35"
+                  stroke-dasharray="125.6" stroke-dashoffset="107" stroke-linecap="round"
+                  transform="rotate(-90 119 34)"/>
+          <text x="119" y="38" text-anchor="middle" font-family="monospace" font-size="8" font-weight="700" fill="#C9A84C" opacity="0.5">15%</text>
+          <text x="119" y="61" text-anchor="middle" font-family="sans-serif" font-size="6.5" font-weight="700" fill="#7A7870" letter-spacing="0.6">PHASE 2</text>
+          <text x="119" y="71" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="#B8B5AE">Business</text>
+
+          <!-- Phase 3 ring -->
+          <rect x="164" y="0" width="74" height="82" rx="7" fill="#1C1C20" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+          <circle cx="201" cy="34" r="20" fill="none" stroke="#1C1C20" stroke-width="5"/>
+          <circle cx="201" cy="34" r="20" fill="none" stroke="#C9A84C" stroke-width="5" stroke-opacity="0.2"
+                  stroke-dasharray="125.6" stroke-dashoffset="120" stroke-linecap="round"
+                  transform="rotate(-90 201 34)"/>
+          <text x="201" y="38" text-anchor="middle" font-family="monospace" font-size="8" font-weight="700" fill="#C9A84C" opacity="0.35">4%</text>
+          <text x="201" y="61" text-anchor="middle" font-family="sans-serif" font-size="6.5" font-weight="700" fill="#7A7870" letter-spacing="0.6">PHASE 3</text>
+          <text x="201" y="71" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="#B8B5AE">Mastery</text>
+        </g>
+
+        <!-- ── TODAY'S LESSON CARD ── -->
+        <rect x="165" y="312" width="358" height="98" rx="8" fill="#1C1C20" stroke="#C9A84C" stroke-opacity="0.18" stroke-width="1"/>
+        <!-- Header strip -->
+        <rect x="165" y="312" width="358" height="28" rx="8" fill="rgba(201,168,76,0.08)"/>
+        <rect x="165" y="328" width="358" height="12" fill="rgba(201,168,76,0.08)"/>
+        <text x="176" y="329" font-family="sans-serif" font-size="7.5" font-weight="700" fill="#C9A84C" letter-spacing="0.8">TODAY'S LESSON</text>
+        <!-- Timer -->
+        <rect x="450" y="318" width="45" height="15" rx="4" fill="#1C1C20" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <text x="472" y="328" text-anchor="middle" font-family="monospace" font-size="8" fill="#C9A84C" font-weight="700">00:00</text>
+        <rect x="498" y="318" width="20" height="15" rx="4" fill="rgba(201,168,76,0.12)"/>
+        <text x="508" y="328" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#C9A84C">▶</text>
+
+        <!-- Lesson body -->
+        <text x="176" y="352" font-family="monospace" font-size="7" fill="#C9A84C" font-weight="700" letter-spacing="0.5">DAY 1 OF 90 — WEEK 1 — PHASE 1</text>
+        <text x="176" y="364" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#F0EDE6">The Basics of Prompting</text>
+        <!-- Tool badge -->
+        <rect x="176" y="369" width="90" height="14" rx="7" fill="#1C1C20" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+        <text x="221" y="379" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#B8B5AE">🔧 ChatGPT / Gemini</text>
+        <!-- Task text -->
+        <text x="176" y="394" font-family="sans-serif" font-size="7.5" fill="#B8B5AE">Task: Learn the "Persona-Context-Task" prompt formula.</text>
+
+        <!-- Mark done button -->
+        <rect x="176" y="400" width="96" height="17" rx="4" fill="#C9A84C"/>
+        <text x="224" y="411" text-anchor="middle" font-family="sans-serif" font-size="7.5" font-weight="700" fill="#0E0E10">✓ MARK COMPLETE</text>
+        <!-- Next button -->
+        <rect x="280" y="400" width="66" height="17" rx="4" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <text x="313" y="411" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#B8B5AE">Next →</text>
+
+        <!-- ── Decorative gold accent line at bottom ── -->
+        <rect x="0" y="418" width="540" height="2" fill="url(#goldGrad)" opacity="0.35"/>
+
+        <!-- ── Floating tool pill badges (top-right corner atmosphere) ── -->
+        <g filter="url(#softGlow)" opacity="0.6">
+          <!-- ChatGPT pill -->
+          <rect x="336" y="222" width="68" height="18" rx="9" fill="#1C1C20" stroke="#C9A84C" stroke-opacity="0.3" stroke-width="1"/>
+          <text x="370" y="234" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#C9A84C" font-weight="600">ChatGPT</text>
+          <!-- MidJourney pill -->
+          <rect x="411" y="222" width="74" height="18" rx="9" fill="#1C1C20" stroke="#C9A84C" stroke-opacity="0.2" stroke-width="1"/>
+          <text x="448" y="234" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#B8B5AE">MidJourney</text>
+        </g>
+        <g filter="url(#softGlow)" opacity="0.5">
+          <rect x="336" y="248" width="56" height="18" rx="9" fill="#1C1C20" stroke="#C9A84C" stroke-opacity="0.2" stroke-width="1"/>
+          <text x="364" y="260" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#B8B5AE">Canva AI</text>
+          <rect x="400" y="248" width="68" height="18" rx="9" fill="#1C1C20" stroke="#C9A84C" stroke-opacity="0.15" stroke-width="1"/>
+          <text x="434" y="260" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#7A7870">ElevenLabs</text>
+          <rect x="475" y="248" width="48" height="18" rx="9" fill="#1C1C20" stroke="#C9A84C" stroke-opacity="0.1" stroke-width="1"/>
+          <text x="499" y="260" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#7A7870" opacity="0.7">Notion</text>
+        </g>
+        <g opacity="0.35">
+          <rect x="336" y="274" width="60" height="18" rx="9" fill="#1C1C20" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+          <text x="366" y="286" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#7A7870">Voiceflow</text>
+          <rect x="404" y="274" width="50" height="18" rx="9" fill="#1C1C20" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+          <text x="429" y="286" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#7A7870">Make.com</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+</section>
+
+<!-- ─── PROGRAMS SECTION ─── -->
+<section id="programs">
+  <div class="section-header reveal">
+    <span class="section-tag">Our Programmes</span>
+    <h2 class="section-title">Choose Your Programme</h2>
+    <p class="section-desc">Whether you want to become an expert AI user, build an income with AI, or master specific skills — there's a programme built for you.</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="programs-grid">
+    <!-- CARD 1: AI Expert User -->
+    <div class="program-card reveal">
+      <div class="program-header">
+        <div class="program-icon">🧠</div>
+        <h3 class="program-name">AI Expert User</h3>
+        <p class="program-tagline">90 days from zero to proficient — 30 minutes a day, real tools, real results.</p>
+      </div>
+      <div class="program-body">
+        <p class="program-desc">A structured 90-day beginner-to-expert journey covering Text AI, Image AI, Productivity, Audio/Video, Automation, and advanced integrations. Perfect for professionals, entrepreneurs, and lifelong learners.</p>
+        <button class="syllabus-toggle" onclick="toggleSyllabus(this)">View Syllabus <span class="arrow">▼</span></button>
+        <div class="syllabus-content">
+          <ul class="syllabus-list">
+            <li>Month 1 — Foundations: Text AI, Image AI, Productivity & Multimedia</li>
+            <li>Week 1: Prompting mastery with ChatGPT & Gemini (Persona-Context-Task formula)</li>
+            <li>Week 2: AI Art & Design — MidJourney, Canva AI, Adobe Firefly</li>
+            <li>Week 3: Productivity & Organisation — Notion AI, Gamma, ClickUp, Fireflies</li>
+            <li>Week 4: Audio & Video — ElevenLabs, HeyGen, Suno, CapCut, Descript</li>
+            <li>Month 2 — Business Integration: Marketing, Data Analysis, No-Code Automation</li>
+            <li>Week 5: Marketing & Content — Copy.ai, Jasper, Surfer SEO, social calendars</li>
+            <li>Week 6: Research & Data — Julius AI, NotebookLM, Consensus</li>
+            <li>Week 7: Automation — Zapier, Make.com — build your first AI workflow</li>
+            <li>Week 8: Website & App Building with Framer, Cursor, 10Web</li>
+            <li>Month 3 — Advanced Mastery: Video Production, Learning AI, Life Design</li>
+            <li>Week 9: Advanced Video — Runway Gen-2, Pika, Luma Dream Machine</li>
+            <li>Week 10: Personal Learning AI — Quizlet AI, personalised study plans</li>
+            <li>Week 11: Travel & Lifestyle AI — Google Gemini Maps, trip planning</li>
+            <li>Week 12: Final Capstone — The AI Solo-preneur Mini Launch Project</li>
+          </ul>
+        </div>
+        <div class="tier-select">
+          <span class="tier-label">Investment</span>
+          <div class="tier-options">
+            <a href="https://paystack.shop/pay/aimadesimple" target="_blank" class="tier-option">
+              <span class="tier-name">Monthly Access</span>
+              <span class="tier-price">₦50,000/mo</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="program-footer">
+        <a href="https://paystack.shop/pay/aimadesimple" target="_blank" class="btn-enroll">Enroll Now ↗</a>
+        <a href="login.html" class="btn-details">Login</a>
+      </div>
+    </div>
+
+    <!-- CARD 2: AI Mastery to Money (Featured) -->
+    <div class="program-card featured reveal">
+      <div class="featured-badge">Most Popular</div>
+      <div class="program-header">
+        <div class="program-icon">💰</div>
+        <h3 class="program-name">AI Mastery to Money</h3>
+        <p class="program-tagline">From zero to $5,000/month in 90 days — 7 income models, 30+ tools.</p>
+      </div>
+      <div class="program-body">
+        <p class="program-desc">A unified 90-day programme merging AI tool mastery with 7 proven income-generating business models. Every day you learn something. Every week you earn something. Built by Mentorine School.</p>
+        <button class="syllabus-toggle" onclick="toggleSyllabus(this)">View Syllabus <span class="arrow">▼</span></button>
+        <div class="syllabus-content">
+          <ul class="syllabus-list">
+            <li>Phase 1 (Days 1–30): AI Foundations + First Income — $0 to $300</li>
+            <li>Week 1: Text AI — ChatGPT prompting, research, writing & first digital product</li>
+            <li>Week 2: Image AI — MidJourney, Adobe Firefly, Canva, first Fiverr gig live</li>
+            <li>Week 3: Productivity AI — Notion, Gamma, ClickUp, business systems setup</li>
+            <li>Week 4: Audio/Video AI — ElevenLabs, HeyGen, CapCut, content clipping</li>
+            <li>Days 21–30: Skill Consolidation + First Client Sprint</li>
+            <li>Phase 2 (Days 31–60): Business Integration — $300 to $1,500/mo</li>
+            <li>Week 5: AI Freelancing — Full Deployment (Fiverr/Upwork scaling)</li>
+            <li>Week 6: AI Content Clipping — Short-form video service (Opus Clip, Descript)</li>
+            <li>Week 7: AI Automation Services — Make.com, Zapier, Airtable, n8n</li>
+            <li>Week 8: AI Chatbots Intro + Digital Products Expansion (Voiceflow)</li>
+            <li>Days 51–60: First Client Sprint — Close your first serious client</li>
+            <li>Phase 3 (Days 61–90): Professional Mastery — $1,500 to $5,000+/mo</li>
+            <li>Week 9: Chatbots Professional Build — Voiceflow, $500–$3,000/bot</li>
+            <li>Week 10: AI Agency (SMMA 2.0) — GoHighLevel, AdCreative.ai, Meta Ads</li>
+            <li>Week 11: Micro-SaaS — Lovable.dev, Bubble.io, Stripe recurring revenue</li>
+            <li>Week 12: Final Capstone — The AI Solo-preneur Launch</li>
+          </ul>
+        </div>
+        <div class="tier-select">
+          <span class="tier-label">Choose Your Tier</span>
+          <div class="tier-options">
+            <a href="https://paystack.shop/pay/aimadesimple" target="_blank" class="tier-option">
+              <span class="tier-name">Self-Study</span>
+              <span class="tier-price">₦50,000/mo</span>
+            </a>
+            <a href="https://paystack.shop/pay/aim2mstandard" target="_blank" class="tier-option">
+              <span class="tier-name">Standard — All 3 Phases + Community</span>
+              <span class="tier-price">₦300,000</span>
+            </a>
+            <a href="https://paystack.shop/pay/AIM2Mvip" target="_blank" class="tier-option">
+              <span class="tier-name">VIP — Done-for-You + 1:1 Support</span>
+              <span class="tier-price">₦500,000</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="program-footer">
+        <a href="https://paystack.shop/pay/aim2mstandard" target="_blank" class="btn-enroll">Enroll Now ↗</a>
+        <a href="login.html" class="btn-details">Login</a>
+      </div>
+    </div>
+
+    <!-- CARD 3: AI Masterclasses -->
+    <div class="program-card reveal">
+      <div class="program-header">
+        <div class="program-icon">⚡</div>
+        <h3 class="program-name">AI Masterclasses</h3>
+        <p class="program-tagline">2–3 hour intensive deep-dives into the AI skills that pay the most.</p>
+      </div>
+      <div class="program-body">
+        <p class="program-desc">Standalone 2–3 hour masterclasses, each focused on a high-value AI application. Perfect for professionals who want targeted skill upgrades without committing to a full programme.</p>
+        <button class="syllabus-toggle" onclick="toggleSyllabus(this)">View All Classes <span class="arrow">▼</span></button>
+        <div class="syllabus-content">
+          <ul class="syllabus-list">
+            <li>Class 1: AI Social Media & WhatsApp Lead Automations</li>
+            <li>Class 2: AI Book Writing & Amazon KDP (Self-Publishing)</li>
+            <li>Class 3: Viral Short-Form Video Creation with AI</li>
+            <li>Class 4: AI Faceless YouTube Content Creation</li>
+            <li>Class 5: AI Resume & LinkedIn Makeovers</li>
+            <li>Class 6: Automated CRM & Lead Follow-ups</li>
+            <li>Class 7: AI Business Proposals & Grants</li>
+            <li>Class 8: AI Data Analysis & Dashboards</li>
+            <li>Class 9: AI E-Learning & Course Creation</li>
+          </ul>
+        </div>
+        <div class="tier-select">
+          <span class="tier-label">Investment</span>
+          <div class="tier-options">
+            <a href="https://paystack.shop/pay/aishortcourses" target="_blank" class="tier-option">
+              <span class="tier-name">Per Masterclass</span>
+              <span class="tier-price">₦30,000/class</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="program-footer">
+        <a href="https://paystack.shop/pay/aishortcourses" target="_blank" class="btn-enroll">Enroll Now ↗</a>
+        <a href="login.html" class="btn-details">Login</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRICING TIERS ─── -->
+<section id="pricing" class="investment-section">
+  <div class="section-header reveal">
+    <span class="section-tag">Transparent Pricing</span>
+    <h2 class="section-title">Your Investment</h2>
+    <p class="section-desc">Every tier is designed to match your commitment level and speed of results.</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="pricing-tiers">
+    <div class="pricing-tier reveal">
+      <span class="tier-program-tag">AI Expert User</span>
+      <div class="tier-tier-name">Monthly Access</div>
+      <div class="tier-amount">₦50,000</div>
+      <div class="tier-period">per month</div>
+      <ul class="tier-features">
+        <li>Full 90-day curriculum access</li>
+        <li>30+ AI tools coverage</li>
+        <li>Weekly benefits & AI news</li>
+        <li>Prompt of the Day library</li>
+        <li>Self-paced learning portal</li>
+      </ul>
+      <a href="https://paystack.shop/pay/aimadesimple" target="_blank" class="btn-enroll">Pay via Paystack</a>
+    </div>
+    <div class="pricing-tier reveal">
+      <span class="tier-program-tag">AI Mastery to Money</span>
+      <div class="tier-tier-name">Self-Study</div>
+      <div class="tier-amount">₦50,000</div>
+      <div class="tier-period">per month</div>
+      <ul class="tier-features">
+        <li>Full 90-day curriculum</li>
+        <li>Tool Library + Prompt Vault</li>
+        <li>All 9 short courses included</li>
+        <li>Go at your own pace</li>
+        <li>Best for self-motivated learners</li>
+      </ul>
+      <a href="https://paystack.shop/pay/aimadesimple" target="_blank" class="btn-enroll">Pay via Paystack</a>
+    </div>
+    <div class="pricing-tier recommended reveal">
+      <span class="tier-program-tag">AI Mastery to Money</span>
+      <div class="tier-tier-name">Standard</div>
+      <div class="tier-amount">₦300,000</div>
+      <div class="tier-period">all 3 phases (3 months)</div>
+      <ul class="tier-features">
+        <li>Everything in Self-Study</li>
+        <li>Weekly 30-minute group session</li>
+        <li>Private accountability community</li>
+        <li>Live Q&A support</li>
+        <li>Phase-by-phase milestone reviews</li>
+      </ul>
+      <a href="https://paystack.shop/pay/aim2mstandard" target="_blank" class="btn-enroll">Pay via Paystack</a>
+    </div>
+    <div class="pricing-tier reveal">
+      <span class="tier-program-tag">AI Mastery to Money</span>
+      <div class="tier-tier-name">VIP</div>
+      <div class="tier-amount">₦500,000</div>
+      <div class="tier-period">all 3 phases (3 months)</div>
+      <ul class="tier-features">
+        <li>Everything in Standard</li>
+        <li>1:1 Kickoff Strategy Session</li>
+        <li>Done-for-You starter templates</li>
+        <li>Priority support channel</li>
+        <li>Fastest path to first client</li>
+      </ul>
+      <a href="https://paystack.shop/pay/AIM2Mvip" target="_blank" class="btn-enroll">Pay via Paystack</a>
+    </div>
+
+    <div class="pricing-tier reveal">
+      <span class="tier-program-tag">AI Masterclasses</span>
+      <div class="tier-tier-name">Per Masterclass</div>
+      <div class="tier-amount">₦30,000</div>
+      <div class="tier-period">per class · 9 standalone 2–3 hour intensives</div>
+      <ul class="tier-features">
+        <li>Choose any individual class</li>
+        <li>AI Social Media & WhatsApp Leads</li>
+        <li>AI Book Writing & Amazon KDP</li>
+        <li>Viral Short-Form Video Creation</li>
+        <li>AI Data Analysis & Dashboards</li>
+        <li>AI E-Learning & Course Creation</li>
+        <li>+ 4 more specialist masterclasses</li>
+      </ul>
+      <a href="https://paystack.shop/pay/aishortcourses" target="_blank" class="btn-enroll">Pay via Paystack</a>
+    </div>
+  </div>
+
+  <div class="payment-section reveal">
+    <div class="payment-title">Payment Options</div>
+    <p class="payment-sub">Pay securely via Paystack (cards, transfers, USSD) or direct bank transfer.</p>
+    <div class="payment-grid">
+      <div class="payment-method">
+        <h4>💳 Paystack — Online Payment</h4>
+        <div class="paystack-links">
+          <a href="https://paystack.shop/pay/aimadesimple" target="_blank" class="paystack-link">
+            <span class="paystack-link-name">AI Expert User</span>
+            <span class="paystack-link-btn">Pay Now ↗</span>
+          </a>
+          <a href="https://paystack.shop/pay/aimadesimple" target="_blank" class="paystack-link">
+            <span class="paystack-link-name">AI Mastery to Money — Self-Study</span>
+            <span class="paystack-link-btn">Pay Now ↗</span>
+          </a>
+          <a href="https://paystack.shop/pay/aim2mstandard" target="_blank" class="paystack-link">
+            <span class="paystack-link-name">AI Mastery to Money — Standard</span>
+            <span class="paystack-link-btn">Pay Now ↗</span>
+          </a>
+          <a href="https://paystack.shop/pay/AIM2Mvip" target="_blank" class="paystack-link">
+            <span class="paystack-link-name">AI Mastery to Money — VIP</span>
+            <span class="paystack-link-btn">Pay Now ↗</span>
+          </a>
+          <a href="https://paystack.shop/pay/aishortcourses" target="_blank" class="paystack-link">
+            <span class="paystack-link-name">AI Masterclasses</span>
+            <span class="paystack-link-btn">Pay Now ↗</span>
+          </a>
+        </div>
+      </div>
+      <div class="payment-method">
+        <h4>🏦 Bank Transfer — GTBank</h4>
+        <div class="bank-details">
+          <div class="bank-row"><span class="bank-key">Bank</span><span class="bank-val">Guaranty Trust Bank</span></div>
+          <div class="bank-row"><span class="bank-key">Account Number</span><span class="bank-val">0710642377</span></div>
+          <div class="bank-row"><span class="bank-key">Account Name</span><span class="bank-val">Ona Services Limited</span></div>
+          <div class="bank-row"><span class="bank-key">Reference</span><span class="bank-val">Your Name + Programme</span></div>
+        </div>
+        <div class="proof-note">After payment, send proof to Ona Services Limited via WhatsApp to receive your access credentials.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MASTERCLASSES ─── -->
+<section id="masterclasses">
+  <div class="section-header reveal">
+    <span class="section-tag">Focused Intensives</span>
+    <h2 class="section-title">AI Masterclasses</h2>
+    <p class="section-desc">Nine standalone 2–3 hour deep dives. Pick what you need. Master it fast.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="masterclasses-grid">
+    <div class="mc-card reveal"><div class="mc-num">CLASS 01</div><div class="mc-name">AI Social Media & WhatsApp Lead Automations</div><div class="mc-desc">Build automated lead generation systems across social platforms and WhatsApp.</div></div>
+    <div class="mc-card reveal"><div class="mc-num">CLASS 02</div><div class="mc-name">AI Book Writing & Amazon KDP</div><div class="mc-desc">Write, format, and publish income-generating books on Amazon using AI tools.</div></div>
+    <div class="mc-card reveal"><div class="mc-num">CLASS 03</div><div class="mc-name">Viral Short-Form Video Creation</div><div class="mc-desc">Create high-performing short videos with AI clipping, captions, and branding.</div></div>
+    <div class="mc-card reveal"><div class="mc-num">CLASS 04</div><div class="mc-name">AI Faceless YouTube Content</div><div class="mc-desc">Build a faceless YouTube channel from scratch with AI-generated content pipelines.</div></div>
+    <div class="mc-card reveal"><div class="mc-num">CLASS 05</div><div class="mc-name">AI Resume & LinkedIn Makeovers</div><div class="mc-desc">Transform CVs and LinkedIn profiles using AI to win global remote opportunities.</div></div>
+    <div class="mc-card reveal"><div class="mc-num">CLASS 06</div><div class="mc-name">Automated CRM & Lead Follow-ups</div><div class="mc-desc">Set up intelligent CRM automations that nurture and convert leads 24/7.</div></div>
+    <div class="mc-card reveal"><div class="mc-num">CLASS 07</div><div class="mc-name">AI Business Proposals & Grants</div><div class="mc-desc">Write winning proposals, pitch decks, and grant applications with AI.</div></div>
+    <div class="mc-card reveal"><div class="mc-num">CLASS 08</div><div class="mc-name">AI Data Analysis & Dashboards</div><div class="mc-desc">Analyse datasets and build professional dashboards without coding skills.</div></div>
+    <div class="mc-card reveal"><div class="mc-num">CLASS 09</div><div class="mc-name">AI E-Learning & Course Creation</div><div class="mc-desc">Design, build, and sell online courses using AI-accelerated curriculum tools.</div></div>
+  </div>
+  <div style="text-align:center;margin-top:3rem;" class="reveal">
+    <a href="https://paystack.shop/pay/aishortcourses" target="_blank" class="btn-primary">Access Your Masterclasses ↗</a>
+  </div>
+</section>
+
+<!-- ─── FAQ SECTION ─── -->
+<section id="faq" class="faq-section">
+  <div class="section-header reveal">
+    <span class="section-tag">Got Questions?</span>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-desc">Everything you need to know before you take the most important step in your AI journey.</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="faq-grid">
+
+    <!-- Q1 -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Do I need any technical background or coding skills to start?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p><strong>Absolutely not.</strong> AI Made Simple was built specifically for people who have never written a single line of code. Every tool in our curriculum has a free or trial tier, works in a web browser, and is operated by clicking — not coding.</p>
+          <div class="faq-highlight">If you can send a WhatsApp message and use Google, you already have 100% of the technical skills needed to start Day 1.</div>
+          <p>Our students include teachers, traders, civil servants, stay-at-home parents, and business owners — the vast majority had zero technical background before they started. By Week 2, they were generating images, writing copy, and building automation workflows.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How exactly does the 30-minutes-a-day model work? Can I really learn AI that fast?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>The 30-minute model is not a shortcut — it is a <strong>precision learning system</strong>. Every daily lesson is structured into three parts: a 10-minute concept introduction, a 15-minute hands-on tool exercise, and a 5-minute business application reflection.</p>
+          <p>Research consistently shows that <strong>short, consistent, applied sessions outperform marathon study binges</strong> for skill retention. You do not need to clear your calendar. You need to protect 30 minutes — the length of a lunch break or a commute.</p>
+          <div class="faq-highlight">By Day 30 alone, you will have hands-on experience with 20+ AI tools. Most people in the market don't have that after a year of casual use.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Is the income target of $5,000/month in 90 days realistic for a Nigerian?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Yes — and the location advantage actually works <strong>in your favour</strong>. AI services are priced in dollars globally. A $500 chatbot project from a UK or US client pays you the same whether you are in Lagos, Abuja, or Port Harcourt. Your cost of living is significantly lower than your client's, which means your profit margin is higher.</p>
+          <p>The programme does not promise overnight millions. It gives you a <strong>structured 90-day execution plan</strong> with daily income tasks and weekly targets. Students who complete all exercises and follow the client acquisition sprints consistently hit the milestones outlined.</p>
+          <div class="faq-highlight">The income models — freelancing, content clipping, automation, chatbots, agency, SaaS, and digital products — are all accessible from Nigeria with a laptop and internet.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What is the difference between AI Expert User, AI Mastery to Money, and the Masterclasses?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p><strong>AI Expert User</strong> is for people who want to become highly competent with AI for their current career, business, or daily life — without a specific goal of creating a new income stream from AI. Think of it as becoming fluent in a powerful new language.</p>
+          <p><strong>AI Mastery to Money</strong> is for people who want to use AI to build a new income. It layers business strategy, client acquisition, pricing, and service delivery on top of the same tool training — and runs for the full 90 days across three phases.</p>
+          <p><strong>AI Masterclasses</strong> are standalone 2–3 hour intensives. They are ideal if you already have a specific use case in mind — writing a book, building a YouTube channel, generating leads on WhatsApp — and want to go deep on that one skill fast, without a full programme commitment.</p>
+          <div class="faq-highlight">Not sure which fits you? Message us on WhatsApp and we will tell you in under 5 minutes which programme matches your goals.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How soon after payment will I get access? What does the learning platform look like?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Access is granted <strong>within hours of payment confirmation</strong> — usually within the same business day. Once you send proof of payment via WhatsApp, your login credentials are activated manually by our team.</p>
+          <p>The learning portal is a clean, structured dashboard that tracks your daily progress, shows today's task, measures your streak, and shows your completion percentage across all 90 days. It works on any device — phone, tablet, or laptop — and can be saved to your home screen as an app.</p>
+          <div class="faq-highlight">Everything is self-paced. You can start on Day 1 on a Monday and take a day off on a Sunday — the platform remembers exactly where you are.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Will the AI tools taught in this programme cost me extra money?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>The curriculum is designed to use <strong>free or freemium tools wherever possible</strong>, especially in Phase 1. Tools like ChatGPT (free tier), Gemini, Ideogram, Canva, CapCut, Fireflies, and Make.com all have fully functional free plans that are sufficient for the learning exercises.</p>
+          <p>As you move into Phase 2 and Phase 3 and begin working with paying clients, certain tools become worth the investment — for example, MidJourney at $10/month or GoHighLevel at $97/month. But by then, a single client project typically covers these costs several times over.</p>
+          <div class="faq-highlight">We clearly mark tool costs in the curriculum so you always know what is free and what is optional. You will never be surprised.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">I have a full-time job. Can I realistically do this alongside my current work?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p><strong>Yes — this programme was built for exactly this situation.</strong> The 30-minute daily structure means you never need to carve out large chunks of time. Many of our enrolled students are bankers, civil servants, teachers, and 9-to-5 employees who complete their daily lesson during a lunch break, evening wind-down, or weekend catch-up session.</p>
+          <p>The income activities in the early weeks — publishing a digital product, listing a Fiverr gig — are also things you can do evenings and weekends. By the time your income starts to grow meaningfully in Phase 2 and 3, you will naturally decide whether you want to transition, scale, or just earn on the side.</p>
+          <div class="faq-highlight">The programme builds at a pace that respects your existing life — not one that requires you to abandon it.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What makes AI Made Simple different from YouTube tutorials or other online AI courses?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>YouTube tutorials give you random information. Other online courses give you content to watch. <strong>AI Made Simple gives you a system with daily execution steps, real business assets, and income targets.</strong></p>
+          <p>Three things set us apart. First, the curriculum is structured for the Nigerian and African market — the tools, payment methods, client acquisition channels, and income models are all relevant to your context, not just US or UK scenarios. Second, every single lesson produces a tangible output — a product, a gig, a pitch, a workflow — not just knowledge. Third, the programme is sequenced: Day 1 builds the foundation for Day 7, which builds the foundation for Day 30. You are not choosing what to watch next — you are following a proven roadmap.</p>
+          <div class="faq-highlight">The question is not whether you can find AI content for free. You can. The question is whether random content will get you to your first client, your first income, and your first scalable business in 90 days. Our structure will.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What if I fall behind? Can I restart or pause my progress?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>Life happens. The platform is fully self-paced, meaning <strong>your Day 1 starts when you start</strong> — not on a fixed calendar. If you miss a day, the lesson is there waiting. If you need to repeat a week, you can. There are no penalties, no group deadlines, and no pressure to keep up with other students.</p>
+          <p>Your streak and progress are saved in your account so you always know exactly where you are. The dashboard also shows you how far you've come — not just how far you have left to go — which keeps motivation high even when life gets busy.</p>
+          <div class="faq-highlight">The goal is completion, not speed. A student who finishes in 120 days still has every tool, skill, and business asset they built along the way.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Is there any support if I get stuck, or am I completely on my own?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>You are not alone. Support levels depend on your chosen tier. <strong>Self-Study students</strong> have access to the WhatsApp enquiries channel for general questions. <strong>Standard students</strong> also attend a weekly 30-minute group session with live Q&A. <strong>VIP students</strong> get a direct 1:1 kickoff session, done-for-you templates, and priority response from the mentorship team.</p>
+          <p>Regardless of tier, you can always reach us on WhatsApp for time-sensitive questions. We pride ourselves on fast, practical responses — not automated bots.</p>
+          <div class="faq-highlight">The higher your tier, the faster you progress — because accountability and direct guidance compress the learning curve dramatically.</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end faq-grid -->
+
+  <!-- CTA row -->
+  <div class="faq-cta-row reveal">
+    <p class="faq-cta-text">Still have a question not covered here?</p>
+    <a href="https://wa.me/message/OF4HWNSJM6ZTK1" target="_blank" class="btn-primary" style="display:inline-flex;gap:10px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Ask Us on WhatsApp
+    </a>
+  </div>
+
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">AI Made Simple</div>
+    <div class="footer-copy">© 2026 Ona Services Ltd. Coded by Oluwaseyi Ashiru.</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── WHATSAPP FLOATING BUTTON ─── -->
+<a href="https://wa.me/message/OF4HWNSJM6ZTK1" target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Chat with us on WhatsApp">
+  <div class="wa-label">Chat with us 💬</div>
+  <div class="wa-btn-circle">
+    <div class="wa-dot"></div>
+    <svg class="wa-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </div>
+</a>
+
+<script>
+/* ─── THEME SYSTEM ─── */
+function setTheme(mode) {
+  localStorage.setItem('ams-theme', mode);
+  applyTheme(mode);
+  document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+  const map = { light:'themeLight', dark:'themeDark', system:'themeSystem' };
+  document.getElementById(map[mode])?.classList.add('active');
+}
+
+function applyTheme(mode) {
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const resolved = mode === 'system' ? (prefersDark ? 'dark' : 'light') : mode;
+  document.documentElement.setAttribute('data-theme', resolved);
+}
+
+(function() {
+  const saved = localStorage.getItem('ams-theme') || 'dark';
+  applyTheme(saved);
+  const map = { light:'themeLight', dark:'themeDark', system:'themeSystem' };
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(map[saved])?.classList.add('active');
+  });
+})();
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+  if (localStorage.getItem('ams-theme') === 'system') applyTheme('system');
+});
+
+/* ─── SYLLABUS ACCORDION ─── */
+function toggleSyllabus(btn) {
+  const content = btn.nextElementSibling;
+  const isOpen = content.classList.contains('open');
+  document.querySelectorAll('.syllabus-content.open').forEach(c => {
+    c.classList.remove('open');
+    c.previousElementSibling.classList.remove('open');
+  });
+  if (!isOpen) {
+    content.classList.add('open');
+    btn.classList.add('open');
+  }
+}
+
+/* ─── FAQ ACCORDION ─── */
+function toggleFaq(btn) {
+  const item   = btn.parentElement;
+  const answer = btn.nextElementSibling;
+  const isOpen = item.classList.contains('open');
+
+  /* Close all */
+  document.querySelectorAll('.faq-item.open').forEach(el => {
+    el.classList.remove('open');
+    el.querySelector('.faq-answer').classList.remove('open');
+  });
+
+  /* Open clicked one if it was closed */
+  if (!isOpen) {
+    item.classList.add('open');
+    answer.classList.add('open');
+    /* Smooth scroll so question stays in view */
+    setTimeout(() => {
+      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 50);
+  }
+}
+
+/* ─── SCROLL REVEAL ─── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 60);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+});
+</script>
+</body>
+</html>
