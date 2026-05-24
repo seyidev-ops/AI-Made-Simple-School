@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Portal — AI Made Simple</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#C9A84C; --gold-dim:rgba(201,168,76,0.12); --gold-border:rgba(201,168,76,0.25);
+  --crimson:#9B2B2B; --crimson-dim:rgba(155,43,43,0.12); --crimson-border:rgba(155,43,43,0.3);
+  --transition:0.3s ease;
+}
+[data-theme="dark"]{
+  --bg:#0A0A0C; --bg2:#111114; --bg3:#18181C;
+  --border:rgba(255,255,255,0.06); --border-strong:rgba(255,255,255,0.1);
+  --text:#F0EDE6; --text-muted:#6A6860; --text-secondary:#A8A5A0;
+  --card-bg:#121215; --card-border:rgba(201,168,76,0.1);
+  --nav-bg:rgba(10,10,12,0.95); --input-bg:#18181C;
+  --shadow:0 12px 60px rgba(0,0,0,0.7);
+  --panel-bg:#14141A; --panel-border:rgba(155,43,43,0.2);
+}
+[data-theme="light"]{
+  --bg:#F2EFE8; --bg2:#E8E5DE; --bg3:#DEDAD3;
+  --border:rgba(0,0,0,0.07); --border-strong:rgba(0,0,0,0.12);
+  --text:#1A1914; --text-muted:#8A877E; --text-secondary:#4A4740;
+  --card-bg:#FAFAF7; --card-border:rgba(201,168,76,0.2);
+  --nav-bg:rgba(242,239,232,0.95); --input-bg:#E8E5DE;
+  --shadow:0 12px 60px rgba(0,0,0,0.12);
+  --panel-bg:#F5F2EB; --panel-border:rgba(155,43,43,0.15);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;transition:background var(--transition),color var(--transition);}
+
+/* Noise texture */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:0;}
+
+/* Subtle diagonal grid pattern */
+body::after{content:'';position:fixed;inset:0;background-image:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(201,168,76,0.012) 40px,rgba(201,168,76,0.012) 41px);pointer-events:none;z-index:0;}
+
+nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:0 clamp(1.5rem,5vw,4rem);height:64px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo{width:32px;height:32px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#0E0E10;}
+.nav-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--text);}
+.nav-admin-badge{font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);background:var(--gold-dim);border:1px solid var(--gold-border);border-radius:4px;padding:2px 8px;}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.nav-back{font-size:0.82rem;color:var(--text-muted);text-decoration:none;transition:color var(--transition);}
+.nav-back:hover{color:var(--gold);}
+.theme-toggle{display:flex;align-items:center;gap:2px;background:var(--bg3);border-radius:20px;padding:3px;border:1px solid var(--border);}
+.theme-btn{width:28px;height:24px;border:none;border-radius:16px;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:background var(--transition);color:var(--text-muted);}
+.theme-btn.active{background:var(--gold);color:#0E0E10;}
+
+/* Security banner */
+.security-banner{background:var(--crimson-dim);border-bottom:1px solid var(--crimson-border);padding:9px clamp(1.5rem,5vw,4rem);display:flex;align-items:center;gap:10px;position:relative;z-index:90;}
+.security-banner-text{font-size:0.72rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#c25a5a;}
+
+main{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:2.5rem 1.5rem 4rem;position:relative;z-index:1;overflow-y:auto;}
+.admin-wrap{width:100%;max-width:580px;display:flex;flex-direction:column;gap:0;}
+
+/* ── ADMIN LOGIN CARD ── */
+.admin-login-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);animation:slideUp 0.4s ease both;}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.admin-header{padding:2.5rem 2.5rem 1.75rem;border-bottom:1px solid var(--border);text-align:center;}
+.admin-icon-wrap{position:relative;width:64px;height:64px;margin:0 auto 1.25rem;}
+.admin-icon{width:64px;height:64px;background:linear-gradient(135deg,#1A1914 0%,#2A2820 100%);border:1px solid var(--gold-border);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;}
+.admin-icon-ring{position:absolute;inset:-4px;border-radius:20px;border:1px solid var(--gold-dim);animation:pulse 3s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:0.4;transform:scale(1)}50%{opacity:1;transform:scale(1.03)}}
+.admin-title{font-family:'Cormorant Garamond',serif;font-size:1.85rem;font-weight:700;color:var(--text);}
+.admin-subtitle{font-size:0.82rem;color:var(--text-muted);margin-top:0.4rem;}
+.restricted-badge{display:inline-flex;align-items:center;gap:5px;background:var(--crimson-dim);border:1px solid var(--crimson-border);border-radius:100px;padding:4px 12px;font-size:0.66rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#c25a5a;margin-top:0.75rem;}
+
+/* ── LOGIN FORM ── */
+.admin-form-section{padding:2rem 2.5rem 2.5rem;display:flex;flex-direction:column;gap:1.2rem;}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);}
+.form-input{background:var(--input-bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--text);outline:none;transition:border-color var(--transition),box-shadow var(--transition);width:100%;}
+.form-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-dim);}
+.form-input::placeholder{color:var(--text-muted);}
+.password-field{position:relative;}
+.password-toggle{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:14px;padding:4px;}
+.btn-admin-login{background:linear-gradient(135deg,#C9A84C 0%,#A8873A 100%);color:#0E0E10;border:none;padding:14px 20px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;letter-spacing:0.07em;text-transform:uppercase;transition:all 0.2s ease;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 20px rgba(201,168,76,0.2);}
+.btn-admin-login:hover{opacity:0.9;transform:translateY(-1px);box-shadow:0 6px 28px rgba(201,168,76,0.35);}
+.btn-admin-login:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+.btn-admin-login.loading::after{content:'';width:14px;height:14px;border:2px solid rgba(0,0,0,0.3);border-top-color:#0E0E10;border-radius:50%;animation:spin 0.7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.alert{border-radius:8px;padding:12px 14px;font-size:0.82rem;display:none;align-items:center;gap:8px;}
+.alert.visible{display:flex;}
+.alert.success{background:rgba(76,201,112,0.1);border:1px solid rgba(76,201,112,0.25);color:#5fd48a;}
+.alert.error{background:rgba(224,90,90,0.1);border:1px solid rgba(224,90,90,0.25);color:#e05a5a;}
+.alert.info{background:var(--gold-dim);border:1px solid var(--gold-border);color:var(--gold);}
+.login-hint{font-size:0.72rem;color:var(--text-muted);text-align:center;line-height:1.5;}
+.login-hint span{color:var(--text-secondary);}
+
+/* ── ADMIN PANEL (post-login) ── */
+.admin-panel-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);animation:slideUp 0.35s ease both;display:none;margin-top:1.5rem;}
+.admin-panel-card.visible{display:block;}
+.panel-header{padding:1.75rem 2.5rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.panel-header-left{display:flex;align-items:center;gap:10px;}
+.panel-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--text);}
+.panel-badge{font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#0E0E10;background:var(--gold);border-radius:4px;padding:3px 9px;}
+.panel-admin-name{font-size:0.78rem;color:var(--text-muted);}
+.btn-logout{background:var(--input-bg);color:var(--text-muted);border:1px solid var(--border);padding:7px 14px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:600;cursor:pointer;letter-spacing:0.05em;text-transform:uppercase;transition:all 0.2s;}
+.btn-logout:hover{border-color:rgba(224,90,90,0.5);color:#e05a5a;}
+
+/* Panel tabs */
+.panel-tabs{display:flex;border-bottom:1px solid var(--border);overflow-x:auto;}
+.panel-tab{flex-shrink:0;padding:13px 20px;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all var(--transition);}
+.panel-tab.active{color:var(--gold);border-bottom-color:var(--gold);background:var(--gold-dim);}
+
+/* Panel sections */
+.panel-section{padding:1.75rem 2.5rem;display:none;flex-direction:column;gap:1.25rem;}
+.panel-section.active{display:flex;}
+
+/* Section labels */
+.section-label{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:8px;}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* Access grant inputs */
+.form-select{background:var(--input-bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--text);outline:none;width:100%;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A84C' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;transition:border-color var(--transition);}
+.form-select:focus{border-color:var(--gold);outline:none;}
+.form-select option{background:var(--bg2);color:var(--text);}
+.programme-tabs-admin{display:flex;gap:0.5rem;flex-wrap:wrap;}
+.ptab{padding:7px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;font-size:0.75rem;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all 0.2s;font-family:inherit;}
+.ptab.active{background:var(--gold-dim);border-color:var(--gold);color:var(--gold);}
+.access-panel{display:none;}
+.access-panel.active{display:flex;flex-direction:column;gap:0.75rem;}
+.access-group{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:1.1rem;}
+.access-group-title{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.85rem;display:block;}
+.access-options{display:flex;flex-wrap:wrap;gap:0.6rem;}
+.access-check{display:flex;align-items:center;gap:6px;cursor:pointer;}
+.access-check input[type="checkbox"]{width:14px;height:14px;accent-color:var(--gold);cursor:pointer;}
+.access-check label{font-size:0.8rem;color:var(--text-secondary);cursor:pointer;}
+.access-check:hover label{color:var(--text);}
+.access-divider{width:100%;height:1px;background:var(--border);margin:0.4rem 0;}
+.action-row{display:flex;gap:0.75rem;flex-wrap:wrap;}
+.btn-grant{background:linear-gradient(135deg,#C9A84C 0%,#A8873A 100%);color:#0E0E10;border:none;padding:12px 20px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;transition:all 0.2s;flex:1;display:flex;align-items:center;justify-content:center;gap:6px;}
+.btn-grant:hover{opacity:0.88;transform:translateY(-1px);}
+.btn-revoke{background:rgba(224,90,90,0.12);color:#e05a5a;border:1px solid rgba(224,90,90,0.3);padding:12px 16px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:700;cursor:pointer;letter-spacing:0.05em;text-transform:uppercase;transition:all 0.2s;white-space:nowrap;}
+.btn-revoke:hover{background:rgba(224,90,90,0.2);}
+
+/* Student list */
+.student-list-header{display:flex;align-items:center;justify-content:space-between;}
+.btn-text{background:none;border:none;color:var(--gold);font-size:0.78rem;cursor:pointer;font-family:inherit;text-decoration:underline;text-underline-offset:3px;}
+.student-list{display:none;max-height:280px;overflow-y:auto;background:var(--bg3);border:1px solid var(--border);border-radius:8px;margin-top:0.75rem;}
+.student-row{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:2px;}
+.student-row:last-child{border-bottom:none;}
+.student-name{font-size:0.82rem;font-weight:600;color:var(--text);}
+.student-email{font-size:0.72rem;color:var(--text-muted);}
+.student-access{font-size:0.7rem;color:var(--gold);}
+.student-status{font-size:0.65rem;font-weight:700;letter-spacing:0.08em;}
+.student-status.paid{color:#5fd48a;}
+.student-status.unpaid{color:#e05a5a;}
+.empty-state{padding:1.5rem;text-align:center;font-size:0.8rem;color:var(--text-muted);}
+
+/* Stats panel */
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;}
+.stat-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center;}
+.stat-value{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--gold);}
+.stat-label{font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;}
+
+/* Credentials panel */
+.cred-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:1.25rem;}
+.cred-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);}
+.cred-row:last-child{border-bottom:none;}
+.cred-label{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);}
+.cred-value{font-family:'Space Mono',monospace;font-size:0.8rem;color:var(--text-secondary);background:var(--bg2);padding:4px 10px;border-radius:4px;border:1px solid var(--border);}
+.cred-note{font-size:0.75rem;color:var(--text-muted);margin-top:1rem;line-height:1.6;padding:10px;background:var(--gold-dim);border:1px solid var(--gold-border);border-radius:6px;}
+
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem clamp(1.5rem,5vw,4rem);position:relative;z-index:1;}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.footer-copy{font-size:0.75rem;color:var(--text-muted);}
+.footer-links{display:flex;gap:1.25rem;}
+.footer-links a{font-size:0.75rem;color:var(--text-muted);text-decoration:none;transition:color var(--transition);}
+.footer-links a:hover{color:var(--gold);}
+</style>
+</head>
+<body>
+
+<!-- Security Banner -->
+<div class="security-banner">
+  <span style="font-size:14px;">🔒</span>
+  <span class="security-banner-text">Restricted Area — Authorised Personnel Only</span>
+</div>
+
+<nav>
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo">AI</div>
+    <span class="nav-name">AI Made Simple</span>
+    <span class="nav-admin-badge">ADMIN</span>
+  </a>
+  <div class="nav-right">
+    <a href="login.html" class="nav-back">← Student Portal</a>
+    <div class="theme-toggle">
+      <button class="theme-btn" id="themeLight" onclick="setTheme('light')">☀</button>
+      <button class="theme-btn active" id="themeDark" onclick="setTheme('dark')">●</button>
+      <button class="theme-btn" id="themeSystem" onclick="setTheme('system')">⊙</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="admin-wrap">
+
+    <!-- ── ADMIN LOGIN CARD ── -->
+    <div class="admin-login-card" id="adminLoginCard">
+      <div class="admin-header">
+        <div class="admin-icon-wrap">
+          <div class="admin-icon-ring"></div>
+          <div class="admin-icon">🛡️</div>
+        </div>
+        <div class="admin-title">Admin Portal</div>
+        <div class="admin-subtitle">Exclusive access for authorised administrators</div>
+        <div class="restricted-badge">⚠ Restricted Access</div>
+      </div>
+
+      <div class="admin-form-section">
+        <div class="alert" id="adminAlert"></div>
+        <div class="form-group">
+          <label class="form-label">Admin Username</label>
+          <input type="text" class="form-input" id="adminUser" placeholder="Enter admin username" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Admin Password</label>
+          <div class="password-field">
+            <input type="password" class="form-input" id="adminPass" placeholder="••••••••••••" autocomplete="off">
+            <button type="button" class="password-toggle" onclick="togglePassword('adminPass',this)">👁</button>
+          </div>
+        </div>
+        <button type="button" class="btn-admin-login" id="adminLoginBtn" onclick="handleAdminLogin()">
+          Access Admin Panel →
+        </button>
+        <p class="login-hint">This portal is for <span>Ona Services Ltd</span> administrators only.<br>Unauthorised access attempts are logged.</p>
+      </div>
+    </div>
+
+    <!-- ── ADMIN MANAGEMENT PANEL (shown after login) ── -->
+    <div class="admin-panel-card" id="adminPanelCard">
+
+      <div class="panel-header">
+        <div class="panel-header-left">
+          <div>
+            <div class="panel-title">Access Management</div>
+            <div class="panel-admin-name" id="panelAdminName">Administrator</div>
+          </div>
+          <span class="panel-badge">ADMIN</span>
+        </div>
+        <button class="btn-logout" onclick="adminLogout()">Sign Out</button>
+      </div>
+
+      <div class="panel-tabs">
+        <button class="panel-tab active" onclick="switchPanelTab('grant',this)">Grant Access</button>
+        <button class="panel-tab" onclick="switchPanelTab('students',this)">Students</button>
+        <button class="panel-tab" onclick="switchPanelTab('stats',this)">Overview</button>
+        <button class="panel-tab" onclick="switchPanelTab('credentials',this)">Credentials</button>
+      </div>
+
+      <!-- ── GRANT ACCESS ── -->
+      <div class="panel-section active" id="tab-grant">
+        <div class="alert success visible" id="authConfirmAlert">✓ Authenticated. You may now manage student access.</div>
+
+        <div class="form-group">
+          <label class="form-label">Student Email</label>
+          <input type="email" class="form-input" id="grantEmail" placeholder="student@email.com">
+        </div>
+
+        <div>
+          <div class="section-label" style="margin-bottom:0.75rem;">Programme</div>
+          <div class="programme-tabs-admin">
+            <button class="ptab active" onclick="switchAdminTab('expert',this)">AI Expert User</button>
+            <button class="ptab" onclick="switchAdminTab('m2m',this)">AI Mastery to Money</button>
+            <button class="ptab" onclick="switchAdminTab('mc',this)">Masterclasses</button>
+          </div>
+        </div>
+
+        <!-- AI EXPERT USER -->
+        <div class="access-panel active" id="panel-expert">
+          <div class="access-group">
+            <span class="access-group-title">AI Expert User — Grant by Month</span>
+            <div class="access-options">
+              <label class="access-check"><input type="checkbox" id="expert-all" onchange="toggleAll('expert',this)"><label for="expert-all">All 3 Months (Full Access)</label></label>
+              <div class="access-divider"></div>
+              <label class="access-check"><input type="checkbox" class="expert-month" value="1"><label>Month 1 — Foundations (Weeks 1–4)</label></label>
+              <label class="access-check"><input type="checkbox" class="expert-month" value="2"><label>Month 2 — Business Integration (Weeks 5–8)</label></label>
+              <label class="access-check"><input type="checkbox" class="expert-month" value="3"><label>Month 3 — Advanced Mastery (Weeks 9–12)</label></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI MASTERY TO MONEY -->
+        <div class="access-panel" id="panel-m2m">
+          <div class="access-group">
+            <span class="access-group-title">AI Mastery to Money — Tier</span>
+            <select class="form-select" id="m2m-tier">
+              <option value="self">Self-Study (₦50,000/mo)</option>
+              <option value="standard">Standard — ₦300,000</option>
+              <option value="vip">VIP — ₦500,000</option>
+            </select>
+          </div>
+          <div class="access-group">
+            <span class="access-group-title">Grant by Phase</span>
+            <div class="access-options">
+              <label class="access-check"><input type="checkbox" id="m2m-all" onchange="toggleAll('m2m',this)"><label for="m2m-all">All 3 Phases (Full Programme)</label></label>
+              <div class="access-divider"></div>
+              <label class="access-check"><input type="checkbox" class="m2m-phase" value="1"><label>Phase 1 — Days 1–30: Foundations</label></label>
+              <label class="access-check"><input type="checkbox" class="m2m-phase" value="2"><label>Phase 2 — Days 31–60: Business</label></label>
+              <label class="access-check"><input type="checkbox" class="m2m-phase" value="3"><label>Phase 3 — Days 61–90: Mastery</label></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- MASTERCLASSES -->
+        <div class="access-panel" id="panel-mc">
+          <div class="access-group">
+            <span class="access-group-title">Grant Specific Masterclasses</span>
+            <div class="access-options">
+              <label class="access-check"><input type="checkbox" id="mc-all" onchange="toggleAll('mc',this)"><label for="mc-all">All 9 Masterclasses</label></label>
+              <div class="access-divider"></div>
+              <label class="access-check"><input type="checkbox" class="mc-class" value="1"><label>Class 1 — AI Social Media & WhatsApp Automations</label></label>
+              <label class="access-check"><input type="checkbox" class="mc-class" value="2"><label>Class 2 — AI Book Writing & Amazon KDP</label></label>
+              <label class="access-check"><input type="checkbox" class="mc-class" value="3"><label>Class 3 — Viral Short-Form Video Creation</label></label>
+              <label class="access-check"><input type="checkbox" class="mc-class" value="4"><label>Class 4 — AI Faceless YouTube Content</label></label>
+              <label class="access-check"><input type="checkbox" class="mc-class" value="5"><label>Class 5 — AI Resume & LinkedIn Makeovers</label></label>
+              <label class="access-check"><input type="checkbox" class="mc-class" value="6"><label>Class 6 — Automated CRM & Lead Follow-ups</label></label>
+              <label class="access-check"><input type="checkbox" class="mc-class" value="7"><label>Class 7 — AI Business Proposals & Grants</label></label>
+              <label class="access-check"><input type="checkbox" class="mc-class" value="8"><label>Class 8 — AI Data Analysis & Dashboards</label></label>
+              <label class="access-check"><input type="checkbox" class="mc-class" value="9"><label>Class 9 — AI E-Learning & Course Creation</label></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert" id="grantAlert"></div>
+
+        <div class="action-row">
+          <button type="button" class="btn-grant" onclick="grantAccess()">✓ Grant Access</button>
+          <button type="button" class="btn-revoke" onclick="revokeAccess()">✗ Revoke</button>
+        </div>
+      </div>
+
+      <!-- ── STUDENTS TAB ── -->
+      <div class="panel-section" id="tab-students">
+        <div class="section-label">Enrolled Students</div>
+        <div class="student-list-header">
+          <span style="font-size:0.8rem;color:var(--text-muted);">All registered accounts</span>
+          <button class="btn-text" onclick="refreshStudentList()">↻ Refresh</button>
+        </div>
+        <div class="student-list" id="studentListPanel" style="display:block;"></div>
+        <div class="alert" id="studentsEmptyAlert" style="display:none;"></div>
+      </div>
+
+      <!-- ── OVERVIEW TAB ── -->
+      <div class="panel-section" id="tab-stats">
+        <div class="section-label">Overview</div>
+        <div class="stats-grid" id="statsGrid">
+          <div class="stat-card"><div class="stat-value" id="statTotal">0</div><div class="stat-label">Total Students</div></div>
+          <div class="stat-card"><div class="stat-value" id="statPaid">0</div><div class="stat-label">Paid Access</div></div>
+          <div class="stat-card"><div class="stat-value" id="statPending">0</div><div class="stat-label">Pending</div></div>
+        </div>
+        <div class="section-label">Programme Breakdown</div>
+        <div id="progBreakdown" style="display:flex;flex-direction:column;gap:0.5rem;"></div>
+      </div>
+
+      <!-- ── CREDENTIALS TAB ── -->
+      <div class="panel-section" id="tab-credentials">
+        <div class="section-label">Admin Login Credentials</div>
+        <div class="cred-card">
+          <div class="cred-row">
+            <span class="cred-label">Portal URL</span>
+            <span class="cred-value">admin-login.html</span>
+          </div>
+          <div class="cred-row">
+            <span class="cred-label">Username</span>
+            <span class="cred-value" id="credUsername">—</span>
+          </div>
+          <div class="cred-row">
+            <span class="cred-label">Password</span>
+            <span class="cred-value">••••••••••••</span>
+          </div>
+          <div class="cred-row">
+            <span class="cred-label">Role</span>
+            <span class="cred-value">Super Admin</span>
+          </div>
+          <p class="cred-note">⚠ To change admin credentials, update the <code>ADMIN_CREDENTIALS</code> object in the <code>&lt;script&gt;</code> section of <code>admin-login.html</code>. Use a backend/auth service (Supabase, Firebase Auth) in production for true security.</p>
+        </div>
+
+        <div class="section-label">Student Portal</div>
+        <div class="cred-card">
+          <div class="cred-row">
+            <span class="cred-label">Login URL</span>
+            <span class="cred-value">login.html</span>
+          </div>
+          <div class="cred-row">
+            <span class="cred-label">Dashboard</span>
+            <span class="cred-value">dashboard.html</span>
+          </div>
+          <div class="cred-row">
+            <span class="cred-label">Admin Access</span>
+            <span class="cred-value" style="color:#5fd48a;">Completely Separated</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end admin-panel-card -->
+
+  </div><!-- end admin-wrap -->
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">© 2026 Ona Services Ltd. Admin Portal — Restricted Access.</div>
+    <div class="footer-links">
+      <a href="login.html">Student Portal</a>
+      <a href="index.html">Home</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ─────────────────────────────────────────────────
+   ADMIN CREDENTIALS — Change these in production
+   Username: onaservices_admin
+   Password: ONA@AMS2026#Secure
+   ───────────────────────────────────────────────── */
+const ADMIN_CREDENTIALS = {
+  username: 'onaservices_admin',
+  password: 'ONA@AMS2026#Secure',
+  displayName: 'Oluwaseyi Ashiru'
+};
+
+/* ── THEME ── */
+function setTheme(m){localStorage.setItem('ams-theme',m);applyTheme(m);document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));const map={light:'themeLight',dark:'themeDark',system:'themeSystem'};document.getElementById(map[m])?.classList.add('active');}
+function applyTheme(m){const d=window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',m==='system'?(d?'dark':'light'):m);}
+(function(){const s=localStorage.getItem('ams-theme')||'dark';applyTheme(s);const map={light:'themeLight',dark:'themeDark',system:'themeSystem'};document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));document.getElementById(map[s])?.classList.add('active');});})();
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(localStorage.getItem('ams-theme')==='system')applyTheme('system');});
+
+/* ── HELPERS ── */
+function togglePassword(id,btn){const i=document.getElementById(id);i.type=i.type==='password'?'text':'password';btn.textContent=i.type==='password'?'👁':'🙈';}
+function showAlert(id,type,msg){const e=document.getElementById(id);if(!e)return;e.className=`alert ${type} visible`;e.textContent=msg;setTimeout(()=>e.classList.remove('visible'),6000);}
+
+/* ── DATA ── */
+function getUsers(){return JSON.parse(localStorage.getItem('ams-users')||'{}');}
+function saveUsers(u){localStorage.setItem('ams-users',JSON.stringify(u));}
+function getSession(){return JSON.parse(localStorage.getItem('ams-session')||'null');}
+function saveSession(d){localStorage.setItem('ams-session',JSON.stringify(d));}
+
+/* ── AUTO-RESTORE ADMIN SESSION ── */
+(function(){
+  const adminAuth=localStorage.getItem('ams-admin-auth');
+  if(adminAuth==='1'){
+    showAdminPanel();
+  }
+})();
+
+/* ── ADMIN LOGIN ── */
+let loginAttempts=0;
+let lockoutUntil=0;
+
+function handleAdminLogin(){
+  const now=Date.now();
+  if(now<lockoutUntil){
+    const secs=Math.ceil((lockoutUntil-now)/1000);
+    showAlert('adminAlert','error',`✗ Too many attempts. Try again in ${secs}s.`);
+    return;
+  }
+
+  const u=document.getElementById('adminUser').value.trim();
+  const p=document.getElementById('adminPass').value;
+  const btn=document.getElementById('adminLoginBtn');
+  btn.classList.add('loading');btn.disabled=true;
+
+  setTimeout(()=>{
+    btn.classList.remove('loading');btn.disabled=false;
+
+    if(u===ADMIN_CREDENTIALS.username && p===ADMIN_CREDENTIALS.password){
+      loginAttempts=0;
+      localStorage.setItem('ams-admin-auth','1');
+      showAdminPanel();
+    } else {
+      loginAttempts++;
+      if(loginAttempts>=5){
+        lockoutUntil=Date.now()+60000; // 60s lockout
+        loginAttempts=0;
+        showAlert('adminAlert','error','✗ Too many failed attempts. Locked for 60 seconds.');
+      } else {
+        showAlert('adminAlert','error',`✗ Invalid credentials. (${5-loginAttempts} attempts remaining)`);
+      }
+    }
+  },800);
+}
+
+/* Allow Enter key on password field */
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('adminPass')?.addEventListener('keydown',(e)=>{
+    if(e.key==='Enter') handleAdminLogin();
+  });
+  document.getElementById('adminUser')?.addEventListener('keydown',(e)=>{
+    if(e.key==='Enter') document.getElementById('adminPass')?.focus();
+  });
+});
+
+function showAdminPanel(){
+  document.getElementById('adminLoginCard').style.display='none';
+  document.getElementById('adminPanelCard').classList.add('visible');
+  document.getElementById('panelAdminName').textContent='Welcome, '+ADMIN_CREDENTIALS.displayName;
+  document.getElementById('credUsername').textContent=ADMIN_CREDENTIALS.username;
+  refreshStudentList();
+  refreshStats();
+}
+
+function adminLogout(){
+  if(!confirm('Sign out of admin portal?'))return;
+  localStorage.removeItem('ams-admin-auth');
+  document.getElementById('adminLoginCard').style.display='block';
+  document.getElementById('adminPanelCard').classList.remove('visible');
+  document.getElementById('adminUser').value='';
+  document.getElementById('adminPass').value='';
+}
+
+/* ── PANEL TABS ── */
+function switchPanelTab(tab,btn){
+  document.querySelectorAll('.panel-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.panel-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  if(tab==='students') refreshStudentList();
+  if(tab==='stats') refreshStats();
+}
+
+/* ── PROGRAMME TABS ── */
+let currentAdminProg='expert';
+function switchAdminTab(prog,btn){
+  currentAdminProg=prog;
+  document.querySelectorAll('.ptab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.access-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+prog).classList.add('active');
+}
+function toggleAll(prog,cb){
+  const checked=cb.checked;
+  const cls=prog==='mc'?'mc-class':prog==='m2m'?'m2m-phase':'expert-month';
+  document.querySelectorAll('.'+cls).forEach(c=>c.checked=checked);
+}
+
+/* ── GRANT ACCESS ── */
+function grantAccess(){
+  const email=document.getElementById('grantEmail').value.trim().toLowerCase();
+  if(!email){showAlert('grantAlert','error','✗ Enter a student email.');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showAlert('grantAlert','error','✗ Enter a valid email address.');return;}
+
+  const users=getUsers();
+  if(!users[email]){
+    users[email]={name:email,password:'',primaryProgramme:currentAdminProg,paid:true,access:{},createdAt:new Date().toISOString(),grantedByAdmin:true};
+  }
+  users[email].paid=true;
+  if(!users[email].access) users[email].access={};
+
+  if(currentAdminProg==='expert'){
+    const months=Array.from(document.querySelectorAll('.expert-month:checked')).map(c=>parseInt(c.value));
+    if(document.getElementById('expert-all').checked||months.length===3){
+      users[email].access.expert={months:[1,2,3]};
+    } else if(months.length>0){
+      const existing=(users[email].access.expert?.months)||[];
+      users[email].access.expert={months:[...new Set([...existing,...months])]};
+    } else {showAlert('grantAlert','error','✗ Select at least one month.');return;}
+  }
+
+  if(currentAdminProg==='m2m'){
+    const phases=Array.from(document.querySelectorAll('.m2m-phase:checked')).map(c=>parseInt(c.value));
+    const tier=document.getElementById('m2m-tier').value;
+    if(document.getElementById('m2m-all').checked||phases.length===3){
+      users[email].access.m2m={phases:[1,2,3],tier};
+    } else if(phases.length>0){
+      const existing=(users[email].access.m2m?.phases)||[];
+      users[email].access.m2m={phases:[...new Set([...existing,...phases])],tier};
+    } else {showAlert('grantAlert','error','✗ Select at least one phase.');return;}
+  }
+
+  if(currentAdminProg==='mc'){
+    const classes=Array.from(document.querySelectorAll('.mc-class:checked')).map(c=>parseInt(c.value));
+    if(document.getElementById('mc-all').checked||classes.length===9){
+      users[email].access.masterclasses={classes:[1,2,3,4,5,6,7,8,9]};
+    } else if(classes.length>0){
+      const existing=(users[email].access.masterclasses?.classes)||[];
+      users[email].access.masterclasses={classes:[...new Set([...existing,...classes])]};
+    } else {showAlert('grantAlert','error','✗ Select at least one masterclass.');return;}
+  }
+
+  users[email].grantedAt=new Date().toISOString();
+  saveUsers(users);
+
+  const session=getSession();
+  if(session&&session.email===email){session.access=users[email].access;session.paid=true;saveSession(session);}
+
+  let summary=[];
+  if(users[email].access.expert) summary.push(`Expert M${users[email].access.expert.months.join(',')}`);
+  if(users[email].access.m2m) summary.push(`M2M P${users[email].access.m2m.phases.join(',')} (${users[email].access.m2m.tier})`);
+  if(users[email].access.masterclasses) summary.push(`Classes: ${users[email].access.masterclasses.classes.join(',')}`);
+  showAlert('grantAlert','success',`✓ Access granted to ${email}. ${summary.join(' · ')}`);
+  document.getElementById('grantEmail').value='';
+}
+
+function revokeAccess(){
+  const email=document.getElementById('grantEmail').value.trim().toLowerCase();
+  if(!email){showAlert('grantAlert','error','✗ Enter an email to revoke.');return;}
+  if(!confirm(`Revoke ALL access for ${email}?`))return;
+  const users=getUsers();
+  if(users[email]){users[email].paid=false;users[email].access={};saveUsers(users);}
+  showAlert('grantAlert','success',`✓ All access revoked for ${email}.`);
+}
+
+/* ── STUDENTS LIST ── */
+function refreshStudentList(){
+  const panel=document.getElementById('studentListPanel');
+  const users=getUsers();
+  const entries=Object.entries(users);
+  if(!entries.length){
+    panel.innerHTML='<div class="empty-state">No students registered yet.</div>';
+    return;
+  }
+  panel.innerHTML=entries.map(([email,u])=>{
+    const a=u.access||{};
+    const parts=[];
+    if(a.expert) parts.push(`Expert M${(a.expert.months||[]).join(',')}`);
+    if(a.m2m) parts.push(`M2M P${(a.m2m.phases||[]).join(',')} (${a.m2m.tier||''})`);
+    if(a.masterclasses) parts.push(`Classes: ${(a.masterclasses.classes||[]).join(',')}`);
+    return `<div class="student-row">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <span class="student-name">${u.name||email}</span>
+        <span class="student-status ${u.paid?'paid':'unpaid'}">${u.paid?'✓ PAID':'✗ UNPAID'}</span>
+      </div>
+      <span class="student-email">${email}</span>
+      ${parts.length?`<span class="student-access">${parts.join(' · ')}</span>`:''}
+    </div>`;
+  }).join('');
+}
+
+/* ── STATS ── */
+function refreshStats(){
+  const users=getUsers();
+  const entries=Object.entries(users);
+  const total=entries.length;
+  const paid=entries.filter(([,u])=>u.paid).length;
+  document.getElementById('statTotal').textContent=total;
+  document.getElementById('statPaid').textContent=paid;
+  document.getElementById('statPending').textContent=total-paid;
+
+  const breakdown={expert:0,m2m:0,mc:0};
+  entries.forEach(([,u])=>{
+    const a=u.access||{};
+    if(a.expert) breakdown.expert++;
+    if(a.m2m) breakdown.m2m++;
+    if(a.masterclasses) breakdown.mc++;
+  });
+  document.getElementById('progBreakdown').innerHTML=`
+    ${progBar('AI Expert User',breakdown.expert,total)}
+    ${progBar('AI Mastery to Money',breakdown.m2m,total)}
+    ${progBar('Masterclasses',breakdown.mc,total)}
+  `;
+}
+
+function progBar(label,count,total){
+  const pct=total?Math.round(count/total*100):0;
+  return `<div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:0.9rem 1rem;">
+    <div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:6px;">
+      <span style="color:var(--text-secondary);">${label}</span>
+      <span style="color:var(--gold);font-weight:600;">${count}</span>
+    </div>
+    <div style="height:4px;background:var(--border);border-radius:2px;">
+      <div style="height:4px;background:var(--gold);border-radius:2px;width:${pct}%;transition:width 0.4s ease;"></div>
+    </div>
+  </div>`;
+}
+</script>
+</body>
+</html>
