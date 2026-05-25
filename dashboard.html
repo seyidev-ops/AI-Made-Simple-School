@@ -17,7 +17,7 @@ html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;transition:background var(--transition),color var(--transition);}
 nav{position:sticky;top:0;z-index:200;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 1.25rem;height:60px;display:flex;align-items:center;gap:0.75rem;}
 .nav-brand{display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0;}
-.nav-logo-svg{border-radius:6px;}
+.nav-logo{width:30px;height:30px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:#0E0E10;}
 .nav-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--text);}
 .nav-prog-tabs{display:flex;gap:4px;flex:1;overflow-x:auto;scrollbar-width:none;}
 .nav-prog-tabs::-webkit-scrollbar{display:none;}
@@ -171,47 +171,26 @@ nav{position:sticky;top:0;z-index:200;background:var(--nav-bg);backdrop-filter:b
 .mc-name{font-size:0.87rem;font-weight:600;color:var(--text);margin-bottom:0.3rem;line-height:1.3;}
 .mc-desc{font-size:0.73rem;color:var(--text-muted);line-height:1.5;margin-bottom:0.75rem;}
 .mc-lock-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(120,120,120,0.1);border:1px solid var(--border);border-radius:100px;padding:3px 10px;font-size:0.63rem;color:var(--text-muted);}
-
-.blog-filter-bar{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.5rem;}
-.blog-filter{padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;font-size:0.73rem;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all 0.2s;font-family:inherit;letter-spacing:0.04em;}
-.blog-filter.active{background:var(--gold-dim);border-color:rgba(201,168,76,0.4);color:var(--gold);}
-.blog-filter:hover:not(.active){border-color:rgba(201,168,76,0.3);color:var(--text);}
-.blog-featured{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:2rem;margin-bottom:1.5rem;position:relative;overflow:hidden;cursor:pointer;transition:all 0.2s;}
-.blog-featured:hover{border-color:rgba(201,168,76,0.35);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.3);}
-.blog-featured::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#C9A84C,transparent);}
-.blog-featured-meta{display:flex;align-items:center;gap:0.6rem;margin-bottom:1rem;flex-wrap:wrap;}
-.blog-category{font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 10px;border-radius:100px;background:var(--gold-dim);border:1px solid rgba(201,168,76,0.3);color:var(--gold);}
-.blog-category.tools{background:rgba(76,130,201,0.1);border-color:rgba(76,130,201,0.3);color:#6BA3D4;}
-.blog-category.business{background:rgba(76,201,112,0.1);border-color:rgba(76,201,112,0.3);color:#5fd48a;}
-.blog-category.tutorials{background:rgba(201,130,76,0.1);border-color:rgba(201,130,76,0.3);color:#D4956B;}
-.blog-category.industry{background:rgba(180,76,201,0.1);border-color:rgba(180,76,201,0.3);color:#C47AD4;}
-.blog-date{font-size:0.7rem;color:var(--text-muted);}
-.blog-read-time{font-size:0.7rem;color:var(--text-muted);}
-.blog-featured-title{font-family:'Cormorant Garamond',serif;font-size:1.65rem;font-weight:700;color:var(--text);line-height:1.25;margin-bottom:0.75rem;}
-.blog-featured-excerpt{font-size:0.84rem;color:var(--text-secondary);line-height:1.7;margin-bottom:1.25rem;}
-.blog-read-btn{display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:#0E0E10;padding:9px 18px;border-radius:6px;font-size:0.76rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;border:none;cursor:pointer;font-family:inherit;transition:all 0.2s;}
-.blog-read-btn:hover{opacity:0.88;}
-.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-bottom:1.5rem;}
-.blog-card{background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:1.25rem;cursor:pointer;transition:all 0.2s;display:flex;flex-direction:column;gap:0.6rem;}
-.blog-card:hover{border-color:rgba(201,168,76,0.3);transform:translateY(-2px);}
-.blog-card-title{font-size:0.9rem;font-weight:600;color:var(--text);line-height:1.4;}
-.blog-card-excerpt{font-size:0.76rem;color:var(--text-muted);line-height:1.6;flex:1;}
-.blog-card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:0.25rem;}
-.blog-detail-panel{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:2rem;margin-bottom:1.5rem;display:none;}
-.blog-detail-panel.visible{display:block;}
-.blog-detail-title{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:700;color:var(--text);line-height:1.25;margin-bottom:1rem;}
-.blog-detail-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;}
-.blog-close-btn{background:transparent;border:1px solid var(--border);color:var(--text-muted);padding:6px 14px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.73rem;cursor:pointer;flex-shrink:0;transition:all 0.2s;}
-.blog-close-btn:hover{border-color:rgba(201,168,76,0.4);color:var(--gold);}
-.blog-body{font-size:0.88rem;color:var(--text-secondary);line-height:1.85;}
-.blog-body h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--text);margin:1.5rem 0 0.5rem;}
-.blog-body p{margin-bottom:1rem;}
-.blog-body ul{padding-left:1.25rem;margin-bottom:1rem;}
-.blog-body li{margin-bottom:0.4rem;}
-.blog-body strong{color:var(--text);font-weight:600;}
-.news-sidebar-cats .s-lesson{cursor:pointer;}
-.news-sidebar-cats .s-lesson.active .s-dot{background:var(--gold);}
-@media(max-width:540px){.blog-grid{grid-template-columns:1fr;}.blog-featured-title{font-size:1.3rem;}}
+.mc-open-btn{background:var(--gold);color:#0E0E10;border:none;padding:7px 16px;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.73rem;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;transition:all 0.2s;}
+.mc-open-btn:hover{opacity:0.85;}
+.mc-detail{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;display:none;}
+.mc-detail.visible{display:block;}
+.mc-detail-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.25rem;}
+.mc-detail-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--text);}
+.mc-close-btn{background:transparent;border:1px solid var(--border);color:var(--text-muted);padding:5px 12px;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.73rem;cursor:pointer;flex-shrink:0;}
+.mc-module{border:1px solid var(--border);border-radius:8px;margin-bottom:0.6rem;overflow:hidden;}
+.mc-module-hdr{display:flex;align-items:center;justify-content:space-between;padding:0.8rem 1rem;cursor:pointer;background:var(--bg3);gap:0.75rem;}
+.mc-module-hdr:hover{background:var(--gold-dim);}
+.mc-module-num{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--gold);font-weight:700;letter-spacing:0.08em;flex-shrink:0;}
+.mc-module-title{font-size:0.83rem;font-weight:600;color:var(--text);flex:1;}
+.mc-module-dur{font-size:0.66rem;color:var(--text-muted);flex-shrink:0;}
+.mc-module-arrow{font-size:9px;color:var(--text-muted);transition:transform 0.3s;flex-shrink:0;}
+.mc-module.open .mc-module-arrow{transform:rotate(180deg);}
+.mc-module-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease;}
+.mc-module.open .mc-module-body{max-height:2000px;}
+.mc-module-inner{padding:0.875rem 1.125rem;font-size:0.8rem;color:var(--text-secondary);line-height:1.75;}
+.mc-module-inner p{margin-bottom:0.5rem;}
+.mc-module-inner strong{color:var(--text);}
 .notif-bar{background:var(--gold-dim);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;font-size:0.78rem;color:var(--text-secondary);}
 .notif-icon{font-size:15px;flex-shrink:0;}
 .notif-text{flex:1;}
@@ -236,106 +215,12 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.125rem
 .nav-user{display:none;}
 }
 @media(max-width:540px){.stats-row{grid-template-columns:1fr 1fr;}.phase-progress{grid-template-columns:repeat(3,1fr);}.mc-grid{grid-template-columns:1fr;}}
-
-/* ── BACKGROUND WATERMARK ── */
-.bg-watermark{position:fixed;bottom:-6%;right:-4%;width:min(38vw,260px);height:auto;opacity:0.045;pointer-events:none;user-select:none;z-index:0;color:var(--gold);transform:rotate(-10deg);transition:opacity var(--transition);}
-.bg-watermark svg{display:block;width:100%;height:auto;}
-[data-theme="light"] .bg-watermark{opacity:0.07;}
-@media(max-width:768px){.bg-watermark{width:min(52vw,190px);opacity:0.035;bottom:-3%;right:-3%;}}
-@media(max-width:430px){.bg-watermark{width:min(60vw,160px);opacity:0.03;}}
-/* ── RESPONSIVE ── */
-@media(max-width:900px){
-  .sidebar{position:fixed;top:60px;left:0;bottom:0;z-index:160;transform:translateX(-100%);}
-  .sidebar.open{transform:translateX(0);}
-  .sidebar-overlay{display:block;}
-  .sidebar-toggle{display:flex;align-items:center;}
-  .progress-bar-nav,.progress-pct{display:none;}
-  .nav-user{display:none;}
-}
-@media(max-width:768px){
-  nav{padding:0 1rem;gap:0.5rem;}
-  .nav-name{display:none;}
-  .prog-tab{padding:5px 9px;font-size:0.65rem;}
-  .main-content{padding:1rem 0.875rem;}
-  .welcome-title{font-size:1.5rem;}
-  .dash-header{margin-bottom:1.125rem;}
-  .stats-row{grid-template-columns:repeat(2,1fr);gap:0.6rem;margin-bottom:1rem;}
-  .stat-card{padding:0.75rem;}
-  .stat-card-value{font-size:1.5rem;}
-  .phase-progress{grid-template-columns:repeat(2,1fr);gap:0.6rem;}
-  .ring-container{width:54px;height:54px;}
-  .week-days{gap:0.2rem;}
-  .day-circle{max-width:34px;}
-  .day-name{font-size:0.46rem;}
-  .today-hdr{flex-direction:column;align-items:flex-start;gap:0.4rem;}
-  .today-body{padding:0.875rem 1rem;}
-  .today-footer{padding:0.75rem 1rem;gap:0.5rem;flex-wrap:wrap;}
-  .btn-complete{flex:1;min-width:120px;justify-content:center;min-height:44px;padding:10px 14px;}
-  .btn-next{min-height:44px;padding:10px 14px;}
-  .notes-inner{padding:0.875rem;}
-  .payment-gate{padding:1.5rem 1rem;margin:1rem 0;}
-  .gate-title{font-size:1.4rem;}
-  .gate-actions{flex-direction:column;align-items:stretch;}
-  .btn-pay,.btn-outline{width:100%;justify-content:center;padding:13px;}
-  .mc-grid{grid-template-columns:1fr;}
-  .blog-grid{grid-template-columns:1fr;}
-  .blog-featured{padding:1.25rem 1rem;}
-  .blog-featured-title{font-size:1.3rem;}
-  .blog-detail-panel{padding:1.25rem 1rem;}
-  .blog-detail-header{flex-direction:column-reverse;gap:0.6rem;}
-  .blog-close-btn{align-self:flex-end;}
-  .blog-detail-title{font-size:1.4rem;}
-  .blog-body{font-size:0.84rem;}
-  .blog-filter{padding:5px 10px;font-size:0.68rem;}
-  footer{padding:1rem 0.875rem;}
-  .footer-inner{flex-direction:column;gap:0.5rem;align-items:flex-start;}
-}
-@media(max-width:430px){
-  nav{padding:0 0.75rem;height:56px;gap:0.4rem;}
-  .nav-logo-svg{width:28px !important;height:28px !important;}
-  .app-layout{min-height:calc(100vh - 56px);}
-  .sidebar{top:56px;height:calc(100vh - 56px);}
-  .main-content{padding:0.875rem 0.75rem;}
-  .welcome-title{font-size:1.25rem;}
-  .welcome-sub{font-size:0.74rem;}
-  .stats-row{grid-template-columns:repeat(2,1fr);gap:0.5rem;}
-  .stat-card-value{font-size:1.3rem;}
-  .stat-card-label{font-size:0.58rem;}
-  .phase-progress{grid-template-columns:repeat(2,1fr);gap:0.5rem;}
-  .ring-container{width:48px;height:48px;}
-  .phase-label{font-size:0.58rem;}
-  .phase-name{font-size:0.66rem;}
-  .today-title{font-size:1.15rem;}
-  .today-desc{font-size:0.78rem;}
-  .task-text{font-size:0.76rem;}
-  .notes-step{font-size:0.76rem;}
-  .module-title{font-size:0.82rem;}
-  .blog-featured{padding:1rem 0.875rem;}
-  .blog-featured-title{font-size:1.2rem;}
-  .blog-card{padding:1rem 0.875rem;}
-  .blog-filter-bar{gap:0.35rem;margin-bottom:1rem;}
-  .blog-filter{padding:4px 9px;font-size:0.63rem;}
-  .pwa-btn{bottom:0.875rem;right:0.875rem;width:42px;height:42px;font-size:15px;}
-  .s-lesson{padding:9px 0.75rem 9px 1.1rem;}
-  .s-title{font-size:0.7rem;}
-  .sidebar-section-title{font-size:0.62rem;}
-}
 </style>
 </head>
 <body>
-<div class="bg-watermark" aria-hidden="true" role="presentation">
-  <svg viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-    <text x="110" y="115" font-family="Cormorant Garamond,Georgia,serif" font-style="italic" font-weight="700" font-size="110" fill="currentColor" text-anchor="middle">AI</text>
-  </svg>
-</div>
 <nav>
   <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
-  <a href="index.html" class="nav-brand"><svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32" style="flex-shrink:0;border-radius:8px;">
-    <defs><linearGradient id="ng" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#D4A843"/><stop offset="100%" stop-color="#B8922E"/></linearGradient></defs>
-    <rect width="100" height="100" rx="16" fill="url(#ng)"/>
-    <rect x="2.5" y="2.5" width="95" height="95" rx="13.5" stroke="rgba(255,255,255,0.22)" stroke-width="1" fill="none"/>
-    <text x="50" y="74" font-family="Cormorant Garamond,Georgia,serif" font-style="italic" font-weight="700" font-size="70" fill="#1A1914" text-anchor="middle">AI</text>
-  </svg></a>
+  <a href="index.html" class="nav-brand"><div class="nav-logo">AI</div></a>
   <div class="nav-prog-tabs" id="navProgTabs"></div>
   <div class="nav-right">
     <div class="progress-bar-nav"><div class="progress-bar-fill" id="globalProgressBar" style="width:0%"></div></div>
@@ -613,197 +498,61 @@ const MC=[
  {n:'MOD 2',t:'Instagram & Facebook Automation',d:'60 min',c:'Create ManyChat account and connect to Facebook Page + Instagram. Build comment-triggered automation: when someone comments your keyword → ManyChat sends DM automatically. Configure DM flow with 3–5 messages leading to your offer. Link to your OpenAI API key for dynamic responses.'},
  {n:'MOD 3',t:'WhatsApp + CRM Integration',d:'75 min',c:'Set up WATI.io (WhatsApp Business API). Connect to Make.com. Build: WhatsApp message received → lead scored by OpenAI GPT → CRM updated → personalised follow-up drafted → sent within 2 minutes. Go live and test with a real message.'}]},
 {id:2,t:'AI Book Writing & Amazon KDP',dur:'3 Hours',desc:'From blank page to published author — write, format, and publish a book on Amazon KDP using AI.',
- mods:[{n:'MOD 1',t:'Understanding AI Writing Tools',d:'15 min',c:'What AI does well: brainstorming, outlining, first drafts, rewriting. What it does NOT: fact verification, genuine emotion, consistent memory. Critical rule: verify every fact, statistic, date, and name before publishing.'},
+ mods:[{n:'MOD 1',t:'Understanding AI Writing Tools',d:'15 min',c:'What AI does well: brainstorming, outlining, first drafts, rewriting. What it does NOT: fact verification, genuine emotion, consistent memory. Critical rule: verify every fact, statistic, date, and name before publishing. Hallucinated statistics have ended careers.'},
  {n:'MOD 2',t:'Choosing Your Tool & Setup',d:'20 min',c:'Claude.ai vs ChatGPT for book writing. Create workspace: Google Doc titled "My Book — Master Project File." Choose your topic (something you know more about than most people). Validate on Amazon: search topic, check similar books have reviews > 50 = proven market.'},
- {n:'MOD 3',t:'Research & Outline',d:'30 min',c:'Use Perplexity AI for research (never for writing). Build 10-chapter outline with Claude using the RISE prompt. Each chapter: 1 core concept, 3 supporting points, 1 real-world example.'},
+ {n:'MOD 3',t:'Research & Outline',d:'30 min',c:'Use Perplexity AI for research (never for writing). Build 10-chapter outline with Claude using the RISE prompt. Each chapter: 1 core concept, 3 supporting points, 1 real-world example. Validate outline against Amazon bestsellers in your category.'},
  {n:'MOD 4',t:'Writing with AI',d:'45 min',c:'Chapter system: paste outline → Claude writes 800-word draft → read and edit for your voice → add personal story or example → repeat. Maintain consistent tone by referencing your first chapter when prompting subsequent ones.'},
- {n:'MOD 5',t:'Formatting & Cover Design',d:'30 min',c:'KDP format: Word document, 6×9 inches, Times New Roman 12pt, 1-inch margins, page numbers. Cover: Canva KDP template (6×9). Generate background with MidJourney or Ideogram.'},
- {n:'MOD 6',t:'Publishing on KDP',d:'20 min',c:'Create account at kdp.amazon.com. Enter title, subtitle, description. Upload interior Word doc and cover PDF. Price: $2.99 ebooks (70% royalty). Publish. Check live within 24–72 hours.'}]},
+ {n:'MOD 5',t:'Formatting & Cover Design',d:'30 min',c:'KDP format: Word document, 6×9 inches, Times New Roman 12pt, 1-inch margins, page numbers, Heading 1 for chapters. Cover: Canva KDP template (6×9). Generate background image with MidJourney or Ideogram. Include title, subtitle, author name.'},
+ {n:'MOD 6',t:'Publishing on KDP',d:'20 min',c:'Create account at kdp.amazon.com. Enter title, subtitle, description (Claude writes 150-word keyword-rich description). Upload interior Word doc and cover PDF. Price: $2.99 ebooks (70% royalty). Select 2 relevant categories. Publish. Check live within 24–72 hours.'}]},
 {id:3,t:'Viral Short-Form Video Creation',dur:'3 Hours',desc:'Create high-performing TikTok, Reels, and YouTube Shorts — algorithm, scripting, filming, editing, growth.',
- mods:[{n:'MOD 1',t:'Platform Algorithms & Virality',d:'30 min',c:'4 signals: Retention Rate (most important), Completion Rate, Engagement (shares/saves weighted highest), Content Identity. 5-part anatomy: Hook (0–3s), Promise (3–8s), Value Body, Emotional Trigger, CTA.'},
- {n:'MOD 2',t:'Video Concept & Ideation',d:'20 min',c:'3 proven frameworks: Tutorial, Reaction/Opinion, Story. Generate 10 hook variations with ChatGPT. Test hooks on 3 people.'},
- {n:'MOD 3',t:'Scripting & Storyboarding',d:'20 min',c:'Script structure: Hook → Promise → 3 value points (10 seconds each) → Emotional close → CTA. Write the full script even if speaking naturally.'},
- {n:'MOD 4',t:'Filming Fundamentals',d:'20 min',c:'Setup: horizontal stabiliser or tripod, clean lens. Lighting: face a window or ring light. Audio: phone mic or lapel mic.'},
- {n:'MOD 5',t:'Editing Techniques',d:'40 min',c:'CapCut workflow: Import → trim silences → auto-captions → background music (volume 20%) → b-roll overlays → export 1080p.'},
- {n:'MOD 6',t:'Publishing, Growth & Analytics',d:'50 min',c:'Posting: 1 video/day for first 30 days. Best times: 6–10am and 7–11pm local. Respond to every comment in first 3 hours.'}]},
+ mods:[{n:'MOD 1',t:'Platform Algorithms & Virality',d:'30 min',c:'Distribution funnel: 500 test viewers → algorithm measures retention → if above threshold → wider distribution. 4 signals: Retention Rate (most important), Completion Rate, Engagement (shares/saves weighted highest), Content Identity. 5-part anatomy: Hook (0–3s), Promise (3–8s), Value Body, Emotional Trigger, CTA.'},
+ {n:'MOD 2',t:'Video Concept & Ideation',d:'20 min',c:'3 proven frameworks: Tutorial ("How to X in Y minutes"), Reaction/Opinion ("My take on X"), Story ("How I/client went from X to Y"). Generate 10 hook variations with ChatGPT. Test hooks on 3 people — the one that makes them say "tell me more" wins.'},
+ {n:'MOD 3',t:'Scripting & Storyboarding',d:'20 min',c:'Script structure: Hook → Promise → 3 value points (10 seconds each) → Emotional close → CTA. Write the full script — even if speaking naturally, having a script prevents wasted takes. Storyboard: simple drawn boxes showing what appears on screen each segment.'},
+ {n:'MOD 4',t:'Filming Fundamentals',d:'20 min',c:'Setup: horizontal stabiliser or tripod, clean lens, portrait mode OFF. Lighting: face a window or use ring light. Audio: phone mic works within 1 metre or use lapel mic (₦3,000–₦8,000). Background: clean, branded, or blurred.'},
+ {n:'MOD 5',t:'Editing Techniques',d:'40 min',c:'CapCut workflow: Import → trim silences (AI removal) → auto-captions → caption style → background music (volume 20%) → b-roll/text overlays → colour grade → export 1080p. Best caption style: white text, black outline, 2–3 words per segment.'},
+ {n:'MOD 6',t:'Publishing, Growth & Analytics',d:'50 min',c:'Posting: 1 video/day for first 30 days minimum. Best times: 6–10am and 7–11pm local. Hashtags: 3–5 specific topic hashtags (not #fyp). Weekly analytics to track: Average Watch Time, Follower Growth, Profile Views. Respond to every comment in first 3 hours — algorithm rewards early engagement.'}]},
 {id:4,t:'AI Faceless YouTube Content Creation',dur:'3 Hours',desc:'Build a profitable YouTube channel without ever showing your face — niche, scripts, voiceover, editing, monetisation.',
- mods:[{n:'MOD 1',t:'The Faceless YouTube Business Model',d:'20 min',c:'Income streams: AdSense, affiliate marketing, digital products, sponsorships. Monetisation threshold: 1,000 subscribers + 4,000 watch hours.'},
- {n:'MOD 2',t:'Niche Selection & Channel Strategy',d:'20 min',c:'Niche criteria: 50,000+ monthly YouTube searches, monetisation potential, scriptable with AI. Use Google Trends Nigeria to find local keyword demand.'},
- {n:'MOD 3',t:'AI-Powered Scriptwriting',d:'30 min',c:'Script structure (10 min = ~1,500 words): Hook question → Problem setup → 5 key points × 90 seconds each → Summary → CTA.'},
- {n:'MOD 4',t:'Visuals, Stock Footage & Animation',d:'25 min',c:'Free stock: Pexels.com, Pixabay.com. AI b-roll: Pika Labs. Screen recordings: OBS Studio (free).'},
- {n:'MOD 5',t:'AI Voiceover & Audio Production',d:'20 min',c:'ElevenLabs: "Will" (authoritative) or "Grace" (warm) for educational content. Join audio sections in Audacity or CapCut.'},
- {n:'MOD 6',t:'Video Editing Fundamentals',d:'30 min',c:'CapCut desktop: Import voiceover → sync b-roll → lower-third text → background music (15% volume) → export 1080p 60fps.'},
- {n:'MOD 7',t:'Thumbnail Design & YouTube SEO',d:'20 min',c:'Thumbnail formula: large face or bold text + contrast background + number or promise. SEO: keyword in title, first 2 sentences of description, and 5 tags.'},
- {n:'MOD 8',t:'Uploading, Growth & Monetisation',d:'15 min',c:'Upload checklist: custom thumbnail · end screen · cards at 20%, 50%, 80% · description with keyword + 3 links.'}]},
+ mods:[{n:'MOD 1',t:'The Faceless YouTube Business Model',d:'20 min',c:'Income streams: AdSense ($1–$10/1,000 views), affiliate marketing, digital products, sponsorships. Monetisation threshold: 1,000 subscribers + 4,000 watch hours. Best niches for Nigerian creators: personal finance, African history, health and wellness, technology explainers, career advice.'},
+ {n:'MOD 2',t:'Niche Selection & Channel Strategy',d:'20 min',c:'Niche criteria: (1) 50,000+ monthly YouTube searches, (2) monetisation potential (affiliate products or ads), (3) scriptable with AI. Use Google Trends Nigeria to find local keyword demand.'},
+ {n:'MOD 3',t:'AI-Powered Scriptwriting',d:'30 min',c:'Script structure (10 min = ~1,500 words): Hook question (30s) → Problem setup (1 min) → 5 key points × 90 seconds each → Summary → CTA. Prompt: "Write a 1,500-word YouTube script about [topic] for [audience]. Hook with surprising fact. Conversational language. End with question encouraging comments."'},
+ {n:'MOD 4',t:'Visuals, Stock Footage & Animation',d:'25 min',c:'Free stock: Pexels.com, Pixabay.com (royalty-free). AI b-roll: Pika Labs (pika.art). Screen recordings: OBS Studio (free). Presentation slides: Gamma or Google Slides for explainer content.'},
+ {n:'MOD 5',t:'AI Voiceover & Audio Production',d:'20 min',c:'ElevenLabs: "Will" (authoritative) or "Grace" (warm) work well for educational content. Read script section by section (500 chars max on free tier). Download each section. Join in Audacity or CapCut.'},
+ {n:'MOD 6',t:'Video Editing Fundamentals',d:'30 min',c:'CapCut desktop: Import voiceover → sync b-roll to match narration → lower-third text for key terms → background music (loop at 15% volume) → intro (3 seconds, channel name) → export 1080p 60fps.'},
+ {n:'MOD 7',t:'Thumbnail Design & YouTube SEO',d:'20 min',c:'Thumbnail formula: large face or bold text (50%+ of canvas) + contrast background + number or promise. Canva YouTube Thumbnail template. SEO: keyword in title, first 2 sentences of description, and 5 tags.'},
+ {n:'MOD 8',t:'Uploading, Growth & Monetisation',d:'15 min',c:'Upload checklist: custom thumbnail · end screen (2 other videos) · cards at 20%, 50%, 80% · description with keyword + 3 links. Growth hack: reply to every comment in first 3 hours — YouTube rewards early engagement signals.'}]},
 {id:5,t:'AI Resume & LinkedIn Makeovers',dur:'3 Hours',desc:'Transform CVs and LinkedIn profiles using AI to pass ATS systems and attract global remote opportunities.',
- mods:[{n:'BLOCK 1',t:'Decoding the ATS Algorithm',d:'30 min',c:'ATS reads your resume like a scanner. 5 Rules: single-column layout, standard headings, standard fonts, save as .docx or text-based PDF, contact info in document body.'},
- {n:'BLOCK 2',t:'Keyword Optimisation',d:'30 min',c:'Paste target job description into Claude → extract top 15 keywords. Integrate top 8 naturally into Experience and Skills sections. Use TealHQ for automated keyword matching.'},
- {n:'BLOCK 3',t:'Achievement Rewriting',d:'30 min',c:'CAR formula: Context + Action + Result. Prompt: "Rewrite this job duty as a quantified achievement using CAR."'},
- {n:'BLOCK 4',t:'LinkedIn Profile Optimisation',d:'30 min',c:'Optimise: Headline · About · Experience · Skills · Featured. Mirror optimised resume in Experience section.'},
- {n:'BLOCK 5',t:'Application Strategy',d:'30 min',c:'Target 20 roles, not 200. Customise resume for each. Track in Notion.'},
- {n:'BLOCK 6',t:'Interview Preparation',d:'30 min',c:'STAR method for behavioural questions. Use Claude to generate practice questions from the job description.'}]},
-{id:6,t:'Automated CRM & Lead Follow-ups',dur:'3 Hours',desc:'Build a fully automated lead capture and follow-up system — no manual chasing.',
- mods:[{n:'MOD 1',t:'CRM Selection & Setup',d:'30 min',c:'GoHighLevel or HubSpot (free tier). Create pipeline stages: Lead → Contacted → Qualified → Proposal → Won/Lost. Connect to your website form.'},
- {n:'MOD 2',t:'Lead Capture Automation',d:'45 min',c:'Make.com: form submitted → lead added to CRM → welcome email sent → owner notified. Test with a real submission.'},
- {n:'MOD 3',t:'AI Follow-up Sequences',d:'45 min',c:'5-email sequence: Day 1 welcome, Day 3 value, Day 5 case study, Day 7 offer, Day 14 last chance. Claude writes each email from a brief.'},
- {n:'MOD 4',t:'Lead Scoring & Prioritisation',d:'30 min',c:'Score leads by engagement (email opens, link clicks, page visits). Prioritise high scores for personal outreach.'},
- {n:'MOD 5',t:'Reporting Dashboard',d:'30 min',c:'Google Looker Studio connected to CRM export. Track: leads by source, conversion rate per stage, revenue per pipeline.'}]},
-{id:7,t:'AI Business Proposals & Grants',dur:'6 Hours',desc:'Research, write, design, and submit winning business proposals and grant applications using AI.',
- mods:[{n:'SESSION 1',t:'Research & Evidence',d:'90 min',c:'Research with Perplexity AI (never ChatGPT for facts). Verify every statistic before use. Build evidence base: problem statement data, target beneficiary profile, market size, comparable funded projects.'},
- {n:'SESSION 2',t:'Proposal Structure & Drafting',d:'90 min',c:'Structure: Executive Summary → Problem Statement → Proposed Solution → Implementation Timeline → Evaluation Framework → Team & Credentials → Budget Narrative.'},
- {n:'SESSION 3',t:'Pitch Deck & Visual Design',d:'60 min',c:'Gamma structure: Title → Problem → Solution → How it Works → Team → Impact → Budget → Ask. Use Canva for supporting infographics.'},
- {n:'SESSION 4',t:'Review, Refine & Submit',d:'60 min',c:'Readability: Hemingway App — aim for Grade 8 reading level. Submission checklist: all attachments, word count, formatting, contact information.'}]},
+ mods:[{n:'BLOCK 1',t:'Decoding the ATS Algorithm',d:'30 min',c:'ATS reads your resume like a scanner — not a person. It strips formatting and looks for keywords matching the job description. 5 Rules: (1) Single-column layout, (2) Standard headings: Work Experience, Education, Skills, Summary, (3) Standard fonts: Arial, Calibri, Georgia, (4) Save as .docx or text-based PDF, (5) Contact info in document body — NOT in page header. AI audit: paste resume into Claude → "Audit for ATS compliance. Identify formatting issues that would cause rejection."'},
+ {n:'BLOCK 2',t:'Keyword Optimisation',d:'30 min',c:'Paste target job description into Claude → "Extract top 15 keywords and phrases. Rank by importance." Integrate top 8 naturally into Experience and Skills sections. Never keyword stuff — one natural mention per term. Use TealHQ (teal.work) for automated keyword matching.'},
+ {n:'BLOCK 3',t:'Achievement Rewriting',d:'30 min',c:'CAR formula: Context (situation) + Action (what you did) + Result (measurable outcome). Prompt: "Rewrite this job duty as a quantified achievement using CAR: [paste duty]. Add realistic but conservative metrics if none are stated."'},
+ {n:'BLOCK 4',t:'LinkedIn Profile Optimisation',d:'30 min',c:'Optimise: Headline (110 chars — role + value + keyword) · About (first 2 sentences visible without "see more") · Experience (mirror optimised resume) · Skills (top 10 from target job descriptions) · Featured (pin best project or portfolio).'},
+ {n:'BLOCK 5',t:'Cover Letter System',d:'30 min',c:'Prompt: "Write a 250-word cover letter for [job title] at [company]. My relevant experience: [3 bullets]. Company I admire because: [specific detail]. Tone: confident and direct. End with specific CTA: request for interview this week."'},
+ {n:'BLOCK 6',t:'Interview Preparation with AI',d:'30 min',c:'Prepare for any interview in 20 minutes: paste job description into Claude + "Generate 10 most likely interview questions for this role. For each, suggest best answer using STAR method. Also list 5 questions I should ask them."'}]},
+{id:6,t:'Automated CRM & Lead Follow-ups',dur:'3 Hours',desc:'Build a live 24/7 automated lead pipeline — spam-protected form to AI-personalised follow-up emails.',
+ mods:[{n:'PHASE 1',t:'Secure Infrastructure Setup',d:'45 min',c:'Add domain to Cloudflare (free). Update nameservers at registrar. Create email alias (hello@yourdomain.com → routes to Gmail for free). Create Turnstile widget for bot protection — save Site Key and Secret Key. HubSpot CRM: configure pipeline for Nigerian sales cycle (Lead → Discovery → Quotation → Payment). Add 4 custom contact properties: Lead Source, Business Type, Budget Range, AI Lead Score.'},
+ {n:'PHASE 2',t:'Lead Capture System',d:'45 min',c:'Create Tally form: business name, contact name, email, phone, service interest, budget range, message. Add Cloudflare Turnstile bot protection using Site Key. Connect to HubSpot via Make.com: form submission → create/update HubSpot contact → add to pipeline → trigger notification (email or Slack).'},
+ {n:'PHASE 3',t:'AI Lead Scoring & Drafting',d:'30 min',c:'Google AI Studio API: get key at aistudio.google.com. Make.com AI module: form data → Gemini with scoring prompt → score 1-10 + reasoning + draft email. Prompt: "Score this lead 1-10 based on budget alignment, service fit, urgency, and completeness. Return: score, reasoning (50 words), personalised first-response email draft."'},
+ {n:'PHASE 4',t:'Go Live & Test',d:'40 min',c:'End-to-end test: submit your own form → check HubSpot for new contact → check Make.com run history → check Gmail for draft notification → verify lead score stored. Share form link with 3 people. Watch pipeline fill in real time.'}]},
+{id:7,t:'AI Business Proposals & Grants',dur:'Multi-Session',desc:'Write winning business proposals, pitch decks, and grant applications using AI research and writing.',
+ mods:[{n:'SESSION 1',t:'Research & Evidence',d:'90 min',c:'Research with Perplexity AI (never ChatGPT for facts). Verify every statistic before use. Build evidence base: problem statement data, target beneficiary profile, market size, comparable funded projects. Prompt: "Search for verified statistics about [problem] in Nigeria in the last 3 years. List only statistics with source URLs I can verify."'},
+ {n:'SESSION 2',t:'Proposal Structure & Drafting',d:'90 min',c:'Structure: Executive Summary (write LAST) → Problem Statement (evidence-based) → Proposed Solution (specific, measurable) → Implementation Timeline (phased, realistic) → Evaluation Framework → Team & Credentials → Budget Narrative. Claude: include problem evidence, solution specifics, credentials, desired tone.'},
+ {n:'SESSION 3',t:'Pitch Deck & Visual Design',d:'60 min',c:'Gamma structure: Title → Problem (1 stat) → Solution (1 sentence) → How it Works (3 steps) → Team → Impact (specific outcomes) → Budget → Ask (exactly what you need). Use Canva for supporting infographics.'},
+ {n:'SESSION 4',t:'Review, Refine & Submit',d:'60 min',c:'Readability: Hemingway App — aim for Grade 8 reading level. AI review prompt: "Review this section for clarity, persuasiveness, and logical flow. Suggest 3 specific improvements." Submission checklist: all attachments included, word count within limits, formatting correct, contact information complete.'}]},
 {id:8,t:'AI Data Analysis & Dashboards',dur:'Multi-Session',desc:'Analyse real datasets and build professional dashboards — no coding required.',
- mods:[{n:'SESSION 1',t:'Data Preparation & Cleaning',d:'2 hrs',c:'5-stage pipeline: Extract → Clean → Transform → Analyse → Visualise. Upload 30 rows to Claude for cleaning plan. Build formulas in Google Sheets with AI.'},
- {n:'SESSION 2',t:'Analysis & Pattern Detection',d:'2 hrs',c:'Julius AI (julius.ai): upload cleaned CSV. Ask for top insights, trends, and variance. Export charts as PNG for your dashboard.'},
- {n:'SESSION 3',t:'Dashboard Building',d:'2 hrs',c:'Google Looker Studio (free): Connect Google Sheet. Add bar chart, line chart, scorecard tiles, geo map. Design: one KPI per scorecard, 2-colour palette max.'},
- {n:'SESSION 4',t:'Presentation & Storytelling',d:'1 hr',c:'Data story structure: Situation → Complication → Resolution. Present in Gamma — one slide per key finding.'}]},
+ mods:[{n:'SESSION 1',t:'Data Preparation & Cleaning',d:'2 hrs',c:'5-stage pipeline: Extract → Clean → Transform → Analyse → Visualise. Download Tableau Superstore practice dataset. Upload 30 rows to Claude: "You are a data analyst. This is a sample of my dataset: [paste]. Identify: (1) column data types, (2) missing values, (3) formatting inconsistencies, (4) potential duplicates. Provide step-by-step cleaning plan." Build formulas in Google Sheets with AI — no manual formula writing.'},
+ {n:'SESSION 2',t:'Analysis & Pattern Detection',d:'2 hrs',c:'Julius AI (julius.ai): upload cleaned CSV. Ask: "What are the top 5 insights? What trends do you see over time? Which category has highest variance?" Julius generates charts and written analysis simultaneously. Export charts as PNG for your dashboard.'},
+ {n:'SESSION 3',t:'Dashboard Building',d:'2 hrs',c:'Google Looker Studio (lookerstudio.google.com — free): Connect Google Sheet. Add: bar chart for categories, line chart for trends, scorecard tiles for KPIs, geo map if location data exists. Design: one KPI per scorecard, 2-colour palette max, dashboard title that states what the data shows.'},
+ {n:'SESSION 4',t:'Presentation & Storytelling',d:'1 hr',c:'Data story structure: Situation (current state) → Complication (problem the data reveals) → Resolution (what should be done). Present in Gamma — one slide per key finding. Prompt: "Based on this data: [paste figures], what are the 3 most important recommendations for a business leader? Be specific and actionable."'}]},
 {id:9,t:'AI E-Learning & Course Creation',dur:'3 Hours',desc:'Design, build, and sell a complete online course using AI — from concept to published and marketed.',
- mods:[{n:'MOD 1',t:'Introduction to AI in E-Learning',d:'25 min',c:'Your job: knowledge, personal stories, niche, quality control. AI\'s job: curriculum and scripts, study guides, voiceover, AI avatar video, sales page and email sequences.'},
- {n:'MOD 2',t:'AI Tools Overview & Setup',d:'25 min',c:'Tool stack: Claude (curriculum) · NotebookLM (research) · ElevenLabs (voiceover) · HeyGen (AI video) · Canva (slides) · Selar or Payhip (delivery).'},
- {n:'MOD 3',t:'Planning Your Course',d:'30 min',c:'Validation prompt: "I want to create a course about [topic] for [audience]. Is there demand?" Build 6-module outline: each module = 1 core transformation.'},
- {n:'MOD 4',t:'Content Creation with AI',d:'35 min',c:'Lesson script prompt: "Write a 500-word lesson script for Module [X]. Learner will: [outcome]. Tone: conversational and encouraging."'},
- {n:'MOD 5',t:'Production & Delivery',d:'30 min',c:'Recording options: Loom screen recording · Canva slides + ElevenLabs voiceover · HeyGen AI presenter. Upload to Selar or Payhip.'},
- {n:'MOD 6',t:'Marketing & Launch',d:'25 min',c:'Sales page prompt: "Write a sales page for [course title] at ₦[price] for [audience]." Launch email sequence: Day 1 announce · Day 3 preview · Day 5 proof · Day 7 last chance.'}]}
-];
-
-
-/* ══ AI NEWS BLOG ══ */
-const BLOG_CATS=['all','AI Models','Tools & Apps','Business','Tutorials','Industry'];
-const BLOG_POSTS=[
-{id:1,cat:'AI Models',date:'May 2026',rt:'5 min read',featured:true,
- title:'Claude 4 Redefines What AI Can Do for Your Business',
- excerpt:'Anthropic's Claude 4 family brings autonomous reasoning, real-time browsing, and multi-step task execution. Here's your practical guide to what's changed and how to leverage it.',
- body:`<p>When Anthropic released Claude 4, the shift was immediately clear to anyone working with AI daily. This wasn't a marginal improvement — it was a rethinking of what an AI assistant can actually do for you.</p>
-<h3>What's Actually New</h3>
-<p>Claude 4 introduced two major capabilities that matter most for business users: <strong>extended thinking</strong> (the model can reason through complex problems step by step before answering) and <strong>agentic task execution</strong> (it can plan, use tools, and complete multi-step tasks autonomously).</p>
-<p>For the average entrepreneur or knowledge worker, this means you can now delegate genuine cognitive work — not just ask it to write or summarise, but actually think through a business problem, research a topic, and produce a structured output.</p>
-<h3>What This Means for Course Participants</h3>
-<p>Everything you've learned about prompting still applies, but the ceiling is dramatically higher. A well-constructed prompt now unlocks outcomes that would have required a team of specialists 18 months ago.</p>
-<ul>
-<li><strong>Business proposals:</strong> Claude 4 can research, draft, and refine a complete proposal in one session</li>
-<li><strong>Data analysis:</strong> Feed it a spreadsheet and ask for strategic insights — not just summaries</li>
-<li><strong>Automation planning:</strong> Describe your business workflow and it will design the automation architecture</li>
-</ul>
-<h3>The Practical Takeaway</h3>
-<p>Claude 4 rewards people who know how to direct AI effectively. If you've built strong prompting habits, you're better positioned than 90% of users to extract the full value from this generation of models. The gap between AI-literate and AI-naive professionals has never been wider.</p>`},
-
-{id:2,cat:'Tools & Apps',date:'May 2026',rt:'4 min read',featured:false,
- title:'The 7 AI Tools Every African Entrepreneur Needs in 2026',
- excerpt:'From content creation to client automation, these tools are transforming how Africa's fastest-growing businesses operate — and most cost under $20/month.',
- body:`<p>The democratisation of AI tools has created an unprecedented opportunity for entrepreneurs in Nigeria and across Africa. You no longer need a developer, a designer, or a full content team to run a professional operation.</p>
-<h3>The Essential 2026 Stack</h3>
-<ul>
-<li><strong>Claude (Anthropic) — Writing & Strategy.</strong> The best model for nuanced business writing, proposals, and strategic thinking. The Pro plan at $20/month pays for itself in hours saved weekly.</li>
-<li><strong>Perplexity AI — Research.</strong> Real-time, cited research without the hallucination risk of ChatGPT. Use it for market research, competitor analysis, and fact-checking.</li>
-<li><strong>Canva AI — Visual Content.</strong> Magic Design, AI image generation, and Brand Kit make professional-grade visuals accessible to anyone.</li>
-<li><strong>ElevenLabs — Voice & Audio.</strong> Generate natural-sounding voiceovers in seconds. Essential for YouTube creators, course makers, and podcast producers.</li>
-<li><strong>Make.com — Automation.</strong> Connect your tools without code. A single automation workflow can save 5–10 hours per week.</li>
-<li><strong>Gamma — Presentations.</strong> AI-generated pitch decks, proposals, and reports that look designer-built in minutes.</li>
-<li><strong>Julius AI — Data Analysis.</strong> Upload a spreadsheet and get insights, charts, and recommendations instantly — no Excel formula expertise required.</li>
-</ul>
-<h3>The Combination That Changes Everything</h3>
-<p>The real power is not in any single tool but in combining them. Claude drafts the content strategy → Canva produces the visuals → Make.com distributes it → ElevenLabs narrates the video version. An operation that required a 4-person team in 2022 is now a solo endeavour.</p>`},
-
-{id:3,cat:'AI Models',date:'April 2026',rt:'6 min read',featured:false,
- title:'GPT-5 vs Claude 4 vs Gemini 2.5: An Honest Comparison',
- excerpt:'Three flagship AI models, three very different strengths. We break down which wins for writing, coding, analysis, and real-world business use.',
- body:`<p>The AI model wars have reached a point where all three leading models are genuinely capable. The question is no longer "which is best" but "which is best for your specific use case."</p>
-<h3>For Business Writing & Strategy — Claude 4 Wins</h3>
-<p>Claude's writing is consistently the most natural, nuanced, and contextually aware. For proposals, reports, email sequences, and marketing copy, Claude 4 produces output that requires the least editing. Its instruction-following is also more reliable — it does what you actually ask.</p>
-<h3>For Coding & Technical Tasks — It's a Tie (GPT-5 Edge)</h3>
-<p>GPT-5 has a slight edge for code generation, particularly for complex multi-file projects. Claude 4 is excellent for code explanation and debugging. Gemini 2.5 Pro performs well on Google-adjacent tasks (Sheets, Apps Script, Cloud).</p>
-<h3>For Research & Real-Time Information — Gemini 2.5 Pro</h3>
-<p>Gemini's deep integration with Google Search gives it a factual advantage for queries requiring current information. Perplexity, however, remains the purpose-built research tool of choice.</p>
-<h3>The Honest Recommendation</h3>
-<p>For the work taught in this programme — writing, automation, content creation, business development — Claude 4 is the primary tool. Use Perplexity for research, Claude for creation, and Make.com to automate the workflow.</p>`},
-
-{id:4,cat:'Industry',date:'April 2026',rt:'4 min read',featured:false,
- title:'Remote Work + AI: The 2026 Global Hiring Report',
- excerpt:'Global remote hiring is up 34% in 2026. AI-skilled candidates command 40–65% salary premiums. Here's where the opportunities are concentrated.',
- body:`<p>The remote work market in 2026 looks significantly different from 2023. The initial post-pandemic pullback has reversed, driven by companies discovering they can hire global talent at competitive rates — and AI-skilled workers who deliver 3–5× the output of traditional hires.</p>
-<h3>The Numbers That Matter</h3>
-<ul>
-<li>Remote job postings are up 34% year-on-year globally</li>
-<li>AI prompt engineering and AI operations roles command $45,000–$95,000/year remotely</li>
-<li>Content creation roles using AI tools are 60% higher-paying than traditional content roles</li>
-<li>Nigerian remote workers on Toptal, Upwork, and direct hire earn average $28–$65/hour for AI-assisted services</li>
-</ul>
-<h3>Where the Demand Is</h3>
-<p><strong>Highest demand:</strong> AI content strategists, automation specialists, AI operations (AIOps), prompt engineers, AI-assisted data analysts.</p>
-<p><strong>Growth sectors:</strong> Healthcare AI documentation, legal AI research, e-commerce AI content, financial analysis automation.</p>
-<h3>What Employers Actually Want</h3>
-<p>The most common screening criteria in 2026 remote job listings: demonstrated AI tool proficiency (not just awareness), measurable output examples, and a clear explanation of your AI workflow. A portfolio showing AI-enhanced deliverables beats a traditional CV every time.</p>`},
-
-{id:5,cat:'Business',date:'March 2026',rt:'7 min read',featured:false,
- title:'How to Build a ₦1M/Month Business with AI Skills',
- excerpt:'Five AI-powered income streams that Nigerian entrepreneurs are using to cross the million-naira monthly revenue threshold consistently in 2026.',
- body:`<p>A ₦1,000,000 monthly revenue target sounds ambitious until you map the arithmetic. At ₦200,000 per client, you need 5 clients. At ₦500,000 per project, you need 2. The AI skill set taught in this programme positions you to command those rates.</p>
-<h3>Stream 1: AI Content Retainers (₦150,000–₦350,000/month per client)</h3>
-<p>Businesses need consistent content: social media, newsletters, blog posts, proposals. An AI-powered content workflow lets you serve 4–6 clients simultaneously at a quality level that previously required a full content team. Acquisition: LinkedIn, direct outreach to SMEs, referrals.</p>
-<h3>Stream 2: AI Automation Setup (₦300,000–₦800,000 per project)</h3>
-<p>Most Nigerian SMEs have no automation. A single Make.com workflow (lead capture → CRM → WhatsApp follow-up → invoice) transforms their operations. This is a one-time project fee with a recurring maintenance retainer (₦50,000–₦100,000/month).</p>
-<h3>Stream 3: AI Masterclasses & Training (₦50,000–₦150,000 per seat)</h3>
-<p>Corporate training in AI tools. Companies are actively budgeting for AI upskilling. A 3-hour masterclass delivered to a company of 20 staff at ₦50,000/seat = ₦1,000,000 for a single day's work.</p>
-<h3>Stream 4: Digital Products (₦3,000–₦25,000, passive)</h3>
-<p>E-books, Notion templates, AI prompt packs, and mini-courses. Lower per-sale revenue but fully passive once created. A well-marketed prompt pack on Selar selling 50 units/month at ₦5,000 = ₦250,000 passive income.</p>
-<h3>Stream 5: AI-Assisted Consulting (₦500,000–₦2,000,000 per engagement)</h3>
-<p>Strategy consulting for businesses integrating AI into their operations. This is the highest-value stream, requiring demonstrated expertise and case studies. Typically begins after 6–12 months of client work.</p>`},
-
-{id:6,cat:'Tutorials',date:'March 2026',rt:'6 min read',featured:false,
- title:'Prompt Engineering in 2026: What Still Works and What Doesn't',
- excerpt:'With longer context windows and smarter models, the rules of effective prompting have evolved. Here's the updated framework for getting the best results.',
- body:`<p>Prompt engineering has matured from a niche skill into a foundational business literacy. But many of the "tips" circulating in 2023 are now outdated. Here's what the evidence shows actually works with modern models like Claude 4 and GPT-5.</p>
-<h3>What Still Works</h3>
-<p><strong>1. Role + Context + Task + Format (RCTF).</strong> "You are a [role]. Given [context], [task]. Respond in [format]." This structure consistently outperforms casual prompts.</p>
-<p><strong>2. Negative constraints.</strong> Telling the model what NOT to do is often more effective than specifying what to do. "Do not use bullet points. Do not use filler phrases like 'Certainly!' Do not summarise at the end."</p>
-<p><strong>3. Examples (few-shot prompting).</strong> Showing one or two examples of the output format you want dramatically improves consistency.</p>
-<h3>What No Longer Works (or is Less Necessary)</h3>
-<p><strong>Magic words and phrases</strong> ("Think step by step", "Take a deep breath") — modern models reason automatically; these add little.</p>
-<p><strong>Extremely long system prompts</strong> — Claude 4 and GPT-5 follow concise instructions better than sprawling 2,000-word prompts.</p>
-<p><strong>Jailbreaks and "DAN" prompts</strong> — Modern models are robust to these and they waste time.</p>
-<h3>The 2026 Prompting Principle</h3>
-<p>Write prompts the way you'd brief a highly intelligent, literal colleague who has no background in your project. Be specific, be concrete, give examples, and specify the exact format you need. That's it.</p>`},
-
-{id:7,cat:'Tools & Apps',date:'February 2026',rt:'5 min read',featured:false,
- title:'AI Video in 2026: Sora 2, Veo 3, and What Actually Works',
- excerpt:'Text-to-video has matured into a legitimate production tool. Here's the current landscape and how creators are monetising it in 2026.',
- body:`<p>The AI video landscape in 2026 is both more powerful and more practical than anyone predicted in 2023. The gap between "impressive demo" and "usable production tool" has closed significantly.</p>
-<h3>The Current Landscape</h3>
-<p><strong>Sora 2 (OpenAI):</strong> Best for cinematic, high-fidelity short clips. Excellent for product showcases, brand videos, and narrative storytelling. At $30/month on the Pro plan, it's accessible for serious creators.</p>
-<p><strong>Veo 3 (Google):</strong> Strongest for longer, more coherent sequences. Particularly good at maintaining consistent characters and settings across clips.</p>
-<p><strong>Pika 2.0:</strong> The most practical tool for social media creators. Fast generation, easy editing, and the best integration with existing footage.</p>
-<p><strong>HeyGen:</strong> Still the leader for AI avatar videos and lip-sync for course creators and corporate training content.</p>
-<h3>How Creators Are Monetising It</h3>
-<ul>
-<li>Faceless YouTube channels using AI b-roll + ElevenLabs narration</li>
-<li>Social media content agencies offering AI video packages to SMEs</li>
-<li>Course creators using HeyGen avatars to produce multilingual versions</li>
-<li>Real estate agencies using Sora 2 for property walkthroughs</li>
-</ul>
-<h3>The Honest Assessment</h3>
-<p>AI video still requires a strong script and a clear creative direction. It amplifies good ideas — it doesn't replace them. Learn to write compelling video scripts first, then leverage AI to produce them at scale.</p>`},
-
-{id:8,cat:'Industry',date:'February 2026',rt:'5 min read',featured:false,
- title:'AI Agents Are Here: What They Mean for Your Business',
- excerpt:'Autonomous AI agents that plan, browse, code, and execute multi-step tasks are no longer experimental. Here's how businesses are deploying them today.',
- body:`<p>In 2024, "AI agents" was a buzzword. In 2026, they are deployed production systems in thousands of businesses. Understanding what they are and how to use them is now a genuine competitive advantage.</p>
-<h3>What an AI Agent Actually Is</h3>
-<p>An AI agent is an AI model given access to tools (web browser, code execution, file system, APIs) and the ability to plan and execute multi-step tasks without human input at each step.</p>
-<p>Example: "Research the top 10 competitors to my business, compile their pricing and key features into a comparison table, and write a positioning brief for my team." A capable agent completes this in 8–12 minutes. Manually, it would take 4–6 hours.</p>
-<h3>Practical Business Applications in 2026</h3>
-<ul>
-<li><strong>Lead research:</strong> Agent researches a prospect, finds their pain points from public sources, and drafts a personalised outreach email</li>
-<li><strong>Content production pipeline:</strong> Research → outline → draft → format → schedule, executed automatically</li>
-<li><strong>Financial monitoring:</strong> Agent checks weekly metrics, identifies anomalies, and generates a board report</li>
-<li><strong>Customer support triage:</strong> Agent reads incoming queries, categorises them, drafts responses, and escalates edge cases</li>
-</ul>
-<h3>How to Start Today</h3>
-<p>You don't need to build agents from scratch. Claude.ai Projects, OpenAI's GPTs, and Make.com's AI scenarios all provide agent-like capabilities with no coding required. Start with one business workflow you repeat weekly and ask: could an AI agent handle the research and first-draft phases of this?</p>`}
+ mods:[{n:'MOD 1',t:'Introduction to AI in E-Learning',d:'25 min',c:'Your job: knowledge, personal stories, niche, quality control. AI\'s job: curriculum and scripts, study guides and quizzes, voiceover audio, AI avatar video, sales page and email sequences. AI eliminates traditional barriers: course creation time drops from months to weeks; equipment cost drops to near zero.'},
+ {n:'MOD 2',t:'AI Tools Overview & Setup',d:'25 min',c:'Tool stack: Claude (curriculum writing) · NotebookLM (research synthesis) · ElevenLabs (voiceover) · HeyGen (AI presenter video) · Canva (slides + graphics) · Selar or Payhip (delivery + payment). Create all accounts. Free tiers sufficient for your first course.'},
+ {n:'MOD 3',t:'Planning Your Course',d:'30 min',c:'Validation prompt: "I want to create a course about [topic] for [audience]. Is there demand? What are 5 specific outcomes learners would pay for? What are 3 competing courses and how can mine differ?" Build 6-module outline: each module = 1 core transformation.'},
+ {n:'MOD 4',t:'Content Creation with AI',d:'35 min',c:'Lesson script prompt: "Write a 500-word lesson script for Module [X] of my course on [topic]. Learner will: [outcome]. Tone: conversational and encouraging. Include: one real-world example, one common mistake to avoid, one action step at the end." Workbook: "Create a participant workbook for this lesson with 3 reflection questions and 1 fill-in exercise."'},
+ {n:'MOD 5',t:'Production & Delivery',d:'30 min',c:'Recording options: Loom screen recording (free, no editing) · Canva slides + ElevenLabs voiceover (no camera) · HeyGen AI presenter (most professional, no camera). Upload to Selar or Payhip as video files. Organise into modules with numbered file names.'},
+ {n:'MOD 6',t:'Marketing & Launch',d:'25 min',c:'Sales page prompt: "Write a sales page for [course title] at ₦[price] for [audience]. Include: headline, 5 benefit bullets, who this is for, 3 testimonials (placeholder), pricing section, FAQ (5 questions), strong CTA." Launch email sequence: Day 1 announce · Day 3 lesson preview · Day 5 social proof · Day 7 last chance.'}]}
 ];
 
 /* ══ STATE ══ */
-let ST={currentDay:1,completedDays:[],streak:0,lastEngaged:null,timerRunning:false,timerSeconds:0,timerInterval:null,currentProg:'expert',currentArticle:null,newsFilter:'all'};
+let ST={currentDay:1,completedDays:[],streak:0,lastEngaged:null,timerRunning:false,timerSeconds:0,timerInterval:null,currentProg:'expert',openMcId:null};
 function loadSt(){const s=localStorage.getItem('ams-progress');if(s){const p=JSON.parse(s);ST={...ST,...p};}}
 function saveSt(){localStorage.setItem('ams-progress',JSON.stringify(ST));}
 function getSession(){return JSON.parse(localStorage.getItem('ams-session')||'null');}
@@ -814,8 +563,7 @@ function getAcc(){const s=getSession();return s?.access||{};}
 function isDemo(){return getSession()?.demo===true;}
 function hasExpertMonth(m){return getAcc().expert?.months?.includes(m)||isDemo();}
 function hasM2MPhase(p){return getAcc().m2m?.phases?.includes(p)||(isDemo()&&p===1);}
-/* hasMC always false — all Masterclass content is locked; visible but purchase-only */
-function hasMC(){return false;}
+function hasMC(id){return getAcc().masterclasses?.classes?.includes(id);}
 function isUnlocked(lesson){
   // Demo: Day 1 only
   if(isDemo()) return lesson.d===1;
@@ -838,7 +586,6 @@ function buildSidebar(){
   const c=document.getElementById('sidebarInner');c.innerHTML='';
   const p=ST.currentProg;
   if(p==='masterclasses'){buildMCSidebar(c);return;}
-  if(p==='news'){buildNewsSidebar(c);return;}
   const groups=p==='m2m'?
     [{lbl:'Phase 1 — Foundations',filter:l=>l.ph===1,ph:1},{lbl:'Phase 2 — Business',filter:l=>l.ph===2,ph:2},{lbl:'Phase 3 — Mastery',filter:l=>l.ph===3,ph:3}]:
     [{lbl:'Month 1 — Foundations',filter:l=>l.mo===1,mo:1},{lbl:'Month 2 — Business',filter:l=>l.mo===2,mo:2},{lbl:'Month 3 — Mastery',filter:l=>l.mo===3,mo:3}];
@@ -860,36 +607,21 @@ function buildSidebar(){
   });
 }
 
-function selectLesson(day){ST.currentDay=day;saveSt();renderMain();buildSidebar();closeSidebar();}
-
 function buildMCSidebar(c){
   const sec=document.createElement('div');sec.className='sidebar-section open';
-  const items=MC.map(mc=>`<div class="s-lesson locked">
-    <div class="s-dot"></div>
-    <div class="s-title">Class ${mc.id}: ${mc.t}</div>
-    <span class="s-lock">🔒</span>
-  </div>`).join('');
-  sec.innerHTML=`<div class="sidebar-section-hdr" onclick="this.parentElement.classList.toggle('open')"><span class="sidebar-section-title">AI Masterclass</span><span class="sidebar-arrow">▼</span></div><div class="sidebar-lessons">${items}</div>`;
+  const items=MC.map(mc=>{
+    const u=hasMC(mc.id);
+    return `<div class="s-lesson ${!u?'locked':''}" onclick="${u?`openMC(${mc.id})`:''}">
+      <div class="s-dot ${ST.openMcId===mc.id?'cur':''}"></div>
+      <div class="s-title">Class ${mc.id}: ${mc.t}</div>
+      ${!u?'<span class="s-lock">🔒</span>':''}
+    </div>`;
+  }).join('');
+  sec.innerHTML=`<div class="sidebar-section-hdr" onclick="this.parentElement.classList.toggle('open')"><span class="sidebar-section-title">AI Masterclasses</span><span class="sidebar-arrow">▼</span></div><div class="sidebar-lessons">${items}</div>`;
   c.appendChild(sec);
 }
 
-function buildNewsSidebar(c){
-  const cats=BLOG_CATS;
-  const catItems=cats.map(cat=>`<div class="s-lesson news-sidebar-cats ${ST.newsFilter===cat?'active':''}" onclick="filterNews('${cat}')">
-    <div class="s-dot ${ST.newsFilter===cat?'':''}"></div>
-    <div class="s-title">${cat==='all'?'All Articles':cat}</div>
-    <span style="font-size:0.68rem;color:var(--text-muted);">${cat==='all'?BLOG_POSTS.length:BLOG_POSTS.filter(p=>p.cat===cat).length}</span>
-  </div>`).join('');
-  const recentItems=BLOG_POSTS.slice(0,5).map(p=>`<div class="s-lesson" onclick="openArticle(${p.id})" style="cursor:pointer;">
-    <div class="s-dot"></div>
-    <div class="s-title" style="font-size:0.74rem;line-height:1.3;">${p.title}</div>
-  </div>`).join('');
-  const sec1=document.createElement('div');sec1.className='sidebar-section open';
-  sec1.innerHTML=`<div class="sidebar-section-hdr" onclick="this.parentElement.classList.toggle('open')"><span class="sidebar-section-title">Categories</span><span class="sidebar-arrow">▼</span></div><div class="sidebar-lessons">${catItems}</div>`;
-  const sec2=document.createElement('div');sec2.className='sidebar-section open';
-  sec2.innerHTML=`<div class="sidebar-section-hdr" onclick="this.parentElement.classList.toggle('open')"><span class="sidebar-section-title">Recent Posts</span><span class="sidebar-arrow">▼</span></div><div class="sidebar-lessons">${recentItems}</div>`;
-  c.appendChild(sec1);c.appendChild(sec2);
-}
+function selectLesson(day){ST.currentDay=day;saveSt();renderMain();buildSidebar();closeSidebar();}
 
 /* ══ PROG TABS ══ */
 function buildProgTabs(){
@@ -898,8 +630,7 @@ function buildProgTabs(){
   const tabs=[];
   if(acc.expert?.months?.length||isDemo()) tabs.push({id:'expert',lbl:'AI Expert User'});
   if(acc.m2m?.phases?.length||(isDemo())) tabs.push({id:'m2m',lbl:'AI Mastery to Money'});
-  tabs.push({id:'masterclasses',lbl:'AI Masterclass'});
-  tabs.push({id:'news',lbl:'📰 AI News'});
+  if(acc.masterclasses?.classes?.length||isDemo()) tabs.push({id:'masterclasses',lbl:'Masterclasses'});
   if(!tabs.length) tabs.push({id:'expert',lbl:'AI Expert User'});
   c.innerHTML=tabs.map(t=>`<button class="prog-tab ${ST.currentProg===t.id?'active':''}" onclick="switchProg('${t.id}')">${t.lbl}</button>`).join('');
 }
@@ -909,10 +640,9 @@ function switchProg(p){ST.currentProg=p;saveSt();buildProgTabs();buildSidebar();
 /* ══ MAIN RENDER ══ */
 function renderMain(){
   const session=getSession();const acc=getAcc();const main=document.getElementById('mainContent');const p=ST.currentProg;
-  const hasSome=isDemo()||(p==='expert'&&acc.expert?.months?.length>0)||(p==='m2m'&&acc.m2m?.phases?.length>0);
-  if(p==='masterclasses'){renderMCMain(main);return;}
-  if(p==='news'){renderNewsMain(main);return;}
+  const hasSome=isDemo()||(p==='expert'&&acc.expert?.months?.length>0)||(p==='m2m'&&acc.m2m?.phases?.length>0)||(p==='masterclasses'&&acc.masterclasses?.classes?.length>0);
   if(!hasSome){main.innerHTML=renderGate(p);return;}
+  if(p==='masterclasses'){renderMCMain(main);return;}
   const lesson=CUR.find(l=>l.d===ST.currentDay)||CUR[0];
   const u=isUnlocked(lesson);const done=ST.completedDays.includes(lesson.d);
   main.innerHTML=`
@@ -976,6 +706,8 @@ function toggleNotes(btn){const c=btn.nextElementSibling;const o=c.classList.tog
 /* ══ MASTERCLASSES ══ */
 function renderMCMain(main){
   const cards=MC.map(mc=>{
+    const u=hasMC(mc.id);
+    // Syllabus: module titles always visible
     const syllabusItems=mc.mods.map(m=>`<div class="mc-syllabus-item"><span>${m.n} — ${m.t} <span style="color:var(--text-muted);font-size:0.68rem;">(${m.d})</span></span></div>`).join('');
     const syllabusHTML=`
       <button class="mc-syllabus-toggle" onclick="toggleMCSyllabus(this)">
@@ -984,114 +716,51 @@ function renderMCMain(main){
       <div class="mc-syllabus-list">
         <div class="mc-syllabus-inner">${syllabusItems}</div>
       </div>`;
-    return `<div class="mc-card locked">
+    // CTA: open full notes (unlocked) or upgrade prompt (locked)
+    const ctaHTML=u
+      ?`<button class="mc-open-btn" onclick="openMC(${mc.id})">Open Full Class Notes →</button>`
+      :`<a href="https://paystack.shop/pay/aishortcourses" target="_blank" class="mc-upgrade-btn">🔒 Unlock This Class — ₦30,000 ↗</a>`;
+    return `<div class="mc-card ${!u?'locked':''}">
       <div class="mc-num">CLASS ${String(mc.id).padStart(2,'0')} · ${mc.dur}</div>
       <div class="mc-name">${mc.t}</div>
       <div class="mc-desc">${mc.desc}</div>
       ${syllabusHTML}
-      <a href="https://paystack.shop/pay/aishortcourses" target="_blank" class="mc-upgrade-btn">🔒 Unlock This Class — ₦30,000 ↗</a>
+      ${ctaHTML}
     </div>`;
   }).join('');
   main.innerHTML=`
     <div class="dash-header">
-      <div class="welcome-tag">AI Masterclass</div>
-      <div class="welcome-title">Intensive Short Courses</div>
-      <div class="welcome-sub">2–3 hour deep dives into specialist AI skills. Preview the syllabus of any class below, then unlock to access full participant notes.</div>
+      <div class="welcome-tag">AI Masterclasses</div>
+      <div class="welcome-title">Your Intensive Classes</div>
+      <div class="welcome-sub">2–3 hour deep dives. Expand any class to preview the syllabus — unlock for full participant notes.</div>
     </div>
+    <div class="mc-detail" id="mcDetail"></div>
     <div class="mc-grid">${cards}</div>
   `;
 }
+
+function openMC(id){
+  ST.openMcId=id;buildSidebar();
+  const mc=MC.find(m=>m.id===id);if(!mc) return;
+  const detail=document.getElementById('mcDetail');if(!detail) return;
+  const modsHTML=mc.mods.map(m=>`<div class="mc-module"><div class="mc-module-hdr" onclick="this.parentElement.classList.toggle('open')"><span class="mc-module-num">${m.n}</span><span class="mc-module-title">${m.t}</span><span class="mc-module-dur">⏱ ${m.d}</span><span class="mc-module-arrow">▼</span></div><div class="mc-module-body"><div class="mc-module-inner"><p>${m.c}</p></div></div></div>`).join('');
+  detail.className='mc-detail visible';
+  detail.innerHTML=`<div class="mc-detail-header"><div><div style="font-size:.64rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem">CLASS ${String(mc.id).padStart(2,'0')} · ${mc.dur}</div><div class="mc-detail-title">${mc.t}</div><div style="font-size:.8rem;color:var(--text-secondary);margin-top:.2rem">${mc.desc}</div></div><button class="mc-close-btn" onclick="closeMCDetail()">✕ Close</button></div>${modsHTML}`;
+  detail.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function closeMCDetail(){const d=document.getElementById('mcDetail');if(d)d.className='mc-detail';ST.openMcId=null;}
 
 function toggleMCSyllabus(btn){
   const list=btn.nextElementSibling;
   const isOpen=list.classList.toggle('open');
   btn.classList.toggle('open',isOpen);
+  // Close other open syllabuses
   document.querySelectorAll('.mc-syllabus-list.open').forEach(el=>{
     if(el!==list){el.classList.remove('open');el.previousElementSibling.classList.remove('open');}
   });
+  // Re-open this one if it was toggled off by the loop above
   if(isOpen){list.classList.add('open');btn.classList.add('open');}
-}
-
-/* ══ AI NEWS BLOG ══ */
-function getCatClass(cat){const m={'Tools & Apps':'tools','Business':'business','Tutorials':'tutorials','Industry':'industry'};return m[cat]||'';}
-
-function renderNewsMain(main){
-  const filter=ST.newsFilter||'all';
-  const filtered=filter==='all'?BLOG_POSTS:BLOG_POSTS.filter(p=>p.cat===filter);
-  const featured=BLOG_POSTS.find(p=>p.featured);
-  const grid=filtered.filter(p=>!p.featured||filter!=='all');
-
-  const featuredHTML=filter==='all'&&featured?`
-    <div class="blog-featured" onclick="openArticle(${featured.id})">
-      <div class="blog-featured-meta">
-        <span class="blog-category ${getCatClass(featured.cat)}">${featured.cat}</span>
-        <span class="blog-date">${featured.date}</span>
-        <span class="blog-read-time">· ${featured.rt}</span>
-      </div>
-      <div class="blog-featured-title">${featured.title}</div>
-      <div class="blog-featured-excerpt">${featured.excerpt}</div>
-      <button class="blog-read-btn">Read Article →</button>
-    </div>`:'';
-
-  const cardsHTML=grid.map(p=>`
-    <div class="blog-card" onclick="openArticle(${p.id})">
-      <div class="blog-featured-meta" style="margin-bottom:0;">
-        <span class="blog-category ${getCatClass(p.cat)}">${p.cat}</span>
-      </div>
-      <div class="blog-card-title">${p.title}</div>
-      <div class="blog-card-excerpt">${p.excerpt}</div>
-      <div class="blog-card-footer">
-        <span class="blog-date">${p.date}</span>
-        <span class="blog-read-time">${p.rt}</span>
-      </div>
-    </div>`).join('');
-
-  const filterBar=BLOG_CATS.map(cat=>`<button class="blog-filter ${filter===cat?'active':''}" onclick="filterNews('${cat}')">${cat==='all'?'All':cat}</button>`).join('');
-
-  main.innerHTML=`
-    <div class="dash-header">
-      <div class="welcome-tag">AI News</div>
-      <div class="welcome-title">What's New in AI</div>
-      <div class="welcome-sub">Curated insights, tool updates, and strategies relevant to your AI journey — updated regularly.</div>
-    </div>
-    <div class="blog-detail-panel" id="blogDetail"></div>
-    <div class="blog-filter-bar">${filterBar}</div>
-    ${featuredHTML}
-    <div class="blog-grid">${cardsHTML}</div>`;
-
-  if(ST.currentArticle){openArticle(ST.currentArticle,false);}
-}
-
-function openArticle(id,scroll=true){
-  ST.currentArticle=id;
-  const post=BLOG_POSTS.find(p=>p.id===id);if(!post)return;
-  const detail=document.getElementById('blogDetail');if(!detail)return;
-  detail.className='blog-detail-panel visible';
-  detail.innerHTML=`
-    <div class="blog-detail-header">
-      <div>
-        <div class="blog-featured-meta" style="margin-bottom:0.6rem;">
-          <span class="blog-category ${getCatClass(post.cat)}">${post.cat}</span>
-          <span class="blog-date">${post.date}</span>
-          <span class="blog-read-time">· ${post.rt}</span>
-        </div>
-        <div class="blog-detail-title">${post.title}</div>
-      </div>
-      <button class="blog-close-btn" onclick="closeArticle()">✕ Close</button>
-    </div>
-    <div class="blog-body">${post.body}</div>`;
-  if(scroll)detail.scrollIntoView({behavior:'smooth',block:'start'});
-}
-
-function closeArticle(){
-  ST.currentArticle=null;
-  const d=document.getElementById('blogDetail');
-  if(d){d.className='blog-detail-panel';d.innerHTML='';}
-}
-
-function filterNews(cat){
-  ST.newsFilter=cat;ST.currentArticle=null;
-  buildSidebar();renderMain();
 }
 
 /* ══ STATS ══ */
@@ -1178,7 +847,7 @@ function setGreeting(){
 }
 
 function renderGate(p){
-  const labels={expert:'AI Expert User',m2m:'AI Mastery to Money'};
+  const labels={expert:'AI Expert User',m2m:'AI Mastery to Money',masterclasses:'AI Masterclasses'};
   return `<div class="payment-gate"><div class="gate-icon">🔒</div><div class="gate-title">Unlock ${labels[p]||'Your Programme'}</div><div class="gate-desc">Your account does not yet have access to this programme. Complete payment or contact your admin to unlock your content.</div><div class="gate-actions"><a href="https://paystack.shop/pay/aimadesimple" target="_blank" class="btn-pay">Pay via Paystack ↗</a><button class="btn-outline" onclick="simPay()">Simulate Payment ✓</button></div><p style="font-size:.72rem;color:var(--text-muted);margin-top:1.5rem">Already paid via bank transfer? Send proof on WhatsApp and your admin will grant access.</p></div>`;
 }
 
@@ -1187,6 +856,7 @@ function simPay(){
   if(!session.access) session.access={};
   if(p==='expert') session.access.expert={months:[1,2,3]};
   if(p==='m2m') session.access.m2m={phases:[1,2,3],tier:'standard'};
+  if(p==='masterclasses') session.access.masterclasses={classes:[1,2,3,4,5,6,7,8,9]};
   session.paid=true;saveSession(session);
   const users=JSON.parse(localStorage.getItem('ams-users')||'{}');
   if(users[session.email]){users[session.email].access=session.access;users[session.email].paid=true;localStorage.setItem('ams-users',JSON.stringify(users));}
@@ -1207,6 +877,7 @@ function init(){
   if(!acc[ST.currentProg]&&!isDemo()){
     if(acc.expert)ST.currentProg='expert';
     else if(acc.m2m)ST.currentProg='m2m';
+    else if(acc.masterclasses)ST.currentProg='masterclasses';
   }
   buildProgTabs();buildSidebar();renderMain();
 }
