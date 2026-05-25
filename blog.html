@@ -532,18 +532,6 @@ function closeDetail(){
   document.getElementById('articleDetail').classList.remove('open');
 }
 
-/* ── SUBSCRIBE ── */
-function handleSubscribe(){
-  const email = document.getElementById('subEmail').value.trim();
-  const msg = document.getElementById('subMsg');
-  if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-    msg.style.display='block'; msg.style.color='#e05a5a'; msg.textContent='✗ Please enter a valid email address.'; return;
-  }
-  msg.style.display='block'; msg.style.color='var(--gold)';
-  msg.textContent='✓ You\'re subscribed! Watch your inbox for the next AI roundup.';
-  document.getElementById('subEmail').value='';
-}
-
 /* ── INIT ── */
 renderFilters();
 renderContent();
@@ -609,6 +597,63 @@ renderContent();
         }, 2500);
       }
     })();
-  </script>
+  
+/* ── MOBILE NAV ── */
+function toggleMobileNav(){
+  const links = document.getElementById('navLinks');
+  const ham   = document.getElementById('navHam');
+  const over  = document.getElementById('navOverlay');
+  if(!links) return;
+  const open = links.classList.toggle('open');
+  ham.classList.toggle('open', open);
+  ham.setAttribute('aria-expanded', String(open));
+  if(over) over.classList.toggle('show', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+function closeMobileNav(){
+  document.getElementById('navLinks')?.classList.remove('open');
+  document.getElementById('navHam')?.classList.remove('open');
+  document.getElementById('navHam')?.setAttribute('aria-expanded','false');
+  document.getElementById('navOverlay')?.classList.remove('show');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeMobileNav(); });
+
+
+/* ── GOOGLE SHEETS SUBSCRIBE ── */
+function handleSubscribe(){
+  var emailEl = document.getElementById('subEmail');
+  var msgEl   = document.getElementById('subMsg');
+  var email   = emailEl ? emailEl.value.trim() : '';
+
+  if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    if(msgEl){ msgEl.style.display='block'; msgEl.style.color='#e05a5a'; msgEl.textContent='Please enter a valid email address.'; }
+    return;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────
+     Google Apps Script endpoint — see google-apps-script-subscribers.js
+     REPLACE the URL below with your deployed /exec URL after setup:
+     ───────────────────────────────────────────────────────────────── */
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbxPLACEHOLDER_REPLACE_ME/exec';
+
+  if(msgEl){ msgEl.style.display='block'; msgEl.style.color='var(--gold)'; msgEl.textContent='Subscribing…'; }
+
+  var url = ENDPOINT + '?email=' + encodeURIComponent(email) + '&source=' + encodeURIComponent('Blog - Stay Ahead of AI') + '&ts=' + Date.now();
+
+  fetch(url, { method:'GET', mode:'no-cors' })
+    .catch(function(){ })
+    .finally(function(){
+      if(emailEl) emailEl.value = '';
+      if(msgEl){
+        msgEl.style.display = 'block';
+        msgEl.style.color   = 'var(--gold)';
+                msgEl.textContent   = "\u2713 Subscribed! Watch your inbox for the next AI roundup.";
+        setTimeout(function(){ msgEl.style.display='none'; }, 6000);
+      }
+    });
+}
+
+</script>
 </body>
 </html>
