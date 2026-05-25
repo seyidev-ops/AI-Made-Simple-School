@@ -321,6 +321,16 @@ nav{position:sticky;top:0;z-index:200;background:var(--nav-bg);backdrop-filter:b
   .sidebar-section-title{font-size:0.62rem;}
 }
 </style>
+  <!-- Service Worker + PWA Install -->
+  <script>
+    if('serviceWorker' in navigator){
+      window.addEventListener('load',()=>{
+        navigator.serviceWorker.register('/sw.js')
+          .then(r=>console.log('SW registered',r.scope))
+          .catch(e=>console.warn('SW failed',e));
+      });
+    }
+  </script>
 </head>
 <body>
 <nav>
