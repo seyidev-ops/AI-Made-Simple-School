@@ -36,6 +36,36 @@ nav{position:sticky;top:0;z-index:200;background:var(--nav-bg);backdrop-filter:b
 .theme-btn.active{background:var(--gold);color:#0E0E10;}
 .btn-logout{background:transparent;border:1px solid var(--border);color:var(--text-muted);padding:5px 10px;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.7rem;cursor:pointer;transition:all var(--transition);}
 .btn-logout:hover{border-color:var(--gold);color:var(--gold);}
+/* ── SIDEBAR TOGGLE (hamburger) ── */
+.sidebar-toggle{display:none;align-items:center;justify-content:center;background:var(--bg3);border:1px solid var(--border);color:var(--text-muted);width:34px;height:34px;border-radius:6px;cursor:pointer;font-size:18px;flex-shrink:0;transition:all 0.2s;line-height:1;}
+.sidebar-toggle:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim);}
+
+/* ── SIDEBAR OVERLAY backdrop ── */
+.sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(3px);z-index:150;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+
+/* ── NOTIFICATION BAR ── */
+.notif-bar{background:var(--gold-dim);border-bottom:1px solid var(--gold-border);padding:10px clamp(1.25rem,3vw,2.5rem);display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:relative;z-index:80;}
+.notif-icon{font-size:15px;flex-shrink:0;}
+.notif-text{font-size:0.78rem;color:var(--text-secondary);flex:1;line-height:1.4;}
+.btn-enable-notifs{background:var(--gold);color:#0E0E10;border:none;padding:6px 16px;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:0.06em;transition:all 0.2s;flex-shrink:0;white-space:nowrap;}
+.btn-enable-notifs:hover{opacity:0.85;}
+.notif-close{background:transparent;border:none;color:var(--text-muted);cursor:pointer;font-size:16px;padding:2px 6px;flex-shrink:0;line-height:1;}
+.notif-close:hover{color:var(--text);}
+
+/* ── CLASS SCHEDULE / CALENDAR WIDGET ── */
+.schedule-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1.25rem;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;position:relative;overflow:hidden;}
+.schedule-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);}
+.schedule-date-block{text-align:center;flex-shrink:0;min-width:52px;}
+.schedule-day-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--gold);line-height:1;}
+.schedule-day-name{font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);}
+.schedule-divider{width:1px;height:44px;background:var(--border);flex-shrink:0;}
+.schedule-info{flex:1;min-width:140px;}
+.schedule-label{font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.schedule-title{font-size:0.88rem;font-weight:600;color:var(--text);line-height:1.3;}
+.schedule-time{font-size:0.75rem;color:var(--text-muted);margin-top:3px;display:flex;align-items:center;gap:4px;}
+.schedule-countdown{text-align:right;flex-shrink:0;}
+.countdown-val{font-family:'Space Mono',monospace;font-size:1rem;font-weight:700;color:var(--text);line-height:1;}
+.countdown-lbl{font-size:0.58rem;color:var(--text-muted);letter-spacing:0.06em;text-transform:uppercase;}
 .app-layout{flex:1;display:flex;min-height:calc(100vh - 60px);}
 .sidebar{width:256px;flex-shrink:0;background:var(--sidebar-bg);border-right:1px solid var(--border);overflow-y:auto;position:sticky;top:60px;height:calc(100vh - 60px);padding:1rem 0;transition:transform 0.3s ease,background var(--transition);}
 .sidebar-section{margin-bottom:0.25rem;}
@@ -216,7 +246,13 @@ nav{position:sticky;top:0;z-index:200;background:var(--nav-bg);backdrop-filter:b
 @media(max-width:540px){.blog-grid{grid-template-columns:1fr;}.stats-row{grid-template-columns:1fr 1fr;}.phase-progress{grid-template-columns:repeat(3,1fr);}.mc-grid{grid-template-columns:1fr;}}
 
 /* ── RESPONSIVE ── */
-
+@media(max-width:900px){
+  .sidebar{position:fixed;top:60px;left:0;bottom:0;z-index:160;transform:translateX(-100%);}
+  .sidebar.open{transform:translateX(0);}
+  .sidebar-toggle{display:flex;}
+  .progress-bar-nav,.progress-pct{display:none;}
+  .nav-user{display:none;}
+}
 @media(max-width:768px){
   nav{padding:0 1rem;gap:0.5rem;}
   .nav-name{display:none;}
@@ -817,6 +853,7 @@ function renderMain(){
       <div class="welcome-title" id="wTitle">Loading…</div>
       <div class="welcome-sub" id="wSub"></div>
     </div>
+    ${renderScheduleCard()}
     <div class="stats-row">
       <div class="stat-card"><div class="stat-card-label">Current Day</div><div class="stat-card-value" id="stDay">${ST.currentDay}</div><div class="stat-card-sub">of 90 days</div></div>
       <div class="stat-card"><div class="stat-card-label">Completed</div><div class="stat-card-value" id="stDone">${ST.completedDays.length}</div><div class="stat-card-sub">lessons done</div></div>
@@ -987,6 +1024,54 @@ function closeArticle(){
 function filterNews(cat){
   ST.newsFilter=cat;ST.currentArticle=null;
   buildSidebar();renderMain();
+}
+
+/* ══ SCHEDULE / CALENDAR ══ */
+const CLASS_SCHEDULE=[
+  {title:'AI Expert User — Month 1 Kickoff',date:'2026-06-02',time:'7:00 PM',tz:'WAT',notes:'Live Zoom. Link sent via email.'},
+  {title:'AI Masterclass: Book Writing & Amazon KDP',date:'2026-06-09',time:'6:00 PM',tz:'WAT',notes:'Interactive workshop. WhatsApp group for link.'},
+  {title:'AI Expert User — Month 2 Kickoff',date:'2026-07-07',time:'7:00 PM',tz:'WAT',notes:'Live Zoom. Check email for link.'},
+  {title:'AI Mastery to Money — Cohort 7 Check-In',date:'2026-06-16',time:'7:00 PM',tz:'WAT',notes:'Live Q&A + accountability session.'},
+  {title:'AI Masterclass: Data Analysis & Dashboards',date:'2026-06-23',time:'6:00 PM',tz:'WAT',notes:'Hands-on workshop with datasets provided.'},
+];
+
+function getNextClass(){
+  const now=new Date();
+  const upcoming=CLASS_SCHEDULE.filter(s=>new Date(s.date+'T'+s.time.replace(' ','T'))>now);
+  upcoming.sort((a,b)=>new Date(a.date)-new Date(b.date));
+  return upcoming[0]||null;
+}
+
+function renderScheduleCard(){
+  const cls=getNextClass();
+  const now=new Date();
+  const dayNames=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const monthNames=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  // Today widget
+  const todayStr=`${dayNames[now.getDay()]} ${now.getDate()} ${monthNames[now.getMonth()]} ${now.getFullYear()}`;
+  const timeStr=now.toLocaleTimeString('en-NG',{hour:'2-digit',minute:'2-digit',hour12:true,timeZone:'Africa/Lagos'});
+  if(!cls) return `<div class="schedule-card"><div class="schedule-info"><div class="schedule-label">Today</div><div class="schedule-title">${todayStr}</div><div class="schedule-time">🕐 ${timeStr} WAT — No upcoming sessions scheduled</div></div></div>`;
+  const clsDate=new Date(cls.date);
+  const diffMs=clsDate-now;
+  const diffDays=Math.ceil(diffMs/(1000*60*60*24));
+  const countdown=diffDays<=0?'Today':diffDays===1?'Tomorrow':`${diffDays} days away`;
+  return `<div class="schedule-card">
+    <div class="schedule-date-block">
+      <div class="schedule-day-num">${clsDate.getDate()}</div>
+      <div class="schedule-day-name">${monthNames[clsDate.getMonth()]}</div>
+    </div>
+    <div class="schedule-divider"></div>
+    <div class="schedule-info">
+      <div class="schedule-label">Next Live Session</div>
+      <div class="schedule-title">${cls.title}</div>
+      <div class="schedule-time">🕐 ${cls.time} ${cls.tz} &nbsp;·&nbsp; 📅 ${dayNames[clsDate.getDay()]} ${clsDate.getDate()} ${monthNames[clsDate.getMonth()]}</div>
+      <div style="font-size:0.68rem;color:var(--text-muted);margin-top:2px;">ℹ ${cls.notes}</div>
+    </div>
+    <div class="schedule-countdown">
+      <div class="countdown-val">${countdown}</div>
+      <div class="countdown-lbl">${diffDays>1?'days remaining':''}</div>
+    </div>
+  </div>`;
 }
 
 /* ══ STATS ══ */

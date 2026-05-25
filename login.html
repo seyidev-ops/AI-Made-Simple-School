@@ -103,6 +103,59 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem c
   footer{padding:1rem;}
 }
 </style>
+  <!-- EmailJS SDK — https://emailjs.com -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    /* ════════════════════════════════════════════════
+       EMAIL CONFIGURATION — AI Made Simple School
+       ================================================
+       SETUP STEPS:
+       1. Sign up free at https://emailjs.com
+       2. Add Email Service → choose Gmail or Custom SMTP
+          → For Custom SMTP: use your cPanel / Zoho / Google Workspace
+            Host: mail.aimadesimpleschool.com (or your SMTP host)
+            From: admin@aimadesimpleschool.com
+       3. Create Email Template with these variables:
+          {{to_name}}   {{to_email}}   {{username}}
+          {{password}}  {{programme}}  {{login_url}}
+       4. Replace the three IDs below:
+       ════════════════════════════════════════════════ */
+    const EJS = {
+      serviceId:  'YOUR_SERVICE_ID',    // from EmailJS > Email Services
+      templateId: 'YOUR_TEMPLATE_ID',   // from EmailJS > Email Templates
+      publicKey:  'YOUR_PUBLIC_KEY',    // from EmailJS > Account > API Keys
+      from:       'admin@aimadesimpleschool.com',
+      cc:         'seyi@aimadesimpleschool.com',
+      configured: false  // set to true after adding your IDs above
+    };
+    (function(){if(EJS.configured)emailjs.init(EJS.publicKey);})();
+
+    function sendWelcomeEmail(name, email, plainPassword, programme){
+      if(!EJS.configured){
+        console.log('[EmailJS] Not configured. Would send to:', email);
+        return;
+      }
+      const progLabels={
+        'expert':'AI Expert User (₦50,000/mo)',
+        'm2m':'AI Mastery to Money — Self-Study',
+        'm2m-standard':'AI Mastery to Money — Standard',
+        'm2m-vip':'AI Mastery to Money — VIP',
+        'masterclass':'AI Masterclasses'
+      };
+      emailjs.send(EJS.serviceId, EJS.templateId, {
+        to_name:    name,
+        to_email:   email,
+        username:   email,
+        password:   plainPassword,
+        programme:  progLabels[programme]||programme,
+        login_url:  'https://aimadesimpleschool.com/login.html',
+        reply_to:   EJS.from,
+        cc_email:   EJS.cc,
+        from_name:  'AI Made Simple School'
+      }).then(()=>console.log('Welcome email sent ✓'))
+        .catch(err=>console.error('Email error:', err));
+    }
+  </script>
 </head>
 <body>
 <div class="bg-watermark" aria-hidden="true" role="presentation">
@@ -306,6 +359,7 @@ function handleRegister(e){
     users[email]={name,password:btoa(pass),primaryProgramme:prog,paid:false,access:{},createdAt:new Date().toISOString()};
     saveUsers(users);
     saveSession({email,name,paid:false,access:{},adminSession:false});
+    sendWelcomeEmail(name,email,pass,prog);
     showAlert('registerAlert','success','✓ Account created! Complete payment to unlock your programme.');
     setTimeout(()=>window.location.href='dashboard.html',1800);
   },900);

@@ -212,6 +212,43 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem c
   footer{padding:1rem;}
 }
 </style>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js">
+function exportStudentsExcel(){
+  const users=getUsers();
+  const entries=Object.entries(users);
+  if(!entries.length){showAlert('studentsEmptyAlert','error','No students to export.');return;}
+
+  const rows=entries.map(([email,u])=>{
+    const a=u.access||{};
+    const accessSummary=[];
+    if(a.expert?.months?.length) accessSummary.push('Expert M'+a.expert.months.join(','));
+    if(a.m2m?.phases?.length) accessSummary.push('M2M P'+a.m2m.phases.join(',')+(a.m2m.tier?' ('+a.m2m.tier+')':''));
+    if(a.masterclasses?.classes?.length) accessSummary.push('Masterclasses: '+a.masterclasses.classes.join(','));
+    return {
+      'Full Name': u.name||'',
+      'Email': email,
+      'Username': email,
+      'Password (hashed)': u.password||'',
+      'Programme': u.primaryProgramme||'',
+      'Access Level': accessSummary.join(' | ')||'None',
+      'Payment Status': u.paid?'PAID':'PENDING',
+      'Admin Granted': u.grantedByAdmin?'Yes':'No',
+      'Registered': u.createdAt?new Date(u.createdAt).toLocaleDateString('en-GB'):'',
+      'Access Granted': u.grantedAt?new Date(u.grantedAt).toLocaleDateString('en-GB'):'',
+    };
+  });
+
+  const ws = XLSX.utils.json_to_sheet(rows);
+  // Column widths
+  ws['!cols']=[{wch:22},{wch:32},{wch:32},{wch:22},{wch:20},{wch:30},{wch:14},{wch:14},{wch:14},{wch:14}];
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb,'Students',ws);
+  const date=new Date().toISOString().slice(0,10);
+  XLSX.writeFile(wb,`AMS_Students_${date}.xlsx`);
+  showAlert('grantAlert','success','✓ Excel file downloaded: '+entries.length+' student records.');
+}
+
+</script>
 </head>
 <body>
 <div class="bg-watermark" aria-hidden="true" role="presentation">
@@ -393,7 +430,12 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem c
       <!-- ── STUDENTS TAB ── -->
       <div class="panel-section" id="tab-students">
         <div class="section-label">Enrolled Students</div>
-        <div class="student-list-header">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:0.75rem;">
+        <button onclick="exportStudentsExcel()" style="background:var(--gold);color:#0E0E10;border:none;padding:8px 18px;border-radius:5px;font-family:inherit;font-size:0.75rem;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;display:flex;align-items:center;gap:6px;transition:all 0.2s;">
+          📊 Export to Excel
+        </button>
+      </div>
+      <div class="student-list-header">
           <span style="font-size:0.8rem;color:var(--text-muted);">All registered accounts</span>
           <button class="btn-text" onclick="refreshStudentList()">↻ Refresh</button>
         </div>
