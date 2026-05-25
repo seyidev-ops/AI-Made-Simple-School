@@ -15,7 +15,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;}
 nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 clamp(1.5rem,5vw,4rem);height:64px;display:flex;align-items:center;justify-content:space-between;}
 .nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.nav-logo{width:32px;height:32px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#0E0E10;}
+.nav-logo-svg{border-radius:6px;}
 .nav-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--text);}
 .nav-right{display:flex;align-items:center;gap:1rem;}
 .nav-back{font-size:0.82rem;color:var(--text-muted);text-decoration:none;transition:color var(--transition);}
@@ -27,7 +27,7 @@ main{flex:1;display:flex;align-items:center;justify-content:center;padding:3rem 
 .auth-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;width:100%;max-width:520px;overflow:hidden;box-shadow:var(--shadow);animation:slideUp 0.4s ease both;}
 @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .auth-header{padding:2.5rem 2.5rem 1.5rem;border-bottom:1px solid var(--border);text-align:center;}
-.auth-logo{width:56px;height:56px;background:var(--gold);border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:20px;font-weight:700;color:#0E0E10;margin:0 auto 1.25rem;box-shadow:0 0 0 6px var(--gold-dim);}
+.auth-logo-svg{border-radius:14px;}
 .auth-title{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:var(--text);}
 .auth-subtitle{font-size:0.83rem;color:var(--text-muted);margin-top:0.4rem;line-height:1.5;}
 .student-badge{display:inline-flex;align-items:center;gap:5px;background:var(--gold-dim);border:1px solid rgba(201,168,76,0.25);border-radius:100px;padding:4px 12px;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-top:0.75rem;}
@@ -74,13 +74,47 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem c
 .footer-divider{width:1px;height:12px;background:var(--border);}
 .admin-entry-link{font-size:0.72rem;color:var(--text-muted);text-decoration:none;display:flex;align-items:center;gap:5px;border:1px solid var(--border);border-radius:5px;padding:4px 10px;transition:all var(--transition);}
 .admin-entry-link:hover{color:var(--gold) !important;border-color:rgba(201,168,76,0.4);background:var(--gold-dim);}
+
+/* ── BACKGROUND WATERMARK ── */
+.bg-watermark{position:fixed;bottom:-6%;right:-4%;width:min(38vw,260px);height:auto;opacity:0.045;pointer-events:none;user-select:none;z-index:0;color:var(--gold);transform:rotate(-10deg);transition:opacity var(--transition);}
+.bg-watermark svg{display:block;width:100%;height:auto;}
+[data-theme="light"] .bg-watermark{opacity:0.07;}
+@media(max-width:768px){.bg-watermark{width:min(52vw,190px);opacity:0.035;bottom:-3%;right:-3%;}}
+@media(max-width:430px){.bg-watermark{width:min(60vw,160px);opacity:0.03;}}
+/* ── MOBILE ── */
+@media(max-width:600px){
+  nav{padding:0 1rem;}
+  .nav-name{display:none;}
+  main{padding:1.5rem 1rem;}
+  .auth-card{border-radius:12px;}
+  .auth-header{padding:1.75rem 1.5rem 1.25rem;}
+  .auth-form{padding:1.5rem 1.5rem;}
+}
+@media(max-width:430px){
+  .auth-form{padding:1.25rem 1rem;}
+  .auth-header{padding:1.5rem 1rem 1rem;}
+  .form-input{padding:11px 12px;}
+  .btn-submit{padding:13px 16px;min-height:48px;}
+  .footer-inner{flex-direction:column;gap:0.5rem;align-items:flex-start;}
+  footer{padding:1rem;}
+}
 </style>
 </head>
 <body>
+<div class="bg-watermark" aria-hidden="true" role="presentation">
+  <svg viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+    <text x="110" y="115" font-family="Cormorant Garamond,Georgia,serif" font-style="italic" font-weight="700" font-size="110" fill="currentColor" text-anchor="middle">AI</text>
+  </svg>
+</div>
 
 <nav>
   <a href="index.html" class="nav-brand">
-    <div class="nav-logo">AI</div>
+    <svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32" style="flex-shrink:0;border-radius:8px;">
+    <defs><linearGradient id="ng" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#D4A843"/><stop offset="100%" stop-color="#B8922E"/></linearGradient></defs>
+    <rect width="100" height="100" rx="16" fill="url(#ng)"/>
+    <rect x="2.5" y="2.5" width="95" height="95" rx="13.5" stroke="rgba(255,255,255,0.22)" stroke-width="1" fill="none"/>
+    <text x="50" y="74" font-family="Cormorant Garamond,Georgia,serif" font-style="italic" font-weight="700" font-size="70" fill="#1A1914" text-anchor="middle">AI</text>
+  </svg>
     <span class="nav-name">AI Made Simple</span>
   </a>
   <div class="nav-right">
@@ -96,7 +130,12 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem c
 <main>
   <div class="auth-card">
     <div class="auth-header">
-      <div class="auth-logo">AI</div>
+      <svg class="auth-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="56" height="56" style="display:block;margin:0 auto 1.25rem;border-radius:14px;box-shadow:0 0 0 6px rgba(201,168,76,0.15);">
+      <defs><linearGradient id="ag" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#D4A843"/><stop offset="100%" stop-color="#B8922E"/></linearGradient></defs>
+      <rect width="100" height="100" rx="16" fill="url(#ag)"/>
+      <rect x="2.5" y="2.5" width="95" height="95" rx="13.5" stroke="rgba(255,255,255,0.22)" stroke-width="1" fill="none"/>
+      <text x="50" y="74" font-family="Cormorant Garamond,Georgia,serif" font-style="italic" font-weight="700" font-size="70" fill="#1A1914" text-anchor="middle">AI</text>
+    </svg>
       <div class="auth-title">Student Portal</div>
       <div class="auth-subtitle">Sign in to access your learning dashboard</div>
       <div class="student-badge">🎓 Student Access</div>
