@@ -532,31 +532,17 @@ function clearAllStudents(){
         </div>
 
         
-        <div class="section-label" style="margin-top:1rem;">Danger Zone</div>
-        <div style="background:rgba(224,90,90,0.06);border:1px solid rgba(224,90,90,0.25);border-radius:8px;padding:1rem;">
-          <p style="font-size:0.76rem;color:var(--text-muted);margin-bottom:0.75rem;line-height:1.5;">⚠ Permanently delete all registered student accounts from this browser's database. This cannot be undone.</p>
-          <button onclick="clearAllAccess()" style="background:rgba(224,90,90,0.08);color:#e05a5a;border:1px solid rgba(224,90,90,0.3);padding:9px 18px;border-radius:6px;font-family:inherit;font-size:0.76rem;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;width:100%;transition:all 0.2s;">
-            ⚠ Clear All Access (Keep Accounts)
+        
+        <div class="section-label">Danger Zone</div>
+        <div style="background:rgba(224,90,90,0.06);border:1px solid rgba(224,90,90,0.2);border-radius:8px;padding:1rem;display:flex;flex-direction:column;gap:8px;">
+          <p style="font-size:0.74rem;color:var(--text-muted);line-height:1.5;">These actions affect all student data and cannot be undone.</p>
+          <button onclick="clearAllAccess()" style="background:rgba(224,90,90,0.08);color:#e05a5a;border:1px solid rgba(224,90,90,0.25);padding:9px 14px;border-radius:6px;font-family:inherit;font-size:0.76rem;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;width:100%;transition:all 0.2s;">
+            🔓 Clear All Access (Keep Accounts)
           </button>
-        </div>
-        <div class="section-label">Student Portal</div>
-        <div class="cred-card">
-          <div class="cred-row">
-            <span class="cred-label">Login URL</span>
-            <span class="cred-value">login.html</span>
-          </div>
-          <div class="cred-row">
-            <span class="cred-label">Dashboard</span>
-            <span class="cred-value">dashboard.html</span>
-          </div>
-          <div class="cred-row">
-            <span class="cred-label">Admin Access</span>
-            <span class="cred-value" style="color:#5fd48a;">Completely Separated</span>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- end admin-panel-card -->
+          <button onclick="clearAllStudents()" style="background:rgba(224,90,90,0.14);color:#e05a5a;border:1px solid rgba(224,90,90,0.35);padding:9px 14px;border-radius:6px;font-family:inherit;font-size:0.76rem;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;width:100%;transition:all 0.2s;">
+            ⚠ Delete All Student Accounts
+          </button>
+        </div><!-- end admin-panel-card -->
 
   </div>
 </main>
@@ -765,34 +751,96 @@ function revokeAccess(){
 }
 
 /* ── STUDENTS LIST ── */
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function safeId(email){return 'sr_'+email.replace(/[^a-zA-Z0-9]/g,'_');}
+
 function refreshStudentList(){
   const panel=document.getElementById('studentListPanel');
   const users=getUsers();
   const entries=Object.entries(users);
-  if(!entries.length){
-    panel.innerHTML='<div class="empty-state">No students registered yet.</div>';
-    return;
-  }
+  if(!entries.length){panel.innerHTML='<div class="empty-state">No students registered yet.</div>';return;}
+
   panel.innerHTML=entries.map(([email,u])=>{
     const a=u.access||{};
     const parts=[];
     if(a.expert) parts.push('Expert M'+(a.expert.months||[]).join(','));
     if(a.m2m) parts.push('M2M P'+(a.m2m.phases||[]).join(',')+(a.m2m.tier?' ('+a.m2m.tier+')':''));
     if(a.masterclasses) parts.push('Classes: '+(a.masterclasses.classes||[]).join(','));
-    const safeEmail=email.replace(/'/g,"\\'");
-    return `<div class="student-row" id="row-${btoa(email).replace(/=/g,'')}">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
-        <span class="student-name">${u.name||email}</span>
-        <div style="display:flex;align-items:center;gap:6px;">
-          <span class="student-status ${u.paid?'paid':'unpaid'}">${u.paid?'✓ PAID':'✗ UNPAID'}</span>
-          <button onclick="deleteStudent('${safeEmail}')" title="Delete account" style="background:rgba(224,90,90,0.12);color:#e05a5a;border:1px solid rgba(224,90,90,0.25);border-radius:4px;padding:2px 8px;font-size:0.62rem;cursor:pointer;font-family:inherit;font-weight:700;transition:all 0.2s;" onmouseover="this.style.background='rgba(224,90,90,0.25)'" onmouseout="this.style.background='rgba(224,90,90,0.12)'">✕ Delete</button>
-        </div>
-      </div>
-      <span class="student-email">${email}</span>
-      ${parts.length?'<span class="student-access">'+parts.join(' · ')+'</span>':''}
-    </div>`;
+    return '<div class="student-row" id="'+safeId(email)+'">'
+      +'<div style="display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap;">'
+      +'<span class="student-name">'+escHtml(u.name||email)+'</span>'
+      +'<div style="display:flex;align-items:center;gap:5px;">'
+      +'<span class="student-status '+(u.paid?'paid':'unpaid')+'">'+(u.paid?'✓ PAID':'✗ UNPAID')+'</span>'
+      +'<button class="del-student-btn" data-email="'+escHtml(email)+'" '
+      +'style="background:rgba(224,90,90,0.12);color:#e05a5a;border:1px solid rgba(224,90,90,0.3);border-radius:4px;'
+      +'padding:3px 9px;font-size:0.62rem;cursor:pointer;font-family:inherit;font-weight:700;transition:all 0.2s;">'
+      +'✕ Delete</button>'
+      +'</div></div>'
+      +'<span class="student-email">'+escHtml(email)+'</span>'
+      +(parts.length?'<span class="student-access">'+parts.join(' · ')+'</span>':'')
+      +'</div>';
   }).join('');
+
+  /* Event delegation — one listener covers all delete buttons */
+  panel.onclick=function(e){
+    const btn=e.target.closest('.del-student-btn');
+    if(btn) deleteStudent(btn.dataset.email);
+  };
 }
+
+function deleteStudent(email){
+  if(!email) return;
+  if(!confirm('Delete account for "'+email+'"?\nThis cannot be undone.')) return;
+  const users=getUsers();
+  if(!users[email]){adminToast('Account not found.','error');return;}
+  delete users[email];
+  saveUsers(users);
+  const s=JSON.parse(localStorage.getItem('ams-session')||'null');
+  if(s&&s.email===email) localStorage.removeItem('ams-session');
+  const row=document.getElementById(safeId(email));
+  if(row){
+    row.style.transition='opacity 0.25s,max-height 0.3s,padding 0.3s';
+    row.style.overflow='hidden';
+    row.style.maxHeight=row.scrollHeight+'px';
+    requestAnimationFrame(()=>{row.style.opacity='0';row.style.maxHeight='0';row.style.padding='0';});
+    setTimeout(()=>row.remove(),350);
+  }
+  refreshStats();
+  adminToast('✓ Account deleted: '+email);
+}
+
+function clearAllStudents(){
+  if(!confirm('DELETE ALL student accounts permanently?\nThis cannot be undone.')) return;
+  if(!confirm('Final confirmation: remove every student record?')) return;
+  localStorage.removeItem('ams-users');
+  localStorage.removeItem('ams-session');
+  refreshStudentList();refreshStats();
+  adminToast('✓ All student accounts deleted.');
+}
+
+function clearAllAccess(){
+  if(!confirm('Remove all paid status and access from every student?\nAccounts will be preserved.')) return;
+  const users=getUsers();let count=0;
+  Object.keys(users).forEach(email=>{users[email].paid=false;users[email].access={};count++;});
+  saveUsers(users);
+  refreshStudentList();refreshStats();
+  adminToast('✓ Access cleared for '+count+' students. Accounts preserved.');
+}
+
+function adminToast(msg,type='success'){
+  const old=document.getElementById('adminToast');if(old)old.remove();
+  const t=document.createElement('div');t.id='adminToast';
+  const ok=type==='success';
+  t.style.cssText='position:fixed;top:76px;right:18px;z-index:9999;background:'+(ok?'rgba(76,201,112,0.12)':'rgba(224,90,90,0.12)')
+    +';border:1px solid '+(ok?'rgba(76,201,112,0.3)':'rgba(224,90,90,0.3)')
+    +';color:'+(ok?'#5fd48a':'#e05a5a')
+    +';padding:11px 18px;border-radius:8px;font-size:0.82rem;font-family:DM Sans,sans-serif;'
+    +'max-width:320px;box-shadow:0 4px 20px rgba(0,0,0,0.3);transition:opacity 0.3s;';
+  t.textContent=msg;
+  document.body.appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';setTimeout(()=>t.remove(),300);},3500);
+}
+
 
 /* ── STATS ── */
 function refreshStats(){
