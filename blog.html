@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Everything AI — AI Made Simple Blog</title>
+<meta name="description" content="Insights, strategies and news from the world of AI — curated for Nigerian professionals, entrepreneurs and creators.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="apple-touch-icon" href="logo.svg">
+<meta name="theme-color" content="#C9A84C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.14);--gold-border:rgba(201,168,76,0.28);--transition:0.3s ease;}
+[data-theme="dark"]{--bg:#0E0E10;--bg2:#141416;--bg3:#1C1C20;--border:rgba(255,255,255,0.07);--text:#F0EDE6;--text-muted:#7A7870;--text-secondary:#B8B5AE;--card-bg:#16161A;--card-border:rgba(201,168,76,0.12);--nav-bg:rgba(14,14,16,0.94);--input-bg:#1C1C20;--shadow:0 8px 48px rgba(0,0,0,0.5);}
+[data-theme="light"]{--bg:#F8F6F1;--bg2:#EEEBE4;--bg3:#E4E1DA;--border:rgba(0,0,0,0.08);--text:#1A1914;--text-muted:#8A877E;--text-secondary:#4A4740;--card-bg:#FAFAF7;--card-border:rgba(201,168,76,0.22);--nav-bg:rgba(248,246,241,0.94);--input-bg:#EEEBE4;--shadow:0 8px 48px rgba(0,0,0,0.1);}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;transition:background var(--transition),color var(--transition);}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:0;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 clamp(1.25rem,4vw,3rem);height:64px;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;}
+.nav-logo-svg{border-radius:6px;}
+.nav-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--text);}
+.nav-links{display:flex;align-items:center;gap:1.75rem;}
+.nav-links a{font-size:0.8rem;font-weight:500;color:var(--text-muted);text-decoration:none;letter-spacing:0.04em;transition:color var(--transition);}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-right{display:flex;align-items:center;gap:0.75rem;flex-shrink:0;}
+.theme-toggle{display:flex;align-items:center;gap:2px;background:var(--bg3);border-radius:20px;padding:3px;border:1px solid var(--border);}
+.theme-btn{width:27px;height:23px;border:none;border-radius:16px;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:11px;transition:background var(--transition);color:var(--text-muted);}
+.theme-btn.active{background:var(--gold);color:#0E0E10;}
+.nav-portal-btn{background:var(--gold);color:#0E0E10;border:none;padding:7px 16px;border-radius:5px;font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:700;cursor:pointer;letter-spacing:0.05em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;}
+.nav-portal-btn:hover{opacity:0.88;}
+
+/* HERO */
+.blog-hero{padding:clamp(3rem,7vw,6rem) clamp(1.25rem,5vw,3rem) clamp(2rem,5vw,4rem);text-align:center;position:relative;z-index:1;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;background:var(--gold-dim);border:1px solid var(--gold-border);border-radius:100px;padding:5px 16px;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,7vw,5.5rem);font-weight:700;line-height:1.05;color:var(--text);margin-bottom:1.25rem;}
+.hero-h1 em{font-style:italic;color:var(--gold);}
+.hero-sub{font-size:clamp(0.9rem,2vw,1.05rem);color:var(--text-secondary);max-width:520px;margin:0 auto 2rem;line-height:1.7;}
+.hero-stats{display:flex;align-items:center;justify-content:center;gap:2.5rem;flex-wrap:wrap;}
+.hero-stat{text-align:center;}
+.hero-stat-val{font-family:'Space Mono',monospace;font-size:1.4rem;font-weight:700;color:var(--gold);}
+.hero-stat-lbl{font-size:0.68rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;margin-top:2px;}
+
+/* CONTAINER */
+.container{max-width:1100px;margin:0 auto;padding:0 clamp(1.25rem,4vw,2.5rem);}
+
+/* FILTER BAR */
+.filter-wrap{padding:1.5rem 0;border-bottom:1px solid var(--border);margin-bottom:2rem;position:relative;z-index:1;}
+.filter-bar{display:flex;gap:0.5rem;flex-wrap:wrap;}
+.filter-pill{padding:7px 16px;border-radius:100px;border:1px solid var(--border);background:transparent;font-size:0.75rem;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all 0.2s;font-family:inherit;letter-spacing:0.04em;white-space:nowrap;}
+.filter-pill.active{background:var(--gold-dim);border-color:var(--gold-border);color:var(--gold);}
+.filter-pill:hover:not(.active){border-color:rgba(201,168,76,0.3);color:var(--text);}
+
+/* ARTICLE DETAIL PANEL */
+.article-detail{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:2.5rem;margin-bottom:2rem;display:none;position:relative;overflow:hidden;z-index:1;}
+.article-detail::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);}
+.article-detail.open{display:block;}
+.detail-meta{display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.25rem;}
+.detail-close{position:absolute;top:1.5rem;right:1.5rem;background:var(--bg3);border:1px solid var(--border);color:var(--text-muted);width:34px;height:34px;border-radius:50%;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;font-family:inherit;}
+.detail-close:hover{border-color:var(--gold);color:var(--gold);}
+.detail-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.25rem);font-weight:700;color:var(--text);line-height:1.2;margin-bottom:0.5rem;padding-right:3rem;}
+.detail-byline{font-size:0.78rem;color:var(--text-muted);margin-bottom:2rem;}
+.detail-body{font-size:0.9rem;color:var(--text-secondary);line-height:1.9;max-width:72ch;}
+.detail-body h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--text);margin:2rem 0 0.6rem;}
+.detail-body p{margin-bottom:1.1rem;}
+.detail-body ul{padding-left:1.4rem;margin-bottom:1.1rem;}
+.detail-body li{margin-bottom:0.5rem;}
+.detail-body strong{color:var(--text);font-weight:600;}
+
+/* FEATURED ARTICLE */
+.featured-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:2.5rem;margin-bottom:1.75rem;cursor:pointer;position:relative;overflow:hidden;transition:all 0.22s;z-index:1;}
+.featured-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);}
+.featured-card:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,0.25);border-color:rgba(201,168,76,0.3);}
+.featured-label{font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;display:flex;align-items:center;gap:6px;}
+.featured-label::before{content:'';width:18px;height:1.5px;background:var(--gold);}
+.featured-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:var(--text);line-height:1.18;margin-bottom:0.875rem;}
+.featured-excerpt{font-size:0.87rem;color:var(--text-secondary);line-height:1.75;max-width:68ch;margin-bottom:1.5rem;}
+.featured-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.read-btn{display:inline-flex;align-items:center;gap:7px;background:var(--gold);color:#0E0E10;padding:10px 20px;border-radius:6px;font-size:0.76rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;border:none;cursor:pointer;font-family:inherit;transition:all 0.2s;}
+.read-btn:hover{opacity:0.88;transform:translateY(-1px);}
+
+/* ARTICLE GRID */
+.articles-section{position:relative;z-index:1;margin-bottom:4rem;}
+.section-heading{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--text);margin-bottom:1.25rem;}
+.article-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;}
+.article-card{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:1.5rem;cursor:pointer;transition:all 0.22s;display:flex;flex-direction:column;gap:0.75rem;position:relative;overflow:hidden;}
+.article-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:0;background:linear-gradient(0deg,var(--gold-dim),transparent);transition:height 0.25s;}
+.article-card:hover{border-color:rgba(201,168,76,0.3);transform:translateY(-2px);}
+.article-card:hover::after{height:40%;}
+.article-meta{display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;}
+.article-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:700;color:var(--text);line-height:1.3;flex:1;}
+.article-excerpt{font-size:0.78rem;color:var(--text-muted);line-height:1.65;flex:1;}
+.article-footer{display:flex;align-items:center;justify-content:space-between;font-size:0.7rem;color:var(--text-muted);padding-top:0.5rem;border-top:1px solid var(--border);margin-top:auto;}
+.article-arrow{font-size:0.72rem;color:var(--gold);font-weight:700;}
+
+/* CATEGORY BADGES */
+.cat-badge{font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 9px;border-radius:100px;background:var(--gold-dim);border:1px solid var(--gold-border);color:var(--gold);}
+.cat-badge.tools{background:rgba(76,130,201,0.1);border-color:rgba(76,130,201,0.3);color:#6BA3D4;}
+.cat-badge.business{background:rgba(76,201,112,0.1);border-color:rgba(76,201,112,0.3);color:#5fd48a;}
+.cat-badge.tutorials{background:rgba(201,130,76,0.1);border-color:rgba(201,130,76,0.3);color:#D4956B;}
+.cat-badge.industry{background:rgba(180,76,201,0.1);border-color:rgba(180,76,201,0.3);color:#C47AD4;}
+.cat-badge.africa{background:rgba(76,201,180,0.1);border-color:rgba(76,201,180,0.3);color:#4CC9B4;}
+.meta-date,.meta-rt{font-size:0.68rem;color:var(--text-muted);}
+.meta-sep{color:var(--border);font-size:0.6rem;}
+
+/* SUBSCRIBE STRIP */
+.subscribe-strip{background:var(--gold-dim);border-top:1px solid var(--gold-border);border-bottom:1px solid var(--gold-border);padding:3.5rem clamp(1.25rem,4vw,3rem);text-align:center;position:relative;z-index:1;}
+.sub-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.25rem);font-weight:700;color:var(--text);margin-bottom:0.6rem;}
+.sub-sub{font-size:0.84rem;color:var(--text-secondary);margin-bottom:1.75rem;}
+.sub-form{display:flex;gap:0.6rem;max-width:440px;margin:0 auto;flex-wrap:wrap;}
+.sub-input{flex:1;min-width:200px;background:var(--input-bg);border:1px solid var(--border);border-radius:6px;padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:0.88rem;color:var(--text);outline:none;transition:border-color var(--transition);}
+.sub-input:focus{border-color:var(--gold);}
+.sub-input::placeholder{color:var(--text-muted);}
+.sub-btn{background:var(--gold);color:#0E0E10;border:none;padding:11px 20px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;letter-spacing:0.05em;text-transform:uppercase;transition:all 0.2s;white-space:nowrap;}
+.sub-btn:hover{opacity:0.88;}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.75rem clamp(1.25rem,4vw,3rem);position:relative;z-index:1;}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.footer-copy{font-size:0.74rem;color:var(--text-muted);}
+.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap;}
+.footer-links a{font-size:0.74rem;color:var(--text-muted);text-decoration:none;transition:color var(--transition);}
+.footer-links a:hover{color:var(--gold);}
+
+/* EMPTY STATE */
+.empty-msg{padding:4rem 0;text-align:center;color:var(--text-muted);font-size:0.88rem;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .hero-stats{gap:1.5rem;}
+  .article-grid{grid-template-columns:1fr;}
+  .featured-card{padding:1.5rem;}
+  .featured-title{font-size:1.5rem;}
+  .article-detail{padding:1.5rem;}
+  .detail-title{font-size:1.5rem;}
+  .detail-close{top:1rem;right:1rem;}
+}
+@media(max-width:430px){
+  .hero-h1{font-size:2.5rem;}
+  .featured-title{font-size:1.3rem;}
+  .sub-form{flex-direction:column;}
+  .sub-input,.sub-btn{width:100%;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">
+    <svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32" style="flex-shrink:0;border-radius:8px;">
+      <defs><linearGradient id="blng" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#D4A843"/><stop offset="100%" stop-color="#B8922E"/></linearGradient></defs>
+      <rect width="100" height="100" rx="16" fill="url(#blng)"/>
+      <rect x="2.5" y="2.5" width="95" height="95" rx="13.5" stroke="rgba(255,255,255,0.22)" stroke-width="1" fill="none"/>
+      <text x="50" y="74" font-family="Cormorant Garamond,Georgia,serif" font-style="italic" font-weight="700" font-size="70" fill="#1A1914" text-anchor="middle">AI</text>
+    </svg>
+    <span class="nav-name">AI Made Simple</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="blog.html" class="active">Blog</a>
+    <a href="login.html">Student Portal</a>
+  </div>
+  <div class="nav-right">
+    <div class="theme-toggle">
+      <button class="theme-btn" id="themeLight" onclick="setTheme('light')">☀</button>
+      <button class="theme-btn active" id="themeDark" onclick="setTheme('dark')">●</button>
+      <button class="theme-btn" id="themeSystem" onclick="setTheme('system')">⊙</button>
+    </div>
+    <a href="login.html" class="nav-portal-btn">Portal →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="blog-hero">
+  <div class="hero-eyebrow">✦ The AI Made Simple Blog</div>
+  <h1 class="hero-h1">Everything <em>AI</em></h1>
+  <p class="hero-sub">Insights, strategies, and news from the world of artificial intelligence — curated for Nigerian professionals, entrepreneurs, and creators.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-val" id="statArticles">12</div><div class="hero-stat-lbl">Articles</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">6</div><div class="hero-stat-lbl">Categories</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">Weekly</div><div class="hero-stat-lbl">Updates</div></div>
+  </div>
+</section>
+
+<main>
+  <div class="container">
+    <!-- FILTER BAR -->
+    <div class="filter-wrap">
+      <div class="filter-bar" id="filterBar"></div>
+    </div>
+
+    <!-- ARTICLE DETAIL (hidden by default) -->
+    <div class="article-detail" id="articleDetail">
+      <button class="detail-close" onclick="closeDetail()">✕</button>
+      <div id="detailContent"></div>
+    </div>
+
+    <!-- FEATURED -->
+    <div id="featuredWrap"></div>
+
+    <!-- ARTICLE GRID -->
+    <div class="articles-section">
+      <div class="section-heading" id="gridHeading">Latest Articles</div>
+      <div class="article-grid" id="articleGrid"></div>
+      <div class="empty-msg" id="emptyMsg" style="display:none;">No articles in this category yet.</div>
+    </div>
+  </div>
+</main>
+
+<!-- SUBSCRIBE STRIP -->
+<div class="subscribe-strip">
+  <div class="sub-title">Stay Ahead of <em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);">AI</em></div>
+  <div class="sub-sub">Get weekly insights delivered to your inbox. No spam. Unsubscribe anytime.</div>
+  <div class="sub-form">
+    <input type="email" class="sub-input" placeholder="your@email.com" id="subEmail">
+    <button class="sub-btn" onclick="handleSubscribe()">Subscribe</button>
+  </div>
+  <div id="subMsg" style="font-size:0.8rem;color:var(--gold);margin-top:0.75rem;display:none;"></div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">© 2026 Ona Services Ltd · AI Made Simple School</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="blog.html">Blog</a>
+      <a href="login.html">Student Portal</a>
+      <a href="admin-login.html" style="color:var(--bg3);font-size:0.6rem;">·</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── THEME ── */
+function setTheme(m){localStorage.setItem('ams-theme',m);applyTheme(m);document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));const map={light:'themeLight',dark:'themeDark',system:'themeSystem'};document.getElementById(map[m])?.classList.add('active');}
+function applyTheme(m){const d=window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',m==='system'?(d?'dark':'light'):m);}
+(function(){const s=localStorage.getItem('ams-theme')||'dark';applyTheme(s);const map={light:'themeLight',dark:'themeDark',system:'themeSystem'};document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));document.getElementById(map[s])?.classList.add('active');});})();
+
+/* ── ARTICLES DATA ── */
+const CATS=['All','AI Models','Tools & Apps','Business','Tutorials','Industry','Nigeria & Africa'];
+const POSTS=[
+{id:1,cat:'AI Models',date:'May 2026',rt:'5 min',feat:true,
+ title:'Claude 4 Redefines What AI Can Do for Your Business',
+ excerpt:'Anthropic\'s Claude 4 brings autonomous reasoning, real-time browsing, and multi-step task execution. Here\'s your practical guide to what\'s changed and how to leverage it.',
+ body:`<p>When Anthropic released Claude 4, the shift was immediately clear to anyone working with AI daily. This wasn't a marginal improvement — it was a rethinking of what an AI assistant can do for you.</p>
+<h3>What's Actually New</h3><p>Claude 4 introduced two major capabilities: <strong>extended thinking</strong> (the model reasons through complex problems step by step) and <strong>agentic task execution</strong> (it can plan, use tools, and complete multi-step tasks autonomously).</p>
+<p>For the average entrepreneur or knowledge worker, this means you can now delegate genuine cognitive work — not just ask it to write or summarise, but actually think through a business problem and produce structured output.</p>
+<h3>What This Means in Practice</h3><ul><li><strong>Business proposals:</strong> Claude 4 can research, draft, and refine a complete proposal in one session</li><li><strong>Data analysis:</strong> Feed it a spreadsheet and ask for strategic insights — not just summaries</li><li><strong>Automation planning:</strong> Describe your workflow and it will design the automation architecture</li></ul>
+<h3>The Takeaway</h3><p>Claude 4 rewards people who know how to direct AI effectively. The gap between AI-literate and AI-naive professionals has never been wider.</p>`},
+
+{id:2,cat:'Tools & Apps',date:'May 2026',rt:'4 min',feat:false,
+ title:'The 7 AI Tools Every Nigerian Entrepreneur Needs in 2026',
+ excerpt:'From content creation to client automation, these tools are transforming how Africa\'s fastest-growing businesses operate — most under $20/month.',
+ body:`<p>The democratisation of AI tools has created an unprecedented opportunity for entrepreneurs in Nigeria and across Africa.</p>
+<h3>The Essential 2026 Stack</h3><ul><li><strong>Claude (Anthropic)</strong> — Best for nuanced business writing, proposals, and strategic thinking. $20/month pays for itself in hours saved weekly.</li><li><strong>Perplexity AI</strong> — Real-time, cited research without hallucination risk.</li><li><strong>Canva AI</strong> — Magic Design and AI image generation for professional visuals.</li><li><strong>ElevenLabs</strong> — Natural-sounding voiceovers in seconds.</li><li><strong>Make.com</strong> — Connect your tools without code. One automation can save 5–10 hours/week.</li><li><strong>Gamma</strong> — AI-generated pitch decks in minutes.</li><li><strong>Julius AI</strong> — Upload a spreadsheet, get insights instantly.</li></ul>
+<h3>The Combination That Changes Everything</h3><p>Claude drafts the content strategy → Canva produces the visuals → Make.com distributes it → ElevenLabs narrates the video version. A 4-person team's output, solo.</p>`},
+
+{id:3,cat:'AI Models',date:'April 2026',rt:'6 min',feat:false,
+ title:'GPT-5 vs Claude 4 vs Gemini 2.5: An Honest Comparison',
+ excerpt:'Three flagship models, three very different strengths. We break down which wins for writing, coding, analysis, and real-world business use.',
+ body:`<p>The AI model wars have reached a point where all three leading models are genuinely capable. The question is no longer "which is best" but "which is best for your use case."</p>
+<h3>For Business Writing — Claude 4 Wins</h3><p>Claude's writing is consistently the most natural and contextually aware. For proposals, reports, and marketing copy, Claude 4 requires the least editing.</p>
+<h3>For Coding — GPT-5 Edge</h3><p>GPT-5 has a slight edge for complex multi-file code projects. Claude 4 excels at code explanation and debugging.</p>
+<h3>For Research — Gemini 2.5 Pro</h3><p>Gemini's deep integration with Google Search gives it a factual advantage for queries requiring current information.</p>
+<h3>The Recommendation</h3><p>For writing, automation, and business development: Claude 4. Use Perplexity for research, Claude for creation, Make.com to automate the workflow.</p>`},
+
+{id:4,cat:'Industry',date:'April 2026',rt:'4 min',feat:false,
+ title:'Remote Work + AI: The 2026 Global Hiring Report',
+ excerpt:'Remote hiring is up 34% in 2026. AI-skilled candidates command 40–65% salary premiums. Here\'s where the opportunities are concentrated.',
+ body:`<p>The remote work market in 2026 looks significantly different from 2023. AI-skilled workers who deliver 3–5× the output of traditional hires are commanding premium salaries globally.</p>
+<h3>The Numbers That Matter</h3><ul><li>Remote job postings up 34% year-on-year globally</li><li>AI prompt engineering roles: $45,000–$95,000/year remotely</li><li>Nigerian remote workers on Toptal, Upwork earning $28–$65/hour for AI-assisted services</li></ul>
+<h3>What Employers Actually Want</h3><p>The most common 2026 screening criteria: demonstrated AI tool proficiency, measurable output examples, and a clear explanation of your AI workflow. A portfolio showing AI-enhanced deliverables beats a traditional CV every time.</p>`},
+
+{id:5,cat:'Business',date:'March 2026',rt:'7 min',feat:false,
+ title:'How to Build a ₦1M/Month Business with AI Skills',
+ excerpt:'Five AI-powered income streams that Nigerian entrepreneurs are using to cross the million-naira monthly revenue threshold consistently in 2026.',
+ body:`<p>A ₦1,000,000 monthly revenue target sounds ambitious until you map the arithmetic. At ₦200,000 per client, you need 5 clients. At ₦500,000 per project, you need 2.</p>
+<h3>Stream 1: AI Content Retainers (₦150k–₦350k/month per client)</h3><p>An AI-powered content workflow lets you serve 4–6 clients simultaneously.</p>
+<h3>Stream 2: AI Automation Setup (₦300k–₦800k per project)</h3><p>A single Make.com workflow transforms an SME's operations. Add a monthly maintenance retainer of ₦50k–₦100k.</p>
+<h3>Stream 3: Corporate AI Training (₦50k per seat)</h3><p>A 3-hour masterclass to a company of 20 staff at ₦50k/seat = ₦1,000,000 for a single day's work.</p>
+<h3>Stream 4: Digital Products (passive)</h3><p>E-books, prompt packs, and mini-courses on Selar. 50 units/month at ₦5,000 = ₦250,000 passive income.</p>
+<h3>Stream 5: AI Consulting (₦500k–₦2M per engagement)</h3><p>Strategy consulting for businesses integrating AI. Typically begins after 6–12 months of client work.</p>`},
+
+{id:6,cat:'Tutorials',date:'March 2026',rt:'6 min',feat:false,
+ title:'Prompt Engineering in 2026: What Still Works',
+ excerpt:'With longer context windows and smarter models, the rules of effective prompting have evolved. Here\'s the updated framework.',
+ body:`<p>Prompt engineering has matured from a niche skill into foundational business literacy. Many 2023 tips are now outdated.</p>
+<h3>What Still Works</h3><p><strong>Role + Context + Task + Format (RCTF).</strong> "You are a [role]. Given [context], [task]. Respond in [format]." This structure consistently outperforms casual prompts.</p>
+<p><strong>Negative constraints.</strong> Telling the model what NOT to do is often more effective. "Do not use bullet points. Do not use filler phrases like 'Certainly!'"</p>
+<p><strong>Examples (few-shot prompting).</strong> Showing one or two examples of the output format you want dramatically improves consistency.</p>
+<h3>What No Longer Works</h3><p><strong>Magic words</strong> ("Think step by step") — modern models reason automatically. <strong>Extremely long system prompts</strong> — concise instructions work better. <strong>Jailbreaks</strong> — waste of time with modern models.</p>`},
+
+{id:7,cat:'Tools & Apps',date:'February 2026',rt:'5 min',feat:false,
+ title:'AI Video in 2026: Sora 2, Veo 3, and What Actually Works',
+ excerpt:'Text-to-video has matured into a legitimate production tool. Here\'s the landscape and how creators are monetising it.',
+ body:`<p>The AI video landscape in 2026 is both more powerful and more practical than anyone predicted.</p>
+<h3>The Current Landscape</h3><ul><li><strong>Sora 2 (OpenAI):</strong> Best for cinematic short clips and brand videos. $30/month Pro plan.</li><li><strong>Veo 3 (Google):</strong> Strongest for longer, more coherent sequences with consistent characters.</li><li><strong>Pika 2.0:</strong> Most practical for social media creators. Fast, easy, good Make.com integration.</li><li><strong>HeyGen:</strong> Leader for AI avatar videos and course creation.</li></ul>
+<h3>How Creators Are Monetising It</h3><ul><li>Faceless YouTube channels using AI b-roll + ElevenLabs narration</li><li>Social media agencies offering AI video packages to SMEs</li><li>Real estate agencies using Sora 2 for property walkthroughs</li></ul>`},
+
+{id:8,cat:'Industry',date:'February 2026',rt:'5 min',feat:false,
+ title:'AI Agents Are Here: What They Mean for Your Business',
+ excerpt:'Autonomous AI agents that plan, browse, code and execute multi-step tasks are no longer experimental.',
+ body:`<p>In 2024, "AI agents" was a buzzword. In 2026, they are deployed production systems in thousands of businesses.</p>
+<h3>What an AI Agent Actually Is</h3><p>An AI model given access to tools (web browser, code execution, APIs) and the ability to plan multi-step tasks without human input at each step.</p>
+<h3>Practical Business Applications</h3><ul><li><strong>Lead research:</strong> Agent researches a prospect and drafts a personalised outreach email</li><li><strong>Content pipeline:</strong> Research → outline → draft → format → schedule, automatically</li><li><strong>Financial monitoring:</strong> Checks weekly metrics and generates a board report</li></ul>
+<h3>How to Start Today</h3><p>Claude.ai Projects and Make.com's AI scenarios provide agent-like capabilities with no coding required. Start with one business workflow you repeat weekly.</p>`},
+
+{id:9,cat:'Tools & Apps',date:'January 2026',rt:'4 min',feat:false,
+ title:'Google NotebookLM: The Research Tool That Changes Everything',
+ excerpt:'NotebookLM can ingest 50 documents, generate a podcast, answer questions, and create source-cited summaries. Here\'s how to use it.',
+ body:`<p>Google's NotebookLM quietly became one of the most useful AI tools available in 2025-26. Unlike general-purpose chatbots, NotebookLM operates entirely within documents you provide.</p>
+<h3>What It Does</h3><ul><li>Upload up to 50 documents (PDFs, Google Docs, YouTube links, web pages)</li><li>Ask questions and get answers cited to the specific document and page</li><li>Generate an AI podcast discussion of your materials (Audio Overview)</li><li>Create study guides, FAQs, and briefing documents automatically</li></ul>
+<h3>Best Use Cases</h3><p><strong>Research:</strong> Upload all reference materials for a project; ask cross-document questions. <strong>Content creation:</strong> Feed it competitor content, industry reports, and your brand voice document; generate briefing notes. <strong>Training materials:</strong> Upload your SOPs and training documents; let staff ask questions.</p>`},
+
+{id:10,cat:'Nigeria & Africa',date:'January 2026',rt:'5 min',feat:false,
+ title:'How Small African Businesses Are Using AI to Compete Globally',
+ excerpt:'From Lagos to Nairobi, a new generation of African entrepreneurs is using AI tools to deliver services and products that compete at global quality standards.',
+ body:`<p>The narrative around African business has shifted dramatically. AI tools have effectively removed several traditional barriers to entry: design skill, copywriting ability, technical development, and research capacity.</p>
+<h3>Case Studies</h3><p><strong>Lagos Fashion Startup:</strong> A 2-person team uses Midjourney for product concept visualisation, Claude for buyer outreach emails, and Canva AI for lookbooks. They've landed buyers in the UK and UAE.</p>
+<p><strong>Abuja Consulting Firm:</strong> A solo consultant uses Claude for initial research and first-draft reports. Billing rate: ₦500,000 per engagement. Monthly revenue: ₦1.5M+.</p>
+<p><strong>Nairobi EdTech:</strong> A course creator used HeyGen to produce video lessons in English, French, and Swahili without re-recording. Distribution expanded to 3 countries overnight.</p>
+<h3>The Advantage</h3><p>African entrepreneurs using AI tools are delivering at quality levels that match or exceed international competitors — at a fraction of the traditional cost structure.</p>`},
+
+{id:11,cat:'Tutorials',date:'December 2025',rt:'5 min',feat:false,
+ title:'The Complete Guide to AI Image Generation in 2026',
+ excerpt:'From Midjourney to Adobe Firefly to Ideogram — the landscape has matured. Here\'s which tool to use for each creative need.',
+ body:`<p>AI image generation in 2026 is no longer about "can it look real?" — it's about knowing which tool excels at which use case.</p>
+<h3>The Current Hierarchy</h3><ul><li><strong>Midjourney v7:</strong> Best overall for editorial, artistic, and fashion images. Premium aesthetic, unique style.</li><li><strong>Adobe Firefly:</strong> Best for commercial work — fully licensed, safe for client deliverables.</li><li><strong>Ideogram 2.0:</strong> Best for images with readable text — infographics, poster backgrounds, thumbnails.</li><li><strong>DALL-E 3 (via ChatGPT):</strong> Most accessible for general use, good instruction-following.</li><li><strong>Stable Diffusion / ComfyUI:</strong> Best for technical users who need fine control and custom training.</li></ul>
+<h3>Prompting for Great Images</h3><p>Specify: subject + style + lighting + camera angle + mood + negative prompts. "Professional headshot, Nigerian woman, 35, business attire, studio lighting, shallow depth of field, clean white background -- blurry, cartoon, low quality"</p>`},
+
+{id:12,cat:'Nigeria & Africa',date:'December 2025',rt:'4 min',feat:false,
+ title:'AI Regulation in Nigeria: What Entrepreneurs Need to Know',
+ excerpt:'NITDA\'s AI policy framework is taking shape. Here\'s what it means for Nigerian AI businesses, content creators, and developers.',
+ body:`<p>Nigeria's National Information Technology Development Agency (NITDA) has been progressively developing a regulatory framework for AI since 2023. For entrepreneurs building AI-powered businesses, understanding the emerging landscape is important.</p>
+<h3>Key Principles of the Framework</h3><ul><li>Data sovereignty — Nigerian user data should be processed within Nigerian or African infrastructure where possible</li><li>Algorithmic transparency — AI systems making decisions about citizens must be explainable</li><li>Content responsibility — AI-generated content must be disclosed in media and journalism contexts</li></ul>
+<h3>What This Means for You</h3><p>If you're building AI-powered products for Nigerian consumers, consider: using data storage solutions with Nigerian/African presence, documenting your AI decision flows, and adding disclosure labels to AI-generated content. These are emerging best practices, not yet strict legal requirements for most SMEs.</p>
+<h3>The Opportunity</h3><p>Businesses that build with ethical AI practices now will be better positioned as regulation formalises — and will build greater client trust in the near term.</p>`}
+];
+
+let currentFilter = 'All';
+let openArticleId = null;
+
+/* ── CATEGORY CLASS MAP ── */
+function catClass(cat){const m={'Tools & Apps':'tools','Business':'business','Tutorials':'tutorials','Industry':'industry','Nigeria & Africa':'africa'};return m[cat]||'';}
+
+/* ── RENDER FILTER BAR ── */
+function renderFilters(){
+  const el = document.getElementById('filterBar');
+  el.innerHTML = CATS.map(c =>
+    `<button class="filter-pill${c===currentFilter?' active':''}" onclick="setFilter('${c}')">${c}</button>`
+  ).join('');
+}
+
+/* ── SET FILTER ── */
+function setFilter(cat){
+  currentFilter = cat;
+  openArticleId = null;
+  document.getElementById('articleDetail').classList.remove('open');
+  renderFilters();
+  renderContent();
+}
+
+/* ── RENDER CONTENT ── */
+function renderContent(){
+  const filtered = currentFilter === 'All' ? POSTS : POSTS.filter(p => p.cat === currentFilter);
+  const featured = currentFilter === 'All' ? POSTS.find(p => p.feat) : null;
+  const gridPosts = featured ? filtered.filter(p => !p.feat) : filtered;
+
+  // Update count
+  document.getElementById('statArticles').textContent = POSTS.length;
+
+  // Featured
+  const fw = document.getElementById('featuredWrap');
+  if(featured){
+    fw.innerHTML = `<div class="featured-card" onclick="openArticle(${featured.id})">
+      <div class="featured-label">Featured Article</div>
+      <div class="featured-title">${featured.title}</div>
+      <div class="featured-excerpt">${featured.excerpt}</div>
+      <div class="featured-footer">
+        <div style="display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;">
+          <span class="cat-badge ${catClass(featured.cat)}">${featured.cat}</span>
+          <span class="meta-date">${featured.date}</span>
+          <span class="meta-sep">·</span>
+          <span class="meta-rt">${featured.rt} read</span>
+        </div>
+        <button class="read-btn">Read Article →</button>
+      </div>
+    </div>`;
+  } else { fw.innerHTML = ''; }
+
+  // Grid heading
+  const gh = document.getElementById('gridHeading');
+  gh.textContent = currentFilter === 'All' ? 'All Articles' : currentFilter;
+
+  // Grid
+  const grid = document.getElementById('articleGrid');
+  const empty = document.getElementById('emptyMsg');
+  if(!gridPosts.length){ grid.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+  grid.innerHTML = gridPosts.map(p => `
+    <div class="article-card" onclick="openArticle(${p.id})">
+      <div class="article-meta">
+        <span class="cat-badge ${catClass(p.cat)}">${p.cat}</span>
+        <span class="meta-date">${p.date}</span>
+      </div>
+      <div class="article-title">${p.title}</div>
+      <div class="article-excerpt">${p.excerpt}</div>
+      <div class="article-footer">
+        <span>${p.rt} read</span>
+        <span class="article-arrow">Read →</span>
+      </div>
+    </div>`).join('');
+}
+
+/* ── OPEN ARTICLE DETAIL ── */
+function openArticle(id){
+  const post = POSTS.find(p => p.id === id);
+  if(!post) return;
+  openArticleId = id;
+  const detail = document.getElementById('articleDetail');
+  document.getElementById('detailContent').innerHTML = `
+    <div class="detail-meta">
+      <span class="cat-badge ${catClass(post.cat)}">${post.cat}</span>
+      <span class="meta-date">${post.date}</span>
+      <span class="meta-sep">·</span>
+      <span class="meta-rt">${post.rt} read</span>
+    </div>
+    <h2 class="detail-title">${post.title}</h2>
+    <div class="detail-byline">AI Made Simple · ${post.date}</div>
+    <div class="detail-body">${post.body}</div>`;
+  detail.classList.add('open');
+  detail.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ── CLOSE DETAIL ── */
+function closeDetail(){
+  openArticleId = null;
+  document.getElementById('articleDetail').classList.remove('open');
+}
+
+/* ── SUBSCRIBE ── */
+function handleSubscribe(){
+  const email = document.getElementById('subEmail').value.trim();
+  const msg = document.getElementById('subMsg');
+  if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    msg.style.display='block'; msg.style.color='#e05a5a'; msg.textContent='✗ Please enter a valid email address.'; return;
+  }
+  msg.style.display='block'; msg.style.color='var(--gold)';
+  msg.textContent='✓ You\'re subscribed! Watch your inbox for the next AI roundup.';
+  document.getElementById('subEmail').value='';
+}
+
+/* ── INIT ── */
+renderFilters();
+renderContent();
+</script>
+</body>
+</html>

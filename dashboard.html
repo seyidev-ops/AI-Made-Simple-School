@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard — AI Made Simple</title>
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="apple-touch-icon" href="logo.svg">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#C9A84C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -211,47 +213,10 @@ nav{position:sticky;top:0;z-index:200;background:var(--nav-bg);backdrop-filter:b
 .blog-body strong{color:var(--text);font-weight:600;}
 .news-sidebar-cats .s-lesson{cursor:pointer;}
 .news-sidebar-cats .s-lesson.active .s-dot{background:var(--gold);}
-@media(max-width:540px){.blog-grid{grid-template-columns:1fr;}.blog-featured-title{font-size:1.3rem;}}
-.notif-bar{background:var(--gold-dim);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;font-size:0.78rem;color:var(--text-secondary);}
-.notif-icon{font-size:15px;flex-shrink:0;}
-.notif-text{flex:1;}
-.btn-enable-notifs{background:var(--gold);color:#0E0E10;border:none;padding:4px 11px;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.68rem;font-weight:700;cursor:pointer;text-transform:uppercase;flex-shrink:0;}
-.notif-close{background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:13px;flex-shrink:0;}
-.pwa-btn{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--card-bg);border:1px solid var(--border);border-radius:50%;width:46px;height:46px;display:flex;align-items:center;justify-content:center;font-size:17px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.3);z-index:999;transition:all 0.2s;color:var(--text-muted);}
-.pwa-btn:hover{border-color:var(--gold);color:var(--gold);}
-.sidebar-toggle{display:none;background:none;border:none;font-size:18px;color:var(--text-muted);cursor:pointer;padding:4px;flex-shrink:0;}
-.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:150;}
-footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.125rem 1.5rem;}
-.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
-.footer-copy{font-size:0.7rem;color:var(--text-muted);}
-.footer-links{display:flex;gap:1.25rem;}
-.footer-links a{font-size:0.7rem;color:var(--text-muted);text-decoration:none;transition:color var(--transition);}
-.footer-links a:hover{color:var(--gold);}
-@media(max-width:900px){
-.sidebar{position:fixed;top:60px;left:0;bottom:0;z-index:160;transform:translateX(-100%);}
-.sidebar.open{transform:translateX(0);}
-.sidebar-overlay{display:block;}
-.sidebar-toggle{display:flex;}
-.progress-bar-nav,.progress-pct{display:none;}
-.nav-user{display:none;}
-}
-@media(max-width:540px){.stats-row{grid-template-columns:1fr 1fr;}.phase-progress{grid-template-columns:repeat(3,1fr);}.mc-grid{grid-template-columns:1fr;}}
+@media(max-width:540px){.blog-grid{grid-template-columns:1fr;}.stats-row{grid-template-columns:1fr 1fr;}.phase-progress{grid-template-columns:repeat(3,1fr);}.mc-grid{grid-template-columns:1fr;}}
 
-/* ── BACKGROUND WATERMARK ── */
-.bg-watermark{position:fixed;bottom:-6%;right:-4%;width:min(38vw,260px);height:auto;opacity:0.045;pointer-events:none;user-select:none;z-index:0;color:var(--gold);transform:rotate(-10deg);transition:opacity var(--transition);}
-.bg-watermark svg{display:block;width:100%;height:auto;}
-[data-theme="light"] .bg-watermark{opacity:0.07;}
-@media(max-width:768px){.bg-watermark{width:min(52vw,190px);opacity:0.035;bottom:-3%;right:-3%;}}
-@media(max-width:430px){.bg-watermark{width:min(60vw,160px);opacity:0.03;}}
 /* ── RESPONSIVE ── */
-@media(max-width:900px){
-  .sidebar{position:fixed;top:60px;left:0;bottom:0;z-index:160;transform:translateX(-100%);}
-  .sidebar.open{transform:translateX(0);}
-  .sidebar-overlay{display:block;}
-  .sidebar-toggle{display:flex;align-items:center;}
-  .progress-bar-nav,.progress-pct{display:none;}
-  .nav-user{display:none;}
-}
+
 @media(max-width:768px){
   nav{padding:0 1rem;gap:0.5rem;}
   .nav-name{display:none;}
@@ -315,7 +280,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.125rem
   .blog-card{padding:1rem 0.875rem;}
   .blog-filter-bar{gap:0.35rem;margin-bottom:1rem;}
   .blog-filter{padding:4px 9px;font-size:0.63rem;}
-  .pwa-btn{bottom:0.875rem;right:0.875rem;width:42px;height:42px;font-size:15px;}
   .s-lesson{padding:9px 0.75rem 9px 1.1rem;}
   .s-title{font-size:0.7rem;}
   .sidebar-section-title{font-size:0.62rem;}
@@ -323,11 +287,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.125rem
 </style>
 </head>
 <body>
-<div class="bg-watermark" aria-hidden="true" role="presentation">
-  <svg viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-    <text x="110" y="115" font-family="Cormorant Garamond,Georgia,serif" font-style="italic" font-weight="700" font-size="110" fill="currentColor" text-anchor="middle">AI</text>
-  </svg>
-</div>
 <nav>
   <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
   <a href="index.html" class="nav-brand"><svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32" style="flex-shrink:0;border-radius:8px;">
@@ -354,7 +313,6 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.125rem
   <aside class="sidebar" id="sidebar"><div id="sidebarInner"></div></aside>
   <main class="main-content" id="mainContent"></main>
 </div>
-<button class="pwa-btn" onclick="pwaExit()" title="Install">⊞</button>
 <footer>
   <div class="footer-inner">
     <div class="footer-copy">© 2026 Ona Services Ltd. Coded by Oluwaseyi Ashiru.</div>
@@ -1196,8 +1154,6 @@ function simPay(){
 function reqNotif(){if(!('Notification'in window)){showToast('Not supported.');return;}Notification.requestPermission().then(p=>{if(p==='granted'){localStorage.setItem('ams-notifs','1');showToast('Daily reminders enabled! 🔔');}});}
 function handleLogout(){if(confirm('Sign out?')){localStorage.removeItem('ams-session');window.location.href='login.html';}}
 function showToast(msg){const t=document.createElement('div');t.style.cssText='position:fixed;bottom:4rem;right:1.5rem;background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;padding:9px 14px;font-size:.78rem;color:var(--text);box-shadow:var(--shadow);z-index:9998;max-width:270px;';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),3200);}
-function pwaExit(){if(window.matchMedia('(display-mode: standalone)').matches){if(confirm('Exit?'))window.close();}else if(window._deferredInstallPrompt)window._deferredInstallPrompt.prompt();else showToast('Use browser "Add to Home Screen" to install.');}
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();window._deferredInstallPrompt=e;});
 
 function init(){
   const session=getSession();if(!session){window.location.href='login.html';return;}
