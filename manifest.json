@@ -12,13 +12,13 @@
   "categories": ["education", "productivity", "business"],
   "icons": [
     {
-      "src": "logo.svg",
+      "src": "/assets/logo.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "logo.svg",
+      "src": "/assets/logo.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "maskable"
@@ -30,21 +30,21 @@
       "short_name": "Dashboard",
       "description": "Access your learning dashboard",
       "url": "/dashboard.html",
-      "icons": [{ "src": "logo.svg", "sizes": "any" }]
+      "icons": [{ "src": "/assets/logo.svg", "sizes": "any" }]
     },
     {
       "name": "AI Blog",
       "short_name": "Blog",
       "description": "Everything AI — latest insights",
       "url": "/blog.html",
-      "icons": [{ "src": "logo.svg", "sizes": "any" }]
+      "icons": [{ "src": "/assets/logo.svg", "sizes": "any" }]
     },
     {
       "name": "Sign In",
       "short_name": "Login",
       "description": "Sign in to your account",
       "url": "/login.html",
-      "icons": [{ "src": "logo.svg", "sizes": "any" }]
+      "icons": [{ "src": "/assets/logo.svg", "sizes": "any" }]
     }
   ],
   "prefer_related_applications": false,
