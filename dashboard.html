@@ -1162,8 +1162,9 @@ function dashRecHTML(post){
 
 /* ── SHARE: points to the PUBLIC blog link so readers can open it without logging in ── */
 function publicPostUrl(id){
-  // Adjust this base if your site lives on a different domain.
-  return location.origin + '/blog.html#post-' + id;
+  // Crawlable preview page that shows a per-post thumbnail on WhatsApp/Telegram,
+  // then redirects readers to the article. Adjust base if your domain changes.
+  return location.origin + '/p/' + id + '.html';
 }
 function dashShareBar(post){
   const url = encodeURIComponent(publicPostUrl(post.id));

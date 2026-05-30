@@ -477,13 +477,18 @@ function recProgramHTML(post){
 }
 
 /* ── SHARE HELPERS ── */
-// Build the permanent link to a single post, e.g. https://site.com/blog.html#post-3
+// In-site deep link (opens the article within blog.html). Used by Copy-while-reading fallback.
 function postUrl(id){
   return location.origin + location.pathname + '#post-' + id;
 }
+// Crawlable share link: a tiny /p/N.html page carrying per-post preview tags,
+// which redirects humans to the article. This is what gets a WhatsApp/Telegram thumbnail.
+function shareUrl(id){
+  return location.origin + '/p/' + id + '.html';
+}
 
 function shareBarHTML(post){
-  const url = encodeURIComponent(postUrl(post.id));
+  const url = encodeURIComponent(shareUrl(post.id));
   const text = encodeURIComponent(post.title + ' — AI Made Simple');
   return `
     <div class="share-bar">
@@ -502,7 +507,7 @@ function shareBarHTML(post){
 function nativeShare(id){
   const post = POSTS.find(p => p.id === id);
   if(!post) return;
-  const url = postUrl(id);
+  const url = shareUrl(id);
   if(navigator.share){
     navigator.share({ title: post.title, text: post.title + ' — AI Made Simple', url })
       .catch(()=>{});
@@ -512,7 +517,7 @@ function nativeShare(id){
 }
 
 function copyLink(id){
-  const url = postUrl(id);
+  const url = shareUrl(id);
   const done = ()=>{
     const tag = document.getElementById('copied-'+id);
     if(tag){ tag.style.display='inline'; setTimeout(()=>tag.style.display='none', 1800); }
