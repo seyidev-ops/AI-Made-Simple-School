@@ -232,6 +232,9 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.125rem
 .blog-read-btn:hover{opacity:0.88;}
 .blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-bottom:1.5rem;}
 .blog-card{background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:1.25rem;cursor:pointer;transition:all 0.2s;display:flex;flex-direction:column;gap:0.6rem;}
+.blog-card-thumb{width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.25rem;background:var(--bg3);display:block;}
+.blog-featured-thumb{width:100%;height:200px;object-fit:cover;border-radius:10px;margin-bottom:1.25rem;background:var(--bg3);display:block;}
+.blog-detail-thumb{width:100%;height:240px;object-fit:cover;border-radius:10px;margin-bottom:1.25rem;background:var(--bg3);display:block;}
 .blog-card:hover{border-color:rgba(201,168,76,0.3);transform:translateY(-2px);}
 .blog-card-title{font-size:0.9rem;font-weight:600;color:var(--text);line-height:1.4;}
 .blog-card-excerpt{font-size:0.76rem;color:var(--text-muted);line-height:1.6;flex:1;}
@@ -770,7 +773,7 @@ const MC=[
 /* ══ AI NEWS BLOG ══ */
 const BLOG_CATS=['all','AI Models','Tools & Apps','Business','Tutorials','Industry'];
 const BLOG_POSTS=[
-{id:1,cat:'AI Models',date:'May 2026',rt:'5 min read',featured:true,
+{id:1,cat:'AI Models',date:'May 2026',rt:'5 min read',featured:true,thumb:'images/cat-models.jpg',
  title:`Claude 4 Redefines What AI Can Do for Your Business`,
  excerpt:`Anthropic's Claude 4 family brings autonomous reasoning, real-time browsing, and multi-step task execution. Here's your practical guide to what's changed and how to leverage it.`,
  body:`<p>When Anthropic released Claude 4, the shift was immediately clear. This wasn't a marginal improvement — it was a rethinking of what AI can do for you.</p>
@@ -779,14 +782,14 @@ const BLOG_POSTS=[
 <h3>What This Means in Practice</h3><ul><li><strong>Business proposals:</strong> Claude 4 can research, draft, and refine a complete proposal in one session</li><li><strong>Data analysis:</strong> Feed it a spreadsheet and ask for strategic insights — not just summaries</li><li><strong>Automation planning:</strong> Describe your workflow and it designs the automation architecture</li></ul>
 <h3>The Takeaway</h3><p>Claude 4 rewards people who know how to direct AI effectively. The gap between AI-literate and AI-naive professionals has never been wider.</p>`},
 
-{id:2,cat:'Tools & Apps',date:'May 2026',rt:'4 min read',featured:false,
+{id:2,cat:'Tools & Apps',date:'May 2026',rt:'4 min read',featured:false,thumb:'images/cat-tools.jpg',
  title:`The 7 AI Tools Every Nigerian Entrepreneur Needs in 2026`,
  excerpt:`From content creation to client automation, these tools are transforming how Africa's fastest-growing businesses operate — most under $20/month.`,
  body:`<p>The democratisation of AI tools has created an unprecedented opportunity for entrepreneurs in Nigeria and across Africa.</p>
 <h3>The Essential 2026 Stack</h3><ul><li><strong>Claude (Anthropic)</strong> — Best for nuanced business writing, proposals, and strategic thinking.</li><li><strong>Perplexity AI</strong> — Real-time, cited research without hallucination risk.</li><li><strong>Canva AI</strong> — Magic Design and AI image generation for professional visuals.</li><li><strong>ElevenLabs</strong> — Natural-sounding voiceovers in seconds.</li><li><strong>Make.com</strong> — Connect your tools without code. One automation can save 5-10 hours/week.</li><li><strong>Gamma</strong> — AI-generated pitch decks in minutes.</li><li><strong>Julius AI</strong> — Upload a spreadsheet, get insights instantly.</li></ul>
 <h3>The Winning Combination</h3><p>Claude drafts the content strategy, Canva produces visuals, Make.com distributes it, ElevenLabs narrates the video version. A 4-person team's output, solo.</p>`},
 
-{id:3,cat:'AI Models',date:'April 2026',rt:'6 min read',featured:false,
+{id:3,cat:'AI Models',date:'April 2026',rt:'6 min read',featured:false,thumb:'images/cat-models.jpg',
  title:`GPT-5 vs Claude 4 vs Gemini 2.5: An Honest Comparison`,
  excerpt:`Three flagship models, three very different strengths. We break down which wins for writing, coding, analysis, and real-world business use.`,
  body:`<p>The AI model wars have reached a point where all three leading models are genuinely capable. The question is no longer which is best but which is best for your use case.</p>
@@ -795,14 +798,14 @@ const BLOG_POSTS=[
 <h3>For Research — Gemini 2.5 Pro</h3><p>Gemini's deep integration with Google Search gives it a factual advantage for queries requiring current information.</p>
 <h3>The Recommendation</h3><p>For writing, automation, and business development: Claude 4. Use Perplexity for research, Claude for creation, Make.com to automate the workflow.</p>`},
 
-{id:4,cat:'Industry',date:'April 2026',rt:'4 min read',featured:false,
+{id:4,cat:'Industry',date:'April 2026',rt:'4 min read',featured:false,thumb:'images/cat-industry.jpg',
  title:`Remote Work + AI: The 2026 Global Hiring Report`,
  excerpt:`Remote hiring is up 34% in 2026. AI-skilled candidates command 40-65% salary premiums. Here's where the opportunities are concentrated.`,
  body:`<p>The remote work market in 2026 looks significantly different from 2023. AI-skilled workers who deliver 3-5x the output of traditional hires are commanding premium salaries globally.</p>
 <h3>The Numbers That Matter</h3><ul><li>Remote job postings up 34% year-on-year globally</li><li>AI prompt engineering roles: $45,000-$95,000/year remotely</li><li>Nigerian remote workers on Toptal, Upwork earning $28-$65/hour for AI-assisted services</li></ul>
 <h3>What Employers Actually Want</h3><p>The most common 2026 screening criteria: demonstrated AI tool proficiency, measurable output examples, and a clear explanation of your AI workflow. A portfolio showing AI-enhanced deliverables beats a traditional CV every time.</p>`},
 
-{id:5,cat:'Business',date:'March 2026',rt:'7 min read',featured:false,
+{id:5,cat:'Business',date:'March 2026',rt:'7 min read',featured:false,thumb:'images/cat-business.jpg',
  title:`How to Build a N1M/Month Business with AI Skills`,
  excerpt:`Five AI-powered income streams that Nigerian entrepreneurs are using to cross the million-naira monthly revenue threshold consistently in 2026.`,
  body:`<p>A N1,000,000 monthly revenue target sounds ambitious until you map the arithmetic. At N200,000 per client, you need 5 clients. At N500,000 per project, you need 2.</p>
@@ -812,7 +815,7 @@ const BLOG_POSTS=[
 <h3>Stream 4: Digital Products (passive)</h3><p>E-books, prompt packs, and mini-courses on Selar. 50 units/month at N5,000 = N250,000 passive income.</p>
 <h3>Stream 5: AI Consulting (N500k-N2M per engagement)</h3><p>Strategy consulting for businesses integrating AI. Typically begins after 6-12 months of client work.</p>`},
 
-{id:6,cat:'Tutorials',date:'March 2026',rt:'6 min read',featured:false,
+{id:6,cat:'Tutorials',date:'March 2026',rt:'6 min read',featured:false,thumb:'images/cat-tutorials.jpg',
  title:`Prompt Engineering in 2026: What Still Works`,
  excerpt:`With longer context windows and smarter models, the rules of effective prompting have evolved. Here's the updated framework that gets consistent results.`,
  body:`<p>Prompt engineering has matured from a niche skill into foundational business literacy. Many 2023 tips are now outdated.</p>
@@ -821,7 +824,7 @@ const BLOG_POSTS=[
 <h3>What No Longer Works</h3><p>Magic words like "Think step by step" are now unnecessary — modern models reason automatically. Extremely long system prompts also perform worse than concise, precise instructions.</p>
 <h3>The 2026 Principle</h3><p>Write prompts the way you would brief a highly intelligent, literal colleague who has no background in your project. Be specific, be concrete, give examples, specify the exact format you need.</p>`},
 
-{id:7,cat:'Tools & Apps',date:'February 2026',rt:'5 min read',featured:false,
+{id:7,cat:'Tools & Apps',date:'February 2026',rt:'5 min read',featured:false,thumb:'images/cat-tools.jpg',
  title:`AI Video in 2026: Sora 2, Veo 3, and What Actually Works`,
  excerpt:`Text-to-video has matured into a legitimate production tool. Here's the current landscape and how creators are monetising it in 2026.`,
  body:`<p>The AI video landscape in 2026 is both more powerful and more practical than anyone predicted.</p>
@@ -829,7 +832,7 @@ const BLOG_POSTS=[
 <h3>How Creators Are Monetising It</h3><ul><li>Faceless YouTube channels using AI b-roll + ElevenLabs narration</li><li>Social media agencies offering AI video packages to SMEs</li><li>Real estate agencies using Sora 2 for property walkthroughs</li></ul>
 <h3>The Honest Assessment</h3><p>AI video still requires a strong script and clear creative direction. It amplifies good ideas — it does not replace them.</p>`},
 
-{id:8,cat:'Industry',date:'February 2026',rt:'5 min read',featured:false,
+{id:8,cat:'Industry',date:'February 2026',rt:'5 min read',featured:false,thumb:'images/cat-industry.jpg',
  title:`AI Agents Are Here: What They Mean for Your Business`,
  excerpt:`Autonomous AI agents that plan, browse, code and execute multi-step tasks are no longer experimental. Here's how businesses are deploying them today.`,
  body:`<p>In 2024, AI agents was a buzzword. In 2026, they are deployed production systems in thousands of businesses.</p>
@@ -1060,6 +1063,7 @@ function renderNewsMain(main){
 
   const featuredHTML=filter==='all'&&featured?`
     <div class="blog-featured" onclick="openArticle(${featured.id})">
+      ${featured.thumb ? `<img class="blog-featured-thumb" src="${featured.thumb}" alt="${featured.title}" loading="lazy">` : ''}
       <div class="blog-featured-meta">
         <span class="blog-category ${getCatClass(featured.cat)}">${featured.cat}</span>
         <span class="blog-date">${featured.date}</span>
@@ -1072,6 +1076,7 @@ function renderNewsMain(main){
 
   const cardsHTML=grid.map(p=>`
     <div class="blog-card" onclick="openArticle(${p.id})">
+      ${p.thumb ? `<img class="blog-card-thumb" src="${p.thumb}" alt="${p.title}" loading="lazy">` : ''}
       <div class="blog-featured-meta" style="margin-bottom:0;">
         <span class="blog-category ${getCatClass(p.cat)}">${p.cat}</span>
       </div>
@@ -1116,6 +1121,7 @@ function openArticle(id,scroll=true){
       </div>
       <button class="blog-close-btn" onclick="closeArticle()">✕ Close</button>
     </div>
+    ${post.thumb ? `<img class="blog-detail-thumb" src="${post.thumb}" alt="${post.title}" loading="lazy">` : ''}
     <div class="blog-body">${post.body}</div>`;
   if(scroll)detail.scrollIntoView({behavior:'smooth',block:'start'});
 }
