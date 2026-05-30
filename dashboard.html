@@ -235,6 +235,13 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.125rem
 .blog-card-thumb{width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:0.25rem;background:var(--bg3);display:block;}
 .blog-featured-thumb{width:100%;height:200px;object-fit:cover;border-radius:10px;margin-bottom:1.25rem;background:var(--bg3);display:block;}
 .blog-detail-thumb{width:100%;height:240px;object-fit:cover;border-radius:10px;margin-bottom:1.25rem;background:var(--bg3);display:block;}
+.dash-share-bar{display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--border);}
+.dash-share-label{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-right:0.25rem;}
+.dash-share-btn{display:inline-flex;align-items:center;gap:5px;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:7px 13px;border-radius:6px;font-size:0.72rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.2s;text-decoration:none;}
+.dash-share-btn:hover{border-color:var(--gold);color:var(--gold);}
+.dash-share-btn.primary{background:var(--gold);color:#0E0E10;border-color:var(--gold);}
+.dash-share-btn.primary:hover{opacity:0.88;color:#0E0E10;}
+.dash-share-copied{font-size:0.7rem;color:var(--gold);font-weight:600;display:none;}
 .blog-card:hover{border-color:rgba(201,168,76,0.3);transform:translateY(-2px);}
 .blog-card-title{font-size:0.9rem;font-weight:600;color:var(--text);line-height:1.4;}
 .blog-card-excerpt{font-size:0.76rem;color:var(--text-muted);line-height:1.6;flex:1;}
@@ -773,7 +780,7 @@ const MC=[
 /* ══ AI NEWS BLOG ══ */
 const BLOG_CATS=['all','AI Models','Tools & Apps','Business','Tutorials','Industry'];
 const BLOG_POSTS=[
-{id:1,cat:'AI Models',date:'May 2026',rt:'5 min read',featured:true,thumb:'images/cat-models.jpg',
+{id:1,cat:'AI Models',date:'May 2026',rt:'5 min read',featured:true,thumb:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSI+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjc1IiBmaWxsPSIjMEUwRTEwIi8+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNiIgZmlsbD0iI0M5QTg0QyIvPjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjExODAiIGhlaWdodD0iNjU1IiBmaWxsPSJub25lIiBzdHJva2U9IiNDOUE4NEMiIHN0cm9rZS1vcGFjaXR5PSIwLjE4IiBzdHJva2Utd2lkdGg9IjEiLz48dGV4dCB4PSI4MCIgeT0iMzAwIiBmb250LWZhbWlseT0iR2VvcmdpYSwnQ29ybW9yYW50IEdhcmFtb25kJyxzZXJpZiIgZm9udC1zdHlsZT0iaXRhbGljIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjE1MCIgZmlsbD0iI0M5QTg0QyI+QUk8L3RleHQ+PHJlY3QgeD0iODQiIHk9IjM0NSIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIzIiBmaWxsPSIjQzlBODRDIi8+PHRleHQgeD0iODQiIHk9IjQxMCIgZm9udC1mYW1pbHk9IkFyaWFsLCdETSBTYW5zJyxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjQwIiBsZXR0ZXItc3BhY2luZz0iMiIgZmlsbD0iI0YwRURFNiI+QUkgTU9ERUxTPC90ZXh0Pjx0ZXh0IHg9Ijg0IiB5PSI2MTAiIGZvbnQtZmFtaWx5PSJBcmlhbCwnRE0gU2Fucycsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIyNiIgbGV0dGVyLXNwYWNpbmc9IjMiIGZpbGw9IiM3QTc4NzAiPkFJIE1BREUgU0lNUExFPC90ZXh0Pjwvc3ZnPg==",
  title:`Claude 4 Redefines What AI Can Do for Your Business`,
  excerpt:`Anthropic's Claude 4 family brings autonomous reasoning, real-time browsing, and multi-step task execution. Here's your practical guide to what's changed and how to leverage it.`,
  body:`<p>When Anthropic released Claude 4, the shift was immediately clear. This wasn't a marginal improvement — it was a rethinking of what AI can do for you.</p>
@@ -782,14 +789,14 @@ const BLOG_POSTS=[
 <h3>What This Means in Practice</h3><ul><li><strong>Business proposals:</strong> Claude 4 can research, draft, and refine a complete proposal in one session</li><li><strong>Data analysis:</strong> Feed it a spreadsheet and ask for strategic insights — not just summaries</li><li><strong>Automation planning:</strong> Describe your workflow and it designs the automation architecture</li></ul>
 <h3>The Takeaway</h3><p>Claude 4 rewards people who know how to direct AI effectively. The gap between AI-literate and AI-naive professionals has never been wider.</p>`},
 
-{id:2,cat:'Tools & Apps',date:'May 2026',rt:'4 min read',featured:false,thumb:'images/cat-tools.jpg',
+{id:2,cat:'Tools & Apps',date:'May 2026',rt:'4 min read',featured:false,thumb:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSI+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjc1IiBmaWxsPSIjMEUwRTEwIi8+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNiIgZmlsbD0iI0M5QTg0QyIvPjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjExODAiIGhlaWdodD0iNjU1IiBmaWxsPSJub25lIiBzdHJva2U9IiNDOUE4NEMiIHN0cm9rZS1vcGFjaXR5PSIwLjE4IiBzdHJva2Utd2lkdGg9IjEiLz48dGV4dCB4PSI4MCIgeT0iMzAwIiBmb250LWZhbWlseT0iR2VvcmdpYSwnQ29ybW9yYW50IEdhcmFtb25kJyxzZXJpZiIgZm9udC1zdHlsZT0iaXRhbGljIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjE1MCIgZmlsbD0iI0M5QTg0QyI+QUk8L3RleHQ+PHJlY3QgeD0iODQiIHk9IjM0NSIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIzIiBmaWxsPSIjNkJBM0Q0Ii8+PHRleHQgeD0iODQiIHk9IjQxMCIgZm9udC1mYW1pbHk9IkFyaWFsLCdETSBTYW5zJyxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjQwIiBsZXR0ZXItc3BhY2luZz0iMiIgZmlsbD0iI0YwRURFNiI+VE9PTFMgJiBBUFBTPC90ZXh0Pjx0ZXh0IHg9Ijg0IiB5PSI2MTAiIGZvbnQtZmFtaWx5PSJBcmlhbCwnRE0gU2Fucycsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIyNiIgbGV0dGVyLXNwYWNpbmc9IjMiIGZpbGw9IiM3QTc4NzAiPkFJIE1BREUgU0lNUExFPC90ZXh0Pjwvc3ZnPg==",
  title:`The 7 AI Tools Every Nigerian Entrepreneur Needs in 2026`,
  excerpt:`From content creation to client automation, these tools are transforming how Africa's fastest-growing businesses operate — most under $20/month.`,
  body:`<p>The democratisation of AI tools has created an unprecedented opportunity for entrepreneurs in Nigeria and across Africa.</p>
 <h3>The Essential 2026 Stack</h3><ul><li><strong>Claude (Anthropic)</strong> — Best for nuanced business writing, proposals, and strategic thinking.</li><li><strong>Perplexity AI</strong> — Real-time, cited research without hallucination risk.</li><li><strong>Canva AI</strong> — Magic Design and AI image generation for professional visuals.</li><li><strong>ElevenLabs</strong> — Natural-sounding voiceovers in seconds.</li><li><strong>Make.com</strong> — Connect your tools without code. One automation can save 5-10 hours/week.</li><li><strong>Gamma</strong> — AI-generated pitch decks in minutes.</li><li><strong>Julius AI</strong> — Upload a spreadsheet, get insights instantly.</li></ul>
 <h3>The Winning Combination</h3><p>Claude drafts the content strategy, Canva produces visuals, Make.com distributes it, ElevenLabs narrates the video version. A 4-person team's output, solo.</p>`},
 
-{id:3,cat:'AI Models',date:'April 2026',rt:'6 min read',featured:false,thumb:'images/cat-models.jpg',
+{id:3,cat:'AI Models',date:'April 2026',rt:'6 min read',featured:false,thumb:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSI+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjc1IiBmaWxsPSIjMEUwRTEwIi8+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNiIgZmlsbD0iI0M5QTg0QyIvPjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjExODAiIGhlaWdodD0iNjU1IiBmaWxsPSJub25lIiBzdHJva2U9IiNDOUE4NEMiIHN0cm9rZS1vcGFjaXR5PSIwLjE4IiBzdHJva2Utd2lkdGg9IjEiLz48dGV4dCB4PSI4MCIgeT0iMzAwIiBmb250LWZhbWlseT0iR2VvcmdpYSwnQ29ybW9yYW50IEdhcmFtb25kJyxzZXJpZiIgZm9udC1zdHlsZT0iaXRhbGljIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjE1MCIgZmlsbD0iI0M5QTg0QyI+QUk8L3RleHQ+PHJlY3QgeD0iODQiIHk9IjM0NSIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIzIiBmaWxsPSIjQzlBODRDIi8+PHRleHQgeD0iODQiIHk9IjQxMCIgZm9udC1mYW1pbHk9IkFyaWFsLCdETSBTYW5zJyxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjQwIiBsZXR0ZXItc3BhY2luZz0iMiIgZmlsbD0iI0YwRURFNiI+QUkgTU9ERUxTPC90ZXh0Pjx0ZXh0IHg9Ijg0IiB5PSI2MTAiIGZvbnQtZmFtaWx5PSJBcmlhbCwnRE0gU2Fucycsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIyNiIgbGV0dGVyLXNwYWNpbmc9IjMiIGZpbGw9IiM3QTc4NzAiPkFJIE1BREUgU0lNUExFPC90ZXh0Pjwvc3ZnPg==",
  title:`GPT-5 vs Claude 4 vs Gemini 2.5: An Honest Comparison`,
  excerpt:`Three flagship models, three very different strengths. We break down which wins for writing, coding, analysis, and real-world business use.`,
  body:`<p>The AI model wars have reached a point where all three leading models are genuinely capable. The question is no longer which is best but which is best for your use case.</p>
@@ -798,14 +805,14 @@ const BLOG_POSTS=[
 <h3>For Research — Gemini 2.5 Pro</h3><p>Gemini's deep integration with Google Search gives it a factual advantage for queries requiring current information.</p>
 <h3>The Recommendation</h3><p>For writing, automation, and business development: Claude 4. Use Perplexity for research, Claude for creation, Make.com to automate the workflow.</p>`},
 
-{id:4,cat:'Industry',date:'April 2026',rt:'4 min read',featured:false,thumb:'images/cat-industry.jpg',
+{id:4,cat:'Industry',date:'April 2026',rt:'4 min read',featured:false,thumb:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSI+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjc1IiBmaWxsPSIjMEUwRTEwIi8+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNiIgZmlsbD0iI0M5QTg0QyIvPjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjExODAiIGhlaWdodD0iNjU1IiBmaWxsPSJub25lIiBzdHJva2U9IiNDOUE4NEMiIHN0cm9rZS1vcGFjaXR5PSIwLjE4IiBzdHJva2Utd2lkdGg9IjEiLz48dGV4dCB4PSI4MCIgeT0iMzAwIiBmb250LWZhbWlseT0iR2VvcmdpYSwnQ29ybW9yYW50IEdhcmFtb25kJyxzZXJpZiIgZm9udC1zdHlsZT0iaXRhbGljIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjE1MCIgZmlsbD0iI0M5QTg0QyI+QUk8L3RleHQ+PHJlY3QgeD0iODQiIHk9IjM0NSIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIzIiBmaWxsPSIjQzQ3QUQ0Ii8+PHRleHQgeD0iODQiIHk9IjQxMCIgZm9udC1mYW1pbHk9IkFyaWFsLCdETSBTYW5zJyxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjQwIiBsZXR0ZXItc3BhY2luZz0iMiIgZmlsbD0iI0YwRURFNiI+SU5EVVNUUlk8L3RleHQ+PHRleHQgeD0iODQiIHk9IjYxMCIgZm9udC1mYW1pbHk9IkFyaWFsLCdETSBTYW5zJyxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjI2IiBsZXR0ZXItc3BhY2luZz0iMyIgZmlsbD0iIzdBNzg3MCI+QUkgTUFERSBTSU1QTEU8L3RleHQ+PC9zdmc+",
  title:`Remote Work + AI: The 2026 Global Hiring Report`,
  excerpt:`Remote hiring is up 34% in 2026. AI-skilled candidates command 40-65% salary premiums. Here's where the opportunities are concentrated.`,
  body:`<p>The remote work market in 2026 looks significantly different from 2023. AI-skilled workers who deliver 3-5x the output of traditional hires are commanding premium salaries globally.</p>
 <h3>The Numbers That Matter</h3><ul><li>Remote job postings up 34% year-on-year globally</li><li>AI prompt engineering roles: $45,000-$95,000/year remotely</li><li>Nigerian remote workers on Toptal, Upwork earning $28-$65/hour for AI-assisted services</li></ul>
 <h3>What Employers Actually Want</h3><p>The most common 2026 screening criteria: demonstrated AI tool proficiency, measurable output examples, and a clear explanation of your AI workflow. A portfolio showing AI-enhanced deliverables beats a traditional CV every time.</p>`},
 
-{id:5,cat:'Business',date:'March 2026',rt:'7 min read',featured:false,thumb:'images/cat-business.jpg',
+{id:5,cat:'Business',date:'March 2026',rt:'7 min read',featured:false,thumb:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSI+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjc1IiBmaWxsPSIjMEUwRTEwIi8+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNiIgZmlsbD0iI0M5QTg0QyIvPjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjExODAiIGhlaWdodD0iNjU1IiBmaWxsPSJub25lIiBzdHJva2U9IiNDOUE4NEMiIHN0cm9rZS1vcGFjaXR5PSIwLjE4IiBzdHJva2Utd2lkdGg9IjEiLz48dGV4dCB4PSI4MCIgeT0iMzAwIiBmb250LWZhbWlseT0iR2VvcmdpYSwnQ29ybW9yYW50IEdhcmFtb25kJyxzZXJpZiIgZm9udC1zdHlsZT0iaXRhbGljIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjE1MCIgZmlsbD0iI0M5QTg0QyI+QUk8L3RleHQ+PHJlY3QgeD0iODQiIHk9IjM0NSIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIzIiBmaWxsPSIjNUZENDhBIi8+PHRleHQgeD0iODQiIHk9IjQxMCIgZm9udC1mYW1pbHk9IkFyaWFsLCdETSBTYW5zJyxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjQwIiBsZXR0ZXItc3BhY2luZz0iMiIgZmlsbD0iI0YwRURFNiI+QlVTSU5FU1M8L3RleHQ+PHRleHQgeD0iODQiIHk9IjYxMCIgZm9udC1mYW1pbHk9IkFyaWFsLCdETSBTYW5zJyxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjI2IiBsZXR0ZXItc3BhY2luZz0iMyIgZmlsbD0iIzdBNzg3MCI+QUkgTUFERSBTSU1QTEU8L3RleHQ+PC9zdmc+",
  title:`How to Build a N1M/Month Business with AI Skills`,
  excerpt:`Five AI-powered income streams that Nigerian entrepreneurs are using to cross the million-naira monthly revenue threshold consistently in 2026.`,
  body:`<p>A N1,000,000 monthly revenue target sounds ambitious until you map the arithmetic. At N200,000 per client, you need 5 clients. At N500,000 per project, you need 2.</p>
@@ -815,7 +822,7 @@ const BLOG_POSTS=[
 <h3>Stream 4: Digital Products (passive)</h3><p>E-books, prompt packs, and mini-courses on Selar. 50 units/month at N5,000 = N250,000 passive income.</p>
 <h3>Stream 5: AI Consulting (N500k-N2M per engagement)</h3><p>Strategy consulting for businesses integrating AI. Typically begins after 6-12 months of client work.</p>`},
 
-{id:6,cat:'Tutorials',date:'March 2026',rt:'6 min read',featured:false,thumb:'images/cat-tutorials.jpg',
+{id:6,cat:'Tutorials',date:'March 2026',rt:'6 min read',featured:false,thumb:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSI+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjc1IiBmaWxsPSIjMEUwRTEwIi8+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNiIgZmlsbD0iI0M5QTg0QyIvPjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjExODAiIGhlaWdodD0iNjU1IiBmaWxsPSJub25lIiBzdHJva2U9IiNDOUE4NEMiIHN0cm9rZS1vcGFjaXR5PSIwLjE4IiBzdHJva2Utd2lkdGg9IjEiLz48dGV4dCB4PSI4MCIgeT0iMzAwIiBmb250LWZhbWlseT0iR2VvcmdpYSwnQ29ybW9yYW50IEdhcmFtb25kJyxzZXJpZiIgZm9udC1zdHlsZT0iaXRhbGljIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjE1MCIgZmlsbD0iI0M5QTg0QyI+QUk8L3RleHQ+PHJlY3QgeD0iODQiIHk9IjM0NSIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIzIiBmaWxsPSIjRDQ5NTZCIi8+PHRleHQgeD0iODQiIHk9IjQxMCIgZm9udC1mYW1pbHk9IkFyaWFsLCdETSBTYW5zJyxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjQwIiBsZXR0ZXItc3BhY2luZz0iMiIgZmlsbD0iI0YwRURFNiI+VFVUT1JJQUxTPC90ZXh0Pjx0ZXh0IHg9Ijg0IiB5PSI2MTAiIGZvbnQtZmFtaWx5PSJBcmlhbCwnRE0gU2Fucycsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIyNiIgbGV0dGVyLXNwYWNpbmc9IjMiIGZpbGw9IiM3QTc4NzAiPkFJIE1BREUgU0lNUExFPC90ZXh0Pjwvc3ZnPg==",
  title:`Prompt Engineering in 2026: What Still Works`,
  excerpt:`With longer context windows and smarter models, the rules of effective prompting have evolved. Here's the updated framework that gets consistent results.`,
  body:`<p>Prompt engineering has matured from a niche skill into foundational business literacy. Many 2023 tips are now outdated.</p>
@@ -824,7 +831,7 @@ const BLOG_POSTS=[
 <h3>What No Longer Works</h3><p>Magic words like "Think step by step" are now unnecessary — modern models reason automatically. Extremely long system prompts also perform worse than concise, precise instructions.</p>
 <h3>The 2026 Principle</h3><p>Write prompts the way you would brief a highly intelligent, literal colleague who has no background in your project. Be specific, be concrete, give examples, specify the exact format you need.</p>`},
 
-{id:7,cat:'Tools & Apps',date:'February 2026',rt:'5 min read',featured:false,thumb:'images/cat-tools.jpg',
+{id:7,cat:'Tools & Apps',date:'February 2026',rt:'5 min read',featured:false,thumb:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSI+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjc1IiBmaWxsPSIjMEUwRTEwIi8+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNiIgZmlsbD0iI0M5QTg0QyIvPjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjExODAiIGhlaWdodD0iNjU1IiBmaWxsPSJub25lIiBzdHJva2U9IiNDOUE4NEMiIHN0cm9rZS1vcGFjaXR5PSIwLjE4IiBzdHJva2Utd2lkdGg9IjEiLz48dGV4dCB4PSI4MCIgeT0iMzAwIiBmb250LWZhbWlseT0iR2VvcmdpYSwnQ29ybW9yYW50IEdhcmFtb25kJyxzZXJpZiIgZm9udC1zdHlsZT0iaXRhbGljIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjE1MCIgZmlsbD0iI0M5QTg0QyI+QUk8L3RleHQ+PHJlY3QgeD0iODQiIHk9IjM0NSIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIzIiBmaWxsPSIjNkJBM0Q0Ii8+PHRleHQgeD0iODQiIHk9IjQxMCIgZm9udC1mYW1pbHk9IkFyaWFsLCdETSBTYW5zJyxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjQwIiBsZXR0ZXItc3BhY2luZz0iMiIgZmlsbD0iI0YwRURFNiI+VE9PTFMgJiBBUFBTPC90ZXh0Pjx0ZXh0IHg9Ijg0IiB5PSI2MTAiIGZvbnQtZmFtaWx5PSJBcmlhbCwnRE0gU2Fucycsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIyNiIgbGV0dGVyLXNwYWNpbmc9IjMiIGZpbGw9IiM3QTc4NzAiPkFJIE1BREUgU0lNUExFPC90ZXh0Pjwvc3ZnPg==",
  title:`AI Video in 2026: Sora 2, Veo 3, and What Actually Works`,
  excerpt:`Text-to-video has matured into a legitimate production tool. Here's the current landscape and how creators are monetising it in 2026.`,
  body:`<p>The AI video landscape in 2026 is both more powerful and more practical than anyone predicted.</p>
@@ -832,7 +839,7 @@ const BLOG_POSTS=[
 <h3>How Creators Are Monetising It</h3><ul><li>Faceless YouTube channels using AI b-roll + ElevenLabs narration</li><li>Social media agencies offering AI video packages to SMEs</li><li>Real estate agencies using Sora 2 for property walkthroughs</li></ul>
 <h3>The Honest Assessment</h3><p>AI video still requires a strong script and clear creative direction. It amplifies good ideas — it does not replace them.</p>`},
 
-{id:8,cat:'Industry',date:'February 2026',rt:'5 min read',featured:false,thumb:'images/cat-industry.jpg',
+{id:8,cat:'Industry',date:'February 2026',rt:'5 min read',featured:false,thumb:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSI+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjc1IiBmaWxsPSIjMEUwRTEwIi8+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNiIgZmlsbD0iI0M5QTg0QyIvPjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjExODAiIGhlaWdodD0iNjU1IiBmaWxsPSJub25lIiBzdHJva2U9IiNDOUE4NEMiIHN0cm9rZS1vcGFjaXR5PSIwLjE4IiBzdHJva2Utd2lkdGg9IjEiLz48dGV4dCB4PSI4MCIgeT0iMzAwIiBmb250LWZhbWlseT0iR2VvcmdpYSwnQ29ybW9yYW50IEdhcmFtb25kJyxzZXJpZiIgZm9udC1zdHlsZT0iaXRhbGljIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjE1MCIgZmlsbD0iI0M5QTg0QyI+QUk8L3RleHQ+PHJlY3QgeD0iODQiIHk9IjM0NSIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIzIiBmaWxsPSIjQzQ3QUQ0Ii8+PHRleHQgeD0iODQiIHk9IjQxMCIgZm9udC1mYW1pbHk9IkFyaWFsLCdETSBTYW5zJyxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjQwIiBsZXR0ZXItc3BhY2luZz0iMiIgZmlsbD0iI0YwRURFNiI+SU5EVVNUUlk8L3RleHQ+PHRleHQgeD0iODQiIHk9IjYxMCIgZm9udC1mYW1pbHk9IkFyaWFsLCdETSBTYW5zJyxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIiBmb250LXNpemU9IjI2IiBsZXR0ZXItc3BhY2luZz0iMyIgZmlsbD0iIzdBNzg3MCI+QUkgTUFERSBTSU1QTEU8L3RleHQ+PC9zdmc+",
  title:`AI Agents Are Here: What They Mean for Your Business`,
  excerpt:`Autonomous AI agents that plan, browse, code and execute multi-step tasks are no longer experimental. Here's how businesses are deploying them today.`,
  body:`<p>In 2024, AI agents was a buzzword. In 2026, they are deployed production systems in thousands of businesses.</p>
@@ -1122,7 +1129,8 @@ function openArticle(id,scroll=true){
       <button class="blog-close-btn" onclick="closeArticle()">✕ Close</button>
     </div>
     ${post.thumb ? `<img class="blog-detail-thumb" src="${post.thumb}" alt="${post.title}" loading="lazy">` : ''}
-    <div class="blog-body">${post.body}</div>`;
+    <div class="blog-body">${post.body}</div>
+    ${dashShareBar(post)}`;
   if(scroll)detail.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
@@ -1130,6 +1138,38 @@ function closeArticle(){
   ST.currentArticle=null;
   const d=document.getElementById('blogDetail');
   if(d){d.className='blog-detail-panel';d.innerHTML='';}
+}
+
+/* ── SHARE: points to the PUBLIC blog link so readers can open it without logging in ── */
+function publicPostUrl(id){
+  // Adjust this base if your site lives on a different domain.
+  return location.origin + '/blog.html#post-' + id;
+}
+function dashShareBar(post){
+  const url = encodeURIComponent(publicPostUrl(post.id));
+  const text = encodeURIComponent(post.title + ' — AI Made Simple');
+  return `
+    <div class="dash-share-bar">
+      <span class="dash-share-label">Share</span>
+      <button class="dash-share-btn primary" onclick="dashShare(${post.id})">↗ Share</button>
+      <a class="dash-share-btn" href="https://wa.me/?text=${text}%20${url}" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="dash-share-btn" href="https://twitter.com/intent/tweet?text=${text}&url=${url}" target="_blank" rel="noopener">X</a>
+      <a class="dash-share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=${url}" target="_blank" rel="noopener">LinkedIn</a>
+      <button class="dash-share-btn" onclick="dashCopy(${post.id})">🔗 Copy link</button>
+      <span class="dash-share-copied" id="dcopied-${post.id}">Copied!</span>
+    </div>`;
+}
+function dashShare(id){
+  const post = BLOG_POSTS.find(p=>p.id===id); if(!post) return;
+  const url = publicPostUrl(id);
+  if(navigator.share){ navigator.share({title:post.title, text:post.title+' — AI Made Simple', url}).catch(()=>{}); }
+  else dashCopy(id);
+}
+function dashCopy(id){
+  const url = publicPostUrl(id);
+  const done=()=>{const t=document.getElementById('dcopied-'+id); if(t){t.style.display='inline';setTimeout(()=>t.style.display='none',1800);}};
+  if(navigator.clipboard){ navigator.clipboard.writeText(url).then(done).catch(()=>prompt('Copy this link:',url)); }
+  else prompt('Copy this link:', url);
 }
 
 function filterNews(cat){

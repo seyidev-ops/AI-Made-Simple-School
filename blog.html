@@ -63,6 +63,17 @@ nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:b
 .detail-meta{display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.25rem;}
 .detail-close{position:absolute;top:1.5rem;right:1.5rem;background:var(--bg3);border:1px solid var(--border);color:var(--text-muted);width:34px;height:34px;border-radius:50%;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;font-family:inherit;}
 .detail-close:hover{border-color:var(--gold);color:var(--gold);}
+
+/* SHARE BAR */
+.share-bar{display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;margin:1.5rem 0;padding:1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.share-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-right:0.25rem;}
+.share-btn{display:inline-flex;align-items:center;gap:6px;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:8px 14px;border-radius:6px;font-size:0.74rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.2s;text-decoration:none;}
+.share-btn:hover{border-color:var(--gold);color:var(--gold);}
+.share-btn.primary{background:var(--gold);color:#0E0E10;border-color:var(--gold);}
+.share-btn.primary:hover{opacity:0.88;color:#0E0E10;}
+.share-copied{font-size:0.72rem;color:var(--gold);font-weight:600;display:none;}
+.card-share{margin-left:auto;background:transparent;border:none;color:var(--text-muted);cursor:pointer;font-size:0.9rem;padding:2px 6px;border-radius:4px;transition:color 0.2s;font-family:inherit;}
+.card-share:hover{color:var(--gold);}
 .detail-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.25rem);font-weight:700;color:var(--text);line-height:1.2;margin-bottom:0.5rem;padding-right:3rem;}
 .detail-byline{font-size:0.78rem;color:var(--text-muted);margin-bottom:2rem;}
 .detail-body{font-size:0.9rem;color:var(--text-secondary);line-height:1.9;max-width:72ch;}
@@ -411,13 +422,14 @@ function renderContent(){
       <div class="article-excerpt">${p.excerpt}</div>
       <div class="article-footer">
         <span>${p.rt} read</span>
+        <button class="card-share" onclick="event.stopPropagation();nativeShare(${p.id})" title="Share this post">↗ Share</button>
         <span class="article-arrow">Read →</span>
       </div>
     </div>`).join('');
 }
 
 /* ── OPEN ARTICLE DETAIL ── */
-function openArticle(id){
+function openArticle(id, updateHash=true){
   const post = POSTS.find(p => p.id === id);
   if(!post) return;
   openArticleId = id;
@@ -432,16 +444,83 @@ function openArticle(id){
     </div>
     <h2 class="detail-title">${post.title}</h2>
     <div class="detail-byline">AI Made Simple · ${post.date}</div>
-    <div class="detail-body">${post.body}</div>`;
+    <div class="detail-body">${post.body}</div>
+    ${shareBarHTML(post)}`;
   detail.classList.add('open');
+  // Update the address bar so the URL is a shareable deep link to this post.
+  if(updateHash){
+    history.replaceState(null, '', '#post-' + id);
+  }
   detail.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ── SHARE HELPERS ── */
+// Build the permanent link to a single post, e.g. https://site.com/blog.html#post-3
+function postUrl(id){
+  return location.origin + location.pathname + '#post-' + id;
+}
+
+function shareBarHTML(post){
+  const url = encodeURIComponent(postUrl(post.id));
+  const text = encodeURIComponent(post.title + ' — AI Made Simple');
+  return `
+    <div class="share-bar">
+      <span class="share-label">Share</span>
+      <button class="share-btn primary" onclick="nativeShare(${post.id})">↗ Share</button>
+      <a class="share-btn" href="https://wa.me/?text=${text}%20${url}" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="share-btn" href="https://twitter.com/intent/tweet?text=${text}&url=${url}" target="_blank" rel="noopener">X</a>
+      <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=${url}" target="_blank" rel="noopener">Facebook</a>
+      <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=${url}" target="_blank" rel="noopener">LinkedIn</a>
+      <button class="share-btn" onclick="copyLink(${post.id})">🔗 Copy link</button>
+      <span class="share-copied" id="copied-${post.id}">Copied!</span>
+    </div>`;
+}
+
+// Uses the phone/browser built-in share sheet when available, else copies the link.
+function nativeShare(id){
+  const post = POSTS.find(p => p.id === id);
+  if(!post) return;
+  const url = postUrl(id);
+  if(navigator.share){
+    navigator.share({ title: post.title, text: post.title + ' — AI Made Simple', url })
+      .catch(()=>{});
+  } else {
+    copyLink(id);
+  }
+}
+
+function copyLink(id){
+  const url = postUrl(id);
+  const done = ()=>{
+    const tag = document.getElementById('copied-'+id);
+    if(tag){ tag.style.display='inline'; setTimeout(()=>tag.style.display='none', 1800); }
+  };
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(url).then(done).catch(()=>prompt('Copy this link:', url));
+  } else {
+    prompt('Copy this link:', url);
+  }
 }
 
 /* ── CLOSE DETAIL ── */
 function closeDetail(){
   openArticleId = null;
   document.getElementById('articleDetail').classList.remove('open');
+  history.replaceState(null, '', location.pathname);
 }
+
+/* ── DEEP LINK: open an article from a #post-N url ── */
+function openFromHash(){
+  const m = (location.hash || '').match(/^#post-(\d+)$/);
+  if(m){
+    const id = parseInt(m[1], 10);
+    if(POSTS.find(p => p.id === id)){
+      openArticle(id, false);   // don't rewrite the hash we just read
+    }
+  }
+}
+// Handle the link being opened/changed while the page is already loaded.
+window.addEventListener('hashchange', openFromHash);
 
 /* ── INIT: load posts from posts.json, then render ── */
 fetch('posts.json')
@@ -450,6 +529,7 @@ fetch('posts.json')
     POSTS = Array.isArray(data) ? data : [];
     renderFilters();
     renderContent();
+    openFromHash();   // if URL is like #post-3, open that article automatically
   })
   .catch(err => {
     console.error('Could not load posts.json:', err);

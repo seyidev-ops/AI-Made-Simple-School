@@ -12,17 +12,23 @@ if (!KEY) {
   process.exit(1);
 }
 
-// Each category maps to a default thumbnail committed in your /images folder.
-// Replace these with your own images or category-specific stock URLs anytime.
-const THUMBS = {
-  'AI Models':        'images/cat-models.jpg',
-  'Tools & Apps':     'images/cat-tools.jpg',
-  'Business':         'images/cat-business.jpg',
-  'Tutorials':        'images/cat-tutorials.jpg',
-  'Industry':         'images/cat-industry.jpg',
-  'Nigeria & Africa': 'images/cat-africa.jpg'
+// Each category gets a self-contained brand thumbnail (SVG embedded as a data URI),
+// so new posts never depend on uploaded files or external image hosts.
+const CAT_STYLE = {
+  'AI Models':        ['AI MODELS',        '#C9A84C'],
+  'Tools & Apps':     ['TOOLS & APPS',     '#6BA3D4'],
+  'Business':         ['BUSINESS',         '#5FD48A'],
+  'Tutorials':        ['TUTORIALS',        '#D4956B'],
+  'Industry':         ['INDUSTRY',         '#C47AD4'],
+  'Nigeria & Africa': ['NIGERIA & AFRICA', '#4CC9B4']
 };
-const VALID_CATS = Object.keys(THUMBS);
+const VALID_CATS = Object.keys(CAT_STYLE);
+
+function thumbFor(cat){
+  const [label, accent] = CAT_STYLE[cat] || CAT_STYLE['Tools & Apps'];
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675"><rect width="1200" height="675" fill="#0E0E10"/><rect width="1200" height="6" fill="#C9A84C"/><rect x="10" y="10" width="1180" height="655" fill="none" stroke="#C9A84C" stroke-opacity="0.18" stroke-width="1"/><text x="80" y="300" font-family="Georgia,serif" font-style="italic" font-weight="700" font-size="150" fill="#C9A84C">AI</text><rect x="84" y="345" width="180" height="3" fill="${accent}"/><text x="84" y="410" font-family="Arial,sans-serif" font-weight="700" font-size="40" letter-spacing="2" fill="#F0EDE6">${label}</text><text x="84" y="610" font-family="Arial,sans-serif" font-weight="700" font-size="26" letter-spacing="3" fill="#7A7870">AI MADE SIMPLE</text></svg>`;
+  return 'data:image/svg+xml;base64,' + Buffer.from(svg).toString('base64');
+}
 
 const prompt = `Write 5 short blog posts about recent global AI news and practical AI use,
 for an audience of Nigerian professionals, entrepreneurs and creators.
@@ -106,7 +112,7 @@ const prepared = newPosts.slice(0, 5).map(p => {
     date: today,
     rt: typeof p.rt === 'string' ? p.rt : '4 min',
     feat: false,                       // new posts are not featured by default
-    thumb: THUMBS[cat],
+    thumb: thumbFor(cat),
     title: String(p.title || 'Untitled'),
     excerpt: String(p.excerpt || ''),
     body: String(p.body || '')
