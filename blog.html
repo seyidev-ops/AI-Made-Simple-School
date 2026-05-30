@@ -83,6 +83,15 @@ nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:b
 .detail-body li{margin-bottom:0.5rem;}
 .detail-body strong{color:var(--text);font-weight:600;}
 
+/* RECOMMENDED PROGRAM CTA */
+.rec-program{margin:2rem 0 0;padding:1.5rem;border:1px solid var(--card-border);border-radius:12px;background:linear-gradient(135deg,rgba(201,168,76,0.08),transparent);position:relative;overflow:hidden;}
+.rec-program::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);}
+.rec-eyebrow{font-size:0.66rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;}
+.rec-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--text);margin-bottom:0.4rem;line-height:1.2;}
+.rec-why{font-size:0.84rem;color:var(--text-secondary);line-height:1.6;margin-bottom:1.1rem;}
+.rec-btn{display:inline-flex;align-items:center;gap:7px;background:var(--gold);color:#0E0E10;padding:10px 20px;border-radius:6px;font-size:0.76rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;transition:opacity 0.2s;}
+.rec-btn:hover{opacity:0.88;}
+
 /* FEATURED ARTICLE */
 .featured-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:2.5rem;margin-bottom:1.75rem;cursor:pointer;position:relative;overflow:hidden;transition:all 0.22s;z-index:1;}
 .featured-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);}
@@ -445,6 +454,7 @@ function openArticle(id, updateHash=true){
     <h2 class="detail-title">${post.title}</h2>
     <div class="detail-byline">AI Made Simple · ${post.date}</div>
     <div class="detail-body">${post.body}</div>
+    ${recProgramHTML(post)}
     ${shareBarHTML(post)}`;
   detail.classList.add('open');
   // Update the address bar so the URL is a shareable deep link to this post.
@@ -452,6 +462,18 @@ function openArticle(id, updateHash=true){
     history.replaceState(null, '', '#post-' + id);
   }
   detail.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ── RECOMMENDED PROGRAM ── */
+function recProgramHTML(post){
+  if(!post.recProgram) return '';
+  return `
+    <div class="rec-program">
+      <div class="rec-eyebrow">Recommended for you</div>
+      <div class="rec-name">${post.recProgram}</div>
+      <div class="rec-why">${post.recWhy || 'Build practical, in-demand AI skills.'}</div>
+      <a class="rec-btn" href="index.html#programs">Explore this programme →</a>
+    </div>`;
 }
 
 /* ── SHARE HELPERS ── */
