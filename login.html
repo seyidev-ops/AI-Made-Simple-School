@@ -288,29 +288,91 @@ function handleDemoLogin(){
   window.location.href='dashboard.html';
 }
 
-/* ── PWA INSTALL ── */
-var _dProm=null;
-var _dismissed=localStorage.getItem('pwa-dismissed');
-window.addEventListener('beforeinstallprompt',function(e){
-  e.preventDefault(); _dProm=e;
-  if(!_dismissed&&!window.matchMedia('(display-mode:standalone)').matches){
-    setTimeout(function(){ document.getElementById('pwaBanner')?.classList.add('show'); },2500);
-  }
-});
-function triggerInstall(){if(!_dProm)return;_dProm.prompt();_dProm.userChoice.then(function(r){if(r.outcome==='accepted'){localStorage.setItem('pwa-dismissed','1');dismissBanner();}  _dProm=null;});}
-function dismissBanner(){localStorage.setItem('pwa-dismissed','1');document.getElementById('pwaBanner')?.classList.remove('show');}
-(function(){
-  var isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream;
-  var isStandalone=window.matchMedia('(display-mode:standalone)').matches||navigator.standalone;
-  if(isIOS&&!isStandalone&&!_dismissed){
-    setTimeout(function(){
-      var b=document.getElementById('pwaBanner');if(!b)return;
-      b.querySelector('.pwa-banner-sub').textContent='Tap Share \u238b then "Add to Home Screen"';
-      b.querySelector('.pwa-install-btn').style.display='none';
-      b.classList.add('show');
-    },2500);
-  }
-})();
+
 </script>
+  <script>
+    /* ══ PWA INSTALL PROMPT — hardened ══ */
+    (function(){
+      var _dProm = null;
+      var KEY = 'pwa-dismissed-until';
+      var banner, installBtn;
+
+      function isStandalone(){
+        return window.matchMedia('(display-mode:standalone)').matches || navigator.standalone === true;
+      }
+      function isIOS(){
+        return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      }
+      /* Dismissal lasts 7 days, not forever */
+      function isSnoozed(){
+        var until = localStorage.getItem(KEY);
+        return until && Date.now() < parseInt(until, 10);
+      }
+      function snooze(days){
+        localStorage.setItem(KEY, String(Date.now() + days * 86400000));
+      }
+
+      function showBanner(mode){
+        banner = document.getElementById('pwaBanner');
+        if(!banner || isStandalone() || isSnoozed()) return;
+        installBtn = document.getElementById('pwaInstallBtn');
+        var sub = banner.querySelector('.pwa-banner-sub');
+
+        if(mode === 'ios'){
+          if(sub) sub.textContent = 'Tap Share \u238B below, then "Add to Home Screen"';
+          if(installBtn) installBtn.style.display = 'none';
+        } else if(mode === 'manual'){
+          if(sub) sub.textContent = 'Use your browser menu \u22EE then "Install app"';
+          if(installBtn) installBtn.textContent = 'How?';
+        }
+        banner.classList.add('show');
+      }
+
+      /* Chrome / Edge / Android — native prompt available */
+      window.addEventListener('beforeinstallprompt', function(e){
+        e.preventDefault();
+        _dProm = e;
+        setTimeout(function(){ showBanner('native'); }, 2000);
+      });
+
+      /* Already installed — never show again this session */
+      window.addEventListener('appinstalled', function(){
+        snooze(3650);
+        var b = document.getElementById('pwaBanner');
+        if(b) b.classList.remove('show');
+      });
+
+      window.triggerInstall = function(){
+        if(_dProm){
+          _dProm.prompt();
+          _dProm.userChoice.then(function(r){
+            if(r.outcome === 'accepted') snooze(3650);
+            else snooze(7);
+            var b = document.getElementById('pwaBanner');
+            if(b) b.classList.remove('show');
+            _dProm = null;
+          });
+        } else {
+          alert('To install:\n\nChrome / Edge  \u2192  menu \u22EE  \u2192  "Install app"\niPhone Safari  \u2192  Share \u238B  \u2192  "Add to Home Screen"');
+        }
+      };
+
+      window.dismissBanner = function(){
+        snooze(7);
+        var b = document.getElementById('pwaBanner');
+        if(b) b.classList.remove('show');
+      };
+
+      /* Fallback: if no native prompt fired within 3.5s, show manual guidance */
+      window.addEventListener('load', function(){
+        setTimeout(function(){
+          if(isStandalone() || isSnoozed()) return;
+          var b = document.getElementById('pwaBanner');
+          if(b && b.classList.contains('show')) return;   /* native already showed it */
+          showBanner(isIOS() ? 'ios' : 'manual');
+        }, 3500);
+      });
+    })();
+  </script>
 </body>
 </html>

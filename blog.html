@@ -662,114 +662,90 @@ renderContent();
     <button class="pwa-dismiss-btn" onclick="dismissBanner()" title="Dismiss">✕</button>
   </div>
 </div>
-
   <script>
-    /* ── PWA INSTALL PROMPT ── */
-    let _dProm = null;
-    const _dismissed = localStorage.getItem('pwa-dismissed');
-
-    window.addEventListener('beforeinstallprompt', e => {
-      e.preventDefault();
-      _dProm = e;
-      if(!_dismissed && !window.matchMedia('(display-mode:standalone)').matches){
-        setTimeout(()=>{
-          const b = document.getElementById('pwaBanner');
-          if(b) b.classList.add('show');
-        }, 2500);
-      }
-    });
-
-    function triggerInstall(){
-      if(!_dProm) return;
-      _dProm.prompt();
-      _dProm.userChoice.then(r=>{
-        if(r.outcome==='accepted'){
-          localStorage.setItem('pwa-dismissed','1');
-          document.getElementById('pwaBanner')?.classList.remove('show');
-        }
-        _dProm = null;
-      });
-    }
-
-    function dismissBanner(){
-      localStorage.setItem('pwa-dismissed','1');
-      document.getElementById('pwaBanner')?.classList.remove('show');
-    }
-
-    /* iOS Safari — no beforeinstallprompt, show manual guide */
+    /* ══ PWA INSTALL PROMPT — hardened ══ */
     (function(){
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-      const isStandalone = window.matchMedia('(display-mode:standalone)').matches || navigator.standalone;
-      if(isIOS && !isStandalone && !_dismissed){
-        setTimeout(()=>{
-          const b = document.getElementById('pwaBanner');
-          if(!b) return;
-          b.querySelector('.pwa-banner-text').innerHTML =
-            '<div class="pwa-banner-title">Install AI Made Simple on iOS</div>' +
-            '<div class="ios-guide">Tap <strong>Share ⎋</strong> then <strong>"Add to Home Screen"</strong> to install the app.</div>';
-          b.querySelector('.pwa-install-btn').style.display='none';
-          b.classList.add('show');
-        }, 2500);
+      var _dProm = null;
+      var KEY = 'pwa-dismissed-until';
+      var banner, installBtn;
+
+      function isStandalone(){
+        return window.matchMedia('(display-mode:standalone)').matches || navigator.standalone === true;
       }
+      function isIOS(){
+        return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      }
+      /* Dismissal lasts 7 days, not forever */
+      function isSnoozed(){
+        var until = localStorage.getItem(KEY);
+        return until && Date.now() < parseInt(until, 10);
+      }
+      function snooze(days){
+        localStorage.setItem(KEY, String(Date.now() + days * 86400000));
+      }
+
+      function showBanner(mode){
+        banner = document.getElementById('pwaBanner');
+        if(!banner || isStandalone() || isSnoozed()) return;
+        installBtn = document.getElementById('pwaInstallBtn');
+        var sub = banner.querySelector('.pwa-banner-sub');
+
+        if(mode === 'ios'){
+          if(sub) sub.textContent = 'Tap Share \u238B below, then "Add to Home Screen"';
+          if(installBtn) installBtn.style.display = 'none';
+        } else if(mode === 'manual'){
+          if(sub) sub.textContent = 'Use your browser menu \u22EE then "Install app"';
+          if(installBtn) installBtn.textContent = 'How?';
+        }
+        banner.classList.add('show');
+      }
+
+      /* Chrome / Edge / Android — native prompt available */
+      window.addEventListener('beforeinstallprompt', function(e){
+        e.preventDefault();
+        _dProm = e;
+        setTimeout(function(){ showBanner('native'); }, 2000);
+      });
+
+      /* Already installed — never show again this session */
+      window.addEventListener('appinstalled', function(){
+        snooze(3650);
+        var b = document.getElementById('pwaBanner');
+        if(b) b.classList.remove('show');
+      });
+
+      window.triggerInstall = function(){
+        if(_dProm){
+          _dProm.prompt();
+          _dProm.userChoice.then(function(r){
+            if(r.outcome === 'accepted') snooze(3650);
+            else snooze(7);
+            var b = document.getElementById('pwaBanner');
+            if(b) b.classList.remove('show');
+            _dProm = null;
+          });
+        } else {
+          alert('To install:\n\nChrome / Edge  \u2192  menu \u22EE  \u2192  "Install app"\niPhone Safari  \u2192  Share \u238B  \u2192  "Add to Home Screen"');
+        }
+      };
+
+      window.dismissBanner = function(){
+        snooze(7);
+        var b = document.getElementById('pwaBanner');
+        if(b) b.classList.remove('show');
+      };
+
+      /* Fallback: if no native prompt fired within 3.5s, show manual guidance */
+      window.addEventListener('load', function(){
+        setTimeout(function(){
+          if(isStandalone() || isSnoozed()) return;
+          var b = document.getElementById('pwaBanner');
+          if(b && b.classList.contains('show')) return;   /* native already showed it */
+          showBanner(isIOS() ? 'ios' : 'manual');
+        }, 3500);
+      });
     })();
-  
-/* ── MOBILE NAV ── */
-function toggleMobileNav(){
-  const links = document.getElementById('navLinks');
-  const ham   = document.getElementById('navHam');
-  const over  = document.getElementById('navOverlay');
-  if(!links) return;
-  const open = links.classList.toggle('open');
-  ham.classList.toggle('open', open);
-  ham.setAttribute('aria-expanded', String(open));
-  if(over) over.classList.toggle('show', open);
-  document.body.style.overflow = open ? 'hidden' : '';
-}
-function closeMobileNav(){
-  document.getElementById('navLinks')?.classList.remove('open');
-  document.getElementById('navHam')?.classList.remove('open');
-  document.getElementById('navHam')?.setAttribute('aria-expanded','false');
-  document.getElementById('navOverlay')?.classList.remove('show');
-  document.body.style.overflow = '';
-}
-document.addEventListener('keydown', e => { if(e.key==='Escape') closeMobileNav(); });
-
-
-/* ── GOOGLE SHEETS SUBSCRIBE ── */
-function handleSubscribe(){
-  var emailEl = document.getElementById('subEmail');
-  var msgEl   = document.getElementById('subMsg');
-  var email   = emailEl ? emailEl.value.trim() : '';
-
-  if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-    if(msgEl){ msgEl.style.display='block'; msgEl.style.color='#e05a5a'; msgEl.textContent='Please enter a valid email address.'; }
-    return;
-  }
-
-  /* ─────────────────────────────────────────────────────────────────
-     Google Apps Script endpoint — see google-apps-script-subscribers.js
-     REPLACE the URL below with your deployed /exec URL after setup:
-     ───────────────────────────────────────────────────────────────── */
-  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbxPLACEHOLDER_REPLACE_ME/exec';
-
-  if(msgEl){ msgEl.style.display='block'; msgEl.style.color='var(--gold)'; msgEl.textContent='Subscribing…'; }
-
-  var url = ENDPOINT + '?email=' + encodeURIComponent(email) + '&source=' + encodeURIComponent('Blog - Stay Ahead of AI') + '&ts=' + Date.now();
-
-  fetch(url, { method:'GET', mode:'no-cors' })
-    .catch(function(){ })
-    .finally(function(){
-      if(emailEl) emailEl.value = '';
-      if(msgEl){
-        msgEl.style.display = 'block';
-        msgEl.style.color   = 'var(--gold)';
-                msgEl.textContent   = "\u2713 Subscribed! Watch your inbox for the next AI roundup.";
-        setTimeout(function(){ msgEl.style.display='none'; }, 6000);
-      }
-    });
-}
-
-</script>
+  </script>
 </body>
 </html>
 ,{id:13,cat:'Nigeria & Africa',date:'Jan 2026',rt:'5 min read',feat:false,
