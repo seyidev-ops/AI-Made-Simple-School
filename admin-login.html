@@ -6,8 +6,8 @@
 <title>Admin Portal — AI Made Simple</title>
 <meta name="robots" content="noindex, nofollow">
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
-  <link rel="apple-touch-icon" href="/assets/logo.svg">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="apple-touch-icon" href="logo.svg">
   <meta name="theme-color" content="#C9A84C">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -211,6 +211,88 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem c
   .footer-inner{flex-direction:column;gap:0.5rem;align-items:flex-start;}
   footer{padding:1rem;}
 }
+
+/* ── BLOG DRAFTS ── */
+.draft-list{display:flex;flex-direction:column;gap:0.6rem;max-height:520px;overflow-y:auto;}
+.draft-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:1rem;display:flex;flex-direction:column;gap:0.5rem;transition:border-color 0.2s;}
+.draft-card:hover{border-color:rgba(201,168,76,0.3);}
+.draft-header{display:flex;align-items:flex-start;justify-content:space-between;gap:0.5rem;flex-wrap:wrap;}
+.draft-title{font-size:0.85rem;font-weight:600;color:var(--text);line-height:1.3;flex:1;}
+.draft-badges{display:flex;align-items:center;gap:5px;flex-shrink:0;}
+.draft-cat{font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:2px 8px;border-radius:3px;background:var(--gold-dim);color:var(--gold);border:1px solid rgba(201,168,76,0.25);}
+.draft-status{font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:2px 8px;border-radius:3px;background:rgba(120,120,120,0.12);color:var(--text-muted);border:1px solid var(--border);}
+.draft-status.published{background:rgba(76,201,112,0.1);color:#5fd48a;border-color:rgba(76,201,112,0.25);}
+.draft-excerpt{font-size:0.74rem;color:var(--text-muted);line-height:1.5;}
+.draft-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.4rem;padding-top:0.4rem;border-top:1px solid var(--border);}
+.draft-date{font-size:0.66rem;color:var(--text-muted);}
+.draft-actions{display:flex;gap:0.35rem;}
+.btn-pub{background:var(--gold);color:#0E0E10;border:none;padding:5px 14px;border-radius:4px;font-family:inherit;font-size:0.66rem;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;transition:all 0.2s;}
+.btn-pub:hover{opacity:0.85;}
+.btn-pub:disabled{opacity:0.4;cursor:not-allowed;}
+.btn-edit{background:var(--input-bg);color:var(--text-muted);border:1px solid var(--border);padding:5px 14px;border-radius:4px;font-family:inherit;font-size:0.66rem;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;transition:all 0.2s;}
+.btn-edit:hover{border-color:var(--gold);color:var(--gold);}
+.blog-cred-box{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:1rem;}
+.blog-cred-box .cred-row{padding:6px 0;border-bottom:1px solid var(--border);}
+.blog-cred-box .cred-row:last-child{border-bottom:none;}
+/* Admin mobile improvements */
+@media(max-width:600px){
+  .panel-tabs{gap:0;}
+  .panel-tab{padding:11px 12px;font-size:0.68rem;}
+  .admin-form-section{padding:1.25rem 1rem 1.5rem;}
+  .admin-header{padding:1.75rem 1rem 1.25rem;}
+  .panel-section{padding:1.25rem 1rem;}
+  .panel-header{padding:1.25rem 1rem;}
+  .access-options{flex-direction:column;}
+  .access-check{width:100%;}
+  .stats-grid{grid-template-columns:repeat(3,1fr);gap:0.4rem;}
+  .stat-value{font-size:1.4rem;}
+  .action-row{flex-direction:column;}
+  .btn-grant,.btn-revoke{width:100%;}
+  .draft-actions{flex-direction:column;}
+  .btn-pub,.btn-edit{width:100%;text-align:center;}
+}
+@media(max-width:430px){
+  .panel-tab{padding:10px 8px;font-size:0.6rem;letter-spacing:0.03em;}
+  .admin-wrap{max-width:100%;}
+  .admin-login-card,.admin-panel-card{border-radius:10px;}
+}
+
+/* ── ACCESS CODES TAB ── */
+.code-gen-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1rem;}
+.code-gen-grid .form-group{margin:0;}
+.btn-gen{background:linear-gradient(135deg,#C9A84C,#A8873A);color:#0E0E10;border:none;padding:12px 20px;border-radius:7px;font-family:inherit;font-size:0.83rem;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:0.07em;width:100%;transition:all 0.2s;box-shadow:0 4px 16px rgba(201,168,76,0.25);}
+.btn-gen:hover{opacity:0.88;transform:translateY(-1px);}
+.copy-box{background:var(--bg3);border:1.5px solid var(--gold-border);border-radius:8px;padding:1rem 1.25rem;display:none;flex-direction:column;gap:0.6rem;margin-top:0.5rem;}
+.copy-box.show{display:flex;}
+.copy-box-label{font-size:0.66rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);}
+.copy-code{font-family:'Space Mono',monospace;font-size:1.3rem;font-weight:700;color:var(--text);letter-spacing:0.1em;}
+.btn-copy-code{background:var(--gold);color:#0E0E10;border:none;padding:7px 18px;border-radius:5px;font-family:inherit;font-size:0.72rem;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;width:100%;transition:all 0.2s;}
+.btn-copy-code:hover{opacity:0.85;}
+.code-list{display:flex;flex-direction:column;gap:0.5rem;max-height:380px;overflow-y:auto;}
+.code-row{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:0.875rem 1rem;display:flex;flex-direction:column;gap:0.4rem;transition:border-color 0.2s;}
+.code-row:hover{border-color:rgba(201,168,76,0.3);}
+.code-row.revoked{opacity:0.55;}
+.code-row.expired{opacity:0.6;}
+.code-row-top{display:flex;align-items:center;justify-content:space-between;gap:0.5rem;flex-wrap:wrap;}
+.code-mono{font-family:'Space Mono',monospace;font-size:0.92rem;font-weight:700;color:var(--text);letter-spacing:0.08em;}
+.code-row-badges{display:flex;align-items:center;gap:5px;flex-wrap:wrap;}
+.code-prog-badge{font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:2px 8px;border-radius:3px;background:var(--gold-dim);color:var(--gold);border:1px solid rgba(201,168,76,0.25);}
+.code-status{font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:2px 8px;border-radius:3px;}
+.code-status.active{background:rgba(76,201,112,0.1);color:#5fd48a;border:1px solid rgba(76,201,112,0.25);}
+.code-status.revoked{background:rgba(224,90,90,0.1);color:#e05a5a;border:1px solid rgba(224,90,90,0.25);}
+.code-status.expired{background:rgba(120,120,120,0.1);color:var(--text-muted);border:1px solid var(--border);}
+.code-row-meta{font-size:0.7rem;color:var(--text-muted);line-height:1.4;}
+.code-row-actions{display:flex;gap:0.35rem;flex-wrap:wrap;margin-top:0.15rem;}
+.btn-code-copy{background:var(--gold-dim);color:var(--gold);border:1px solid rgba(201,168,76,0.3);padding:4px 11px;border-radius:4px;font-family:inherit;font-size:0.62rem;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;transition:all 0.2s;}
+.btn-code-copy:hover{background:var(--gold);color:#0E0E10;}
+.btn-code-revoke{background:rgba(224,90,90,0.08);color:#e05a5a;border:1px solid rgba(224,90,90,0.22);padding:4px 11px;border-radius:4px;font-family:inherit;font-size:0.62rem;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;transition:all 0.2s;}
+.btn-code-revoke:hover{background:rgba(224,90,90,0.2);}
+.btn-code-extend{background:var(--input-bg);color:var(--text-muted);border:1px solid var(--border);padding:4px 11px;border-radius:4px;font-family:inherit;font-size:0.62rem;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;transition:all 0.2s;}
+.btn-code-extend:hover{border-color:var(--gold);color:var(--gold);}
+.code-used-by{font-size:0.65rem;color:var(--text-muted);}
+.code-used-by span{color:var(--text-secondary);}
+.no-codes{padding:2rem;text-align:center;font-size:0.8rem;color:var(--text-muted);}
+@media(max-width:600px){.code-gen-grid{grid-template-columns:1fr;}}
 </style>
   <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js">
 function exportStudentsExcel(){
@@ -250,46 +332,234 @@ function exportStudentsExcel(){
 
 
 
-function deleteStudent(email){
-  if(!confirm('Delete account for '+email+'? This cannot be undone.')) return;
-  const users=getUsers();
-  delete users[email];
-  saveUsers(users);
-  // Clear session if this is the logged-in user
-  const s=JSON.parse(localStorage.getItem('ams-session')||'null');
-  if(s&&s.email===email) localStorage.removeItem('ams-session');
-  // Remove row from DOM
-  const row=document.getElementById('row-'+btoa(email).replace(/=/g,''));
-  if(row) row.style.transition='all 0.3s';
-  if(row) { row.style.opacity='0'; row.style.height='0'; setTimeout(()=>row.remove(),300); }
-  refreshStats();
-  showAlert('grantAlert','success','✓ Account deleted: '+email);
+
+
+/* ══ BLOG DRAFTS ══ */
+const ADMIN_BLOG_DRAFTS = [
+  {id:'d1',status:'draft',cat:'Tools & Apps',date:'Jun 2026',
+   title:'The Complete Guide to Perplexity AI for Serious Research',
+   excerpt:'Perplexity AI is the most underused research tool available today. This guide covers advanced search operators, source verification, and building a research workflow that produces citation-ready results in minutes.'},
+  {id:'d2',status:'draft',cat:'Tools & Apps',date:'Jun 2026',
+   title:'AI Music Generation in 2026: From Idea to Finished Track',
+   excerpt:'Suno AI, Udio, and Beatoven have made AI music generation practical for content creators, marketers, and entrepreneurs. Here is how to produce professional-quality background music and original tracks with no musical background.'},
+  {id:'d3',status:'draft',cat:'Tutorials',date:'Jun 2026',
+   title:'Building a Podcast Empire with AI Tools',
+   excerpt:'AI tools have reduced podcast production from 8 hours per episode to under 90 minutes. This guide covers AI-powered scripting, recording enhancement, transcription, show notes generation, and distribution strategy.'},
+  {id:'d4',status:'draft',cat:'Nigeria & Africa',date:'May 2026',
+   title:'AI Translation and Multilingual Content for African Markets',
+   excerpt:'With over 2,000 languages spoken across Africa, AI translation tools offer an unprecedented opportunity to reach underserved language markets. Here is how African businesses are using AI to communicate across language barriers.'},
+  {id:'d5',status:'draft',cat:'Industry',date:'May 2026',
+   title:'AI in Healthcare: Opportunities for African Medical Professionals',
+   excerpt:'From diagnostic support to medical documentation, AI is creating new capabilities for healthcare workers across Africa. This article explores practical AI applications that are already being deployed in Nigerian hospitals and clinics.'},
+  {id:'d6',status:'draft',cat:'AI Models',date:'May 2026',
+   title:'Claude vs ChatGPT vs Gemini: The Definitive 2026 Comparison Guide',
+   excerpt:'We tested all three flagship AI models across 40 real-world business tasks. The results reveal clear winners by category and expose where the marketing claims diverge from actual performance.'},
+  {id:'d7',status:'draft',cat:'Industry',date:'Apr 2026',
+   title:'The Ethics of AI: What Every Nigerian Professional Should Know',
+   excerpt:'AI systems can encode bias, produce misinformation, and create legal liability for businesses that deploy them carelessly. This guide explains the ethical frameworks every professional needs to understand before deploying AI.'},
+  {id:'d8',status:'draft',cat:'Tutorials',date:'Apr 2026',
+   title:'AI-Powered Job Interview Preparation: A Complete System',
+   excerpt:'Using AI to research companies, practise behavioural questions, refine answers, and simulate live interviews gives candidates a significant edge. This guide walks through the full AI interview prep workflow.'},
+  {id:'d9',status:'draft',cat:'Business',date:'Mar 2026',
+   title:'Building Your First AI SaaS Business in Nigeria',
+   excerpt:'The SaaS model — selling access to software monthly — is one of the most scalable income models available to Nigerian entrepreneurs. AI makes it possible to build and maintain a SaaS product without a large development team.'},
+  {id:'d10',status:'draft',cat:'Nigeria & Africa',date:'Mar 2026',
+   title:'AI for NGOs and Non-Profits: Doing More Good with Less Budget',
+   excerpt:'Non-profit organisations across Nigeria are using AI to write grant applications, manage beneficiary data, produce reports, and automate donor communications — dramatically extending their impact per naira spent.'}
+];
+
+function renderBlogDrafts(){
+  var list = document.getElementById('draftList');
+  var countEl = document.getElementById('draftCount');
+  if(!list) return;
+  var drafts = JSON.parse(localStorage.getItem('ams-blog-drafts') || 'null') || ADMIN_BLOG_DRAFTS.slice();
+  var unpub = drafts.filter(function(d){ return d.status === 'draft'; }).length;
+  var pub   = drafts.filter(function(d){ return d.status === 'published'; }).length;
+  if(countEl) countEl.textContent = unpub + ' drafts \u00b7 ' + pub + ' published';
+
+  list.innerHTML = drafts.map(function(d){
+    var isPub = d.status === 'published';
+    return '<div class="draft-card" id="dc_' + d.id + '">'
+      + '<div class="draft-header">'
+      + '<div class="draft-title">' + escHtml(d.title) + '</div>'
+      + '<div class="draft-badges">'
+      + '<span class="draft-cat">' + escHtml(d.cat) + '</span>'
+      + '<span class="draft-status' + (isPub ? ' published' : '') + '">' + (isPub ? 'Published' : 'Draft') + '</span>'
+      + '</div></div>'
+      + '<div class="draft-excerpt">' + escHtml(d.excerpt) + '</div>'
+      + '<div class="draft-footer">'
+      + '<span class="draft-date">' + escHtml(d.date) + '</span>'
+      + '<div class="draft-actions">'
+      + '<button class="btn-pub" data-draft-id="' + d.id + '" data-action="publish" ' + (isPub ? 'disabled' : '') + '>' + (isPub ? '\u2713 Live' : 'Publish') + '</button>'
+      + '<button class="btn-edit" data-draft-id="' + d.id + '" data-action="edit">Edit</button>'
+      + '</div></div>'
+      + '</div>';
+  }).join('');
+
+  /* Event delegation — no inline onclick needed */
+  list.onclick = function(e){
+    var btn = e.target.closest('[data-draft-id]');
+    if(!btn) return;
+    var id = btn.dataset.draftId;
+    var action = btn.dataset.action;
+    if(action === 'publish') publishDraft(id);
+    else if(action === 'edit') editDraft(id);
+  };
 }
 
-function clearAllAccess(){
-  if(!confirm('Remove ALL paid status and access from every student? Accounts remain but access is revoked.')) return;
-  const users=getUsers();
-  let count=0;
-  Object.keys(users).forEach(email=>{
-    users[email].paid=false;
-    users[email].access={};
-    count++;
-  });
-  saveUsers(users);
-  refreshStudentList();
-  refreshStats();
-  showAlert('grantAlert','success','✓ Access cleared for '+count+' student accounts. Accounts preserved.');
+function publishDraft(id){
+  var drafts = JSON.parse(localStorage.getItem('ams-blog-drafts') || 'null') || ADMIN_BLOG_DRAFTS.map(d=>Object.assign({},d));
+  var d = drafts.find(x => x.id === id);
+  if(!d) return;
+  if(!confirm('Publish "' + d.title + '"?\n\nNote: This simulates publishing in the admin panel. To add this post live, add it to the POSTS array in blog.html.')) return;
+  d.status = 'published';
+  localStorage.setItem('ams-blog-drafts', JSON.stringify(drafts));
+  renderBlogDrafts();
+  adminToast('\u2713 Marked as published: ' + d.title.substring(0,40) + '...');
 }
 
-function clearAllStudents(){
-  if(!confirm('Delete ALL student accounts? This cannot be undone.')) return;
-  if(!confirm('Second confirmation: permanently remove all student data?')) return;
-  localStorage.removeItem('ams-users');
-  localStorage.removeItem('ams-session');
-  refreshStudentList();
-  refreshStats();
-  showAlert('grantAlert','success','✓ All student accounts cleared successfully.');
+function editDraft(id){
+  var drafts = JSON.parse(localStorage.getItem('ams-blog-drafts') || 'null') || ADMIN_BLOG_DRAFTS.map(d=>Object.assign({},d));
+  var d = drafts.find(x => x.id === id);
+  if(!d) return;
+  var newTitle = prompt('Edit title:', d.title);
+  if(newTitle === null) return;
+  d.title = newTitle || d.title;
+  localStorage.setItem('ams-blog-drafts', JSON.stringify(drafts));
+  renderBlogDrafts();
+  adminToast('\u2713 Draft updated.');
 }
+
+
+/* ══ ACCESS CODES ══ */
+var PROG_MAP = {
+  'expert': {label:'AI Expert User',    access:{expert:{months:[1,2,3]}}},
+  'm2m':    {label:'AI Mastery to Money',access:{m2m:{phases:[1,2,3],tier:'standard'}}},
+  'mc':     {label:'AI Masterclass',     access:{masterclasses:{classes:[1,2,3,4,5,6,7,8,9]}}},
+  'all':    {label:'All Programmes',     access:{expert:{months:[1,2,3]},m2m:{phases:[1,2,3],tier:'standard'},masterclasses:{classes:[1,2,3,4,5,6,7,8,9]}}}
+};
+
+function getCodes2(){return JSON.parse(localStorage.getItem('ams-codes')||'[]');}
+function saveCodes(arr){localStorage.setItem('ams-codes',JSON.stringify(arr));}
+
+function generateAccessCode(){
+  var prog   = document.getElementById('codeProg').value;
+  var dur    = parseInt(document.getElementById('codeDuration').value||'1');
+  var label  = document.getElementById('codeLabel').value.trim();
+
+  /* Generate 4-char random suffix */
+  var chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  var suffix='';
+  for(var i=0;i<4;i++) suffix+=chars[Math.floor(Math.random()*chars.length)];
+
+  /* Month+Year prefix */
+  var now=new Date();
+  var mon=now.toLocaleDateString('en-US',{month:'short'}).toUpperCase();
+  var yr=String(now.getFullYear()).slice(-2);
+  var code='AMS-'+mon+yr+'-'+suffix;
+
+  /* Expiry = first day of month after duration */
+  var exp=new Date(now);
+  exp.setMonth(exp.getMonth()+dur);
+  exp.setDate(1);
+  var expiresAt=exp.toISOString().slice(0,10);
+
+  var newCode={
+    code: code,
+    programme: prog,
+    label: label || (PROG_MAP[prog].label+' — '+mon+' '+yr),
+    access: PROG_MAP[prog].access,
+    expiresAt: expiresAt,
+    active: true,
+    createdAt: now.toISOString(),
+    usedBy: []
+  };
+
+  var codes=getCodes2();
+  codes.unshift(newCode);
+  saveCodes(codes);
+
+  document.getElementById('generatedCode').textContent=code;
+  document.getElementById('copyBox').classList.add('show');
+  document.getElementById('codeLabel').value='';
+  renderCodeList();
+  adminToast('✓ Code generated: '+code);
+}
+
+function copyNewCode(){
+  var code=document.getElementById('generatedCode').textContent;
+  navigator.clipboard.writeText(code).then(function(){
+    var btn=document.querySelector('#copyBox .btn-copy-code');
+    var orig=btn.textContent;
+    btn.textContent='✓ Copied!';
+    setTimeout(function(){btn.textContent=orig;},2000);
+  }).catch(function(){ prompt('Copy this code:',code); });
+}
+
+function renderCodeList(){
+  var list=document.getElementById('codeList');
+  if(!list) return;
+  var codes=getCodes2();
+  if(!codes.length){
+    list.innerHTML='<div class="no-codes">No codes generated yet.</div>';
+    return;
+  }
+  var now=new Date();
+  list.innerHTML=codes.map(function(c,idx){
+    var isExpired=c.expiresAt&&new Date(c.expiresAt)<now;
+    var statusClass=!c.active?'revoked':isExpired?'expired':'active';
+    var statusLabel=!c.active?'Revoked':isExpired?'Expired':'Active';
+    var rowClass='code-row'+(statusClass!=='active'?' '+statusClass:'');
+    var usedNames=(c.usedBy||[]).map(function(u){return u.name;}).join(', ');
+    var expStr=c.expiresAt?new Date(c.expiresAt).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'No expiry';
+    return '<div class="'+rowClass+'" id="cr_'+idx+'">'
+      +'<div class="code-row-top">'
+      +'<span class="code-mono">'+escHtml(c.code)+'</span>'
+      +'<div class="code-row-badges">'
+      +'<span class="code-prog-badge">'+escHtml(PROG_MAP[c.programme]?PROG_MAP[c.programme].label:c.programme)+'</span>'
+      +'<span class="code-status '+statusClass+'">'+statusLabel+'</span>'
+      +'</div></div>'
+      +'<div class="code-row-meta">'
+      +escHtml(c.label||'')
+      +'&nbsp;&middot;&nbsp; Expires: '+escHtml(expStr)
+      +'&nbsp;&middot;&nbsp; Used by: '+(usedNames?'<span class="code-used-by"><span>'+escHtml(usedNames)+'</span></span>':'<em>nobody yet</em>')
+      +'</div>'
+      +'<div class="code-row-actions">'
+      +'<button class="btn-code-copy" data-code="'+escHtml(c.code)+'" data-action="copy-code">Copy</button>'
+      +(c.active&&!isExpired?'<button class="btn-code-extend" data-idx="'+idx+'" data-action="extend">+1 Month</button>':'')
+      +(c.active?'<button class="btn-code-revoke" data-idx="'+idx+'" data-action="revoke">Revoke</button>':'<button class="btn-code-extend" data-idx="'+idx+'" data-action="reactivate">Reactivate</button>')
+      +'</div></div>';
+  }).join('');
+
+  /* Event delegation */
+  list.onclick=function(e){
+    var btn=e.target.closest('[data-action]');
+    if(!btn) return;
+    var action=btn.dataset.action;
+    var idx=parseInt(btn.dataset.idx);
+    var codes2=getCodes2();
+    if(action==='copy-code'){
+      navigator.clipboard.writeText(btn.dataset.code).catch(function(){ prompt('Copy:',btn.dataset.code); });
+      adminToast('✓ Code copied to clipboard');
+    } else if(action==='revoke'){
+      if(!confirm('Revoke code '+codes2[idx].code+'? The student will lose access immediately.')) return;
+      codes2[idx].active=false;
+      saveCodes(codes2); renderCodeList();
+      adminToast('✓ Code revoked.');
+    } else if(action==='reactivate'){
+      codes2[idx].active=true;
+      saveCodes(codes2); renderCodeList();
+      adminToast('✓ Code reactivated.');
+    } else if(action==='extend'){
+      var exp=new Date(codes2[idx].expiresAt||new Date());
+      exp.setMonth(exp.getMonth()+1);
+      codes2[idx].expiresAt=exp.toISOString().slice(0,10);
+      saveCodes(codes2); renderCodeList();
+      adminToast('✓ Extended by 1 month.');
+    }
+  };
+}
+
 </script>
   <!-- Service Worker + PWA Install -->
   <script>
@@ -385,6 +655,8 @@ function clearAllStudents(){
         <button class="panel-tab" onclick="switchPanelTab('students',this)">Students</button>
         <button class="panel-tab" onclick="switchPanelTab('stats',this)">Overview</button>
         <button class="panel-tab" onclick="switchPanelTab('credentials',this)">Credentials</button>
+        <button class="panel-tab" onclick="switchPanelTab('codes',this)">🔑 Codes</button>
+        <button class="panel-tab" onclick="switchPanelTab('blog',this)">📝 Blog</button>
       </div>
 
       <!-- ── GRANT ACCESS ── -->
@@ -532,7 +804,87 @@ function clearAllStudents(){
           <button onclick="clearAllStudents()" style="background:rgba(224,90,90,0.14);color:#e05a5a;border:1px solid rgba(224,90,90,0.35);padding:9px 14px;border-radius:6px;font-family:inherit;font-size:0.76rem;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;width:100%;transition:all 0.2s;">
             ⚠ Delete All Student Accounts
           </button>
-        </div><!-- end admin-panel-card -->
+        
+      <!-- ── ACCESS CODES TAB ── -->
+      <div class="panel-section" id="tab-codes">
+
+        <div class="section-label">Generate Access Code</div>
+
+        <div class="code-gen-grid">
+          <div class="form-group">
+            <label class="form-label">Programme</label>
+            <select class="form-select" id="codeProg">
+              <option value="expert">AI Expert User</option>
+              <option value="m2m">AI Mastery to Money</option>
+              <option value="mc">AI Masterclass</option>
+              <option value="all">All Programmes</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Valid For</label>
+            <select class="form-select" id="codeDuration">
+              <option value="1">1 Month</option>
+              <option value="2">2 Months</option>
+              <option value="3">3 Months</option>
+              <option value="6">6 Months</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:0.75rem;">
+          <label class="form-label">Label (optional)</label>
+          <input type="text" class="form-input" id="codeLabel" placeholder="e.g. Cohort 8 — Seun Akinlade" style="font-size:0.85rem;">
+        </div>
+
+        <button class="btn-gen" onclick="generateAccessCode()">⚡ Generate Access Code</button>
+
+        <div class="copy-box" id="copyBox">
+          <div class="copy-box-label">New Code Generated — Share with Student</div>
+          <div class="copy-code" id="generatedCode"></div>
+          <button class="btn-copy-code" onclick="copyNewCode()">📋 Copy Code</button>
+        </div>
+
+        <div class="alert" id="codesAlert" style="margin-top:0.5rem;"></div>
+
+        <div class="section-label" style="margin-top:1.25rem;">
+          Active Codes
+          <button class="btn-text" onclick="renderCodeList()" style="margin-left:0.5rem;">↻ Refresh</button>
+        </div>
+        <div class="code-list" id="codeList">
+          <div class="no-codes">No codes generated yet. Use the form above to create your first access code.</div>
+        </div>
+
+      </div>
+
+      <!-- ── BLOG DRAFTS TAB ── -->
+      <div class="panel-section" id="tab-blog">
+
+        <!-- Admin credentials reminder -->
+        <div class="section-label">Blog Admin Access</div>
+        <div class="blog-cred-box">
+          <div class="cred-row" style="display:flex;justify-content:space-between;">
+            <span class="cred-label">Blog URL</span>
+            <span class="cred-value">blog.html</span>
+          </div>
+          <div class="cred-row" style="display:flex;justify-content:space-between;">
+            <span class="cred-label">Admin Username</span>
+            <span class="cred-value" id="blogCredUser">onaservices_admin</span>
+          </div>
+          <div class="cred-row" style="display:flex;justify-content:space-between;">
+            <span class="cred-label">Admin Portal</span>
+            <span class="cred-value">admin-login.html</span>
+          </div>
+          <div class="cred-row" style="display:flex;justify-content:space-between;">
+            <span class="cred-label">Sheets Endpoint</span>
+            <span class="cred-value" style="font-size:0.65rem;max-width:160px;overflow:hidden;text-overflow:ellipsis;">google-apps-script-subscribers.js</span>
+          </div>
+        </div>
+
+        <div class="section-label">Draft Posts <span id="draftCount" style="color:var(--text-muted);font-weight:400;letter-spacing:0;text-transform:none;font-size:0.74rem;margin-left:6px;"></span></div>
+        <div class="draft-list" id="draftList"></div>
+        <div class="alert" id="draftAlert" style="margin-top:0.75rem;"></div>
+      </div>
+</div><!-- end admin-panel-card -->
 
   </div>
 </main>
@@ -656,6 +1008,8 @@ function switchPanelTab(tab,btn){
   document.getElementById('tab-'+tab).classList.add('active');
   if(tab==='students') refreshStudentList();
   if(tab==='stats') refreshStats();
+  if(tab==='blog') renderBlogDrafts();
+  if(tab==='codes') renderCodeList();
 }
 
 /* ── PROGRAMME TABS ── */

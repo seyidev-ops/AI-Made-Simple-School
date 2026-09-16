@@ -6,8 +6,8 @@
 <title>Everything AI — AI Made Simple Blog</title>
 <meta name="description" content="Insights, strategies and news from the world of AI — curated for Nigerian professionals, entrepreneurs and creators.">
 <link rel="manifest" href="manifest.json">
-<link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
-<link rel="apple-touch-icon" href="/assets/logo.svg">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="apple-touch-icon" href="logo.svg">
 <meta name="theme-color" content="#C9A84C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -63,17 +63,6 @@ nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:b
 .detail-meta{display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.25rem;}
 .detail-close{position:absolute;top:1.5rem;right:1.5rem;background:var(--bg3);border:1px solid var(--border);color:var(--text-muted);width:34px;height:34px;border-radius:50%;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;font-family:inherit;}
 .detail-close:hover{border-color:var(--gold);color:var(--gold);}
-
-/* SHARE BAR */
-.share-bar{display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;margin:1.5rem 0;padding:1rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-.share-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-right:0.25rem;}
-.share-btn{display:inline-flex;align-items:center;gap:6px;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:8px 14px;border-radius:6px;font-size:0.74rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.2s;text-decoration:none;}
-.share-btn:hover{border-color:var(--gold);color:var(--gold);}
-.share-btn.primary{background:var(--gold);color:#0E0E10;border-color:var(--gold);}
-.share-btn.primary:hover{opacity:0.88;color:#0E0E10;}
-.share-copied{font-size:0.72rem;color:var(--gold);font-weight:600;display:none;}
-.card-share{margin-left:auto;background:transparent;border:none;color:var(--text-muted);cursor:pointer;font-size:0.9rem;padding:2px 6px;border-radius:4px;transition:color 0.2s;font-family:inherit;}
-.card-share:hover{color:var(--gold);}
 .detail-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.25rem);font-weight:700;color:var(--text);line-height:1.2;margin-bottom:0.5rem;padding-right:3rem;}
 .detail-byline{font-size:0.78rem;color:var(--text-muted);margin-bottom:2rem;}
 .detail-body{font-size:0.9rem;color:var(--text-secondary);line-height:1.9;max-width:72ch;}
@@ -82,15 +71,6 @@ nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:b
 .detail-body ul{padding-left:1.4rem;margin-bottom:1.1rem;}
 .detail-body li{margin-bottom:0.5rem;}
 .detail-body strong{color:var(--text);font-weight:600;}
-
-/* RECOMMENDED PROGRAM CTA */
-.rec-program{margin:2rem 0 0;padding:1.5rem;border:1px solid var(--card-border);border-radius:12px;background:linear-gradient(135deg,rgba(201,168,76,0.08),transparent);position:relative;overflow:hidden;}
-.rec-program::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);}
-.rec-eyebrow{font-size:0.66rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;}
-.rec-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--text);margin-bottom:0.4rem;line-height:1.2;}
-.rec-why{font-size:0.84rem;color:var(--text-secondary);line-height:1.6;margin-bottom:1.1rem;}
-.rec-btn{display:inline-flex;align-items:center;gap:7px;background:var(--gold);color:#0E0E10;padding:10px 20px;border-radius:6px;font-size:0.76rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;transition:opacity 0.2s;}
-.rec-btn:hover{opacity:0.88;}
 
 /* FEATURED ARTICLE */
 .featured-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:2.5rem;margin-bottom:1.75rem;cursor:pointer;position:relative;overflow:hidden;transition:all 0.22s;z-index:1;}
@@ -117,11 +97,6 @@ nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:b
 .article-excerpt{font-size:0.78rem;color:var(--text-muted);line-height:1.65;flex:1;}
 .article-footer{display:flex;align-items:center;justify-content:space-between;font-size:0.7rem;color:var(--text-muted);padding-top:0.5rem;border-top:1px solid var(--border);margin-top:auto;}
 .article-arrow{font-size:0.72rem;color:var(--gold);font-weight:700;}
-
-/* THUMBNAILS */
-.article-thumb{width:100%;height:160px;object-fit:cover;border-radius:8px;margin-bottom:0.25rem;background:var(--bg3);display:block;}
-.featured-thumb{width:100%;height:240px;object-fit:cover;border-radius:10px;margin-bottom:1.25rem;background:var(--bg3);display:block;}
-.detail-thumb{width:100%;height:280px;object-fit:cover;border-radius:10px;margin-bottom:1.5rem;background:var(--bg3);display:block;}
 
 /* CATEGORY BADGES */
 .cat-badge{font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 9px;border-radius:100px;background:var(--gold-dim);border:1px solid var(--gold-border);color:var(--gold);}
@@ -174,12 +149,12 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.75rem 
 }
 
 /* ── PWA INSTALL BANNER ── */
-.pwa-banner{position:fixed;bottom:0;left:0;right:0;background:var(--bg2,#141416);border-top:2px solid #C9A84C;padding:14px clamp(1rem,4vw,2rem);display:flex;align-items:center;gap:14px;z-index:9999;transform:translateY(100%);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 -4px 32px rgba(0,0,0,0.5);flex-wrap:wrap;}
+.pwa-banner{position:fixed;bottom:0;left:0;right:0;background:#0E0E10;border-top:2px solid #C9A84C;padding:14px clamp(1rem,4vw,2rem);display:flex;align-items:center;gap:14px;z-index:9999;transform:translateY(100%);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 -4px 32px rgba(0,0,0,0.5);flex-wrap:wrap;}
 .pwa-banner.show{transform:translateY(0);}
 .pwa-banner-icon{width:40px;height:40px;flex-shrink:0;border-radius:10px;}
 .pwa-banner-text{flex:1;min-width:160px;}
-.pwa-banner-title{font-size:0.85rem;font-weight:700;color:#F0EDE6;line-height:1.2;}
-.pwa-banner-sub{font-size:0.72rem;color:#7A7870;margin-top:2px;}
+.pwa-banner-title{font-size:0.9rem;font-weight:700;color:#F0EDE6;line-height:1.25;letter-spacing:0.01em;}
+.pwa-banner-sub{font-size:0.72rem;color:#9A9790;margin-top:3px;}
 .pwa-banner-actions{display:flex;gap:8px;align-items:center;flex-shrink:0;}
 .pwa-install-btn{background:#C9A84C;color:#0E0E10;border:none;padding:9px 18px;border-radius:5px;font-family:inherit;font-size:0.75rem;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;white-space:nowrap;transition:all 0.2s;}
 .pwa-install-btn:hover{opacity:0.88;}
@@ -241,6 +216,44 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.75rem 
   }
 }
 
+
+/* ── SOCIAL SHARE BAR ── */
+.share-bar{display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;padding:1.25rem 0 0;border-top:1px solid var(--border);margin-top:1.75rem;}
+.share-label{font-size:0.66rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);flex-shrink:0;margin-right:0.25rem;}
+.share-btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:6px;border:1px solid var(--border);background:transparent;font-size:0.71rem;font-weight:600;cursor:pointer;color:var(--text-muted);font-family:inherit;transition:all 0.2s;text-decoration:none;white-space:nowrap;line-height:1;}
+.share-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim);}
+.share-btn.sb-wa:hover{border-color:#25D366;color:#25D366;background:rgba(37,211,102,0.08);}
+.share-btn.sb-x:hover{border-color:#1DA1F2;color:#1DA1F2;background:rgba(29,161,242,0.08);}
+.share-btn.sb-copy.copied{border-color:rgba(76,201,112,0.45);color:#5fd48a;background:rgba(76,201,112,0.09);}
+.share-btn.sb-native{background:var(--gold);color:#0E0E10;border-color:transparent;font-weight:700;}
+.share-btn.sb-native:hover{opacity:0.88;background:var(--gold);}
+/* Deep-link post URL badge */
+.post-url-badge{background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:6px 12px;font-size:0.68rem;color:var(--text-muted);font-family:'Space Mono',monospace;word-break:break-all;margin-top:0.75rem;}
+@media(max-width:600px){
+  .share-btn{padding:8px 11px;font-size:0.68rem;min-height:40px;}
+  .share-label{width:100%;margin-bottom:0;}
+}
+
+/* ── BLOG MOBILE ── */
+@media(max-width:768px){
+  .article-detail{padding:1.25rem 1rem;}
+  .detail-title{font-size:1.5rem;padding-right:2.5rem;}
+  .detail-close{top:1rem;right:1rem;}
+  .detail-body{font-size:0.84rem;}
+  .featured-card{padding:1.5rem 1rem;}
+  .featured-title{font-size:1.4rem;}
+  .article-grid{grid-template-columns:1fr;}
+  .filter-bar{gap:0.35rem;}
+  .filter-pill{padding:6px 12px;font-size:0.7rem;}
+  .hero-h1{font-size:2.4rem;}
+  .hero-stats{gap:1.5rem;}
+  .share-bar{gap:0.4rem;}
+}
+@media(max-width:430px){
+  .hero-h1{font-size:2rem;}
+  .detail-title{font-size:1.3rem;}
+  .share-btn{padding:7px 10px;font-size:0.65rem;}
+}
 </style>
   <!-- Service Worker + PWA Install -->
   <script>
@@ -295,7 +308,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.75rem 
   <h1 class="hero-h1">Everything <em>AI</em></h1>
   <p class="hero-sub">Insights, strategies, and news from the world of artificial intelligence — curated for Nigerian professionals, entrepreneurs, and creators.</p>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="hero-stat-val" id="statArticles">12</div><div class="hero-stat-lbl">Articles</div></div>
+    <div class="hero-stat"><div class="hero-stat-val" id="statArticles">22</div><div class="hero-stat-lbl">Articles</div></div>
     <div class="hero-stat"><div class="hero-stat-val">6</div><div class="hero-stat-lbl">Categories</div></div>
     <div class="hero-stat"><div class="hero-stat-val">Weekly</div><div class="hero-stat-lbl">Updates</div></div>
   </div>
@@ -357,7 +370,104 @@ function applyTheme(m){const d=window.matchMedia('(prefers-color-scheme:dark)').
 
 /* ── ARTICLES DATA ── */
 const CATS=['All','AI Models','Tools & Apps','Business','Tutorials','Industry','Nigeria & Africa'];
-let POSTS=[];
+const POSTS=[
+{id:1,cat:'AI Models',date:'May 2026',rt:'5 min',feat:true,
+ title:'Claude 4 Redefines What AI Can Do for Your Business',
+ excerpt:'Anthropic\'s Claude 4 brings autonomous reasoning, real-time browsing, and multi-step task execution. Here\'s your practical guide to what\'s changed and how to leverage it.',
+ body:`<p>When Anthropic released Claude 4, the shift was immediately clear to anyone working with AI daily. This wasn't a marginal improvement — it was a rethinking of what an AI assistant can do for you.</p>
+<h3>What's Actually New</h3><p>Claude 4 introduced two major capabilities: <strong>extended thinking</strong> (the model reasons through complex problems step by step) and <strong>agentic task execution</strong> (it can plan, use tools, and complete multi-step tasks autonomously).</p>
+<p>For the average entrepreneur or knowledge worker, this means you can now delegate genuine cognitive work — not just ask it to write or summarise, but actually think through a business problem and produce structured output.</p>
+<h3>What This Means in Practice</h3><ul><li><strong>Business proposals:</strong> Claude 4 can research, draft, and refine a complete proposal in one session</li><li><strong>Data analysis:</strong> Feed it a spreadsheet and ask for strategic insights — not just summaries</li><li><strong>Automation planning:</strong> Describe your workflow and it will design the automation architecture</li></ul>
+<h3>The Takeaway</h3><p>Claude 4 rewards people who know how to direct AI effectively. The gap between AI-literate and AI-naive professionals has never been wider.</p>`},
+
+{id:2,cat:'Tools & Apps',date:'May 2026',rt:'4 min',feat:false,
+ title:'The 7 AI Tools Every Nigerian Entrepreneur Needs in 2026',
+ excerpt:'From content creation to client automation, these tools are transforming how Africa\'s fastest-growing businesses operate — most under $20/month.',
+ body:`<p>The democratisation of AI tools has created an unprecedented opportunity for entrepreneurs in Nigeria and across Africa.</p>
+<h3>The Essential 2026 Stack</h3><ul><li><strong>Claude (Anthropic)</strong> — Best for nuanced business writing, proposals, and strategic thinking. $20/month pays for itself in hours saved weekly.</li><li><strong>Perplexity AI</strong> — Real-time, cited research without hallucination risk.</li><li><strong>Canva AI</strong> — Magic Design and AI image generation for professional visuals.</li><li><strong>ElevenLabs</strong> — Natural-sounding voiceovers in seconds.</li><li><strong>Make.com</strong> — Connect your tools without code. One automation can save 5–10 hours/week.</li><li><strong>Gamma</strong> — AI-generated pitch decks in minutes.</li><li><strong>Julius AI</strong> — Upload a spreadsheet, get insights instantly.</li></ul>
+<h3>The Combination That Changes Everything</h3><p>Claude drafts the content strategy → Canva produces the visuals → Make.com distributes it → ElevenLabs narrates the video version. A 4-person team's output, solo.</p>`},
+
+{id:3,cat:'AI Models',date:'April 2026',rt:'6 min',feat:false,
+ title:'GPT-5 vs Claude 4 vs Gemini 2.5: An Honest Comparison',
+ excerpt:'Three flagship models, three very different strengths. We break down which wins for writing, coding, analysis, and real-world business use.',
+ body:`<p>The AI model wars have reached a point where all three leading models are genuinely capable. The question is no longer "which is best" but "which is best for your use case."</p>
+<h3>For Business Writing — Claude 4 Wins</h3><p>Claude's writing is consistently the most natural and contextually aware. For proposals, reports, and marketing copy, Claude 4 requires the least editing.</p>
+<h3>For Coding — GPT-5 Edge</h3><p>GPT-5 has a slight edge for complex multi-file code projects. Claude 4 excels at code explanation and debugging.</p>
+<h3>For Research — Gemini 2.5 Pro</h3><p>Gemini's deep integration with Google Search gives it a factual advantage for queries requiring current information.</p>
+<h3>The Recommendation</h3><p>For writing, automation, and business development: Claude 4. Use Perplexity for research, Claude for creation, Make.com to automate the workflow.</p>`},
+
+{id:4,cat:'Industry',date:'April 2026',rt:'4 min',feat:false,
+ title:'Remote Work + AI: The 2026 Global Hiring Report',
+ excerpt:'Remote hiring is up 34% in 2026. AI-skilled candidates command 40–65% salary premiums. Here\'s where the opportunities are concentrated.',
+ body:`<p>The remote work market in 2026 looks significantly different from 2023. AI-skilled workers who deliver 3–5× the output of traditional hires are commanding premium salaries globally.</p>
+<h3>The Numbers That Matter</h3><ul><li>Remote job postings up 34% year-on-year globally</li><li>AI prompt engineering roles: $45,000–$95,000/year remotely</li><li>Nigerian remote workers on Toptal, Upwork earning $28–$65/hour for AI-assisted services</li></ul>
+<h3>What Employers Actually Want</h3><p>The most common 2026 screening criteria: demonstrated AI tool proficiency, measurable output examples, and a clear explanation of your AI workflow. A portfolio showing AI-enhanced deliverables beats a traditional CV every time.</p>`},
+
+{id:5,cat:'Business',date:'March 2026',rt:'7 min',feat:false,
+ title:'How to Build a ₦1M/Month Business with AI Skills',
+ excerpt:'Five AI-powered income streams that Nigerian entrepreneurs are using to cross the million-naira monthly revenue threshold consistently in 2026.',
+ body:`<p>A ₦1,000,000 monthly revenue target sounds ambitious until you map the arithmetic. At ₦200,000 per client, you need 5 clients. At ₦500,000 per project, you need 2.</p>
+<h3>Stream 1: AI Content Retainers (₦150k–₦350k/month per client)</h3><p>An AI-powered content workflow lets you serve 4–6 clients simultaneously.</p>
+<h3>Stream 2: AI Automation Setup (₦300k–₦800k per project)</h3><p>A single Make.com workflow transforms an SME's operations. Add a monthly maintenance retainer of ₦50k–₦100k.</p>
+<h3>Stream 3: Corporate AI Training (₦50k per seat)</h3><p>A 3-hour masterclass to a company of 20 staff at ₦50k/seat = ₦1,000,000 for a single day's work.</p>
+<h3>Stream 4: Digital Products (passive)</h3><p>E-books, prompt packs, and mini-courses on Selar. 50 units/month at ₦5,000 = ₦250,000 passive income.</p>
+<h3>Stream 5: AI Consulting (₦500k–₦2M per engagement)</h3><p>Strategy consulting for businesses integrating AI. Typically begins after 6–12 months of client work.</p>`},
+
+{id:6,cat:'Tutorials',date:'March 2026',rt:'6 min',feat:false,
+ title:'Prompt Engineering in 2026: What Still Works',
+ excerpt:'With longer context windows and smarter models, the rules of effective prompting have evolved. Here\'s the updated framework.',
+ body:`<p>Prompt engineering has matured from a niche skill into foundational business literacy. Many 2023 tips are now outdated.</p>
+<h3>What Still Works</h3><p><strong>Role + Context + Task + Format (RCTF).</strong> "You are a [role]. Given [context], [task]. Respond in [format]." This structure consistently outperforms casual prompts.</p>
+<p><strong>Negative constraints.</strong> Telling the model what NOT to do is often more effective. "Do not use bullet points. Do not use filler phrases like 'Certainly!'"</p>
+<p><strong>Examples (few-shot prompting).</strong> Showing one or two examples of the output format you want dramatically improves consistency.</p>
+<h3>What No Longer Works</h3><p><strong>Magic words</strong> ("Think step by step") — modern models reason automatically. <strong>Extremely long system prompts</strong> — concise instructions work better. <strong>Jailbreaks</strong> — waste of time with modern models.</p>`},
+
+{id:7,cat:'Tools & Apps',date:'February 2026',rt:'5 min',feat:false,
+ title:'AI Video in 2026: Sora 2, Veo 3, and What Actually Works',
+ excerpt:'Text-to-video has matured into a legitimate production tool. Here\'s the landscape and how creators are monetising it.',
+ body:`<p>The AI video landscape in 2026 is both more powerful and more practical than anyone predicted.</p>
+<h3>The Current Landscape</h3><ul><li><strong>Sora 2 (OpenAI):</strong> Best for cinematic short clips and brand videos. $30/month Pro plan.</li><li><strong>Veo 3 (Google):</strong> Strongest for longer, more coherent sequences with consistent characters.</li><li><strong>Pika 2.0:</strong> Most practical for social media creators. Fast, easy, good Make.com integration.</li><li><strong>HeyGen:</strong> Leader for AI avatar videos and course creation.</li></ul>
+<h3>How Creators Are Monetising It</h3><ul><li>Faceless YouTube channels using AI b-roll + ElevenLabs narration</li><li>Social media agencies offering AI video packages to SMEs</li><li>Real estate agencies using Sora 2 for property walkthroughs</li></ul>`},
+
+{id:8,cat:'Industry',date:'February 2026',rt:'5 min',feat:false,
+ title:'AI Agents Are Here: What They Mean for Your Business',
+ excerpt:'Autonomous AI agents that plan, browse, code and execute multi-step tasks are no longer experimental.',
+ body:`<p>In 2024, "AI agents" was a buzzword. In 2026, they are deployed production systems in thousands of businesses.</p>
+<h3>What an AI Agent Actually Is</h3><p>An AI model given access to tools (web browser, code execution, APIs) and the ability to plan multi-step tasks without human input at each step.</p>
+<h3>Practical Business Applications</h3><ul><li><strong>Lead research:</strong> Agent researches a prospect and drafts a personalised outreach email</li><li><strong>Content pipeline:</strong> Research → outline → draft → format → schedule, automatically</li><li><strong>Financial monitoring:</strong> Checks weekly metrics and generates a board report</li></ul>
+<h3>How to Start Today</h3><p>Claude.ai Projects and Make.com's AI scenarios provide agent-like capabilities with no coding required. Start with one business workflow you repeat weekly.</p>`},
+
+{id:9,cat:'Tools & Apps',date:'January 2026',rt:'4 min',feat:false,
+ title:'Google NotebookLM: The Research Tool That Changes Everything',
+ excerpt:'NotebookLM can ingest 50 documents, generate a podcast, answer questions, and create source-cited summaries. Here\'s how to use it.',
+ body:`<p>Google's NotebookLM quietly became one of the most useful AI tools available in 2025-26. Unlike general-purpose chatbots, NotebookLM operates entirely within documents you provide.</p>
+<h3>What It Does</h3><ul><li>Upload up to 50 documents (PDFs, Google Docs, YouTube links, web pages)</li><li>Ask questions and get answers cited to the specific document and page</li><li>Generate an AI podcast discussion of your materials (Audio Overview)</li><li>Create study guides, FAQs, and briefing documents automatically</li></ul>
+<h3>Best Use Cases</h3><p><strong>Research:</strong> Upload all reference materials for a project; ask cross-document questions. <strong>Content creation:</strong> Feed it competitor content, industry reports, and your brand voice document; generate briefing notes. <strong>Training materials:</strong> Upload your SOPs and training documents; let staff ask questions.</p>`},
+
+{id:10,cat:'Nigeria & Africa',date:'January 2026',rt:'5 min',feat:false,
+ title:'How Small African Businesses Are Using AI to Compete Globally',
+ excerpt:'From Lagos to Nairobi, a new generation of African entrepreneurs is using AI tools to deliver services and products that compete at global quality standards.',
+ body:`<p>The narrative around African business has shifted dramatically. AI tools have effectively removed several traditional barriers to entry: design skill, copywriting ability, technical development, and research capacity.</p>
+<h3>Case Studies</h3><p><strong>Lagos Fashion Startup:</strong> A 2-person team uses Midjourney for product concept visualisation, Claude for buyer outreach emails, and Canva AI for lookbooks. They've landed buyers in the UK and UAE.</p>
+<p><strong>Abuja Consulting Firm:</strong> A solo consultant uses Claude for initial research and first-draft reports. Billing rate: ₦500,000 per engagement. Monthly revenue: ₦1.5M+.</p>
+<p><strong>Nairobi EdTech:</strong> A course creator used HeyGen to produce video lessons in English, French, and Swahili without re-recording. Distribution expanded to 3 countries overnight.</p>
+<h3>The Advantage</h3><p>African entrepreneurs using AI tools are delivering at quality levels that match or exceed international competitors — at a fraction of the traditional cost structure.</p>`},
+
+{id:11,cat:'Tutorials',date:'December 2025',rt:'5 min',feat:false,
+ title:'The Complete Guide to AI Image Generation in 2026',
+ excerpt:'From Midjourney to Adobe Firefly to Ideogram — the landscape has matured. Here\'s which tool to use for each creative need.',
+ body:`<p>AI image generation in 2026 is no longer about "can it look real?" — it's about knowing which tool excels at which use case.</p>
+<h3>The Current Hierarchy</h3><ul><li><strong>Midjourney v7:</strong> Best overall for editorial, artistic, and fashion images. Premium aesthetic, unique style.</li><li><strong>Adobe Firefly:</strong> Best for commercial work — fully licensed, safe for client deliverables.</li><li><strong>Ideogram 2.0:</strong> Best for images with readable text — infographics, poster backgrounds, thumbnails.</li><li><strong>DALL-E 3 (via ChatGPT):</strong> Most accessible for general use, good instruction-following.</li><li><strong>Stable Diffusion / ComfyUI:</strong> Best for technical users who need fine control and custom training.</li></ul>
+<h3>Prompting for Great Images</h3><p>Specify: subject + style + lighting + camera angle + mood + negative prompts. "Professional headshot, Nigerian woman, 35, business attire, studio lighting, shallow depth of field, clean white background -- blurry, cartoon, low quality"</p>`},
+
+{id:12,cat:'Nigeria & Africa',date:'December 2025',rt:'4 min',feat:false,
+ title:'AI Regulation in Nigeria: What Entrepreneurs Need to Know',
+ excerpt:'NITDA\'s AI policy framework is taking shape. Here\'s what it means for Nigerian AI businesses, content creators, and developers.',
+ body:`<p>Nigeria's National Information Technology Development Agency (NITDA) has been progressively developing a regulatory framework for AI since 2023. For entrepreneurs building AI-powered businesses, understanding the emerging landscape is important.</p>
+<h3>Key Principles of the Framework</h3><ul><li>Data sovereignty — Nigerian user data should be processed within Nigerian or African infrastructure where possible</li><li>Algorithmic transparency — AI systems making decisions about citizens must be explainable</li><li>Content responsibility — AI-generated content must be disclosed in media and journalism contexts</li></ul>
+<h3>What This Means for You</h3><p>If you're building AI-powered products for Nigerian consumers, consider: using data storage solutions with Nigerian/African presence, documenting your AI decision flows, and adding disclosure labels to AI-generated content. These are emerging best practices, not yet strict legal requirements for most SMEs.</p>
+<h3>The Opportunity</h3><p>Businesses that build with ethical AI practices now will be better positioned as regulation formalises — and will build greater client trust in the near term.</p>`}
+];
 
 let currentFilter = 'All';
 let openArticleId = null;
@@ -395,7 +505,6 @@ function renderContent(){
   const fw = document.getElementById('featuredWrap');
   if(featured){
     fw.innerHTML = `<div class="featured-card" onclick="openArticle(${featured.id})">
-      ${featured.thumb ? `<img class="featured-thumb" src="${featured.thumb}" alt="${featured.title}" loading="lazy">` : ''}
       <div class="featured-label">Featured Article</div>
       <div class="featured-title">${featured.title}</div>
       <div class="featured-excerpt">${featured.excerpt}</div>
@@ -422,7 +531,6 @@ function renderContent(){
   empty.style.display='none';
   grid.innerHTML = gridPosts.map(p => `
     <div class="article-card" onclick="openArticle(${p.id})">
-      ${p.thumb ? `<img class="article-thumb" src="${p.thumb}" alt="${p.title}" loading="lazy">` : ''}
       <div class="article-meta">
         <span class="cat-badge ${catClass(p.cat)}">${p.cat}</span>
         <span class="meta-date">${p.date}</span>
@@ -431,144 +539,120 @@ function renderContent(){
       <div class="article-excerpt">${p.excerpt}</div>
       <div class="article-footer">
         <span>${p.rt} read</span>
-        <button class="card-share" onclick="event.stopPropagation();nativeShare(${p.id})" title="Share this post">↗ Share</button>
         <span class="article-arrow">Read →</span>
       </div>
     </div>`).join('');
 }
 
 /* ── OPEN ARTICLE DETAIL ── */
-function openArticle(id, updateHash=true){
+function openArticle(id){
   const post = POSTS.find(p => p.id === id);
   if(!post) return;
   openArticleId = id;
   const detail = document.getElementById('articleDetail');
-  document.getElementById('detailContent').innerHTML = `
-    ${post.thumb ? `<img class="detail-thumb" src="${post.thumb}" alt="${post.title}" loading="lazy">` : ''}
-    <div class="detail-meta">
-      <span class="cat-badge ${catClass(post.cat)}">${post.cat}</span>
-      <span class="meta-date">${post.date}</span>
-      <span class="meta-sep">·</span>
-      <span class="meta-rt">${post.rt} read</span>
-    </div>
-    <h2 class="detail-title">${post.title}</h2>
-    <div class="detail-byline">AI Made Simple · ${post.date}</div>
-    <div class="detail-body">${post.body}</div>
-    ${recProgramHTML(post)}
-    ${shareBarHTML(post)}`;
-  detail.classList.add('open');
-  // Update the address bar so the URL is a shareable deep link to this post.
-  if(updateHash){
-    history.replaceState(null, '', '#post-' + id);
-  }
+  if(!detail) return;
+
+  /* Build share URLs */
+  const pageUrl = window.location.origin + window.location.pathname + '?post=' + id;
+  const enc = encodeURIComponent;
+  const waUrl  = 'https://wa.me/?text='  + enc(post.title + ' - ' + pageUrl);
+  const xUrl   = 'https://twitter.com/intent/tweet?text=' + enc(post.title) + '&url=' + enc(pageUrl);
+  const liUrl  = 'https://linkedin.com/sharing/share-offsite/?url=' + enc(pageUrl);
+  const fbUrl  = 'https://facebook.com/sharer/sharer.php?u=' + enc(pageUrl);
+
+  /* Native share button (mobile) */
+  const hasNative = !!navigator.share;
+  const nativeBtn = hasNative
+    ? '<button class="share-btn sb-native" onclick="nativeShare('+id+')">&#x1F4E4; Share</button>'
+    : '';
+
+  const shareBar = '<div class="share-bar">'
+    + '<span class="share-label">Share</span>'
+    + nativeBtn
+    + '<a class="share-btn sb-wa"  href="'+waUrl+'"  target="_blank" rel="noopener">&#x1F4AC; WhatsApp</a>'
+    + '<a class="share-btn sb-x"   href="'+xUrl+'"   target="_blank" rel="noopener">&#x1D54F; X / Twitter</a>'
+    + '<a class="share-btn sb-li"  href="'+liUrl+'"  target="_blank" rel="noopener">&#x1F517; LinkedIn</a>'
+    + '<a class="share-btn sb-fb"  href="'+fbUrl+'"  target="_blank" rel="noopener">&#x1F426; Facebook</a>'
+    + '<button class="share-btn sb-copy" id="copyBtn'+id+'" onclick="copyPostLink('+id+',\'copyBtn'+id+'\')">&#x1F4CB; Copy Link</button>'
+    + '</div>'
+    + '<div class="post-url-badge">' + pageUrl + '</div>';
+
+  detail.className='article-detail open';
+  document.getElementById('detailContent').innerHTML =
+    '<div class="detail-meta">'
+    + '<span class="cat-badge ' + catClass(post.cat) + '">' + post.cat + '</span>'
+    + '<span class="meta-date">' + post.date + '</span>'
+    + '<span class="meta-sep">·</span>'
+    + '<span class="meta-rt">' + post.rt + '</span>'
+    + '</div>'
+    + '<h2 class="detail-title">' + post.title + '</h2>'
+    + '<div class="detail-byline">AI Made Simple · ' + post.date + '</div>'
+    + '<div class="detail-body">' + post.body + '</div>'
+    + shareBar;
+
   detail.scrollIntoView({behavior:'smooth',block:'start'});
+
+  /* Update URL so this post is directly linkable */
+  history.pushState({postId:id}, post.title, '?post=' + id);
 }
 
-/* ── RECOMMENDED PROGRAM ── */
-function recProgramHTML(post){
-  if(!post.recProgram) return '';
-  return `
-    <div class="rec-program">
-      <div class="rec-eyebrow">Recommended for you</div>
-      <div class="rec-name">${post.recProgram}</div>
-      <div class="rec-why">${post.recWhy || 'Build practical, in-demand AI skills.'}</div>
-      <a class="rec-btn" href="index.html#programs">Explore this programme →</a>
-    </div>`;
-}
-
-/* ── SHARE HELPERS ── */
-// In-site deep link (opens the article within blog.html). Used by Copy-while-reading fallback.
-function postUrl(id){
-  return location.origin + location.pathname + '#post-' + id;
-}
-// Crawlable share link: a tiny /p/N.html page carrying per-post preview tags,
-// which redirects humans to the article. This is what gets a WhatsApp/Telegram thumbnail.
-function shareUrl(id){
-  return location.origin + '/assets/p/' + id + '.html';
-}
-
-function shareBarHTML(post){
-  const url = encodeURIComponent(shareUrl(post.id));
-  const text = encodeURIComponent(post.title + ' — AI Made Simple');
-  return `
-    <div class="share-bar">
-      <span class="share-label">Share</span>
-      <button class="share-btn primary" onclick="nativeShare(${post.id})">↗ Share</button>
-      <a class="share-btn" href="https://wa.me/?text=${text}%20${url}" target="_blank" rel="noopener">WhatsApp</a>
-      <a class="share-btn" href="https://twitter.com/intent/tweet?text=${text}&url=${url}" target="_blank" rel="noopener">X</a>
-      <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=${url}" target="_blank" rel="noopener">Facebook</a>
-      <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=${url}" target="_blank" rel="noopener">LinkedIn</a>
-      <button class="share-btn" onclick="copyLink(${post.id})">🔗 Copy link</button>
-      <span class="share-copied" id="copied-${post.id}">Copied!</span>
-    </div>`;
-}
-
-// Uses the phone/browser built-in share sheet when available, else copies the link.
 function nativeShare(id){
   const post = POSTS.find(p => p.id === id);
-  if(!post) return;
-  const url = shareUrl(id);
-  if(navigator.share){
-    navigator.share({ title: post.title, text: post.title + ' — AI Made Simple', url })
-      .catch(()=>{});
-  } else {
-    copyLink(id);
-  }
+  if(!post || !navigator.share) return;
+  navigator.share({
+    title: post.title,
+    text:  post.excerpt,
+    url:   window.location.origin + window.location.pathname + '?post=' + id
+  }).catch(() => {});
 }
 
-function copyLink(id){
-  const url = shareUrl(id);
-  const done = ()=>{
-    const tag = document.getElementById('copied-'+id);
-    if(tag){ tag.style.display='inline'; setTimeout(()=>tag.style.display='none', 1800); }
-  };
-  if(navigator.clipboard){
-    navigator.clipboard.writeText(url).then(done).catch(()=>prompt('Copy this link:', url));
-  } else {
+function copyPostLink(id, btnId){
+  const url = window.location.origin + window.location.pathname + '?post=' + id;
+  navigator.clipboard.writeText(url).then(function(){
+    const btn = document.getElementById(btnId);
+    if(btn){ btn.textContent = '\u2713 Copied!'; btn.classList.add('copied');
+      setTimeout(function(){ btn.textContent = '\uD83D\uDCCB Copy Link'; btn.classList.remove('copied'); }, 2500); }
+  }).catch(function(){
     prompt('Copy this link:', url);
-  }
+  });
 }
 
-/* ── CLOSE DETAIL ── */
 function closeDetail(){
   openArticleId = null;
-  document.getElementById('articleDetail').classList.remove('open');
-  history.replaceState(null, '', location.pathname);
+  var d = document.getElementById('articleDetail');
+  if(d){d.className='article-detail';d.innerHTML='';}
+  history.pushState({}, document.title, window.location.pathname);
 }
 
-/* ── DEEP LINK: open an article from a #post-N url ── */
-function openFromHash(){
-  const m = (location.hash || '').match(/^#post-(\d+)$/);
-  if(m){
-    const id = parseInt(m[1], 10);
-    if(POSTS.find(p => p.id === id)){
-      openArticle(id, false);   // don't rewrite the hash we just read
-    }
+/* ── INIT ── */
+renderFilters();
+renderContent();
+
+/* ── Deep-link: open post from URL param ?post=ID ── */
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var postId = parseInt(params.get('post') || '0');
+  if(postId){
+    /* Wait for DOM to be ready */
+    var attempts = 0;
+    var tryOpen = setInterval(function(){
+      attempts++;
+      if(document.getElementById('articleDetail') || attempts > 20){
+        clearInterval(tryOpen);
+        openArticle(postId);
+      }
+    }, 150);
   }
-}
-// Handle the link being opened/changed while the page is already loaded.
-window.addEventListener('hashchange', openFromHash);
+})();
 
-/* ── INIT: load posts from posts.json, then render ── */
-fetch('posts.json')
-  .then(res => { if(!res.ok) throw new Error('HTTP '+res.status); return res.json(); })
-  .then(data => {
-    POSTS = Array.isArray(data) ? data : [];
-    renderFilters();
-    renderContent();
-    openFromHash();   // if URL is like #post-3, open that article automatically
-  })
-  .catch(err => {
-    console.error('Could not load posts.json:', err);
-    renderFilters();
-    const empty = document.getElementById('emptyMsg');
-    if(empty){ empty.style.display='block'; empty.textContent='Posts could not be loaded. If testing locally, run a local server (python3 -m http.server).'; }
-  });
+/* Restore URL when closing article */
 </script>
 <div class="pwa-banner" id="pwaBanner">
   <svg class="pwa-banner-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="16" fill="#FFFFFF"/><rect x="3" y="3" width="94" height="94" rx="13" fill="none" stroke="#C9A84C" stroke-width="2.5" opacity="0.55"/><text x="50" y="67" font-family="Cormorant Garamond,Georgia,serif" font-style="italic" font-weight="700" font-size="52" fill="#C9A84C" text-anchor="middle">AI</text></svg>
   <div class="pwa-banner-text">
-    <div class="pwa-banner-title">Install AI Made Simple</div>
+    <div class="pwa-banner-title">AI Made Simple</div>
+    <div class="pwa-banner-sub">Add to your Home Screen for quick access</div>
+  </div>
     <div class="pwa-banner-sub">Add to your Home Screen for instant access</div>
   </div>
   <div class="pwa-banner-actions">
@@ -686,3 +770,103 @@ function handleSubscribe(){
 </script>
 </body>
 </html>
+,{id:13,cat:'Nigeria & Africa',date:'Jan 2026',rt:'5 min read',feat:false,
+ title:`AI in Nigerian Education: What Students and Educators Need to Know`,
+ excerpt:`Universities, polytechnics, and secondary schools across Nigeria are integrating AI into their curricula. Here is what every stakeholder needs to understand to stay ahead of the shift.`,
+ body:`<p>The integration of artificial intelligence into Nigerian education is no longer a future event. It is happening now, and the pace is accelerating.</p>
+<h3>What Is Already Changing</h3><ul><li><strong>UNILAG, ABU, and OAU</strong> have introduced AI literacy modules into engineering and computer science curricula since 2025</li><li>Secondary school students are using AI tools for essay writing, research, and study planning</li><li>WAEC and JAMB are actively developing AI detection policies for submitted work</li></ul>
+<h3>For Students</h3><p>The competitive advantage is no longer in knowing how to use AI — it is in knowing how to use it <em>better</em> than everyone else. Students who develop strong AI tool proficiency alongside domain knowledge (law, medicine, engineering, business) will command significant career advantages by graduation.</p>
+<h3>For Educators</h3><p>The most effective approach is not to ban AI but to redesign assessments around it. Instead of "what is the answer," ask "how did you arrive at this answer using AI, and what did you add from your own reasoning?"</p>
+<h3>The Practical Takeaway</h3><p>Nigeria is well-positioned to leapfrog in AI education adoption. The entrepreneurial culture, young population, and growing tech ecosystem make it an ideal environment for AI-native graduates.</p>`},
+
+{id:14,cat:'Business',date:'Jan 2026',rt:'5 min read',feat:false,
+ title:`How to Build a Powerful Personal Brand Using AI in 2026`,
+ excerpt:`Your personal brand is your career infrastructure. AI tools now make it possible to build, maintain, and grow a professional presence that would previously require a PR team.`,
+ body:`<p>A strong personal brand in 2026 means being found, being trusted, and being remembered. AI tools have democratised every component of this process.</p>
+<h3>The Four Pillars of an AI-Powered Personal Brand</h3>
+<p><strong>1. Content at Scale.</strong> Use Claude or ChatGPT to maintain a weekly LinkedIn article cadence. Input your expertise, experiences, and opinions — let AI structure, sharpen, and format the output. Authentic ideas, AI-polished execution.</p>
+<p><strong>2. Visual Consistency.</strong> Canva AI for branded graphics. Midjourney or Ideogram for custom professional imagery. Consistent colour palette, fonts, and tone across all platforms.</p>
+<p><strong>3. Voice and Video.</strong> ElevenLabs clones your voice for consistent audio content. HeyGen creates AI presenter videos from scripts. Publish across YouTube, podcast platforms, and social media simultaneously.</p>
+<p><strong>4. Reputation Monitoring.</strong> Use Perplexity to track industry conversations. Set Google Alerts for your name and key topics. Respond promptly to mentions and questions.</p>
+<h3>The Nigerian Opportunity</h3><p>Most Nigerian professionals still have weak or absent digital footprints. Building a strong AI-powered brand now puts you ahead of 95% of your professional peers in any sector.</p>`},
+
+{id:15,cat:'AI Models',date:'Dec 2025',rt:'6 min read',feat:false,
+ title:`Google Gemini 2.5 Pro: An Honest Deep Dive for Business Users`,
+ excerpt:`Gemini 2.5 Pro has emerged as a serious competitor to Claude and GPT-5. Here is a practical, no-hype review of what it does well, where it falls short, and when to choose it.`,
+ body:`<p>Google has significantly closed the gap with its Gemini 2.5 Pro release. This is not a marketing claim — it is something you can verify in a 20-minute hands-on session.</p>
+<h3>Where Gemini 2.5 Pro Excels</h3><ul><li><strong>Google Workspace integration:</strong> Natively connected to Gmail, Google Docs, Drive, and Sheets. If your workflow is Google-native, this alone justifies the subscription.</li><li><strong>Real-time information:</strong> Deep Google Search integration gives it a factual edge on current events, prices, and recent research.</li><li><strong>Long document analysis:</strong> 1 million token context window — can analyse entire textbooks, legal documents, and annual reports in one session.</li><li><strong>Code for Google platforms:</strong> Apps Script, Google Cloud, BigQuery — superior to other models for Google-ecosystem development.</li></ul>
+<h3>Where It Falls Short</h3><p>Writing quality and tone control still lag behind Claude 4. For nuanced business writing — proposals, client emails, strategic documents — Claude produces more natural, contextually aware output. Gemini also tends to be more verbose and requires more editing for professional use.</p>
+<h3>The Verdict</h3><p>Use Gemini 2.5 Pro if: you live in Google Workspace, you need current information, or you are working with large documents. Use Claude for writing, strategy, and nuanced communication tasks.</p>`},
+
+{id:16,cat:'Business',date:'Dec 2025',rt:'5 min read',feat:false,
+ title:`AI for Small Business Finance: Accounting Without an Accountant`,
+ excerpt:`Nigerian SME owners are using AI tools to manage bookkeeping, generate financial reports, and prepare tax documentation — without hiring full-time finance staff.`,
+ body:`<p>For small business owners in Nigeria, one of the highest costs is financial management. Hiring an accountant, buying accounting software, and maintaining financial records has historically required significant ongoing investment. AI has fundamentally changed this equation.</p>
+<h3>The AI Finance Stack for SMEs</h3>
+<p><strong>Julius AI + Google Sheets:</strong> Upload your income and expense data (even from a simple spreadsheet). Julius generates profit-and-loss summaries, cash flow analysis, and trend reports automatically.</p>
+<p><strong>Claude for Documentation:</strong> Describe your business finances and ask Claude to generate a financial statement, invoice template, or expense report in a professional format ready for clients or FIRS.</p>
+<p><strong>Receipt Scanning:</strong> Use Google Lens or dedicated apps to photograph receipts. Feed the data to Claude to categorise and summarise expenses by month.</p>
+<h3>What AI Cannot Replace</h3><p>AI cannot sign off on audited accounts, provide FIRS-compliant tax advice for complex situations, or replace a chartered accountant for formal statutory requirements. Use AI for day-to-day management; bring in a professional for compliance submissions.</p>
+<h3>The Bottom Line</h3><p>A small business owner spending 6 hours per month on manual bookkeeping can reduce that to 90 minutes with an AI-powered workflow. The savings in time and accounting fees typically exceed ₦100,000 per year for a growing SME.</p>`},
+
+{id:17,cat:'Tools & Apps',date:'Nov 2025',rt:'4 min read',feat:false,
+ title:`WhatsApp Business API and AI: Transforming Nigerian Commerce`,
+ excerpt:`Small businesses and enterprises across Nigeria are combining WhatsApp Business API with AI to automate sales, support, and lead follow-up at scale.`,
+ body:`<p>WhatsApp is the primary business communication channel in Nigeria. With over 50 million Nigerian users, it is where buying decisions happen, where customer service plays out, and where business relationships are built. Combining the WhatsApp Business API with AI automation creates a 24/7 sales and support operation.</p>
+<h3>What Is Possible Right Now</h3><ul><li><strong>Automated lead capture:</strong> Customer messages "INTERESTED" → AI responds with product info, qualification questions, and pricing</li><li><strong>Order processing:</strong> Customer describes what they want → AI confirms order, generates invoice, sends payment link</li><li><strong>Support automation:</strong> Common questions (delivery status, product info, return policy) handled automatically</li><li><strong>Follow-up sequences:</strong> Customers who did not complete a purchase get a scheduled follow-up message</li></ul>
+<h3>Tools Required</h3><p>WATI.io or Twilio for WhatsApp Business API access. Make.com to build the automation workflows. OpenAI or Claude API for AI responses. This stack can be built by a non-developer following the AI Masterclass on Social Media and WhatsApp Automations.</p>
+<h3>The Business Impact</h3><p>A Lagos-based fashion retailer using this setup reported handling 340 customer enquiries per day with one staff member — previously requiring a team of four.</p>`},
+
+{id:18,cat:'Tutorials',date:'Nov 2025',rt:'6 min read',feat:false,
+ title:`AI for Academic Research: A Complete Guide for Nigerian Students`,
+ excerpt:`Used correctly, AI tools can dramatically accelerate research, improve citation management, and help produce stronger academic work — without academic misconduct.`,
+ body:`<p>There is a right way and a wrong way to use AI for academic research. The wrong way is asking Claude to write your dissertation. The right way is using AI as a research accelerator that amplifies your own intellectual work.</p>
+<h3>The Right AI Research Workflow</h3>
+<p><strong>Step 1 — Scope your topic.</strong> Ask Claude: "What are the five most debated areas in [your research topic]?" Use the output to identify gaps and choose your angle.</p>
+<p><strong>Step 2 — Use Perplexity for source discovery.</strong> Perplexity AI searches academic sources and provides cited summaries. It is far safer than asking ChatGPT for facts (which hallucinates citations).</p>
+<p><strong>Step 3 — Use NotebookLM for synthesis.</strong> Upload your collected PDFs and journal articles. Ask NotebookLM to identify common themes, contradictions between authors, and gaps in the literature.</p>
+<p><strong>Step 4 — Draft with AI, write yourself.</strong> Use Claude to outline your argument structure. Then write each section yourself, using the outline as a scaffold.</p>
+<p><strong>Step 5 — AI-assisted editing.</strong> Paste your draft into Claude. Ask: "Identify weak arguments, unclear sentences, and places where I need stronger evidence."</p>
+<h3>The Ethical Line</h3><p>Generating text and submitting it as your own is academic misconduct. Using AI to find sources, understand complex papers, structure arguments, and edit your own writing is a legitimate research skill that every modern researcher should develop.</p>`},
+
+{id:19,cat:'Business',date:'Oct 2025',rt:'5 min read',feat:false,
+ title:`AI-Powered Customer Service: Building 24/7 Support Without Extra Staff`,
+ excerpt:`Nigerian businesses are deploying AI customer service systems that handle hundreds of enquiries daily — at a fraction of the cost of a traditional support team.`,
+ body:`<p>Customer service is one of the highest operational costs for growing Nigerian businesses. Hiring, training, and retaining support staff is expensive and inconsistent. AI-powered customer service solves this at scale.</p>
+<h3>What to Automate vs. What to Keep Human</h3>
+<p><strong>Automate:</strong> FAQ responses, order status, pricing enquiries, appointment booking, complaint categorisation, and first-response messages.</p>
+<p><strong>Keep human:</strong> Complex complaints requiring discretion, high-value client relationships, situations requiring empathy and context that AI cannot fully replicate.</p>
+<h3>Building the System</h3><p>The most practical setup for a Nigerian SME uses three tools: <strong>Tidio or Crisp</strong> for website chat widget, <strong>WATI</strong> for WhatsApp, and <strong>Make.com</strong> to connect both to a Claude or GPT-4 backend. Total monthly cost: approximately $50-80 USD. Total weekly hours saved for a medium-traffic business: 20-40 hours.</p>
+<h3>Training Your AI on Your Business</h3><p>The quality of AI customer service is determined by the quality of your training document. Create a comprehensive FAQ document covering your products, pricing, policies, delivery terms, and common complaints. The more detailed this document, the more accurately your AI will represent your business.</p>`},
+
+{id:20,cat:'Industry',date:'Oct 2025',rt:'5 min read',feat:false,
+ title:`The Future of Work in Africa: AI Skills That Will Matter in 2030`,
+ excerpt:`As AI reshapes global labour markets, Africa faces both a threat and a once-in-a-generation opportunity. The skills that will matter most are not what most people expect.`,
+ body:`<p>Every major consulting firm — McKinsey, PwC, Deloitte — has published reports projecting significant job displacement from AI. But these projections consistently underestimate the Africa-specific dynamics.</p>
+<h3>The Threat Is Real, But Smaller Than Reported for Africa</h3><p>The jobs most at risk from AI are high-volume, repetitive, white-collar tasks: data entry, basic bookkeeping, paralegal research, routine customer service. These represent a smaller share of African employment than in Western economies, where these roles are more prevalent.</p>
+<h3>The Opportunity Is Larger Than Reported</h3><p>Africa has a massive skills gap in AI implementation. Businesses across the continent need people who can bridge between AI capabilities and local business context. This is not a technology job — it is a knowledge-translation job that requires both AI literacy and deep local understanding.</p>
+<h3>The Skills That Will Matter in 2030</h3><ul><li><strong>AI orchestration:</strong> Designing and managing AI workflows across multiple tools</li><li><strong>Prompt engineering for domain experts:</strong> Lawyers, doctors, engineers, teachers who know how to extract maximum AI value in their field</li><li><strong>AI audit and quality control:</strong> Verifying and validating AI outputs for accuracy and bias</li><li><strong>Human-AI collaboration:</strong> Knowing when AI is right and when human judgement is essential</li></ul>
+<h3>The Window</h3><p>The advantage window for early AI skill adopters in Africa is currently 3-5 years. After that, these skills will be table stakes rather than differentiators.</p>`},
+
+{id:21,cat:'Tutorials',date:'Sep 2025',rt:'5 min read',feat:false,
+ title:`Creating Viral Content with AI: A Proven Framework`,
+ excerpt:`Consistent viral content is not luck — it is a repeatable system. This framework shows how to use AI at every stage of the content creation process.`,
+ body:`<p>Viral content is content that spreads because it triggers a strong emotional response, provides immediate value, or says something the audience was thinking but had not heard articulated. AI can help you identify these triggers and execute on them faster than any competitor.</p>
+<h3>Stage 1: Ideation</h3><p>Feed Claude your niche, target audience, and 5 top-performing posts in your space. Ask: "Generate 20 content angles that would resonate with this audience. For each, explain the emotional hook." Select the 3 strongest. Do this weekly.</p>
+<h3>Stage 2: Script or Copy</h3><p>For video: "Write a 60-second script on [topic] using the AIDA framework (Attention-Interest-Desire-Action). Opening hook must be a surprising statement or question. Tone: conversational."</p>
+<p>For text posts: "Write a LinkedIn post on [topic] that starts with a counterintuitive statement, follows with 3 specific examples, and ends with a question to drive comments."</p>
+<h3>Stage 3: Visual Production</h3><p>Midjourney for custom images. Canva AI for branded graphics. CapCut with AI auto-captions for video. Keep visual style consistent across posts.</p>
+<h3>Stage 4: Optimisation</h3><p>After 48 hours, analyse performance. Ask Claude to explain why certain posts performed better and how to replicate those elements. Build a swipe file of your best-performing formats.</p>
+<h3>The Compounding Effect</h3><p>Consistent AI-assisted content production over 90 days produces a compounding audience growth effect. Most creators who fail do so in the first 30 days — before the algorithm rewards their consistency.</p>`},
+
+{id:22,cat:'Nigeria & Africa',date:'Sep 2025',rt:'7 min read',feat:false,
+ title:`From Zero to N500k Monthly: Real AI Success Stories from Nigerian Entrepreneurs`,
+ excerpt:`Five Nigerian entrepreneurs share how they used AI tools to build income streams from scratch. Real numbers, real timelines, real strategies.`,
+ body:`<p>These are real accounts gathered from members of the AI Made Simple community. Names and identifying details are used with permission.</p>
+<h3>Case 1: The Content Agency</h3><p>Adaeze, Enugu. Former secondary school teacher. Started offering AI-powered content services to SMEs in February 2025. By June 2025, she had 6 retainer clients at N80,000/month each. Monthly revenue: N480,000. Tools: Claude, Canva AI, Buffer for scheduling. Team size: 1 (herself).</p>
+<h3>Case 2: The Automation Consultant</h3><p>Babatunde, Lagos. Former bank operations officer. Built his first Make.com automation for a friend's logistics company in March 2025. Word of mouth led to 3 more clients by May. Current monthly revenue: N620,000 from project fees and maintenance retainers.</p>
+<h3>Case 3: The Digital Product Creator</h3><p>Ngozi, Abuja. Nurse practitioner. Created an AI-powered medical report writing prompt pack for Nigerian healthcare professionals. Priced at N5,000 on Selar. Sold 140 units in the first 90 days. Passive income: N700,000 from a product she built in one weekend.</p>
+<h3>Case 4: The AI Trainer</h3><p>Emeka, Port Harcourt. HR professional. Positioned himself as an AI trainer for corporate teams. First corporate training: 25 participants at N40,000/seat = N1,000,000. Now running 2 sessions per month.</p>
+<h3>The Common Thread</h3><p>None of these individuals had a technical background. All of them invested in AI training first, then started serving clients immediately — before they felt "ready." The willingness to start before perfect readiness is the single biggest differentiator in every success story we have documented.</p>`}
+
+

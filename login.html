@@ -3,199 +3,99 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Student Login — AI Made Simple</title>
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
-  <link rel="apple-touch-icon" href="/assets/logo.svg">
-  <meta name="theme-color" content="#C9A84C">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+<title>Student Portal — AI Made Simple</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="apple-touch-icon" href="logo.svg">
+<meta name="theme-color" content="#C9A84C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.15);--transition:0.3s ease;}
+:root{--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.14);--gold-border:rgba(201,168,76,0.28);--transition:0.3s ease;}
 [data-theme="dark"]{--bg:#0E0E10;--bg2:#141416;--bg3:#1C1C20;--border:rgba(255,255,255,0.07);--text:#F0EDE6;--text-muted:#7A7870;--text-secondary:#B8B5AE;--card-bg:#16161A;--card-border:rgba(201,168,76,0.12);--nav-bg:rgba(14,14,16,0.92);--input-bg:#1C1C20;--shadow:0 8px 48px rgba(0,0,0,0.5);}
 [data-theme="light"]{--bg:#F8F6F1;--bg2:#EEEBE4;--bg3:#E4E1DA;--border:rgba(0,0,0,0.08);--text:#1A1914;--text-muted:#8A877E;--text-secondary:#4A4740;--card-bg:#FAFAF7;--card-border:rgba(201,168,76,0.25);--nav-bg:rgba(248,246,241,0.92);--input-bg:#EEEBE4;--shadow:0 8px 48px rgba(0,0,0,0.1);}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;transition:background var(--transition),color var(--transition);}
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:0;}
 nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 clamp(1.5rem,5vw,4rem);height:64px;display:flex;align-items:center;justify-content:space-between;}
 .nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.nav-logo-svg{border-radius:6px;}
 .nav-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--text);}
 .nav-right{display:flex;align-items:center;gap:1rem;}
 .nav-back{font-size:0.82rem;color:var(--text-muted);text-decoration:none;transition:color var(--transition);}
 .nav-back:hover{color:var(--gold);}
 .theme-toggle{display:flex;align-items:center;gap:2px;background:var(--bg3);border-radius:20px;padding:3px;border:1px solid var(--border);}
-.theme-btn{width:28px;height:24px;border:none;border-radius:16px;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:background var(--transition);color:var(--text-muted);}
+.theme-btn{width:28px;height:24px;border:none;border-radius:16px;background:transparent;cursor:pointer;font-size:12px;transition:background var(--transition);color:var(--text-muted);}
 .theme-btn.active{background:var(--gold);color:#0E0E10;}
 main{flex:1;display:flex;align-items:center;justify-content:center;padding:3rem 1.5rem;position:relative;z-index:1;}
-.auth-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;width:100%;max-width:520px;overflow:hidden;box-shadow:var(--shadow);animation:slideUp 0.4s ease both;}
+.auth-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;width:100%;max-width:500px;overflow:hidden;box-shadow:var(--shadow);animation:slideUp 0.4s ease both;}
 @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.auth-header{padding:2.5rem 2.5rem 1.5rem;border-bottom:1px solid var(--border);text-align:center;}
-.auth-logo-svg{border-radius:14px;}
-.auth-title{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:var(--text);}
-.auth-subtitle{font-size:0.83rem;color:var(--text-muted);margin-top:0.4rem;line-height:1.5;}
-.student-badge{display:inline-flex;align-items:center;gap:5px;background:var(--gold-dim);border:1px solid rgba(201,168,76,0.25);border-radius:100px;padding:4px 12px;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-top:0.75rem;}
-.auth-tabs{display:flex;border-bottom:1px solid var(--border);}
-.auth-tab{flex:1;padding:14px;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all var(--transition);}
-.auth-tab.active{color:var(--gold);border-bottom-color:var(--gold);background:var(--gold-dim);}
-.auth-form{padding:2rem 2.5rem;display:none;flex-direction:column;gap:1.25rem;}
-.auth-form.active{display:flex;}
+.auth-header{padding:2.5rem 2.5rem 1.75rem;border-bottom:1px solid var(--border);text-align:center;}
+.auth-title{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:var(--text);margin-top:1rem;}
+.auth-subtitle{font-size:0.84rem;color:var(--text-muted);margin-top:0.4rem;line-height:1.55;}
+.student-badge{display:inline-flex;align-items:center;gap:5px;background:var(--gold-dim);border:1px solid var(--gold-border);border-radius:100px;padding:4px 12px;font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-top:0.75rem;}
+.auth-form{padding:2rem 2.5rem 2.25rem;display:flex;flex-direction:column;gap:1.2rem;}
 .form-group{display:flex;flex-direction:column;gap:6px;}
-.form-label{font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);}
-.form-input{background:var(--input-bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--text);outline:none;transition:border-color var(--transition),box-shadow var(--transition);width:100%;}
+.form-label{font-size:0.74rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--text-muted);}
+.form-input{background:var(--input-bg);border:1px solid var(--border);border-radius:8px;padding:13px 14px;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--text);outline:none;transition:border-color var(--transition),box-shadow var(--transition);width:100%;}
 .form-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-dim);}
 .form-input::placeholder{color:var(--text-muted);}
-.form-select{background:var(--input-bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--text);outline:none;width:100%;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A84C' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;transition:border-color var(--transition);}
-.form-select:focus{border-color:var(--gold);}
-.form-select option{background:var(--bg2);color:var(--text);}
-.password-field{position:relative;}
-.password-toggle{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:14px;padding:4px;}
-.form-error{font-size:0.75rem;color:#e05a5a;margin-top:2px;display:none;}
-.form-error.visible{display:block;}
-.btn-submit{background:var(--gold);color:#0E0E10;border:none;padding:13px 20px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;transition:all 0.2s ease;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:0.25rem;}
+.code-input{font-family:'Space Mono',monospace;font-size:1rem;text-transform:uppercase;letter-spacing:0.08em;}
+.form-hint{font-size:0.72rem;color:var(--text-muted);margin-top:3px;line-height:1.4;}
+.btn-submit{background:var(--gold);color:#0E0E10;border:none;padding:14px 20px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;transition:all 0.2s;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:0.25rem;}
 .btn-submit:hover{opacity:0.88;transform:translateY(-1px);box-shadow:0 4px 20px rgba(201,168,76,0.3);}
 .btn-submit:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
 .btn-submit.loading::after{content:'';width:14px;height:14px;border:2px solid rgba(0,0,0,0.3);border-top-color:#0E0E10;border-radius:50%;animation:spin 0.7s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg)}}
-.btn-secondary{background:var(--input-bg);color:var(--text);border:1px solid var(--border);}
-.btn-secondary:hover{border-color:var(--gold);box-shadow:none;}
-.access-notice{background:var(--gold-dim);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;}
-.access-notice-text{font-size:0.8rem;color:var(--text-secondary);line-height:1.5;}
-.access-notice-text a{color:var(--gold);font-weight:600;text-decoration:none;}
-.forgot-link{font-size:0.78rem;color:var(--gold);text-decoration:none;text-align:right;margin-top:-8px;display:block;}
-.divider-text{display:flex;align-items:center;gap:10px;font-size:0.72rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;}
-.divider-text::before,.divider-text::after{content:'';flex:1;height:1px;background:var(--border);}
-.alert{border-radius:8px;padding:12px 14px;font-size:0.82rem;display:none;align-items:center;gap:8px;}
+.btn-demo{background:var(--input-bg);color:var(--text);border:1px solid var(--border);padding:12px 20px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.84rem;cursor:pointer;letter-spacing:0.04em;transition:all 0.2s;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;}
+.btn-demo:hover{border-color:var(--gold);color:var(--gold);}
+.divider{display:flex;align-items:center;gap:10px;font-size:0.7rem;color:var(--text-muted);letter-spacing:0.08em;text-transform:uppercase;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border);}
+.help-row{text-align:center;font-size:0.78rem;color:var(--text-muted);padding-bottom:0.25rem;}
+.help-row a{color:var(--gold);font-weight:600;text-decoration:none;}
+.help-row a:hover{text-decoration:underline;}
+.alert{border-radius:8px;padding:12px 14px;font-size:0.82rem;display:none;align-items:center;gap:8px;margin-bottom:0.25rem;}
 .alert.visible{display:flex;}
 .alert.success{background:rgba(76,201,112,0.1);border:1px solid rgba(76,201,112,0.25);color:#5fd48a;}
 .alert.error{background:rgba(224,90,90,0.1);border:1px solid rgba(224,90,90,0.25);color:#e05a5a;}
-footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem clamp(1.5rem,5vw,4rem);position:relative;z-index:1;}
-.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
-.footer-copy{font-size:0.75rem;color:var(--text-muted);}
-.footer-links{display:flex;gap:1.25rem;align-items:center;}
-.footer-links a{font-size:0.75rem;color:var(--text-muted);text-decoration:none;transition:color var(--transition);}
-.footer-links a:hover{color:var(--gold);}
-.footer-divider{width:1px;height:12px;background:var(--border);}
-.admin-entry-link{font-size:0.72rem;color:var(--text-muted);text-decoration:none;display:flex;align-items:center;gap:5px;border:1px solid var(--border);border-radius:5px;padding:4px 10px;transition:all var(--transition);}
-.admin-entry-link:hover{color:var(--gold) !important;border-color:rgba(201,168,76,0.4);background:var(--gold-dim);}
-
-/* ── BACKGROUND WATERMARK ── */
-.bg-watermark{position:fixed;bottom:-6%;right:-4%;width:min(38vw,260px);height:auto;opacity:0.045;pointer-events:none;user-select:none;z-index:0;color:var(--gold);transform:rotate(-10deg);transition:opacity var(--transition);}
-.bg-watermark svg{display:block;width:100%;height:auto;}
-[data-theme="light"] .bg-watermark{opacity:0.07;}
-@media(max-width:768px){.bg-watermark{width:min(52vw,190px);opacity:0.035;bottom:-3%;right:-3%;}}
-@media(max-width:430px){.bg-watermark{width:min(60vw,160px);opacity:0.03;}}
-/* ── MOBILE ── */
-@media(max-width:600px){
-  nav{padding:0 1rem;}
-  .nav-name{display:none;}
-  main{padding:1.5rem 1rem;}
-  .auth-card{border-radius:12px;}
-  .auth-header{padding:1.75rem 1.5rem 1.25rem;}
-  .auth-form{padding:1.5rem 1.5rem;}
-}
-@media(max-width:430px){
-  .auth-form{padding:1.25rem 1rem;}
-  .auth-header{padding:1.5rem 1rem 1rem;}
-  .form-input{padding:11px 12px;}
-  .btn-submit{padding:13px 16px;min-height:48px;}
-  .footer-inner{flex-direction:column;gap:0.5rem;align-items:flex-start;}
-  footer{padding:1rem;}
-}
-
-/* ── PWA INSTALL BANNER ── */
-.pwa-banner{position:fixed;bottom:0;left:0;right:0;background:var(--bg2,#141416);border-top:2px solid #C9A84C;padding:14px clamp(1rem,4vw,2rem);display:flex;align-items:center;gap:14px;z-index:9999;transform:translateY(100%);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 -4px 32px rgba(0,0,0,0.5);flex-wrap:wrap;}
+/* Code examples strip */
+.code-strip{background:var(--bg3);border-top:1px solid var(--border);padding:1rem 2.5rem;display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;}
+.code-strip-label{font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);flex-shrink:0;}
+.code-example{font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--gold);background:var(--gold-dim);border:1px solid var(--gold-border);border-radius:4px;padding:3px 8px;}
+/* PWA Banner */
+.pwa-banner{position:fixed;bottom:0;left:0;right:0;background:#0E0E10;border-top:2px solid #C9A84C;padding:14px clamp(1rem,4vw,2rem);display:flex;align-items:center;gap:14px;z-index:9999;transform:translateY(100%);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 -4px 32px rgba(0,0,0,0.5);flex-wrap:wrap;}
 .pwa-banner.show{transform:translateY(0);}
 .pwa-banner-icon{width:40px;height:40px;flex-shrink:0;border-radius:10px;}
 .pwa-banner-text{flex:1;min-width:160px;}
-.pwa-banner-title{font-size:0.85rem;font-weight:700;color:#F0EDE6;line-height:1.2;}
-.pwa-banner-sub{font-size:0.72rem;color:#7A7870;margin-top:2px;}
+.pwa-banner-title{font-size:0.9rem;font-weight:700;color:#F0EDE6;line-height:1.25;letter-spacing:0.01em;}
+.pwa-banner-sub{font-size:0.72rem;color:#9A9790;margin-top:3px;}
 .pwa-banner-actions{display:flex;gap:8px;align-items:center;flex-shrink:0;}
 .pwa-install-btn{background:#C9A84C;color:#0E0E10;border:none;padding:9px 18px;border-radius:5px;font-family:inherit;font-size:0.75rem;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;white-space:nowrap;transition:all 0.2s;}
 .pwa-install-btn:hover{opacity:0.88;}
 .pwa-dismiss-btn{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#7A7870;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s;}
 .pwa-dismiss-btn:hover{border-color:#C9A84C;color:#C9A84C;}
-.ios-guide{background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:6px;padding:10px 14px;font-size:0.75rem;color:#B8B5AE;line-height:1.6;}
-.ios-guide strong{color:#C9A84C;}
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.25rem clamp(1.5rem,5vw,4rem);position:relative;z-index:1;}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.footer-copy{font-size:0.74rem;color:var(--text-muted);}
+.footer-links{display:flex;gap:1.25rem;align-items:center;}
+.footer-links a{font-size:0.74rem;color:var(--text-muted);text-decoration:none;transition:color var(--transition);}
+.footer-links a:hover{color:var(--gold);}
+.admin-dot{font-size:0.6rem;color:var(--bg3) !important;}
+.admin-dot:hover{color:var(--text-muted) !important;}
+@media(max-width:430px){nav{padding:0 1rem;}.nav-name{display:none;}main{padding:1.5rem 1rem;}.auth-form{padding:1.5rem 1rem 1.75rem;}.auth-header{padding:1.75rem 1rem 1.25rem;}.code-strip{padding:0.875rem 1rem;}}
 </style>
-  <!-- EmailJS SDK — https://emailjs.com -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script>
-    /* ════════════════════════════════════════════════
-       EMAIL CONFIGURATION — AI Made Simple School
-       ================================================
-       SETUP STEPS:
-       1. Sign up free at https://emailjs.com
-       2. Add Email Service → choose Gmail or Custom SMTP
-          → For Custom SMTP: use your cPanel / Zoho / Google Workspace
-            Host: mail.aimadesimpleschool.com (or your SMTP host)
-            From: admin@aimadesimpleschool.com
-       3. Create Email Template with these variables:
-          {{to_name}}   {{to_email}}   {{username}}
-          {{password}}  {{programme}}  {{login_url}}
-       4. Replace the three IDs below:
-       ════════════════════════════════════════════════ */
-    const EJS = {
-      serviceId:  'YOUR_SERVICE_ID',    // from EmailJS > Email Services
-      templateId: 'YOUR_TEMPLATE_ID',   // from EmailJS > Email Templates
-      publicKey:  'YOUR_PUBLIC_KEY',    // from EmailJS > Account > API Keys
-      from:       'admin@aimadesimpleschool.com',
-      cc:         'seyi@aimadesimpleschool.com',
-      configured: false  // set to true after adding your IDs above
-    };
-    (function(){if(EJS.configured)emailjs.init(EJS.publicKey);})();
-
-    function sendWelcomeEmail(name, email, plainPassword, programme){
-      if(!EJS.configured){
-        console.log('[EmailJS] Not configured. Would send to:', email);
-        return;
-      }
-      const progLabels={
-        'expert':'AI Expert User (₦50,000/mo)',
-        'm2m':'AI Mastery to Money — Self-Study',
-        'm2m-standard':'AI Mastery to Money — Standard',
-        'm2m-vip':'AI Mastery to Money — VIP',
-        'masterclass':'AI Masterclasses'
-      };
-      emailjs.send(EJS.serviceId, EJS.templateId, {
-        to_name:    name,
-        to_email:   email,
-        username:   email,
-        password:   plainPassword,
-        programme:  progLabels[programme]||programme,
-        login_url:  'https://aimadesimpleschool.com/login.html',
-        reply_to:   EJS.from,
-        cc_email:   EJS.cc,
-        from_name:  'AI Made Simple School'
-      }).then(()=>console.log('Welcome email sent ✓'))
-        .catch(err=>console.error('Email error:', err));
-    }
-  </script>
-  <!-- Service Worker + PWA Install -->
-  <script>
-    if('serviceWorker' in navigator){
-      window.addEventListener('load',()=>{
-        navigator.serviceWorker.register('/sw.js')
-          .then(r=>console.log('SW registered',r.scope))
-          .catch(e=>console.warn('SW failed',e));
-      });
-    }
-  </script>
 </head>
 <body>
-<div class="bg-watermark" aria-hidden="true" role="presentation">
-  <svg viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-    <text x="110" y="115" font-family="Cormorant Garamond,Georgia,serif" font-style="italic" font-weight="700" font-size="110" fill="currentColor" text-anchor="middle">AI</text>
-  </svg>
-</div>
-
 <nav>
   <a href="index.html" class="nav-brand">
-    <svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32" style="overflow:hidden;flex-shrink:0;border-radius:8px;"><rect width="100" height="100" rx="16" fill="#FFFFFF"/><rect x="3" y="3" width="94" height="94" rx="13" fill="none" stroke="#C9A84C" stroke-width="2.5" opacity="0.55"/><text x="50" y="67" font-family="Cormorant Garamond,Georgia,serif" font-style="italic" font-weight="700" font-size="52" fill="#C9A84C" text-anchor="middle">AI</text></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32" style="flex-shrink:0;border-radius:8px;overflow:hidden;">
+      <rect width="100" height="100" rx="16" fill="#FFFFFF"/>
+      <rect x="3" y="3" width="94" height="94" rx="13" fill="none" stroke="#C9A84C" stroke-width="2.5" opacity="0.55"/>
+      <text x="50" y="67" font-family="Cormorant Garamond,Georgia,serif" font-style="italic" font-weight="700" font-size="52" fill="#C9A84C" text-anchor="middle">AI</text>
+    </svg>
     <span class="nav-name">AI Made Simple</span>
   </a>
   <div class="nav-right">
-    <a href="index.html" class="nav-back">← Back to Home</a>
+    <a href="index.html" class="nav-back">← Home</a>
     <div class="theme-toggle">
       <button class="theme-btn" id="themeLight" onclick="setTheme('light')">☀</button>
       <button class="theme-btn active" id="themeDark" onclick="setTheme('dark')">●</button>
@@ -207,247 +107,216 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem c
 <main>
   <div class="auth-card">
     <div class="auth-header">
-      <svg class="auth-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="56" height="56" style="overflow:hidden;display:block;margin:0 auto 1.25rem;border-radius:14px;box-shadow:0 0 0 6px rgba(201,168,76,0.15);"><rect width="100" height="100" rx="16" fill="#FFFFFF"/><rect x="3" y="3" width="94" height="94" rx="13" fill="none" stroke="#C9A84C" stroke-width="2.5" opacity="0.55"/><text x="50" y="67" font-family="Cormorant Garamond,Georgia,serif" font-style="italic" font-weight="700" font-size="52" fill="#C9A84C" text-anchor="middle">AI</text></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="56" height="56" style="display:block;margin:0 auto;border-radius:14px;box-shadow:0 0 0 6px rgba(201,168,76,0.15);overflow:hidden;">
+        <rect width="100" height="100" rx="16" fill="#FFFFFF"/>
+        <rect x="3" y="3" width="94" height="94" rx="13" fill="none" stroke="#C9A84C" stroke-width="2.5" opacity="0.55"/>
+        <text x="50" y="67" font-family="Cormorant Garamond,Georgia,serif" font-style="italic" font-weight="700" font-size="52" fill="#C9A84C" text-anchor="middle">AI</text>
+      </svg>
       <div class="auth-title">Student Portal</div>
-      <div class="auth-subtitle">Sign in to access your learning dashboard</div>
-      <div class="student-badge">🎓 Student Access</div>
+      <div class="auth-subtitle">Enter your name and access code<br>to reach your learning dashboard</div>
+      <div class="student-badge">🔑 Access Code Login</div>
     </div>
 
-    <div class="auth-tabs">
-      <button class="auth-tab active" onclick="switchTab('login')">Sign In</button>
-      <button class="auth-tab" onclick="switchTab('register')">Register</button>
-    </div>
-
-    <!-- SIGN IN -->
-    <form class="auth-form active" id="loginForm" onsubmit="handleLogin(event)">
+    <div class="auth-form">
       <div class="alert" id="loginAlert"></div>
-      <div class="access-notice">
-        <span style="font-size:16px;flex-shrink:0;">🔐</span>
-        <div class="access-notice-text">Access is granted after payment confirmation. <a href="index.html#pricing">Choose a programme →</a></div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Email Address</label>
-        <input type="email" class="form-input" id="loginEmail" placeholder="yourname@email.com" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Password</label>
-        <div class="password-field">
-          <input type="password" class="form-input" id="loginPassword" placeholder="••••••••" required>
-          <button type="button" class="password-toggle" onclick="togglePassword('loginPassword',this)">👁</button>
-        </div>
-      </div>
-      <a href="#" class="forgot-link" onclick="handleForgot(event)">Forgot password?</a>
-      <button type="submit" class="btn-submit" id="loginBtn">Sign In →</button>
-      <div class="divider-text">or</div>
-      <button type="button" class="btn-submit btn-secondary" onclick="handleDemoLogin()">🎓 Demo Access (Preview)</button>
-    </form>
 
-    <!-- REGISTER -->
-    <form class="auth-form" id="registerForm" onsubmit="handleRegister(event)">
-      <div class="alert" id="registerAlert"></div>
-      <div class="access-notice">
-        <span style="font-size:16px;flex-shrink:0;">💳</span>
-        <div class="access-notice-text">Register first, then complete payment to unlock your programme. <a href="index.html#pricing">View pricing →</a></div>
-      </div>
       <div class="form-group">
         <label class="form-label">Full Name</label>
-        <input type="text" class="form-input" id="regName" placeholder="Your full name" required>
+        <input type="text" class="form-input" id="accessName"
+               placeholder="Your full name" autocomplete="name" required>
       </div>
+
       <div class="form-group">
-        <label class="form-label">Email Address</label>
-        <input type="email" class="form-input" id="regEmail" placeholder="yourname@email.com" required>
+        <label class="form-label">Access Code</label>
+        <input type="text" class="form-input code-input" id="accessCode"
+               placeholder="AMS-SEP26-XXXX"
+               autocomplete="off" spellcheck="false" required
+               oninput="this.value=this.value.toUpperCase()">
+        <div class="form-hint">🔐 Your unique monthly access code — provided after payment confirmation</div>
       </div>
-      <div class="form-group">
-        <label class="form-label">Primary Programme</label>
-        <select class="form-select" id="regProgramme" required>
-          <option value="">Select your programme…</option>
-          <option value="expert">AI Expert User — ₦50,000/mo</option>
-          <option value="m2m">AI Mastery to Money — Self-Study ₦50,000/mo</option>
-          <option value="m2m-standard">AI Mastery to Money — Standard ₦300,000</option>
-          <option value="m2m-vip">AI Mastery to Money — VIP ₦500,000</option>
-          <option value="masterclass">AI Masterclasses</option>
-        </select>
+
+      <button type="button" class="btn-submit" id="loginBtn" onclick="handleCodeLogin()">
+        Enter Dashboard →
+      </button>
+      <div class="divider">or</div>
+      <button type="button" class="btn-demo" onclick="handleDemoLogin()">
+        🎓 Demo Access (Preview)
+      </button>
+
+      <div class="help-row">
+        No code yet?
+        <a href="https://wa.me/2348000000000?text=Hi%2C%20I%27d%20like%20to%20get%20an%20access%20code%20for%20AI%20Made%20Simple%20School" target="_blank" rel="noopener">
+          Contact us on WhatsApp →
+        </a>
       </div>
-      <div class="form-group">
-        <label class="form-label">Password</label>
-        <div class="password-field">
-          <input type="password" class="form-input" id="regPassword" placeholder="Min. 8 characters" required>
-          <button type="button" class="password-toggle" onclick="togglePassword('regPassword',this)">👁</button>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Confirm Password</label>
-        <div class="password-field">
-          <input type="password" class="form-input" id="regConfirm" placeholder="Repeat password" required>
-          <button type="button" class="password-toggle" onclick="togglePassword('regConfirm',this)">👁</button>
-        </div>
-        <span class="form-error" id="regConfirmErr">Passwords do not match.</span>
-      </div>
-      <button type="submit" class="btn-submit" id="registerBtn">Create Account →</button>
-    </form>
+    </div>
+
+    <div class="code-strip">
+      <span class="code-strip-label">Code format</span>
+      <span class="code-example">AMS-SEP26-K3X7</span>
+      <span style="font-size:0.68rem;color:var(--text-muted);">Case-insensitive · Monthly · Revokable</span>
+    </div>
   </div>
 </main>
+
+<!-- PWA Install Banner -->
+<div class="pwa-banner" id="pwaBanner">
+  <svg class="pwa-banner-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <rect width="100" height="100" rx="16" fill="#FFFFFF"/>
+    <rect x="3" y="3" width="94" height="94" rx="13" fill="none" stroke="#C9A84C" stroke-width="2.5" opacity="0.55"/>
+    <text x="50" y="67" font-family="Georgia,serif" font-style="italic" font-weight="700" font-size="52" fill="#C9A84C" text-anchor="middle">AI</text>
+  </svg>
+  <div class="pwa-banner-text">
+    <div class="pwa-banner-title">AI Made Simple</div>
+    <div class="pwa-banner-sub">Add to your Home Screen for quick access</div>
+  </div>
+  <div class="pwa-banner-actions">
+    <button class="pwa-install-btn" id="pwaInstallBtn" onclick="triggerInstall()">Install App</button>
+    <button class="pwa-dismiss-btn" onclick="dismissBanner()">✕</button>
+  </div>
+</div>
 
 <footer>
   <div class="footer-inner">
     <div class="footer-copy">© 2026 Ona Services Ltd. Coded by Oluwaseyi Ashiru.</div>
     <div class="footer-links">
       <a href="index.html">Home</a>
-      <a href="index.html#pricing">Pricing</a>
+      <a href="blog.html">Blog</a>
       <a href="dashboard.html">Dashboard</a>
-      <div class="footer-divider"></div>
-      <a href="admin-login.html" class="admin-entry-link">🛡 Admin Portal</a>
+      <a href="admin-login.html" class="admin-dot">·</a>
     </div>
   </div>
 </footer>
 
+<!-- Service Worker + PWA Install -->
+<script>
+  if('serviceWorker' in navigator){
+    window.addEventListener('load',()=>{
+      navigator.serviceWorker.register('/sw.js').catch(()=>{});
+    });
+  }
+</script>
 <script>
 /* ── THEME ── */
 function setTheme(m){localStorage.setItem('ams-theme',m);applyTheme(m);document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));const map={light:'themeLight',dark:'themeDark',system:'themeSystem'};document.getElementById(map[m])?.classList.add('active');}
-function applyTheme(m){const d=window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',m==='system'?(d?'dark':'light'):m);}
+function applyTheme(m){const d=window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',m==='system'?(d?'dark':'light'):m);}
 (function(){const s=localStorage.getItem('ams-theme')||'dark';applyTheme(s);const map={light:'themeLight',dark:'themeDark',system:'themeSystem'};document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));document.getElementById(map[s])?.classList.add('active');});})();
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(localStorage.getItem('ams-theme')==='system')applyTheme('system');});
-
-/* ── HELPERS ── */
-function switchTab(t){
-  document.querySelectorAll('.auth-tab').forEach((b,i)=>b.classList.toggle('active',(i===0&&t==='login')||(i===1&&t==='register')));
-  document.getElementById('loginForm').classList.toggle('active',t==='login');
-  document.getElementById('registerForm').classList.toggle('active',t==='register');
-}
-function togglePassword(id,btn){const i=document.getElementById(id);i.type=i.type==='password'?'text':'password';btn.textContent=i.type==='password'?'👁':'🙈';}
-function showAlert(id,type,msg){const e=document.getElementById(id);if(!e)return;e.className=`alert ${type} visible`;e.textContent=msg;setTimeout(()=>e.classList.remove('visible'),5000);}
 
 /* ── DATA ── */
-function getUsers(){return JSON.parse(localStorage.getItem('ams-users')||'{}');}
-function saveUsers(u){localStorage.setItem('ams-users',JSON.stringify(u));}
+function getCodes(){return JSON.parse(localStorage.getItem('ams-codes')||'[]');}
 function getSession(){return JSON.parse(localStorage.getItem('ams-session')||'null');}
 function saveSession(d){localStorage.setItem('ams-session',JSON.stringify(d));}
 
 /* ── REDIRECT IF ALREADY LOGGED IN ── */
 (function(){
   const s=getSession();
-  if(s&&s.email&&!s.adminSession) window.location.href='dashboard.html';
+  if(s&&s.name&&!s.adminSession) window.location.href='dashboard.html';
 })();
 
-/* ── SIGN IN ── */
-function handleLogin(e){
-  e.preventDefault();
-  const email=document.getElementById('loginEmail').value.trim().toLowerCase();
-  const pass=document.getElementById('loginPassword').value;
-  const btn=document.getElementById('loginBtn');
-  btn.classList.add('loading');btn.disabled=true;
-  setTimeout(()=>{
-    btn.classList.remove('loading');btn.disabled=false;
-    const users=getUsers();const user=users[email];
-    if(!user){showAlert('loginAlert','error','✗ No account found. Please register first.');return;}
-    if(user.password!==btoa(pass)){showAlert('loginAlert','error','✗ Incorrect password.');return;}
-    saveSession({email,name:user.name,access:user.access||{},paid:user.paid,adminSession:false});
-    showAlert('loginAlert','success','✓ Signed in. Redirecting…');
-    setTimeout(()=>window.location.href='dashboard.html',1200);
-  },900);
+/* ── ACCESS CODE LOGIN ── */
+function showAlert(id,type,msg){const e=document.getElementById(id);e.className='alert '+type+' visible';e.textContent=msg;setTimeout(()=>e.classList.remove('visible'),6000);}
+
+function handleCodeLogin(){
+  const name = document.getElementById('accessName').value.trim();
+  const rawCode = document.getElementById('accessCode').value.trim().toUpperCase().replace(/\s/g,'');
+  const btn = document.getElementById('loginBtn');
+
+  if(!name){ showAlert('loginAlert','error','Please enter your full name.'); return; }
+  if(!rawCode){ showAlert('loginAlert','error','Please enter your access code.'); return; }
+
+  btn.classList.add('loading'); btn.disabled=true;
+
+  setTimeout(function(){
+    btn.classList.remove('loading'); btn.disabled=false;
+
+    const codes = getCodes();
+    const match = codes.find(function(c){ return c.code === rawCode; });
+
+    if(!match){
+      showAlert('loginAlert','error','Invalid access code. Check your code and try again.');
+      return;
+    }
+    if(!match.active){
+      showAlert('loginAlert','error','This access code has been deactivated. Contact your admin.');
+      return;
+    }
+    if(match.expiresAt && new Date(match.expiresAt) < new Date()){
+      showAlert('loginAlert','error','This code expired on ' + new Date(match.expiresAt).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}) + '. Please request a new code.');
+      return;
+    }
+
+    /* Record usage */
+    if(!match.usedBy) match.usedBy=[];
+    var already = match.usedBy.find(function(u){ return u.name.toLowerCase()===name.toLowerCase(); });
+    if(!already) match.usedBy.push({name:name,timestamp:new Date().toISOString()});
+    var idx = codes.findIndex(function(c){ return c.code===rawCode; });
+    codes[idx] = match;
+    localStorage.setItem('ams-codes', JSON.stringify(codes));
+
+    /* Create session */
+    saveSession({
+      name:name,
+      code:rawCode,
+      access: match.access || {},
+      paid: true,
+      adminSession: false,
+      validUntil: match.expiresAt || null,
+      programme: match.programme || 'expert'
+    });
+
+    showAlert('loginAlert','success','Welcome, '+name+'! Redirecting to your dashboard\u2026');
+    setTimeout(function(){ window.location.href='dashboard.html'; }, 1200);
+  }, 800);
 }
 
+/* Enter key triggers login */
+document.addEventListener('DOMContentLoaded',function(){
+  ['accessName','accessCode'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.addEventListener('keydown',function(e){ if(e.key==='Enter') handleCodeLogin(); });
+  });
+});
+
+/* ── DEMO ACCESS ── */
 function handleDemoLogin(){
-  saveSession({email:'demo@aimadesimple.com',name:'Demo User',demo:true,paid:false,adminSession:false,
-    access:{expert:{months:[1]},m2m:{phases:[1],tier:'self'},masterclasses:{classes:[1,2]}}});
+  saveSession({
+    name:'Demo User',
+    code:'DEMO',
+    demo:true,
+    paid:false,
+    adminSession:false,
+    access:{
+      expert:{months:[1]},
+      m2m:{phases:[1],tier:'self'},
+      masterclasses:{classes:[1,2]}
+    }
+  });
   window.location.href='dashboard.html';
 }
 
-/* ── REGISTER ── */
-function handleRegister(e){
-  e.preventDefault();
-  const name=document.getElementById('regName').value.trim();
-  const email=document.getElementById('regEmail').value.trim().toLowerCase();
-  const prog=document.getElementById('regProgramme').value;
-  const pass=document.getElementById('regPassword').value;
-  const conf=document.getElementById('regConfirm').value;
-  const errEl=document.getElementById('regConfirmErr');
-  errEl.classList.remove('visible');
-  if(pass!==conf){errEl.classList.add('visible');return;}
-  if(pass.length<8){showAlert('registerAlert','error','✗ Password must be at least 8 characters.');return;}
-  const btn=document.getElementById('registerBtn');
-  btn.classList.add('loading');btn.disabled=true;
-  setTimeout(()=>{
-    btn.classList.remove('loading');btn.disabled=false;
-    const users=getUsers();
-    if(users[email]){showAlert('registerAlert','error','✗ Account already exists. Please sign in.');return;}
-    users[email]={name,password:btoa(pass),primaryProgramme:prog,paid:false,access:{},createdAt:new Date().toISOString()};
-    saveUsers(users);
-    saveSession({email,name,paid:false,access:{},adminSession:false});
-    sendWelcomeEmail(name,email,pass,prog);
-    showAlert('registerAlert','success','✓ Account created! Complete payment to unlock your programme.');
-    setTimeout(()=>window.location.href='dashboard.html',1800);
-  },900);
-}
-
-function handleForgot(e){
-  e.preventDefault();
-  const em=document.getElementById('loginEmail').value.trim();
-  if(!em){showAlert('loginAlert','error','✗ Enter your email first.');return;}
-  showAlert('loginAlert','success','✓ Contact admin on WhatsApp for a manual password reset.');
-}
+/* ── PWA INSTALL ── */
+var _dProm=null;
+var _dismissed=localStorage.getItem('pwa-dismissed');
+window.addEventListener('beforeinstallprompt',function(e){
+  e.preventDefault(); _dProm=e;
+  if(!_dismissed&&!window.matchMedia('(display-mode:standalone)').matches){
+    setTimeout(function(){ document.getElementById('pwaBanner')?.classList.add('show'); },2500);
+  }
+});
+function triggerInstall(){if(!_dProm)return;_dProm.prompt();_dProm.userChoice.then(function(r){if(r.outcome==='accepted'){localStorage.setItem('pwa-dismissed','1');dismissBanner();}  _dProm=null;});}
+function dismissBanner(){localStorage.setItem('pwa-dismissed','1');document.getElementById('pwaBanner')?.classList.remove('show');}
+(function(){
+  var isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream;
+  var isStandalone=window.matchMedia('(display-mode:standalone)').matches||navigator.standalone;
+  if(isIOS&&!isStandalone&&!_dismissed){
+    setTimeout(function(){
+      var b=document.getElementById('pwaBanner');if(!b)return;
+      b.querySelector('.pwa-banner-sub').textContent='Tap Share \u238b then "Add to Home Screen"';
+      b.querySelector('.pwa-install-btn').style.display='none';
+      b.classList.add('show');
+    },2500);
+  }
+})();
 </script>
-<div class="pwa-banner" id="pwaBanner">
-  <svg class="pwa-banner-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="16" fill="#FFFFFF"/><rect x="3" y="3" width="94" height="94" rx="13" fill="none" stroke="#C9A84C" stroke-width="2.5" opacity="0.55"/><text x="50" y="67" font-family="Cormorant Garamond,Georgia,serif" font-style="italic" font-weight="700" font-size="52" fill="#C9A84C" text-anchor="middle">AI</text></svg>
-  <div class="pwa-banner-text">
-    <div class="pwa-banner-title">Install AI Made Simple</div>
-    <div class="pwa-banner-sub">Add to your Home Screen for instant access</div>
-  </div>
-  <div class="pwa-banner-actions">
-    <button class="pwa-install-btn" id="pwaInstallBtn" onclick="triggerInstall()">Install App</button>
-    <button class="pwa-dismiss-btn" onclick="dismissBanner()" title="Dismiss">✕</button>
-  </div>
-</div>
-
-  <script>
-    /* ── PWA INSTALL PROMPT ── */
-    let _dProm = null;
-    const _dismissed = localStorage.getItem('pwa-dismissed');
-
-    window.addEventListener('beforeinstallprompt', e => {
-      e.preventDefault();
-      _dProm = e;
-      if(!_dismissed && !window.matchMedia('(display-mode:standalone)').matches){
-        setTimeout(()=>{
-          const b = document.getElementById('pwaBanner');
-          if(b) b.classList.add('show');
-        }, 2500);
-      }
-    });
-
-    function triggerInstall(){
-      if(!_dProm) return;
-      _dProm.prompt();
-      _dProm.userChoice.then(r=>{
-        if(r.outcome==='accepted'){
-          localStorage.setItem('pwa-dismissed','1');
-          document.getElementById('pwaBanner')?.classList.remove('show');
-        }
-        _dProm = null;
-      });
-    }
-
-    function dismissBanner(){
-      localStorage.setItem('pwa-dismissed','1');
-      document.getElementById('pwaBanner')?.classList.remove('show');
-    }
-
-    /* iOS Safari — no beforeinstallprompt, show manual guide */
-    (function(){
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-      const isStandalone = window.matchMedia('(display-mode:standalone)').matches || navigator.standalone;
-      if(isIOS && !isStandalone && !_dismissed){
-        setTimeout(()=>{
-          const b = document.getElementById('pwaBanner');
-          if(!b) return;
-          b.querySelector('.pwa-banner-text').innerHTML =
-            '<div class="pwa-banner-title">Install AI Made Simple on iOS</div>' +
-            '<div class="ios-guide">Tap <strong>Share ⎋</strong> then <strong>"Add to Home Screen"</strong> to install the app.</div>';
-          b.querySelector('.pwa-install-btn').style.display='none';
-          b.classList.add('show');
-        }, 2500);
-      }
-    })();
-  </script>
 </body>
 </html>

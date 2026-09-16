@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<title>OG Image — AI Made Simple</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,700&family=DM+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{width:1200px;height:630px;overflow:hidden;background:#0E0E10;font-family:'DM Sans',sans-serif;}
+.card{width:1200px;height:630px;background:#0E0E10;position:relative;display:flex;flex-direction:column;justify-content:center;padding:72px 80px;}
+
+/* Texture */
+.card::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 60px,rgba(201,168,76,0.015) 60px,rgba(201,168,76,0.015) 61px);pointer-events:none;}
+
+/* Gold top bar */
+.top-bar{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#C9A84C,transparent);}
+
+/* Gold right accent */
+.right-accent{position:absolute;top:80px;right:80px;width:180px;height:180px;opacity:0.06;}
+
+/* Logo */
+.logo-row{display:flex;align-items:center;gap:16px;margin-bottom:40px;}
+.logo-box{width:64px;height:64px;background:#FFF;border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:2px solid rgba(201,168,76,0.4);}
+.logo-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:700;font-size:38px;color:#C9A84C;line-height:1;}
+.brand-name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:#F0EDE6;letter-spacing:0.02em;}
+
+/* Flag badge */
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25);border-radius:100px;padding:6px 16px;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#C9A84C;margin-bottom:24px;width:fit-content;}
+
+/* Main headline */
+.headline{font-family:'Cormorant Garamond',serif;font-size:68px;font-weight:700;line-height:1.08;color:#F0EDE6;margin-bottom:20px;max-width:700px;}
+.headline em{font-style:italic;color:#C9A84C;}
+
+/* Sub */
+.subline{font-size:22px;color:#9A9790;line-height:1.5;max-width:580px;font-weight:400;}
+
+/* Stats */
+.stats{display:flex;align-items:center;gap:40px;margin-top:44px;}
+.stat-val{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:700;color:#C9A84C;line-height:1;}
+.stat-lbl{font-size:13px;color:#6A6860;text-transform:uppercase;letter-spacing:0.1em;margin-top:3px;}
+
+/* URL bottom */
+.url-row{position:absolute;bottom:32px;left:80px;right:80px;display:flex;align-items:center;justify-content:space-between;}
+.url{font-size:15px;color:#4A4740;letter-spacing:0.04em;}
+.cta{background:#C9A84C;color:#0E0E10;padding:10px 24px;border-radius:6px;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="top-bar"></div>
+
+  <div class="logo-row">
+    <div class="logo-box">
+      <div class="logo-text">AI</div>
+    </div>
+    <div class="brand-name">AI Made Simple</div>
+  </div>
+
+  <div class="badge">🇳🇬 Nigeria's Premier AI Learning School</div>
+
+  <h1 class="headline">Master <em>AI</em> in<br>30 Minutes a Day</h1>
+  <p class="subline">From beginner to AI-proficient in 90 days. Practical. Step-by-step. Built for results.</p>
+
+  <div class="stats">
+    <div><div class="stat-val">90</div><div class="stat-lbl">Day Programme</div></div>
+    <div><div class="stat-val">30+</div><div class="stat-lbl">AI Tools</div></div>
+    <div><div class="stat-val">9</div><div class="stat-lbl">Masterclasses</div></div>
+  </div>
+
+  <div class="url-row">
+    <div class="url">aimadesimpleschool.com</div>
+    <div class="cta">Enroll Now →</div>
+  </div>
+</div>
+</body>
+</html>

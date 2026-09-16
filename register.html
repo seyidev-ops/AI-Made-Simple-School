@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Register — AI Made Simple</title>
 <link rel="manifest" href="manifest.json">
-<link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
-<link rel="apple-touch-icon" href="/assets/logo.svg">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="apple-touch-icon" href="logo.svg">
 <meta name="theme-color" content="#C9A84C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -71,12 +71,12 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem c
 @media(max-width:430px){nav{padding:0 1rem;}.nav-name{display:none;}main{padding:1.5rem 1rem;}.auth-form{padding:1.5rem 1rem;}.auth-header{padding:1.75rem 1rem 1.25rem;}}
 
 /* ── PWA INSTALL BANNER ── */
-.pwa-banner{position:fixed;bottom:0;left:0;right:0;background:var(--bg2,#141416);border-top:2px solid #C9A84C;padding:14px clamp(1rem,4vw,2rem);display:flex;align-items:center;gap:14px;z-index:9999;transform:translateY(100%);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 -4px 32px rgba(0,0,0,0.5);flex-wrap:wrap;}
+.pwa-banner{position:fixed;bottom:0;left:0;right:0;background:#0E0E10;border-top:2px solid #C9A84C;padding:14px clamp(1rem,4vw,2rem);display:flex;align-items:center;gap:14px;z-index:9999;transform:translateY(100%);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 -4px 32px rgba(0,0,0,0.5);flex-wrap:wrap;}
 .pwa-banner.show{transform:translateY(0);}
 .pwa-banner-icon{width:40px;height:40px;flex-shrink:0;border-radius:10px;}
 .pwa-banner-text{flex:1;min-width:160px;}
-.pwa-banner-title{font-size:0.85rem;font-weight:700;color:#F0EDE6;line-height:1.2;}
-.pwa-banner-sub{font-size:0.72rem;color:#7A7870;margin-top:2px;}
+.pwa-banner-title{font-size:0.9rem;font-weight:700;color:#F0EDE6;line-height:1.25;letter-spacing:0.01em;}
+.pwa-banner-sub{font-size:0.72rem;color:#9A9790;margin-top:3px;}
 .pwa-banner-actions{display:flex;gap:8px;align-items:center;flex-shrink:0;}
 .pwa-install-btn{background:#C9A84C;color:#0E0E10;border:none;padding:9px 18px;border-radius:5px;font-family:inherit;font-size:0.75rem;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;white-space:nowrap;transition:all 0.2s;}
 .pwa-install-btn:hover{opacity:0.88;}
@@ -260,7 +260,9 @@ function handleRegister(e){
 <div class="pwa-banner" id="pwaBanner">
   <svg class="pwa-banner-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="16" fill="#FFFFFF"/><rect x="3" y="3" width="94" height="94" rx="13" fill="none" stroke="#C9A84C" stroke-width="2.5" opacity="0.55"/><text x="50" y="67" font-family="Cormorant Garamond,Georgia,serif" font-style="italic" font-weight="700" font-size="52" fill="#C9A84C" text-anchor="middle">AI</text></svg>
   <div class="pwa-banner-text">
-    <div class="pwa-banner-title">Install AI Made Simple</div>
+    <div class="pwa-banner-title">AI Made Simple</div>
+    <div class="pwa-banner-sub">Add to your Home Screen for quick access</div>
+  </div>
     <div class="pwa-banner-sub">Add to your Home Screen for instant access</div>
   </div>
   <div class="pwa-banner-actions">
