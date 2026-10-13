@@ -810,7 +810,11 @@ function renderCodeList(){
       <!-- ── ACCESS CODES TAB ── -->
       <div class="panel-section" id="tab-codes">
 
-        <div class="section-label">Generate Access Code</div>
+        <div class="alert visible" style="display:block;position:static;margin-bottom:1rem;font-size:0.8rem;line-height:1.5;">
+          <strong>Use the official monthly codes.</strong> The codes in your private code sheet (Oct 2026 – Feb 2027) work on every student's device.
+          Codes generated below are saved only in <em>this</em> browser, so they will only work if the student logs in on this same device.
+        </div>
+        <div class="section-label">Generate Access Code (this device only)</div>
 
         <div class="code-gen-grid">
           <div class="form-group">
@@ -901,15 +905,13 @@ function renderCodeList(){
   </div>
 </footer>
 
+<script src="ams-sha256.js"></script>
 <script>
-/* ─────────────────────────────────────────────────
-   ADMIN CREDENTIALS — Change these in production
-   Username: onaservices_admin
-   Password: ONA@AMS2026#Secure
-   ───────────────────────────────────────────────── */
+/* ADMIN CREDENTIALS — the password is stored only as a salted SHA-256 hash. */
 const ADMIN_CREDENTIALS = {
   username: 'onaservices_admin',
-  password: 'ONA@AMS2026#Secure',
+  passwordHash: 'b7bfa26706742912f0d82c8c0a403a6cb1f4e5a3d0f04f8dbe1b5837ea92d6f2',
+  salt: 'ams-admin-2026:',
   displayName: 'Oluwaseyi Ashiru'
 };
 
@@ -957,7 +959,7 @@ function handleAdminLogin(){
   setTimeout(()=>{
     btn.classList.remove('loading');btn.disabled=false;
 
-    if(u===ADMIN_CREDENTIALS.username && p===ADMIN_CREDENTIALS.password){
+    if(u===ADMIN_CREDENTIALS.username && window.amsSha256(ADMIN_CREDENTIALS.salt+p)===ADMIN_CREDENTIALS.passwordHash){
       loginAttempts=0;
       localStorage.setItem('ams-admin-auth','1');
       showAdminPanel();

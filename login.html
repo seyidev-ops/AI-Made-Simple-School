@@ -129,7 +129,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.25rem 
       <div class="form-group">
         <label class="form-label">Access Code</label>
         <input type="text" class="form-input code-input" id="accessCode"
-               placeholder="AMS-XXXX-XXXX"
+               placeholder="AMS-EXP-OCT26-XXXXXX"
                autocomplete="off" spellcheck="false" required
                oninput="this.value=this.value.toUpperCase()">
         <div class="form-hint">🔐 Your unique monthly access code — provided after payment confirmation</div>
@@ -182,6 +182,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.25rem 
   </div>
 </footer>
 
+<script src="ams-sha256.js"></script>
+<script src="access-codes.js"></script>
 <!-- Service Worker + PWA Install -->
 <script>
   if('serviceWorker' in navigator){
@@ -204,10 +206,18 @@ function saveSession(d){localStorage.setItem('ams-session',JSON.stringify(d));}
 /* ── REDIRECT IF ALREADY LOGGED IN ── */
 (function(){
   const s=getSession();
+  if(s&&s.validUntil&&new Date()>new Date(s.validUntil)){ localStorage.removeItem('ams-session'); return; }
   if(s&&s.name&&!s.adminSession) window.location.href='dashboard.html';
 })();
 
 /* ── ACCESS CODE LOGIN ── */
+function findOfficialCode(code){
+  if(!window.AMS_CODES || !window.amsSha256) return null;
+  var h = window.amsSha256((window.AMS_CODE_SALT||'') + code);
+  for(var i=0;i<window.AMS_CODES.length;i++){ if(window.AMS_CODES[i].h===h) return window.AMS_CODES[i]; }
+  return null;
+}
+function fmtDate(d){ return new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'Africa/Lagos'}); }
 function showAlert(id,type,msg){const e=document.getElementById(id);e.className='alert '+type+' visible';e.textContent=msg;setTimeout(()=>e.classList.remove('visible'),6000);}
 
 function handleCodeLogin(){
@@ -223,6 +233,28 @@ function handleCodeLogin(){
   setTimeout(function(){
     btn.classList.remove('loading'); btn.disabled=false;
 
+    /* 1) Official monthly codes (access-codes.js) — work on every device */
+    var official = findOfficialCode(rawCode);
+    if(official){
+      var now = new Date();
+      if(now < new Date(official.from)){
+        showAlert('loginAlert','error','This code becomes active on ' + fmtDate(official.from) + '.');
+        return;
+      }
+      if(now > new Date(official.until)){
+        showAlert('loginAlert','error','This code expired on ' + fmtDate(official.until) + '. Please request this month\'s code.');
+        return;
+      }
+      saveSession({
+        name:name, code:rawCode, access:official.access, paid:true, adminSession:false,
+        validUntil:official.until, programme:official.programme, label:official.label
+      });
+      showAlert('loginAlert','success','Welcome, '+name+'! Redirecting to your dashboard\u2026');
+      setTimeout(function(){ window.location.href='dashboard.html'; }, 1200);
+      return;
+    }
+
+    /* 2) Legacy codes generated in the admin panel (only valid on the device that made them) */
     const codes = getCodes();
     const match = codes.find(function(c){ return c.code === rawCode; });
 

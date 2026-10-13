@@ -74,12 +74,9 @@ Available without a code — grants Month 1 only across all programmes for previ
 ## Admin Portal
 
 **URL:** `admin-login.html`  
-**Credentials:**
-```
-Username:  onaservices_admin
-Password:  ONA@AMS2026#Secure
-```
-> ⚠ Change these in the `ADMIN_CREDENTIALS` object inside `admin-login.html`.  
+**Credentials:** username `onaservices_admin`. The password is held privately by the owner; only its salted SHA-256 hash is in `admin-login.html`.
+
+**Student access codes:** official monthly codes live in `access-codes.js` as salted hashes (Oct 2026 – Feb 2027, one code per programme per month). Each code works from the 1st of its month until the 5th of the next. Plaintext codes are kept privately by the admin, never in this repo.
 > For production security use Supabase Auth or Firebase Authentication.
 
 ### Admin Tabs
