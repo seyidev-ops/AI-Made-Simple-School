@@ -82,6 +82,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.25rem 
 .admin-dot{font-size:0.6rem;color:var(--bg3) !important;}
 .admin-dot:hover{color:var(--text-muted) !important;}
 @media(max-width:430px){nav{padding:0 1rem;}.nav-name{display:none;}main{padding:1.5rem 1rem;}.auth-form{padding:1.5rem 1rem 1.75rem;}.auth-header{padding:1.75rem 1rem 1.25rem;}}
+/* keep footer reachable while the install banner is open */
+body:has(.pwa-banner.show){padding-bottom:140px;}
 </style>
 </head>
 <body>
@@ -177,7 +179,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.25rem 
       <a href="index.html">Home</a>
       <a href="blog.html">Blog</a>
       <a href="dashboard.html">Dashboard</a>
-      <a href="admin-login.html" class="admin-dot">·</a>
+      <a href="admin-login.html">Admin</a>
     </div>
   </div>
 </footer>
@@ -207,7 +209,21 @@ function saveSession(d){localStorage.setItem('ams-session',JSON.stringify(d));}
 (function(){
   const s=getSession();
   if(s&&s.validUntil&&new Date()>new Date(s.validUntil)){ localStorage.removeItem('ams-session'); return; }
-  if(s&&s.name&&!s.adminSession) window.location.href='dashboard.html';
+  if(s&&s.name&&!s.adminSession){
+    document.addEventListener('DOMContentLoaded',function(){
+      var a=document.getElementById('loginAlert'); if(!a) return;
+      a.className='alert success visible';
+      a.innerHTML='';
+      var t=document.createElement('span'); t.textContent='You are signed in as '+s.name+'. ';
+      var go=document.createElement('a'); go.href='dashboard.html'; go.textContent='Continue to dashboard \u2192'; go.style.cssText='color:inherit;font-weight:700;';
+      var out=document.createElement('a'); out.href='#'; out.textContent='Sign out'; out.style.cssText='color:inherit;margin-left:12px;text-decoration:underline;';
+      out.onclick=function(e){e.preventDefault();localStorage.removeItem('ams-session');a.classList.remove('visible');};
+      a.style.display='block'; a.style.lineHeight='1.7';
+      var row=document.createElement('div'); row.style.marginTop='6px';
+      row.appendChild(go); row.appendChild(out);
+      a.appendChild(t); a.appendChild(row);
+    });
+  }
 })();
 
 /* ── ACCESS CODE LOGIN ── */

@@ -896,6 +896,8 @@ footer { background:var(--bg2);border-top:1px solid var(--border);padding:3rem c
   .nav-link { font-size: 0.95rem !important; }
 }
 
+/* keep footer reachable while the install banner is open */
+body:has(.pwa-banner.show){padding-bottom:140px;}
 </style>
   <!-- Service Worker + PWA Install -->
   <script>
@@ -1762,6 +1764,7 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
       <a href="dashboard.html">Dashboard</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
+      <a href="admin-login.html">Admin</a>
     </div>
   </div>
 </footer>

@@ -84,6 +84,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.5rem c
 .pwa-dismiss-btn:hover{border-color:#C9A84C;color:#C9A84C;}
 .ios-guide{background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:6px;padding:10px 14px;font-size:0.75rem;color:#B8B5AE;line-height:1.6;}
 .ios-guide strong{color:#C9A84C;}
+/* keep footer reachable while the install banner is open */
+body:has(.pwa-banner.show){padding-bottom:140px;}
 </style>
   <!-- EmailJS SDK — https://emailjs.com -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
