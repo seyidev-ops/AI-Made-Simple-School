@@ -279,3 +279,5 @@ GitHub Pages serves from `main` branch root → live at `aimadesimpleschool.com`
 ---
 
 *Built with 🖤 by Oluwaseyi Ashiru for AI Made Simple School — Ona Services Ltd*
+
+**WhatsApp:** +234 703 313 4979 (all WhatsApp buttons use `wa.me/2347033134979` with a pre-written message).

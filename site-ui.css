@@ -1,0 +1,34 @@
+/* AI Made Simple — shared site UI (theme button, mobile menu order) */
+
+/* Page colour before any other CSS loads: no white or black flash */
+html{background:#0E0E10;}
+html[data-theme="light"]{background:#F8F6F1;}
+html.no-anim *,html.no-anim *::before,html.no-anim *::after{transition:none!important;}
+
+/* ── Single theme button: Dark → Light → Auto ── */
+.theme-cycle{width:38px;height:38px;border-radius:50%;border:1px solid var(--border,rgba(255,255,255,.1));background:var(--bg3,#1C1C20);color:var(--gold,#C9A84C);display:inline-grid;place-items:center;cursor:pointer;padding:0;flex-shrink:0;transition:border-color .25s ease,transform .2s ease,background .25s ease;-webkit-tap-highlight-color:transparent;}
+.theme-cycle:hover{border-color:var(--gold,#C9A84C);}
+.theme-cycle:active{transform:scale(.9);}
+.theme-cycle:focus-visible{outline:2px solid var(--gold,#C9A84C);outline-offset:2px;}
+.theme-cycle svg{width:18px;height:18px;display:none;grid-area:1/1;}
+html:not([data-theme-mode]) .theme-cycle .tc-dark,
+html[data-theme-mode="dark"] .theme-cycle .tc-dark,
+html[data-theme-mode="light"] .theme-cycle .tc-light,
+html[data-theme-mode="system"] .theme-cycle .tc-auto{display:block;animation:tcIn .35s ease;}
+@keyframes tcIn{from{transform:rotate(-90deg) scale(.5);opacity:0}to{transform:none;opacity:1}}
+[data-theme="light"] .theme-cycle{color:#8A6A1C;}
+
+.tc-toast{position:fixed;top:74px;right:16px;z-index:10050;padding:.5rem .9rem;border-radius:999px;font:600 .78rem/1.2 'DM Sans',system-ui,sans-serif;color:var(--text,#F0EDE6);background:var(--card-bg,#16161A);border:1px solid var(--card-border,rgba(201,168,76,.25));box-shadow:0 8px 28px rgba(0,0,0,.25);opacity:0;transform:translateY(-6px);transition:opacity .25s ease,transform .25s ease;pointer-events:none;}
+.tc-toast.show{opacity:1;transform:none;}
+
+/* ── Mobile: menu button on the far right, theme button just before it ── */
+.nav-actions{display:flex;align-items:center;gap:.6rem;}
+.nav-actions .nav-ham{order:10;}
+@media (max-width:768px){
+  .nav-actions{gap:.5rem;}
+  .nav-left{gap:0;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .theme-cycle svg{animation:none!important;}
+}

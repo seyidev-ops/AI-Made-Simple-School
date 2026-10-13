@@ -87,7 +87,7 @@ def make_html(post):
     img = f"{BASE_URL}/assets/p/{pid}.jpg"
     article_url = f"{BASE_URL}/blog.html#post-{pid}"
     return f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background:#0E0E10">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -113,7 +113,7 @@ def make_html(post):
 <!-- Send humans to the real article; crawlers read the tags above and ignore this -->
 <meta http-equiv="refresh" content="0; url={article_url}">
 <link rel="canonical" href="{article_url}">
-<script>location.replace({json.dumps(article_url)});</script>
+<script>try{{var m=localStorage.getItem("ams-theme");if(m==="light"||(m==="system"&&!matchMedia("(prefers-color-scheme: dark)").matches)){{document.documentElement.style.background="#F8F6F1";}}}}catch(e){{}}location.replace({json.dumps(article_url)});</script>
 </head>
 <body style="background:#0E0E10;color:#F0EDE6;font-family:Arial,sans-serif;text-align:center;padding:3rem;">
 <p>Loading article… If you are not redirected,

@@ -2,7 +2,7 @@
    AI Made Simple School — Service Worker v2
    Enables PWA install + offline support
 ═══════════════════════════════════════════════════ */
-const CACHE = 'ams-v6';
+const CACHE = 'ams-v7';
 const STATIC = [
   '/',
   '/index.html',
@@ -39,7 +39,7 @@ self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
   if (!url.protocol.startsWith('http')) return;
 
-  if (e.request.mode === 'navigate' || url.pathname.endsWith('/access-codes.js')) {
+  if (e.request.mode === 'navigate' || url.pathname.endsWith('/access-codes.js') || url.pathname.endsWith('/posts.json')) {
     /* Network-first for HTML pages and the access-code list */
     e.respondWith(
       fetch(e.request)
