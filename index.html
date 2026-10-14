@@ -9,18 +9,18 @@
   <meta property="og:site_name"   content="AI Made Simple School">
   <meta property="og:url"         content="https://aimadesimpleschool.com/">
   <meta property="og:title"       content="AI Made Simple — Master AI in 30 Minutes a Day">
-  <meta property="og:description" content="Nigeria's Premier AI Learning School. Go from beginner to AI-proficient in 90 days. Practical. Step-by-step. Built for results.">
+  <meta property="og:description" content="Nigeria's practical AI school. Go from beginner to AI-proficient in 90 days. Practical. Step-by-step. Built for results.">
   <meta property="og:image"       content="https://aimadesimpleschool.com/og-image.png">
   <meta property="og:image:width"  content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt"   content="AI Made Simple — Nigeria's Premier AI Learning School">
+  <meta property="og:image:alt"   content="AI Made Simple — Nigeria's practical AI school">
   <!-- Twitter / X Card -->
   <meta name="twitter:card"        content="summary_large_image">
   <meta name="twitter:title"       content="AI Made Simple — Master AI in 30 Minutes a Day">
-  <meta name="twitter:description" content="Nigeria's Premier AI Learning School. Go from beginner to AI-proficient in 90 days.">
+  <meta name="twitter:description" content="Nigeria's practical AI school. Go from beginner to AI-proficient in 90 days.">
   <meta name="twitter:image"       content="https://aimadesimpleschool.com/og-image.png">
   <!-- SEO meta -->
-  <meta name="description" content="Nigeria's Premier AI Learning School. Go from beginner to AI-proficient in 90 days. Practical. Step-by-step. Built for results.">
+  <meta name="description" content="Nigeria's practical AI school. Go from beginner to AI-proficient in 90 days. Practical. Step-by-step. Built for results.">
   <meta name="theme-color" content="#C9A84C">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Made Simple — Master AI in 30 Minutes a Day | Nigeria</title>
@@ -1109,14 +1109,29 @@ html.no-anim *,html.no-anim *::before,html.no-anim *::after{transition:none!impo
 .n-steps li > span{flex-shrink:0;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:'Space Mono',monospace;font-size:.8rem;font-weight:700;background:linear-gradient(135deg,#D9B95C,#B8933A);color:#141210;}
 .n-steps b{font-size:.92rem;color:var(--text);}
 .n-steps p{font-size:.8rem;color:var(--text-muted);line-height:1.5;margin-top:.15rem;}
-.n-bank{text-align:left;max-width:520px;margin:0 auto 1.1rem;border:1px solid var(--border);border-radius:12px;background:var(--card-bg);}
-.n-bank summary{cursor:pointer;padding:.85rem 1rem;font-size:.86rem;font-weight:600;color:var(--text-secondary);list-style:none;display:flex;justify-content:space-between;}
-.n-bank summary::-webkit-details-marker{display:none;}
-.n-bank summary::after{content:'+';color:var(--n-ink);font-size:1.1rem;line-height:1;transition:transform .25s;}
-.n-bank[open] summary::after{transform:rotate(45deg);}
-.n-bank dl{display:grid;grid-template-columns:auto 1fr;gap:.45rem 1rem;padding:0 1rem 1rem;font-size:.84rem;}
-.n-bank dt{color:var(--text-muted);}
-.n-bank dd{color:var(--text);font-weight:500;}
+.n-pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;text-align:left;margin:1.5rem 0 0;}
+.n-pay-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:1.25rem;display:flex;flex-direction:column;}
+.n-pay-kicker{font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--n-ink);}
+.n-pay-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;color:var(--text);margin:.2rem 0 .15rem;}
+.n-pay-sub{font-size:.8rem;color:var(--text-muted);margin-bottom:.9rem;}
+.n-pay-links{display:flex;flex-direction:column;gap:.45rem;}
+.n-pay-links a{display:flex;justify-content:space-between;align-items:center;gap:.75rem;padding:.7rem .85rem;border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text);font-size:.85rem;transition:border-color .2s,background .2s;}
+.n-pay-links a:hover{border-color:var(--gold);background:var(--n-glow);}
+.n-pay-links a b{font-family:'Space Mono',monospace;font-size:.82rem;color:var(--n-ink);white-space:nowrap;}
+.n-pay-links a b small{font-size:.68rem;color:var(--text-muted);font-weight:400;}
+.n-pay-hint{font-size:.74rem;color:var(--text-muted);margin-top:.7rem;}
+.n-acct{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:.9rem;}
+.n-acct-row{display:grid;grid-template-columns:7.5rem 1fr auto;align-items:center;gap:.5rem;padding:.65rem .85rem;font-size:.85rem;min-height:48px;}
+.n-acct-row + .n-acct-row{border-top:1px solid var(--border);}
+.n-acct-k{color:var(--text-muted);font-size:.78rem;}
+.n-acct-v{color:var(--text);font-weight:600;user-select:all;-webkit-user-select:all;word-break:break-word;}
+.n-copy{display:inline-flex;align-items:center;gap:.3rem;padding:.38rem .6rem;border-radius:8px;border:1px solid var(--card-border);background:transparent;color:var(--n-ink);font:600 .72rem/1 'DM Sans',sans-serif;cursor:pointer;transition:background .2s,border-color .2s;}
+.n-copy:hover{border-color:var(--gold);background:var(--n-glow);}
+.n-copy.done,.n-copy-all.done{border-color:var(--gold);background:var(--gold-dim,rgba(201,168,76,.14));}
+.n-copy-all{margin-top:auto;font-size:.88rem;padding:.8rem 1rem;}
+.n-hero-free{margin-top:.9rem;font-size:.9rem;}
+.n-wall-note{max-width:560px;margin:1.4rem auto 1.1rem;font-size:.82rem;line-height:1.6;color:var(--text-muted);}
+.n-receipt-btn{padding:.85rem 1.4rem;}
 .n-mono{font-family:'Space Mono',monospace;letter-spacing:.04em;}
 
 /* ── FINAL CTA ── */
@@ -1140,6 +1155,12 @@ html.no-anim *,html.no-anim *::before,html.no-anim *::after{transition:none!impo
   .n-cta .n-btn{flex:1 1 100%;}
   .n-journey,.n-mc-grid{grid-template-columns:1fr;}
   .n-steps ol{grid-template-columns:1fr;}
+  .n-pay-grid{grid-template-columns:1fr;}
+  .n-steps{padding:1.25rem;}
+  .n-acct-row{grid-template-columns:1fr auto;grid-template-areas:"k k" "v b";row-gap:.15rem;}
+  .n-acct-k{grid-area:k;}
+  .n-acct-v{grid-area:v;font-size:.95rem;}
+  .n-copy{grid-area:b;}
   .n-use{grid-template-columns:auto 1fr;}
   .n-when{grid-column:2;justify-self:start;}
   .n-ptabs{width:100%;}
@@ -1259,6 +1280,7 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
       <a href="#programs" class="n-btn n-btn-gold">Find my programme <span aria-hidden="true">→</span></a>
       <a href="login.html" class="n-btn n-btn-ghost">I have an access code</a>
     </div>
+    <p class="n-hero-free"><a href="day1.html" class="n-link">Try the Day 1 lesson free <span aria-hidden="true">→</span></a></p>
     <ul class="n-trust">
       <li><span class="n-tick">✓</span>No coding needed</li>
       <li><span class="n-tick">✓</span>30 minutes a day</li>
@@ -1402,7 +1424,7 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
 
     <!-- AI MASTERY TO MONEY -->
     <article class="n-prog n-prog-star reveal" id="prog-m2m" data-prog="m2m">
-      <div class="n-prog-badge">Most popular</div>
+      <div class="n-prog-badge">For new income</div>
       <div class="n-prog-flag">Recommended for you</div>
       <div class="n-prog-ico">💰</div>
       <h3 class="n-prog-name">AI Mastery to Money</h3>
@@ -1427,7 +1449,7 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
           <h5>Phase 2 (Days 31–60): Business integration</h5>
           <ul><li><b>Week 5</b> AI freelancing: scale on Fiverr &amp; Upwork</li><li><b>Week 6</b> Short-form content clipping service</li><li><b>Week 7</b> Automation services: Make.com, Zapier, Airtable, n8n</li><li><b>Week 8</b> Chatbots intro + digital products</li></ul>
           <h5>Phase 3 (Days 61–90): Professional mastery</h5>
-          <ul><li><b>Week 9</b> Professional chatbot builds ($500–$3,000 per bot)</li><li><b>Week 10</b> AI agency: GoHighLevel, AdCreative.ai, Meta Ads</li><li><b>Week 11</b> Micro-SaaS: Lovable, Bubble, Stripe</li><li><b>Week 12</b> Capstone: the AI solo-preneur launch</li></ul>
+          <ul><li><b>Week 9</b> Professional chatbot builds (typical market rates: $500–$3,000 per bot)</li><li><b>Week 10</b> AI agency: GoHighLevel, AdCreative.ai, Meta Ads</li><li><b>Week 11</b> Micro-SaaS: Lovable, Bubble, Stripe</li><li><b>Week 12</b> Capstone: the AI solo-preneur launch</li></ul>
         </div>
       </details>
       <a href="#pricing" class="n-btn n-btn-gold n-goplan" data-plan="m2m">See plans for this programme <span aria-hidden="true">↓</span></a>
@@ -1523,7 +1545,7 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
         <div class="n-plan-tag">AI Expert User</div>
         <h3 class="n-plan-name">Monthly Access</h3>
         <div class="n-price">₦50,000<small>/ month</small></div>
-        <p class="n-plan-note">Billed monthly for 3 months. For using AI in the job or business you already have.</p>
+        <p class="n-plan-note">Pay ₦50,000 each month for 3 months. For using AI in the job or business you already have.</p>
         <ul class="n-list">
           <li>The full 12-week curriculum, 30+ AI tools step by step</li>
           <li>3 business masterclasses included: WhatsApp Lead Automations, CRM &amp; Lead Follow-ups, Data &amp; Dashboards</li>
@@ -1532,7 +1554,8 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
           <li>Questions answered on WhatsApp</li>
         </ul>
         <p class="n-plan-note"><b>Choose this if</b> you want posts, flyers, replies, reports and slides done faster. Want a new income instead? See AI Mastery to Money.</p>
-        <a href="https://paystack.shop/pay/aimadesimple" target="_blank" rel="noopener" class="n-btn n-btn-gold n-btn-block">Enrol now · Pay on Paystack ↗</a>
+        <a href="https://paystack.shop/pay/aiexpertuser" target="_blank" rel="noopener" class="n-btn n-btn-gold n-btn-block" data-programme="expert-user">Enrol now · Pay on Paystack ↗</a>
+        <p class="n-pay-hint" style="text-align:center">Enter ₦50,000 on the Paystack page.</p>
       </div>
     </div>
   </div>
@@ -1549,8 +1572,9 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
           <li>Tool Library + Prompt Vault</li>
           <li>Questions answered on WhatsApp</li>
         </ul>
-        <p class="n-plan-note">Billed monthly for 3 months. <b>Choose this if</b> you want to sell AI services, content or digital products. Want AI for your current work? See AI Expert User.</p>
-        <a href="https://paystack.shop/pay/aimadesimple" target="_blank" rel="noopener" class="n-btn n-btn-line n-btn-block">Enrol in Self-Study ↗</a>
+        <p class="n-plan-note">Pay ₦50,000 each month for 3 months. <b>Choose this if</b> you want to sell AI services, content or digital products. Want AI for your current work? See AI Expert User.</p>
+        <a href="https://paystack.shop/pay/AIM2MSelfStudy" target="_blank" rel="noopener" class="n-btn n-btn-line n-btn-block" data-programme="m2m-self-study">Enrol in Self-Study ↗</a>
+        <p class="n-pay-hint" style="text-align:center">Enter ₦50,000 on the Paystack page.</p>
       </div>
       <div class="n-plan n-plan-star">
         <div class="n-plan-badge">Recommended</div>
@@ -1599,24 +1623,46 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
     </div>
   </div>
 
-  <div class="n-steps reveal">
+  <div class="n-steps reveal" id="enrol">
     <h3 class="n-steps-title">How enrolment works</h3>
     <ol>
-      <li><span>1</span><div><b>Pay securely</b><p>Paystack accepts card, bank transfer and USSD.</p></div></li>
+      <li><span>1</span><div><b>Pay securely</b><p>On Paystack (card, transfer or USSD) or by direct bank transfer.</p></div></li>
       <li><span>2</span><div><b>Send your receipt</b><p>Message us on WhatsApp with your name and programme.</p></div></li>
       <li><span>3</span><div><b>Get your access code</b><p>Usually sent the same business day after we confirm your payment. Log in and start Day 1.</p></div></li>
     </ol>
-    <details class="n-bank">
-      <summary>Prefer a direct bank transfer?</summary>
-      <dl>
-        <dt>Bank</dt><dd>Guaranty Trust Bank (GTBank)</dd>
-        <dt>Account number</dt><dd class="n-mono">0710642377</dd>
-        <dt>Account name</dt><dd>Ona Services Limited</dd>
-        <dt>Reference</dt><dd>Your name + programme</dd>
-      </dl>
-      <p class="n-plan-note">AI Made Simple is run by Ona Services Ltd. You'll see this name on Paystack and on your bank statement.</p>
-    </details>
-    <a href="https://wa.me/2347033134979?text=Hello%20AI%20Made%20Simple%2C%20I%27ve%20just%20paid%20for%20a%20programme.%20My%20name%20is%3A%20%0AProgramme%3A%20%0AI%27m%20attaching%20my%20payment%20receipt." target="_blank" rel="noopener" class="n-link">Send your receipt on WhatsApp <span aria-hidden="true">→</span></a>
+
+    <div class="n-pay-grid">
+      <div class="n-pay-card">
+        <div class="n-pay-kicker">Option 1</div>
+        <h4 class="n-pay-title">Pay on Paystack</h4>
+        <p class="n-pay-sub">Card, bank transfer or USSD. Pick your programme:</p>
+        <div class="n-pay-links">
+          <a href="https://paystack.shop/pay/aiexpertuser" target="_blank" rel="noopener" data-programme="expert-user"><span>AI Expert User</span><b>₦50,000<small>/mo</small></b></a>
+          <a href="https://paystack.shop/pay/AIM2MSelfStudy" target="_blank" rel="noopener" data-programme="m2m-self-study"><span>Mastery to Money · Self-Study</span><b>₦50,000<small>/mo</small></b></a>
+          <a href="https://paystack.shop/pay/aim2mstandard" target="_blank" rel="noopener" data-programme="m2m-standard"><span>Mastery to Money · Standard</span><b>₦300,000</b></a>
+          <a href="https://paystack.shop/pay/AIM2Mvip" target="_blank" rel="noopener" data-programme="m2m-vip"><span>Mastery to Money · VIP</span><b>₦500,000</b></a>
+          <a href="https://paystack.shop/pay/aishortcourses" target="_blank" rel="noopener" data-programme="masterclass"><span>One masterclass</span><b>₦30,000</b></a>
+        </div>
+        <p class="n-pay-hint">Enter the amount shown here on the Paystack page.</p>
+      </div>
+
+      <div class="n-pay-card">
+        <div class="n-pay-kicker">Option 2</div>
+        <h4 class="n-pay-title">Direct bank transfer</h4>
+        <p class="n-pay-sub">Tap Copy, then paste into your bank app.</p>
+        <div class="n-acct">
+          <div class="n-acct-row"><span class="n-acct-k">Bank</span><span class="n-acct-v">Guaranty Trust Bank (GTBank)</span></div>
+          <div class="n-acct-row"><span class="n-acct-k">Account number</span><span class="n-acct-v n-mono">0710642377</span><button type="button" class="n-copy" data-copy="0710642377" aria-label="Copy account number"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span>Copy</span></button></div>
+          <div class="n-acct-row"><span class="n-acct-k">Account name</span><span class="n-acct-v">Ona Services Limited</span><button type="button" class="n-copy" data-copy="Ona Services Limited" aria-label="Copy account name"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span>Copy</span></button></div>
+          <div class="n-acct-row"><span class="n-acct-k">Reference</span><span class="n-acct-v">Your name + programme</span></div>
+        </div>
+        <button type="button" class="n-btn n-btn-line n-btn-block n-copy-all" data-copy="Bank: Guaranty Trust Bank (GTBank)&#10;Account number: 0710642377&#10;Account name: Ona Services Limited&#10;Reference: your name + programme"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span>Copy all details</span></button>
+      </div>
+    </div>
+
+    <p class="n-wall-note">AI Made Simple is run by Ona Services Ltd. You'll see this name on Paystack and on your bank statement.</p>
+
+    <a href="https://wa.me/2347033134979?text=Hello%20AI%20Made%20Simple%2C%20I%27ve%20just%20paid%20for%20a%20programme.%20My%20name%20is%3A%20%0AProgramme%3A%20%0AI%27m%20attaching%20my%20payment%20receipt." target="_blank" rel="noopener" class="n-btn n-btn-gold n-receipt-btn">Send your receipt on WhatsApp <span aria-hidden="true">→</span></a>
   </div>
 </section>
 
@@ -1640,7 +1686,7 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
         <div class="faq-answer-inner">
           <p><strong>Absolutely not.</strong> AI Made Simple was built specifically for people who have never written a single line of code. Every tool in our curriculum has a free or trial tier, works in a web browser, and is operated by clicking — not coding.</p>
           <div class="faq-highlight">If you can send a WhatsApp message and use Google, you already have 100% of the technical skills needed to start Day 1.</div>
-          <p>Our students include teachers, traders, civil servants, stay-at-home parents, and business owners — the vast majority had zero technical background before they started. By Week 2, they were generating images, writing copy, and building automation workflows.</p>
+          <p>The course is written for teachers, traders, civil servants, parents and business owners with no technical background. By Week 2 of the syllabus you are generating images, writing copy and building simple automation workflows.</p>
         </div>
       </div>
     </div>
@@ -1654,8 +1700,8 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
       <div class="faq-answer">
         <div class="faq-answer-inner">
           <p>The 30-minute model is not a shortcut — it is a <strong>precision learning system</strong>. Every daily lesson is structured into three parts: a 10-minute concept introduction, a 15-minute hands-on tool exercise, and a 5-minute business application reflection.</p>
-          <p>Research consistently shows that <strong>short, consistent, applied sessions outperform marathon study binges</strong> for skill retention. You do not need to clear your calendar. You need to protect 30 minutes — the length of a lunch break or a commute.</p>
-          <div class="faq-highlight">By Day 30 alone, you will have hands-on experience with 20+ AI tools. Most people in the market don't have that after a year of casual use.</div>
+          <p><strong>Short, regular, hands-on sessions are easier to keep up than long study binges</strong>, and you practise each skill the day you learn it. You do not need to clear your calendar. You need to protect 30 minutes — the length of a lunch break or a commute.</p>
+          <div class="faq-highlight">By Day 30 alone, you will have hands-on experience with 20+ AI tools. That is more structured practice than most people get from months of casual use.</div>
         </div>
       </div>
     </div>
@@ -1668,8 +1714,8 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
       </button>
       <div class="faq-answer">
         <div class="faq-answer-inner">
-          <p>Yes — and the location advantage actually works <strong>in your favour</strong>. AI services are priced in dollars globally. A $500 chatbot project from a UK or US client pays you the same whether you are in Lagos, Abuja, or Port Harcourt. Your cost of living is significantly lower than your client's, which means your profit margin is higher.</p>
-          <p>The programme does not promise overnight millions. It gives you a <strong>structured 90-day execution plan</strong> with daily income tasks and weekly targets. Students who complete all exercises and follow the client acquisition sprints consistently hit the milestones outlined.</p>
+          <p>It is a <strong>target, not a promise</strong>. Results depend on your effort, your skills and your market, and many people will earn less. What works in your favour is that AI services are often priced in dollars. A $500 chatbot project from a UK or US client pays you the same whether you are in Lagos, Abuja, or Port Harcourt. Your cost of living is significantly lower than your client's, which means your profit margin is higher.</p>
+          <p>The programme does not promise overnight millions. It gives you a <strong>structured 90-day execution plan</strong> with daily income tasks and weekly targets. The $300, $1,500 and $5,000 figures are milestones to aim for, not guaranteed outcomes.</p>
           <div class="faq-highlight">The income models — freelancing, content clipping, automation, chatbots, agency, SaaS, and digital products — are all accessible from Nigeria with a laptop and internet.</div>
         </div>
       </div>
@@ -1730,7 +1776,7 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
       </button>
       <div class="faq-answer">
         <div class="faq-answer-inner">
-          <p><strong>Yes — this programme was built for exactly this situation.</strong> The 30-minute daily structure means you never need to carve out large chunks of time. Many of our enrolled students are bankers, civil servants, teachers, and 9-to-5 employees who complete their daily lesson during a lunch break, evening wind-down, or weekend catch-up session.</p>
+          <p><strong>Yes — this programme was built for exactly this situation.</strong> The 30-minute daily structure means you never need to carve out large chunks of time. It is designed for bankers, civil servants, teachers and 9-to-5 employees who can do the daily lesson during a lunch break, in the evening or as a weekend catch-up.</p>
           <p>The income activities in the early weeks — publishing a digital product, listing a Fiverr gig — are also things you can do evenings and weekends. By the time your income starts to grow meaningfully in Phase 2 and 3, you will naturally decide whether you want to transition, scale, or just earn on the side.</p>
           <div class="faq-highlight">The programme builds at a pace that respects your existing life — not one that requires you to abandon it.</div>
         </div>
@@ -1746,7 +1792,7 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
       <div class="faq-answer">
         <div class="faq-answer-inner">
           <p>YouTube tutorials give you random information. Other online courses give you content to watch. <strong>AI Made Simple gives you a system with daily execution steps, real business assets, and income targets.</strong></p>
-          <p>Three things set us apart. First, the curriculum is structured for the Nigerian and African market — the tools, payment methods, client acquisition channels, and income models are all relevant to your context, not just US or UK scenarios. Second, every single lesson produces a tangible output — a product, a gig, a pitch, a workflow — not just knowledge. Third, the programme is sequenced: Day 1 builds the foundation for Day 7, which builds the foundation for Day 30. You are not choosing what to watch next — you are following a proven roadmap.</p>
+          <p>Three things set us apart. First, the curriculum is structured for the Nigerian and African market — the tools, payment methods, client acquisition channels, and income models are all relevant to your context, not just US or UK scenarios. Second, every single lesson produces a tangible output — a product, a gig, a pitch, a workflow — not just knowledge. Third, the programme is sequenced: Day 1 builds the foundation for Day 7, which builds the foundation for Day 30. You are not choosing what to watch next — you are following a set roadmap.</p>
           <div class="faq-highlight">The question is not whether you can find AI content for free. You can. The question is whether random content will get you to your first client, your first income, and your first scalable business in 90 days. Our structure will.</div>
         </div>
       </div>
@@ -2159,6 +2205,24 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
   </script>
+<script>
+/* Copy buttons for the bank details */
+(function(){
+  function copyText(t){
+    if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(t);}
+    return new Promise(function(ok,no){var a=document.createElement('textarea');a.value=t;a.setAttribute('readonly','');a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy')?ok():no();}catch(e){no(e);}document.body.removeChild(a);});
+  }
+  document.addEventListener('click',function(ev){
+    var b=ev.target.closest&&ev.target.closest('[data-copy]');if(!b)return;
+    var label=b.querySelector('span'),orig=label?label.textContent:'';
+    copyText(b.getAttribute('data-copy')).then(function(){
+      b.classList.add('done');if(label)label.textContent='Copied';
+      setTimeout(function(){b.classList.remove('done');if(label)label.textContent=orig;},1800);
+    },function(){if(label)label.textContent='Press and hold to copy';});
+  });
+})();
+</script>
+<script src="ams-track.js"></script>
 <script src="site-ui.js"></script>
 </body>
 </html>

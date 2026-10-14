@@ -2,7 +2,7 @@
    AI Made Simple School — Service Worker v2
    Enables PWA install + offline support
 ═══════════════════════════════════════════════════ */
-const CACHE = 'ams-v8';
+const CACHE = 'ams-v9';
 const STATIC = [
   '/',
   '/index.html',
@@ -10,6 +10,7 @@ const STATIC = [
   '/register.html',
   '/dashboard.html',
   '/blog.html',
+  '/day1.html',
   '/admin-login.html',
   '/assets/logo.svg',
   '/manifest.json'
