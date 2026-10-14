@@ -16,6 +16,13 @@ window.AMS_CODES = [
      2,
      3
     ]
+   },
+   "masterclasses": {
+    "classes": [
+     1,
+     6,
+     8
+    ]
    }
   }
  },
@@ -104,6 +111,13 @@ window.AMS_CODES = [
      1,
      2,
      3
+    ]
+   },
+   "masterclasses": {
+    "classes": [
+     1,
+     6,
+     8
     ]
    }
   }
@@ -194,6 +208,13 @@ window.AMS_CODES = [
      2,
      3
     ]
+   },
+   "masterclasses": {
+    "classes": [
+     1,
+     6,
+     8
+    ]
    }
   }
  },
@@ -283,6 +304,13 @@ window.AMS_CODES = [
      2,
      3
     ]
+   },
+   "masterclasses": {
+    "classes": [
+     1,
+     6,
+     8
+    ]
    }
   }
  },
@@ -371,6 +399,13 @@ window.AMS_CODES = [
      1,
      2,
      3
+    ]
+   },
+   "masterclasses": {
+    "classes": [
+     1,
+     6,
+     8
     ]
    }
   }
