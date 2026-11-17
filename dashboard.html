@@ -161,6 +161,26 @@ nav{position:sticky;top:0;z-index:200;background:var(--nav-bg);backdrop-filter:b
 .notes-checklist{list-style:none;display:flex;flex-direction:column;gap:4px;}
 .notes-checklist li{display:flex;align-items:flex-start;gap:7px;font-size:0.78rem;color:var(--text-secondary);}
 .notes-checklist li::before{content:"☐";color:var(--gold);flex-shrink:0;}
+/* Lesson enrichment: Understand it / Try this prompt / Watch out / Go deeper */
+.deep-k{font-size:0.66rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;}
+.deep-idea{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:0.9rem 1rem;margin:0 0 1rem;}
+.deep-idea p{font-size:0.86rem;line-height:1.75;color:var(--text);margin:0;}
+.deep-prompt{border:1px solid var(--border);border-radius:8px;margin:0 0 0.875rem;overflow:hidden;background:var(--card-bg);}
+.deep-prompt-hd{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0.55rem 0.8rem;background:var(--bg3);border-bottom:1px solid var(--border);}
+.deep-prompt-hd .deep-k{margin:0;}
+.deep-copy{background:var(--gold);color:#0E0E10;border:none;border-radius:5px;padding:5px 11px;font-size:0.7rem;font-weight:700;cursor:pointer;white-space:nowrap;min-height:30px;}
+.deep-copy:hover{filter:brightness(1.08);}
+.deep-prompt pre{margin:0;padding:0.8rem 0.9rem;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:0.76rem;line-height:1.6;color:var(--text);white-space:pre-wrap;word-break:break-word;max-height:340px;overflow:auto;}
+.deep-fine{font-size:0.68rem;color:var(--text-muted);line-height:1.5;padding:0 0.9rem 0.65rem;}
+.deep-src .deep-fine{padding:0.5rem 0 0;}
+.deep-watch{background:rgba(224,90,90,0.07);border-left:3px solid #e05a5a;padding:8px 12px;border-radius:0 5px 5px 0;font-size:0.78rem;line-height:1.6;color:var(--text);margin:0 0 0.875rem;}
+.deep-watch b{color:#e05a5a;}
+.deep-src{margin-top:0.875rem;border:1px dashed var(--border);border-radius:8px;padding:0.8rem 0.9rem;}
+.deep-src ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;}
+.deep-src li{display:flex;flex-direction:column;gap:1px;}
+.deep-src a{color:var(--text);font-size:0.8rem;font-weight:600;text-decoration:none;border-bottom:1px solid transparent;align-self:flex-start;}
+.deep-src a:hover{color:var(--gold);border-bottom-color:var(--gold);}
+.deep-src li span{font-size:0.66rem;color:var(--text-muted);letter-spacing:0.02em;}
 /* ── PAGE FOOTER ── */
 footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.125rem clamp(1.25rem,3vw,2.5rem);position:relative;z-index:10;flex-shrink:0;}
 .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
@@ -458,6 +478,7 @@ document.addEventListener('click',function(e){
     <div class="footer-links"><a href="index.html">Home</a><a href="login.html">Account</a><a href="admin-login.html">Admin</a></div>
   </div>
 </footer>
+<script src="lessons-plus.js"></script>
 <script>
 
 /* ══ THEME ══ */
@@ -468,14 +489,14 @@ function applyTheme(m){const d=window.matchMedia('(prefers-color-scheme: dark)')
 /* ══ CURRICULUM (90 days with participant notes) ══ */
 const CUR=[
 {d:1,w:1,mo:1,ph:1,t:'The Basics of Prompting',tool:'ChatGPT / Gemini',task:'Learn the Persona-Context-Task formula. Ask the AI to rewrite a difficult email or summarise an article.',inc:'$0 — Setup day',
-notes:[{s:'step',x:'<strong>Create your account:</strong> Go to chat.openai.com or gemini.google.com. Sign Up with Google for speed. Free ChatGPT tier with GPT-4o mini is sufficient for all Month 1 exercises.'},
+notes:[{s:'step',x:'<strong>Create your account:</strong> Go to chatgpt.com, gemini.google.com or claude.ai and sign up with Google for speed. The free tier of any of them is enough for all Month 1 exercises. Pick one as your main assistant and stick with it this week.'},
 {s:'step',x:'<strong>The Persona-Context-Task formula:</strong> WHO you want the AI to be (Persona) + WHAT it needs to know (Context) + WHAT you want it to do (Task).'},
 {s:'hl',x:'Example: "You are an expert Nigerian business writer [Persona]. I run a catering company in Abuja [Context]. Write a professional follow-up email to a corporate client after a proposal [Task]."'},
 {s:'step',x:'<strong>30-minute exercise:</strong> Write one prompt using the formula with your own real situation. Compare a weak prompt (no persona) to a strong one.'},
-{s:'warn',x:'Never skip the Persona. Prompts without a persona produce generic output. The persona is the AI\'s quality filter.'},
+{s:'warn',x:'Context matters more than the persona. A role helps, but generic output usually means the AI was missing information about your situation, audience or goal. Add context before you try a new tool.'},
 {s:'check',x:['Account created and logged in','Wrote one prompt using Persona-Context-Task','Compared a weak vs strong prompt result']}]},
 {d:2,w:1,mo:1,ph:1,t:'AI as a Search Engine',tool:'Perplexity AI',task:'Research a topic using Perplexity. Compare to Google. Note the citations.',inc:'$0 — Research',
-notes:[{s:'step',x:'Go to perplexity.ai — free account. Run a business or professional query. Example: "What AI services can Nigerian freelancers offer in 2025?"'},
+notes:[{s:'step',x:'Go to perplexity.ai — free account. Run a business or professional query. Example: "What AI services can Nigerian freelancers offer in 2026?"'},
 {s:'hl',x:'Key difference: Perplexity shows numbered citations next to every claim. You can verify the source. Google gives links — Perplexity gives synthesised answers with proof.'},
 {s:'tip',x:'Use Perplexity for research. Use ChatGPT for writing. They are different tools for different jobs — never confuse them.'},
 {s:'check',x:['Perplexity account created','Ran at least one research query','Noted 3 differences from a Google search']}]},
@@ -527,7 +548,7 @@ notes:[{s:'step',x:'notion.so — free. Create page "My AI Business Hub." In any
 {s:'hl',x:'Prompt inside Notion AI: "Create a 7-day content plan for a Nigerian [industry] business on Instagram. Include: post type, caption theme, hashtags, best time. Format as table."'},
 {s:'step',x:'Set up 3 sub-pages: (1) Prompt Library, (2) Content Calendar, (3) Client Tracker (columns: Name, Service, Status, Deadline).'},
 {s:'check',x:['Notion account created','Created "My AI Business Hub"','Used Notion AI for one task','Set up Prompt Library, Content Calendar, Client Tracker']}]},
-{d:12,w:3,mo:1,ph:1,t:'Presentation Power',tool:'Gamma App / Tome',task:'Generate a full 8-slide presentation on "The History of Coffee" in under 5 minutes.',inc:'Proposal deck ready',
+{d:12,w:3,mo:1,ph:1,t:'Presentation Power',tool:'Gamma / Claude / Canva',task:'Generate a full 8-slide presentation on "The History of Coffee" in under 5 minutes.',inc:'Proposal deck ready',
 notes:[{s:'step',x:'gamma.app — free. New → Generate → Presentation → Type topic → Generate. Full deck in under 30 seconds.'},
 {s:'hl',x:'Freelance rate: Charge ₦30,000–₦80,000 for a 10-slide business presentation. With Gamma you deliver in 15 minutes. Net hourly rate: ₦150,000+.'},
 {s:'check',x:['Generated complete presentation in Gamma','Edited at least 3 slides','Exported as PDF','Noted freelancing rate']}]},
@@ -597,7 +618,7 @@ notes:[{s:'hl',x:'Month 1 completion checklist: 8+ AI tools with hands-on experi
 {s:'step',x:'Set Phase 2 income target: write the specific naira amount you want to earn in the next 30 days. It should feel slightly uncomfortable.'}]},
 {d:31,w:7,mo:2,ph:2,t:'Freelancing Market Research',tool:'Fiverr / Upwork',task:'Identify 3 most in-demand AI services in your niche.',inc:'Niche locked',
 notes:[{s:'step',x:'fiverr.com → search "AI [your skill]" → sort by "Best Selling." Study top 5 gigs: title format, pricing, package names, testimonials, portfolio.'},
-{s:'hl',x:'Top demand AI gig categories 2025: AI video creation, AI content writing, AI chatbot setup, AI automation, AI image generation for product listings.'}]},
+{s:'hl',x:'Top demand AI gig categories in 2026: AI video creation, AI content writing, AI chatbot setup, AI automation, AI image generation for product listings.'}]},
 {d:32,w:7,mo:2,ph:2,t:'Service Architecture',tool:'ChatGPT + Notion',task:'Design 3 service packages: starter, pro, premium.',inc:'Packages built',
 notes:[{s:'hl',x:'Content Clipping example: Starter ₦80,000/mo (5 clips/week, 1 source) · Pro ₦180,000/mo (10 clips, 2 platforms, captions) · Premium ₦300,000/mo (20 clips, 3 platforms, monthly strategy report).'}]},
 {d:33,w:7,mo:2,ph:2,t:'Portfolio Expansion',tool:'All AI tools',task:'Create 3 portfolio pieces demonstrating your best AI service skills.',inc:'Portfolio updated',
@@ -650,7 +671,7 @@ notes:[{s:'step',x:'Get API key: platform.openai.com → API Keys → Create new
 {s:'step',x:'This transforms your chatbot from decision-tree to AI-powered agent. Clients pay ₦80,000–₦200,000 extra for this upgrade.'}]},
 {d:49,w:10,mo:2,ph:2,t:'Digital Product — E-book',tool:'ChatGPT + Canva',task:'Write and design a 20-page e-book. List on Selar or Payhip.',inc:'Second product live 🎯',
 notes:[{s:'step',x:'E-book structure: Cover (1p) · Introduction (2p) · 5 chapters × 3p each (15p) · Conclusion + CTA (2p). Use ChatGPT to draft chapters. Canva "Book" template for layout.'},
-{s:'hl',x:'High-converting topics: "10 AI Tools Every Nigerian Entrepreneur Needs in 2025" · "The Complete Guide to Remote Work for Nigerians" · "How to Write Winning Business Proposals with AI."'},
+{s:'hl',x:'High-converting topics: "10 AI Tools Every Nigerian Entrepreneur Needs in 2026" · "The Complete Guide to Remote Work for Nigerians" · "How to Write Winning Business Proposals with AI."'},
 {s:'step',x:'List on Selar (selar.co): vendor account → price ₦3,000–₦10,000 → compelling description (use Claude) → upload PDF + cover → share link on WhatsApp, LinkedIn, Instagram.'}]},
 {d:50,w:10,mo:2,ph:2,t:'Product Marketing — SEO',tool:'Selar + eRank',task:'Optimise your digital product listing.',inc:'SEO optimised',
 notes:[{s:'hl',x:'Listing optimisation checklist: Keyword in title, first sentence, and tags · First 2 sentences = transformation, not content · 5 bullet points of specific outcomes · Price anchoring · 3–5 testimonials.'}]},
@@ -859,6 +880,27 @@ function isUnlocked(lesson){
   return false;
 }
 
+/* ══ TRACKS ══
+   AI Expert User = 12 weeks (60 lessons): Weeks 1-4 shared with Mastery to Money, Weeks 5-12 its own (lessons-plus.js).
+   AI Mastery to Money = 18 weeks (90 lessons): CUR. */
+const EXPERT_CUR=(function(){
+  const inc=window.AMS_EXPERT_INC||{};
+  return CUR.filter(l=>l.d<=20).map(l=>({...l,mo:1,inc:inc[l.d]||l.inc})).concat(window.AMS_EXPERT||[]);
+})();
+function getCur(){return ST.currentProg==='expert'?EXPERT_CUR:CUR;}
+function totalDays(){return getCur().length;}
+function clampDay(){const t=totalDays();if(ST.currentDay>t)ST.currentDay=t;if(!ST.currentDay||ST.currentDay<1)ST.currentDay=1;}
+function trackGroups(){
+  return ST.currentProg==='m2m'?
+    [{n:1,key:'ph',lbl:'PHASE',nm:'Foundations',sub:'Text · Image · Productivity · Audio/Video',s:1,e:30},
+     {n:2,key:'ph',lbl:'PHASE',nm:'Business',sub:'Freelancing · Clipping · Automation · Chatbots',s:31,e:60},
+     {n:3,key:'ph',lbl:'PHASE',nm:'Mastery',sub:'Agency · SaaS · Systems · Scale',s:61,e:90}]:
+    [{n:1,key:'mo',lbl:'MONTH',nm:'Foundations',sub:'Prompting · Image AI · Productivity · Audio & Video',s:1,e:20},
+     {n:2,key:'mo',lbl:'MONTH',nm:'Business integration',sub:'Marketing · Research & Data · Automation · Websites',s:21,e:40},
+     {n:3,key:'mo',lbl:'MONTH',nm:'Advanced mastery',sub:'AI Video · Learning with AI · Life Admin · Capstone',s:41,e:60}];
+}
+function groupUnlocked(g){return g.key==='ph'?hasM2MPhase(g.n):hasExpertMonth(g.n);}
+
 /* ══ THEME ══ */
 function setTheme(m){localStorage.setItem('ams-theme',m);applyTheme(m);document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));const map={light:'themeLight',dark:'themeDark',system:'themeSystem'};document.getElementById(map[m])?.classList.add('active');}
 function applyTheme(m){const d=window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.setAttribute('data-theme',m==='system'?(d?'dark':'light'):m);}
@@ -873,13 +915,12 @@ function buildSidebar(){
   const p=ST.currentProg;
   if(p==='masterclasses'){buildMCSidebar(c);return;}
   if(p==='news'){buildNewsSidebar(c);return;}
-  const groups=p==='m2m'?
-    [{lbl:'Phase 1 — Foundations',filter:l=>l.ph===1,ph:1},{lbl:'Phase 2 — Business',filter:l=>l.ph===2,ph:2},{lbl:'Phase 3 — Mastery',filter:l=>l.ph===3,ph:3}]:
-    [{lbl:'Month 1 — Foundations',filter:l=>l.mo===1,mo:1},{lbl:'Month 2 — Business',filter:l=>l.mo===2,mo:2},{lbl:'Month 3 — Mastery',filter:l=>l.mo===3,mo:3}];
+  clampDay();
+  const groups=trackGroups();
   groups.forEach((g,gi)=>{
     const sec=document.createElement('div');
     sec.className='sidebar-section'+(gi===0?' open':'');
-    const lHTML=CUR.filter(g.filter).map(l=>{
+    const lHTML=getCur().filter(l=>l.d>=g.s&&l.d<=g.e).map(l=>{
       const u=isUnlocked(l);const done=ST.completedDays.includes(l.d);const cur=ST.currentDay===l.d;
       return `<div class="s-lesson ${cur?'active':''} ${!u?'locked':''}" onclick="${u?`selectLesson(${l.d})`:''}">
         <div class="s-dot ${done?'done':cur?'cur':''}"></div>
@@ -888,8 +929,9 @@ function buildSidebar(){
         ${done?'<span class="s-check">✓</span>':''}
       </div>`;
     }).join('');
-    const gUnlocked=p==='m2m'?hasM2MPhase(g.ph):hasExpertMonth(g.mo);
-    sec.innerHTML=`<div class="sidebar-section-hdr" onclick="this.parentElement.classList.toggle('open')"><span class="sidebar-section-title">${g.lbl}${!gUnlocked?' 🔒':''}</span><span class="sidebar-arrow">▼</span></div><div class="sidebar-lessons">${lHTML}</div>`;
+    const gUnlocked=groupUnlocked(g);
+    const gTitle=`${g.lbl==='PHASE'?'Phase':'Month'} ${g.n} — ${g.nm}`;
+    sec.innerHTML=`<div class="sidebar-section-hdr" onclick="this.parentElement.classList.toggle('open')"><span class="sidebar-section-title">${gTitle}${!gUnlocked?' 🔒':''}</span><span class="sidebar-arrow">▼</span></div><div class="sidebar-lessons">${lHTML}</div>`;
     c.appendChild(sec);
   });
 }
@@ -938,7 +980,7 @@ function buildProgTabs(){
   c.innerHTML=tabs.map(t=>`<button class="prog-tab ${ST.currentProg===t.id?'active':''}" onclick="switchProg('${t.id}')">${t.lbl}</button>`).join('');
 }
 
-function switchProg(p){ST.currentProg=p;saveSt();buildProgTabs();buildSidebar();renderMain();updateNotifBadge();}
+function switchProg(p){ST.currentProg=p;clampDay();saveSt();buildProgTabs();buildSidebar();renderMain();updateNotifBadge();}
 
 /* ══ MAIN RENDER ══ */
 function renderMain(){
@@ -947,7 +989,8 @@ function renderMain(){
   if(p==='masterclasses'){renderMCMain(main);return;}
   if(p==='news'){renderNewsMain(main);return;}
   if(!hasSome){main.innerHTML=renderGate(p);return;}
-  const lesson=CUR.find(l=>l.d===ST.currentDay)||CUR[0];
+  clampDay();
+  const lesson=getCur().find(l=>l.d===ST.currentDay)||getCur()[0];
   const u=isUnlocked(lesson);const done=ST.completedDays.includes(lesson.d);
   main.innerHTML=`
     ${!localStorage.getItem('ams-notifs')&&('Notification'in window)&&Notification.permission!=='granted'?`<div class="notif-bar" id="notifBar"><span class="notif-icon">🔔</span><span class="notif-text">Enable daily reminders to stay on track.</span><button class="btn-enable-notifs" onclick="reqNotif()">Enable</button><button class="notif-close" onclick="this.parentElement.remove()">✕</button></div>`:''}
@@ -958,7 +1001,7 @@ function renderMain(){
     </div>
     ${renderScheduleCard()}
     <div class="stats-row">
-      <div class="stat-card"><div class="stat-card-label">Current Day</div><div class="stat-card-value" id="stDay">${ST.currentDay}</div><div class="stat-card-sub">of 90 days</div></div>
+      <div class="stat-card"><div class="stat-card-label">Current Day</div><div class="stat-card-value" id="stDay">${ST.currentDay}</div><div class="stat-card-sub">of ${totalDays()} days</div></div>
       <div class="stat-card"><div class="stat-card-label">Completed</div><div class="stat-card-value" id="stDone">${ST.completedDays.length}</div><div class="stat-card-sub">lessons done</div></div>
       <div class="stat-card"><div class="stat-card-label">Streak</div><div class="stat-card-value" id="stStreak">${ST.streak||0}</div><div class="stat-card-sub">day streak 🔥</div></div>
       <div class="stat-card"><div class="stat-card-label">Progress</div><div class="stat-card-value" id="stPct">0%</div><div class="stat-card-sub">overall</div></div>
@@ -983,16 +1026,30 @@ function renderMain(){
   updateStats();buildWeekTracker();buildPhaseRings();buildModCards();setGreeting();
 }
 
+function escH(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function renderLessonBody(l){
   const notesHTML=l.notes?renderNotes(l.notes):'';
-  return `<div class="today-day">DAY ${l.d} OF 90 — ${l.ph?'PHASE':'MONTH'} ${l.ph||l.mo} — WEEK ${l.w}</div>
+  const ex=ST.currentProg==='expert';
+  const deep=l.deep||(window.AMS_DEEP||{})[l.d]||null;
+  const srcs=deep?(deep.src||[]).map(k=>(window.AMS_SRC||{})[k]).filter(Boolean):[];
+  return `<div class="today-day">DAY ${l.d} OF ${totalDays()} — ${ex?'MONTH '+l.mo:'PHASE '+l.ph} — WEEK ${l.w}</div>
   <div class="today-title">${l.t}</div>
   <div class="tool-badge">🔧 ${l.tool}</div>
-  <div class="today-desc">Stay focused for 30 minutes. Every session builds toward your income goal.</div>
+  <div class="today-desc">${ex?'Give it 30 focused minutes. Each lesson adds a skill you will use in your work and life.':'Stay focused for 30 minutes. Every session builds toward your income goal.'}</div>
+  ${deep?`<div class="deep-idea"><div class="deep-k">💡 Understand it first</div><p>${escH(deep.idea)}</p></div>`:''}
   <div class="task-box"><div class="task-label">📋 Today's 30-Minute Task</div><div class="task-text">${l.task}</div></div>
-  <div style="font-size:.78rem;color:var(--text-muted);margin-bottom:.5rem;"><strong style="color:var(--gold);">Business Application:</strong> ${l.inc}</div>
-  ${notesHTML}`;
+  ${deep&&deep.prompt?`<div class="deep-prompt"><div class="deep-prompt-hd"><span class="deep-k">✍️ Try this prompt</span><button type="button" class="deep-copy" onclick="copyPrompt(this)">Copy prompt</button></div><pre>${escH(deep.prompt)}</pre><div class="deep-fine">Replace anything in [square brackets] with your own details.</div></div>`:''}
+  ${deep&&deep.watch?`<div class="deep-watch"><b>Watch out:</b> ${escH(deep.watch)}</div>`:''}
+  <div style="font-size:.78rem;color:var(--text-muted);margin-bottom:.5rem;"><strong style="color:var(--gold);">${ex?'What you walk away with:':'Business Application:'}</strong> ${l.inc}</div>
+  ${notesHTML}
+  ${srcs.length?`<div class="deep-src"><div class="deep-k">📚 Go deeper · free material from Anthropic</div><ul>${srcs.map(x=>`<li><a href="${x.u}" target="_blank" rel="noopener">${escH(x.t)} ↗</a><span>${escH(x.by)}</span></li>`).join('')}</ul><div class="deep-fine">These links go to free courses and guides published by Anthropic, the company that makes Claude. The lesson explanations are written by AI Made Simple and draw on that guidance. Anthropic does not endorse this course.</div></div>`:''}`;
 }
+function copyPrompt(btn){
+  const t=btn.closest('.deep-prompt').querySelector('pre').innerText;
+  const done=()=>{btn.textContent='Copied ✓';setTimeout(()=>{btn.textContent='Copy prompt';},1800);};
+  if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(done).catch(()=>fallbackCopy(t,done));}else fallbackCopy(t,done);
+}
+function fallbackCopy(t,done){const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');done();}catch(e){showToast('Select the prompt text and copy it manually.');}a.remove();}
 
 function renderNotes(notes){
   const html=notes.map(n=>{
@@ -1179,7 +1236,7 @@ function renderScheduleCard(){
 
 /* ══ STATS ══ */
 function updateStats(){
-  const done=ST.completedDays.length;const pct=Math.round((done/90)*100);
+  const t=totalDays();const done=ST.completedDays.filter(d=>d<=t).length;const pct=Math.min(100,Math.round((done/t)*100));
   const s=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
   s('stDay',ST.currentDay);s('stDone',done);s('stStreak',ST.streak||0);s('stPct',pct+'%');
   s('sBadge',`🔥 ${ST.streak||0}-day streak`);
@@ -1201,9 +1258,7 @@ function buildWeekTracker(){
 function buildPhaseRings(){
   const c=document.getElementById('phRings');if(!c) return;
   const circ=188.5;
-  const groups=ST.currentProg==='m2m'?
-    [{lbl:'PHASE 1',nm:'Foundations',s:1,e:30},{lbl:'PHASE 2',nm:'Business',s:31,e:60},{lbl:'PHASE 3',nm:'Mastery',s:61,e:90}]:
-    [{lbl:'MONTH 1',nm:'Foundations',s:1,e:30},{lbl:'MONTH 2',nm:'Business',s:31,e:60},{lbl:'MONTH 3',nm:'Mastery',s:61,e:90}];
+  const groups=trackGroups().map(g=>({...g,lbl:g.lbl+' '+g.n}));
   c.innerHTML=groups.map(g=>{
     const total=g.e-g.s+1;const done=ST.completedDays.filter(d=>d>=g.s&&d<=g.e).length;const pct=Math.round((done/total)*100);const offset=circ-(pct/100)*circ;
     return `<div class="phase-card"><div class="ring-container"><svg class="ring-svg" viewBox="0 0 70 70" width="60" height="60"><circle class="ring-bg" cx="35" cy="35" r="30"/><circle class="ring-fill" cx="35" cy="35" r="30" stroke-dasharray="${circ}" stroke-dashoffset="${offset}"/></svg><div class="ring-text">${pct}%</div></div><div class="phase-label">${g.lbl}</div><div class="phase-name">${g.nm}</div></div>`;
@@ -1213,20 +1268,14 @@ function buildPhaseRings(){
 function buildModCards(){
   const c=document.getElementById('modCards');if(!c) return;
   const p=ST.currentProg;
-  const groups=p==='m2m'?
-    [{ph:1,nm:'Phase 1 — Foundations',sub:'Text · Image · Productivity · Audio/Video',s:1,e:30},
-     {ph:2,nm:'Phase 2 — Business',sub:'Freelancing · Clipping · Automation · Chatbots',s:31,e:60},
-     {ph:3,nm:'Phase 3 — Mastery',sub:'Agency · SaaS · Systems · Scale',s:61,e:90}]:
-    [{mo:1,nm:'Month 1 — Foundations',sub:'Text AI · Image AI · Productivity · Multimedia',s:1,e:30},
-     {mo:2,nm:'Month 2 — Business',sub:'Marketing · Research · Automation · Web Building',s:31,e:60},
-     {mo:3,nm:'Month 3 — Mastery',sub:'Advanced Video · Learning AI · Travel · Capstone',s:61,e:90}];
+  const groups=trackGroups();
   c.innerHTML=groups.map(g=>{
     const total=g.e-g.s+1;const done=ST.completedDays.filter(d=>d>=g.s&&d<=g.e).length;const pct=Math.round((done/total)*100);
-    const unlocked=p==='m2m'?hasM2MPhase(g.ph):hasExpertMonth(g.mo);
+    const unlocked=groupUnlocked(g);
     const isActive=ST.currentDay>=g.s&&ST.currentDay<=g.e;const isDone=done===total;const locked=!unlocked;
     return `<div class="module-card ${locked?'locked':''}" onclick="${locked?'':'selectLesson('+g.s+')'}">
-      <div class="module-card-hdr"><span class="module-phase-tag">${p==='m2m'?'PHASE':'MONTH'} ${g.ph||g.mo} · DAYS ${g.s}–${g.e}</span><span class="module-status ${locked?'status-locked':isDone?'status-done':isActive?'status-active':'status-locked'}">${locked?'🔒 Locked':isDone?'✓ Done':isActive?'● Active':'◦ Upcoming'}</span></div>
-      <div class="module-title">${g.nm}</div><div class="module-sub">${g.sub}</div>
+      <div class="module-card-hdr"><span class="module-phase-tag">${g.lbl} ${g.n} · DAYS ${g.s}–${g.e}</span><span class="module-status ${locked?'status-locked':isDone?'status-done':isActive?'status-active':'status-locked'}">${locked?'🔒 Locked':isDone?'✓ Done':isActive?'● Active':'◦ Upcoming'}</span></div>
+      <div class="module-title">${g.lbl==='PHASE'?'Phase':'Month'} ${g.n} — ${g.nm}</div><div class="module-sub">${g.sub}</div>
       ${!locked?`<div class="module-bar"><div class="module-bar-fill" style="width:${pct}%"></div></div>`:''}
     </div>`;
   }).join('');
@@ -1238,12 +1287,12 @@ function markDone(){
   ST.completedDays.push(ST.currentDay);
   const today=new Date().toDateString();const yesterday=new Date(Date.now()-86400000).toDateString();
   ST.streak=ST.lastEngaged===yesterday?(ST.streak||0)+1:1;ST.lastEngaged=today;
-  if(ST.currentDay<90) ST.currentDay++;
+  if(ST.currentDay<totalDays()) ST.currentDay++;
   saveSt();if(ST.timerRunning)toggleTimer();
   showToast(`Day ${ST.currentDay-1} complete! 🎉`);renderMain();buildSidebar();
 }
 
-function nextL(){if(ST.currentDay<90){ST.currentDay++;saveSt();renderMain();buildSidebar();}}
+function nextL(){if(ST.currentDay<totalDays()){ST.currentDay++;saveSt();renderMain();buildSidebar();}}
 function prevL(){if(ST.currentDay>1){ST.currentDay--;saveSt();renderMain();buildSidebar();}}
 
 function toggleTimer(){
@@ -1256,8 +1305,8 @@ function setGreeting(){
   const session=getSession();const name=(session?.name||'Student').split(' ')[0];const h=new Date().getHours();
   const g=h<12?'Good morning':h<17?'Good afternoon':'Good evening';const e=h<12?'☀':h<17?'🌤':'🌙';
   const t=document.getElementById('wTitle');if(t)t.textContent=`${g}, ${name}! ${e}`;
-  const done=ST.completedDays.length;const sub=document.getElementById('wSub');
-  if(sub)sub.textContent=`Day ${ST.currentDay} of 90 · ${done} lessons complete · ${Math.round((done/90)*100)}% progress`;
+  const tot=totalDays();const done=ST.completedDays.filter(d=>d<=tot).length;const sub=document.getElementById('wSub');
+  if(sub)sub.textContent=`Day ${ST.currentDay} of ${tot} · ${done} lessons complete · ${Math.min(100,Math.round((done/tot)*100))}% progress`;
 }
 
 function renderGate(p){
