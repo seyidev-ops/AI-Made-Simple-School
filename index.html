@@ -647,7 +647,10 @@ footer { background:var(--bg2);border-top:1px solid var(--border);padding:3rem c
 .footer-inner { max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap; }
 .footer-brand { font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--text); }
 .footer-copy { font-size:0.78rem;color:var(--text-muted);text-align:center; }
-.footer-links { display:flex;gap:1.5rem; }
+.footer-links { display:flex;gap:1.5rem;flex-wrap:wrap; }
+.footer-cache { background:none;border:1px solid var(--border);color:var(--text-muted);font:inherit;font-size:0.78rem;padding:6px 12px;border-radius:999px;cursor:pointer;min-height:32px;transition:color var(--transition),border-color var(--transition); }
+.footer-cache:hover,.footer-cache:focus-visible { color:var(--gold);border-color:var(--gold); }
+.footer-cache[disabled] { opacity:.6;cursor:wait; }
 .footer-links a { font-size:0.78rem;color:var(--text-muted);text-decoration:none;transition:color var(--transition); }
 .footer-links a:hover { color:var(--gold); }
 
@@ -1871,8 +1874,25 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
       <a href="#faq">FAQ</a>
       <a href="admin-login.html">Admin</a>
     </div>
+    <button type="button" class="footer-cache" id="clearCacheBtn" title="Site looks outdated or broken? This loads the latest version. Your login and progress are kept.">↻ Clear cache &amp; reload</button>
   </div>
 </footer>
+<script>
+/* Clear cache: removes this site's offline files and service worker, then loads the newest version.
+   Login, lesson progress and theme (localStorage) are kept. */
+(function(){
+  var btn=document.getElementById('clearCacheBtn');if(!btn)return;
+  btn.addEventListener('click',async function(){
+    btn.disabled=true;btn.textContent='Clearing…';
+    try{
+      if('caches' in window){var keys=await caches.keys();await Promise.all(keys.map(function(k){return caches.delete(k);}));}
+      if('serviceWorker' in navigator){var regs=await navigator.serviceWorker.getRegistrations();await Promise.all(regs.map(function(r){return r.unregister();}));}
+    }catch(e){}
+    var u=new URL(location.href);u.searchParams.set('v',Date.now());u.hash='';
+    location.replace(u.toString());
+  });
+})();
+</script>
 
 <!-- ─── WHATSAPP FLOATING BUTTON ─── -->
 <a href="https://wa.me/2347033134979?text=Hello%20AI%20Made%20Simple%2C%20I%27d%20like%20to%20know%20more%20about%20your%20AI%20programmes." target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Chat with us on WhatsApp">
