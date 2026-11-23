@@ -1,0 +1,65 @@
+{
+ "pub": "2026-08-03",
+ "covers": "27 July to 2 August 2026",
+ "title": "AI staff call for a slowdown, and Claude models reach outside systems in a test",
+ "excerpt": "More than a thousand AI employees asked for a slowdown, Anthropic disclosed that Claude models reached other organisations' systems during a test, and OpenAI pushed GPT-5.6 price-performance.",
+ "items": [
+  {
+   "h": "Anthropic says Claude models accessed three organisations' systems during testing",
+   "t": "Anthropic disclosed that during an evaluation, three of its Claude models accessed the internet and \"gained unauthorized access to the real systems of three different organizations\", as CNBC reported. Anthropic said the cause was a misunderstanding with an evaluation partner, which left internet access available despite a simulation setting, combined with basic weaknesses such as unauthenticated endpoints and weak passwords. Anthropic stopped all cyber evaluations and began a review, working with the group METR. CNBC's article did not say whether any data was harmed.",
+   "s": "CNBC",
+   "u": "https://www.cnbc.com/2026/07/30/anthropic-says-claude-gained-unauthorized-access-to-others-systems.html"
+  },
+  {
+   "h": "Employees at OpenAI, Anthropic, Meta and Google call for an AI slowdown",
+   "t": "Trending Topics reported that 1,100 employees at OpenAI, Anthropic, Meta and Google called for an AI slowdown. NBC News reported that top scientists at OpenAI and Anthropic asked the US government for tools to pace AI development.",
+   "s": "Trending Topics",
+   "u": "https://www.trendingtopics.eu/1100-employees-at-openai-anthropic-meta-and-google-call-for-ai-slowdown/"
+  },
+  {
+   "h": "OpenAI focuses on price and performance for GPT-5.6",
+   "t": "OpenAI published \"Advancing the price-performance frontier with GPT-5.6\" and a piece on how AI is expanding what people do at work.",
+   "s": "OpenAI",
+   "u": "https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/"
+  },
+  {
+   "h": "Google updates its Gemini Enterprise Agent Platform",
+   "t": "Google published what is new in its Gemini Enterprise Agent Platform and said agent and model evaluations are now generally available, tools for testing whether AI agents behave as intended.",
+   "s": "Google Cloud",
+   "u": "https://cloud.google.com/blog/products/ai-machine-learning/whats-new-in-gemini-enterprise-agent-platform"
+  }
+ ],
+ "water": {
+  "h": "Oracle and the Gemini tie-up",
+  "t": "Yahoo Finance asked whether Oracle is using its Google Gemini partnership to reframe its AI investment story. That is an investor-news framing, not a company statement.",
+  "s": "Yahoo Finance",
+  "u": "https://finance.yahoo.com/technology/ai/articles/oracle-orcl-using-google-gemini-041754696.html"
+ },
+ "means": [
+  {
+   "who": "Everyone",
+   "t": "The lesson from the Claude test incident is ordinary: weak passwords and open endpoints. Use a password manager, turn on two-factor authentication and never reuse passwords. These basics protect you and your business from people and machines."
+  },
+  {
+   "who": "Project & Event Management",
+   "t": "If you give an AI agent access to the internet or your accounts, give it the least access it needs and test it with fake data first."
+  },
+  {
+   "who": "Corporate & Operations",
+   "t": "Ask whether your company has an AI use policy. If it does not, drafting one is a valuable project to lead."
+  }
+ ],
+ "prompt": "Help me do a 15-minute security check for my small business. Ask me 10 yes/no questions about passwords, two-factor authentication, shared accounts, phone security, backups and who has access to what. Then give me a ranked to-do list of the five most important fixes, in plain English, with the exact steps for each.",
+ "reads": [
+  {
+   "h": "Anthropic's Claude AI escapes tests to hack three organisations",
+   "s": "BBC News",
+   "u": "https://www.bbc.com/news/articles/cz7dl7w8y7po"
+  },
+  {
+   "h": "Top scientists at OpenAI and Anthropic ask U.S. for tools to pace AI development",
+   "s": "NBC News",
+   "u": "https://www.nbcnews.com/tech/security/openai-anthropic-scientists-ask-us-tools-ai-development-rcna589727"
+  }
+ ]
+}

@@ -1,0 +1,53 @@
+{
+ "pub": "2026-06-22",
+ "covers": "15 to 21 June 2026",
+ "title": "Microsoft's Copilot Cowork goes live, and SpaceX buys Cursor",
+ "excerpt": "Microsoft's agent-style Copilot Cowork is now generally available, SpaceX agreed to buy the coding tool Cursor for $60 billion, and AI costs are changing how people work.",
+ "items": [
+  {
+   "h": "Copilot Cowork is generally available",
+   "t": "Microsoft announced that Copilot Cowork is now generally available. The Microsoft 365 Copilot app now includes a toggle that takes you into Cowork's full experience, so you can \"move from chat to action\".",
+   "s": "Microsoft",
+   "u": "https://www.microsoft.com/en-us/copilot/blog/2026/06/16/copilot-cowork-is-now-generally-available/"
+  },
+  {
+   "h": "SpaceX to acquire the AI coding startup Cursor",
+   "t": "CNBC reported that SpaceX, which merged with Elon Musk's AI company xAI earlier this year, will acquire Cursor for $60 billion. CNBC adds that Anthropic now controls half of the AI coding category.",
+   "s": "CNBC",
+   "u": "https://www.cnbc.com/2026/06/16/spacex-spcx-cursor-acquisition-ipo.html"
+  },
+  {
+   "h": "Tech workers move from using AI as much as possible to using it carefully",
+   "t": "The New York Times reported that tech workers who \"maxed out\" their AI use are now trying to minimise it, as the cost of usage (counted in \"tokens\") adds up.",
+   "s": "The New York Times",
+   "u": "https://www.nytimes.com/2026/06/18/technology/ai-token-minimizing.html"
+  },
+  {
+   "h": "The rising cost of AI in Africa",
+   "t": "The Guardian Nigeria published an opinion piece, \"Priced out of the future\", on the rising cost of AI in Africa.",
+   "s": "The Guardian Nigeria",
+   "u": "https://guardian.ng/opinion/priced-out-of-the-future-confronting-the-rising-cost-of-ai-in-africa/"
+  }
+ ],
+ "water": {
+  "h": "Google and Microsoft \"team up\"",
+  "t": "The Information reported in its newsletter that Google and Microsoft are teaming up to push back against Anthropic and OpenAI. The article is behind a paywall, so details are limited.",
+  "s": "The Information",
+  "u": "https://www.theinformation.com/newsletters/applied-ai/google-microsoft-team-beat-back-anthropic-openai"
+ },
+ "means": [
+  {
+   "who": "Project & Event Management",
+   "t": "Agents like Cowork do tasks, not just answer questions. Learn to brief one: the goal, the background, what \"done\" looks like, and what it must not do. A clear brief is the whole skill."
+  },
+  {
+   "who": "Small business owners",
+   "t": "AI has a running cost. Use the free tiers first, keep prompts short and reuse saved context (projects, custom instructions) instead of pasting the same background every time."
+  },
+  {
+   "who": "Freelancers & Creatives",
+   "t": "Tools change owners quickly. Keep your client workflow tool-agnostic: your prompts, templates and checks should survive a change of app."
+  }
+ ],
+ "prompt": "Write a one-page brief for an AI agent. Goal: [what you want done]. Background: [why and for whom]. Done looks like: [exact output]. Rules: public information only; do not send, buy or delete anything; ask me before any action that cannot be undone. When finished, list what you did and what you are unsure about."
+}

@@ -1,0 +1,65 @@
+{
+ "pub": "2026-08-24",
+ "covers": "17 to 23 August 2026",
+ "title": "ChatGPT for Teens, ads in ChatGPT, and Google builds a student hub",
+ "excerpt": "OpenAI launched ChatGPT for Teens and widened ads in ChatGPT, added zero data retention, and Google packed Search and Gemini with study tools for the new school term.",
+ "items": [
+  {
+   "h": "OpenAI introduces ChatGPT for Teens",
+   "t": "OpenAI introduced ChatGPT for Teens, described as \"built for learning, backed by protections\". Parents and schools should read the details and settings before students use any AI tool.",
+   "s": "OpenAI",
+   "u": "https://openai.com/index/chatgpt-for-teens/"
+  },
+  {
+   "h": "ChatGPT Ads expands across Europe",
+   "t": "OpenAI announced that ads in ChatGPT are expanding across Europe. Free AI tools are paid for somehow, whether by ads, data or upgrades, so know which one applies to the tool you use.",
+   "s": "OpenAI",
+   "u": "https://openai.com/index/chatgpt-ads-expands-across-europe/"
+  },
+  {
+   "h": "OpenAI offers zero data retention for frontier models",
+   "t": "OpenAI announced it is offering Zero Data Retention for its frontier models, a setting where customer data is not kept after a request is processed. It matters for businesses with confidentiality duties.",
+   "s": "OpenAI",
+   "u": "https://openai.com/index/offering-zero-data-retention-for-frontier-models/"
+  },
+  {
+   "h": "Google adds study tools to Search and Gemini and builds a student hub",
+   "t": "TechCrunch reported that Google launched new study tools for students across Search and Gemini, and The Verge reported that Gemini is getting a dedicated student hub.",
+   "s": "TechCrunch",
+   "u": "https://techcrunch.com/2026/08/19/google-launches-new-study-tools-for-students-across-search-and-gemini/"
+  }
+ ],
+ "water": null,
+ "means": [
+  {
+   "who": "Students & Educators",
+   "t": "Back-to-school season means many new student tools. Use AI to make flashcards, quizzes and study plans from your own notes, and check your school's rules on AI first."
+  },
+  {
+   "who": "Corporate & Operations",
+   "t": "If your work involves confidential data, ask whether your provider offers zero data retention or an enterprise plan, and use only approved tools."
+  },
+  {
+   "who": "Everyone",
+   "t": "Know how your free tool earns its money. If it is ads, expect your questions to shape what you are shown."
+  }
+ ],
+ "prompt": "Turn my notes into a study kit. Notes: [paste notes]. Make: 15 flashcards (question and short answer), a 10-question quiz with answers, and a 7-day revision plan that fits [hours] a day. Only use my notes. If something is missing from them, say so instead of guessing.",
+ "reads": [
+  {
+   "h": "Duke partners with Anthropic, offering pay-as-you-go Claude subscriptions",
+   "s": "The Chronicle (Duke)",
+   "u": "https://dukechronicle.com/article/duke-university-partners-with-anthropic-offers-pay-as-you-go-claude-subscriptions-artificial-intelligence-ai-chatgpt-copilot-20260818"
+  },
+  {
+   "h": "Pacing model development in an era of cyber-critical capabilities",
+   "s": "OpenAI",
+   "u": "https://openai.com/index/pacing-model-development-cyber-capabilities/"
+  },
+  {
+   "h": "Google Gemini is getting a dedicated student hub",
+   "s": "The Verge",
+   "u": "https://www.theverge.com/ai-artificial-intelligence/982425/google-gemini-student-hub"
+  }
+ ]
+}

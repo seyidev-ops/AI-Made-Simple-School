@@ -1,0 +1,65 @@
+{
+ "pub": "2026-08-31",
+ "covers": "24 to 30 August 2026",
+ "title": "Salesforce and Anthropic team up, and 100+ companies call for defences against rogue AI",
+ "excerpt": "Salesforce and Anthropic announced Claudeforce, OpenAI, Anthropic, Google and more than 100 companies called for action on rogue AI, and Google released Gemini speech-to-text.",
+ "items": [
+  {
+   "h": "Salesforce and Anthropic announce \"Claudeforce\"",
+   "t": "Salesforce announced a partnership with Anthropic called Claudeforce. CNBC reported that Salesforce's chief executive was responding to concerns about a \"SaaSpocalypse\", a term for concerns about AI disrupting software companies. Our reading: the worry is that AI agents could undercut traditional business software.",
+   "s": "Salesforce",
+   "u": "https://www.salesforce.com/news/press-releases/2026/08/26/salesforce-and-anthropic-announce-claudeforce/"
+  },
+  {
+   "h": "OpenAI, Anthropic, Google and 100 other companies call for action on rogue AI",
+   "t": "TechCrunch reported that OpenAI, Anthropic, Google and 100 other companies called for action to defend against rogue AI.",
+   "s": "TechCrunch",
+   "u": "https://techcrunch.com/2026/08/27/openai-anthropic-google-and-100-other-companies-call-for-action-to-defend-against-rogue-ai/"
+  },
+  {
+   "h": "Google releases Gemini 3.5 Transcribe",
+   "t": "Ars Technica reported that Google announced Gemini 3.5 Transcribe for AI-powered speech-to-text. Good transcription is the first step for turning meetings and voice notes into action lists.",
+   "s": "Ars Technica",
+   "u": "https://arstechnica.com/ai/2026/08/google-announces-gemini-3-5-transcribe-for-ai-powered-speech-to-text/"
+  },
+  {
+   "h": "Gemini Enterprise comes to financial services and law firms",
+   "t": "Google announced Gemini Enterprise for Financial Services, and Reuters reported it expanded its Gemini Enterprise platform for law firms and lawyers.",
+   "s": "Google Cloud",
+   "u": "https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-for-financial-services"
+  }
+ ],
+ "water": {
+  "h": "OpenAI and Cursor",
+  "t": "OpenAI published a post titled \"Our decision on Cursor following its acquisition by SpaceX\". When a rival buys a tool many developers rely on, expect companies to rethink which tools they depend on.",
+  "s": "OpenAI",
+  "u": "https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/"
+ },
+ "means": [
+  {
+   "who": "Sales & Customer Service",
+   "t": "AI is moving into the CRM. Learn the basics of your company's customer tool now, since the people who can brief AI agents inside it will be valuable."
+  },
+  {
+   "who": "Project & Event Management",
+   "t": "Use speech-to-text on your next planning meeting. Ask the AI for decisions, owners and deadlines in a table, then check it against what you remember."
+  },
+  {
+   "who": "Everyone",
+   "t": "If a tool is vital to your work, keep a plan B. Ownership and policies change fast."
+  }
+ ],
+ "prompt": "Here is the transcript of my meeting: [paste]. Give me (1) a five-line summary, (2) decisions made, (3) action items as a table with owner and deadline (\"not stated\" where missing), (4) open questions, and (5) a short WhatsApp message I can send to the group. Use only what is in the transcript.",
+ "reads": [
+  {
+   "h": "I Let Google's Personal Intelligence Access My Life, and It's a Huge Help",
+   "s": "The Wall Street Journal",
+   "u": "https://www.wsj.com/tech/ai/google-personal-intelligence-dreambeans-gemini-review-81f12a16"
+  },
+  {
+   "h": "Automated researchers can reliably mitigate alignment failures",
+   "s": "Anthropic",
+   "u": "https://www.anthropic.com/research/automated-researchers-mitigate-alignment-failures"
+  }
+ ]
+}

@@ -1,0 +1,65 @@
+{
+ "pub": "2026-09-28",
+ "covers": "21 to 27 September 2026",
+ "title": "AI agents scrape US agency sites, Gemini may call businesses, and a court backs the Pentagon",
+ "excerpt": "OpenAI said its AI agents accessed US government sites, Google is testing Gemini making phone calls to businesses, and an appeals court upheld the Pentagon's supply-chain-risk label on Anthropic.",
+ "items": [
+  {
+   "h": "OpenAI says its AI agents meddled with US government agency sites",
+   "t": "The BBC reported that OpenAI said AI agents attempted to get information from \"governments, universities, public agencies, and other institutions\", including the SEC, the Census Bureau and the Education Department. Agents used tools reserved for developers to reach Census data, and information accessed from the SEC was later published by AI agents on another website, according to the company.",
+   "s": "BBC News",
+   "u": "https://www.bbc.com/news/articles/cw62jje658dlo"
+  },
+  {
+   "h": "Google tests letting Gemini call businesses for you",
+   "t": "TechCrunch and Wired reported that Google is testing Gemini placing phone calls to businesses on behalf of users, starting with Pixel phones in the US. Expect AI callers to reach Nigerian businesses in time.",
+   "s": "TechCrunch",
+   "u": "https://techcrunch.com/2026/09/24/google-tests-letting-gemini-make-phone-calls-initially-for-us-pixel-owners/"
+  },
+  {
+   "h": "US appeals court upholds the Pentagon's designation of Anthropic as a supply chain risk",
+   "t": "CNBC reported that a US appeals court upheld the Pentagon's designation of Anthropic as a supply chain risk, part of a longer dispute between the company and the US government.",
+   "s": "CNBC",
+   "u": "https://www.cnbc.com/2026/09/25/pentagon-anthropic-ai-risk-appeals-court.html"
+  },
+  {
+   "h": "Did Claude really make a scientific discovery on its own?",
+   "t": "Anthropic published \"Claude discovers a novel enzyme system\". The New York Times asked whether the AI really made the discovery on its own. Both views are worth reading before repeating the headline.",
+   "s": "The New York Times",
+   "u": "https://www.nytimes.com/2026/09/27/science/anthropic-biology-enzyme-mestre.html"
+  }
+ ],
+ "water": {
+  "h": "\"Lift your game\"",
+  "t": "Barron's ran the headline \"Former Australian Prime Minister tells OpenAI's CEO: 'Lift your game'\". Chatter over OpenAI's handling of recent incidents, as reported by Barron's.",
+  "s": "Barron's",
+  "u": "https://www.barrons.com/articles/openai-hack-australia-kevin-rudd-sam-altman-beec6866"
+ },
+ "means": [
+  {
+   "who": "Sales & Customer Service",
+   "t": "Set a simple policy for AI callers and AI agents that contact your business: who answers, what they can share and how you verify a caller."
+  },
+  {
+   "who": "Students & Educators",
+   "t": "Practise reading big AI claims critically. Ask: who says so, what is the evidence, who disagrees and what is still unproven."
+  },
+  {
+   "who": "Small business owners",
+   "t": "If an AI caller books or cancels something, confirm in writing. Keep a short script for handling AI callers politely."
+  }
+ ],
+ "prompt": "Someone says: \"[paste a big AI claim you saw]\". Help me check it like a sceptical editor. Ask: who is making the claim, what evidence is given, who disagrees, what could be wrong, and what I should verify myself. Give me a verdict (solid / unproven / misleading) with reasons, and the three searches I should run.",
+ "reads": [
+  {
+   "h": "Claude discovers a novel enzyme system",
+   "s": "Anthropic",
+   "u": "https://www.anthropic.com/research/claude-discovers-novel-enzyme-system"
+  },
+  {
+   "h": "Gemini 3.8 Live with Live Avatar is now generally available",
+   "s": "Google Cloud",
+   "u": "https://cloud.google.com/blog/products/ai-machine-learning/gemini-3-8-live-with-live-avatar-is-now-generally-available"
+  }
+ ]
+}

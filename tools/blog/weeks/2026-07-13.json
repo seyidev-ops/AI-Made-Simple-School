@@ -1,0 +1,65 @@
+{
+ "pub": "2026-07-13",
+ "covers": "6 to 12 July 2026",
+ "title": "GPT-5.6 launches, and it is already inside Microsoft 365 Copilot",
+ "excerpt": "OpenAI released GPT-5.6 in three sizes, Microsoft made it the preferred model in Copilot, and Google expanded its agent tools.",
+ "items": [
+  {
+   "h": "GPT-5.6 launches in three sizes",
+   "t": "OpenAI released GPT-5.6 as a family: Sol (the flagship), Terra (balanced, for everyday use) and Luna (cost-efficient). In ChatGPT, free and Go users get Terra, while Plus, Pro, Business and Enterprise users get Sol. OpenAI also added \"max\" and \"ultra\" settings, with \"ultra\" coordinating several agents in parallel. API prices per million tokens: Sol $5 in and $30 out, Terra $2.50 and $15, Luna $1 and $6.",
+   "s": "OpenAI",
+   "u": "https://openai.com/index/gpt-5-6/"
+  },
+  {
+   "h": "GPT-5.6 becomes the preferred model in Microsoft 365 Copilot",
+   "t": "OpenAI announced that GPT-5.6 is now the preferred model in Microsoft 365 Copilot.",
+   "s": "OpenAI",
+   "u": "https://openai.com/index/gpt-5-6-preferred-model-microsoft-365-copilot/"
+  },
+  {
+   "h": "Google expands agent tools and opens up AlphaEvolve",
+   "t": "Google said it is expanding Managed Agents in the Gemini API with background tasks and remote MCP support, and that AlphaEvolve is now available to everyone.",
+   "s": "Google",
+   "u": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/"
+  },
+  {
+   "h": "A Japanese bank bets on OpenAI",
+   "t": "OpenAI published a case study saying MUFG, the Japanese banking group, aims to become \"AI-native\" with OpenAI.",
+   "s": "OpenAI",
+   "u": "https://openai.com/index/mufg/"
+  }
+ ],
+ "water": {
+  "h": "A \"hidden space\" in Claude, and a warning from China",
+  "t": "MIT Technology Review and Axios reported on Anthropic research describing a \"hidden space\" where Claude works through concepts. Separately, CNBC reported that China warned about AI risks with Anthropic's Claude Code. Both are reports of statements and research, not proven findings about how these systems work.",
+  "s": "MIT Technology Review",
+  "u": "https://www.technologyreview.com/2026/07/09/1140293/anthropic-found-a-hidden-space-where-claude-puzzles-over-concepts/"
+ },
+ "means": [
+  {
+   "who": "Everyone",
+   "t": "If you use free ChatGPT, you are now on Terra. Compare it with the free versions of Claude and Gemini on the same real task and keep notes. Your own test beats any benchmark."
+  },
+  {
+   "who": "Corporate & Operations",
+   "t": "If your company uses Microsoft 365, ask IT which model Copilot uses and what data it can see. Know the rules before you paste anything."
+  },
+  {
+   "who": "Freelancers & Creatives",
+   "t": "Cheaper models like Luna make high-volume work (captions, summaries) affordable. Use the stronger models for the thinking, the cheaper ones for the repeating."
+  }
+ ],
+ "prompt": "Run this same task on two AI assistants and compare: [paste one real task]. Then fill a table: which gave the better first draft, which needed fewer corrections, which was faster, and which I would trust for client work. Tell me honestly which differences might just be luck on one task.",
+ "reads": [
+  {
+   "h": "China warns about AI risks with Anthropic's Claude Code",
+   "s": "CNBC",
+   "u": "https://www.cnbc.com/2026/07/08/china-anthropic-ai-claude-code-backdoor-security-threat.html"
+  },
+  {
+   "h": "Anthropic says Claude has carved out its own space to ponder",
+   "s": "Axios",
+   "u": "https://www.axios.com/2026/07/06/anthropic-claude-ai-conscious"
+  }
+ ]
+}

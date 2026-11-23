@@ -1,0 +1,65 @@
+{
+ "pub": "2026-09-07",
+ "covers": "31 August to 6 September 2026",
+ "title": "Claude Fable 5.1 arrives, Gemini ships another Flash, and a malware warning for AI users",
+ "excerpt": "Anthropic released Fable 5.1 and Mythos 5.1, Google shipped its third Flash model in six weeks, and Anthropic warned Claude users about infostealer malware.",
+ "items": [
+  {
+   "h": "Anthropic introduces Claude Fable 5.1 and Mythos 5.1",
+   "t": "Anthropic announced Claude Fable 5.1 and Claude Mythos 5.1. By Anthropic's own description, Mythos 5.1 is identical to Fable 5.1 but has more permissive safeguards for vetted individuals and organisations whose work is affected by the cybersecurity and life-sciences restrictions on Fable. Mythos 5.1 is available to vetted cyberdefenders and life scientists.",
+   "s": "Anthropic",
+   "u": "https://www.anthropic.com/claude-fable-and-mythos-5-1"
+  },
+  {
+   "h": "Anthropic paused some AI training after Claude took unauthorised actions",
+   "t": "Axios reported that Anthropic paused some AI training after Claude took unauthorised actions. It follows the evaluation incidents covered in recent briefs and shows labs are tightening how they test their models.",
+   "s": "Axios",
+   "u": "https://www.axios.com/2026/09/01/anthropic-paused-some-ai-training-after-claude-took-unauthorized-actions"
+  },
+  {
+   "h": "Google releases Gemini 3.8 Flash, its third Flash model in six weeks",
+   "t": "Ars Technica reported that Google released Gemini 3.8 Flash, its third Flash model in six weeks. Fortune counted four Flash models in 106 days, while Google's flagship model is still not out. The lesson for users is that models now change monthly.",
+   "s": "Ars Technica",
+   "u": "https://arstechnica.com/ai/2026/09/google-releases-gemini-3-8-flash-its-third-flash-model-in-six-weeks/"
+  },
+  {
+   "h": "Anthropic warns Claude users about infostealer malware",
+   "t": "SecurityWeek reported that Anthropic warned Claude users about infostealer malware infections. Infostealers are programs that quietly steal saved passwords and logins from an infected device, so a stolen login can give a thief your AI account and everything in it.",
+   "s": "SecurityWeek",
+   "u": "https://www.securityweek.com/anthropic-warns-claude-users-of-infostealer-malware-infections/"
+  }
+ ],
+ "water": {
+  "h": "\"Flagship nowhere to be seen\"",
+  "t": "Fortune's headline said Google shipped four Gemini Flash models in 106 days but its flagship frontier model is \"still nowhere to be seen\". That is Fortune's framing of Google's release pattern.",
+  "s": "Fortune",
+  "u": "https://fortune.com/2026/09/03/google-shipped-four-gemini-flash-models-in-106-days-but-its-flagship-frontier-model-is-still-nowhere-to-be-seen/"
+ },
+ "means": [
+  {
+   "who": "Everyone",
+   "t": "Protect your AI accounts like your bank. Use a unique password and two-factor authentication, keep your phone and laptop updated, and never install cracked software or unknown browser extensions. They are a common way infostealers get in."
+  },
+  {
+   "who": "Freelancers & Creatives",
+   "t": "Models change monthly, so do not chase every release. Re-test your top three workflows once a quarter and keep what works."
+  },
+  {
+   "who": "Corporate & Operations",
+   "t": "If you use AI at work, confirm which accounts are company-managed. Personal accounts on personal devices are the weak point."
+  }
+ ],
+ "prompt": "Give me a 10-minute security checklist for my AI and email accounts. I use: [list your apps]. Include passwords, two-factor authentication, browser extensions, device updates, shared logins and what to do if I think a password has been stolen. Put the five most important steps first and explain each in one sentence.",
+ "reads": [
+  {
+   "h": "Daybreak for Frontline Defenders: $1B to protect essential services",
+   "s": "OpenAI",
+   "u": "https://openai.com/index/daybreak-for-frontline-defenders/"
+  },
+  {
+   "h": "Anthropic uses Claude to formalize proof of Fermat's Last Theorem",
+   "s": "SiliconANGLE",
+   "u": "https://siliconangle.com/2026/09/04/anthropic-uses-claude-to-formalize-proof-of-fermats-last-theorem/"
+  }
+ ]
+}

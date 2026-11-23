@@ -1,0 +1,65 @@
+{
+ "pub": "2026-06-15",
+ "covers": "8 to 14 June 2026",
+ "title": "OpenAI files for its IPO, and Anthropic pauses its newest models",
+ "excerpt": "OpenAI followed Anthropic with a confidential IPO filing, Fable 5 and Mythos 5 were suspended after US security concerns, and \"botsitting\" eats the time AI saves.",
+ "items": [
+  {
+   "h": "OpenAI confidentially files to go public",
+   "t": "OpenAI said on Monday 8 June that it had confidentially filed for an IPO and had not decided on timing. CNBC reported that OpenAI is valued at more than $850 billion and that ChatGPT has more than 900 million weekly users. CNBC adds that Anthropic closed a funding round at a $965 billion valuation shortly before its own filing.",
+   "s": "CNBC",
+   "u": "https://www.cnbc.com/2026/06/08/openai-confidentially-files-for-ipo-prepping-wall-street-for-ai-debut.html"
+  },
+  {
+   "h": "Anthropic suspends Claude Fable 5 and Mythos 5",
+   "t": "The BBC reported on 13 June that Anthropic suspended its new models days after their public release. Anthropic said it was ordered to stop foreign nationals from using Fable 5, so it had to disable Fable 5 and Mythos 5 for all customers. The company said US authorities had not identified specific concerns, but believed the government had learned of a way to bypass (\"jailbreak\") Fable 5.",
+   "s": "BBC News",
+   "u": "https://www.bbc.com/news/articles/c932g3v3e13o"
+  },
+  {
+   "h": "\"Botsitting\": AI saves hours, then takes some back",
+   "t": "The Los Angeles Times reported that AI is saving office workers hours but also demands time spent supervising and correcting it, which it calls \"botsitting\".",
+   "s": "Los Angeles Times",
+   "u": "https://www.latimes.com/business/story/2026-06-12/ai-saves-office-workers-hours-but-then-demands-hours-of-babysitting"
+  },
+  {
+   "h": "UK partners with AI companies and unions to build workers' AI skills",
+   "t": "The UK government said it signed a joint statement with Google, Anthropic, Microsoft and OpenAI, and will work with tech firms and trade unions to boost AI adoption and equip workers with AI skills.",
+   "s": "UK Government",
+   "u": "https://www.gov.uk/government/news/government-to-partner-with-tech-companies-trade-unions-and-industry-leaders-to-boost-ai-adoption-and-equip-workers-with-ai-skills"
+  }
+ ],
+ "water": {
+  "h": "The feud behind the two IPOs",
+  "t": "Reuters published a long look at the rivalry between Anthropic and OpenAI. It reported, citing a company memo, that in April an OpenAI executive told staff OpenAI considers Anthropic's financials inflated, and that the two companies count revenue differently. Reuters also reported that Sam Altman said on CNBC he did not want to rush OpenAI's debut.",
+  "s": "Reuters",
+  "u": "https://www.reuters.com/legal/transactional/anthropic-v-openai-behind-bitter-battle-future-ai-2026-06-11/"
+ },
+ "means": [
+  {
+   "who": "Everyone",
+   "t": "A model can be restricted or switched off at short notice, as Fable 5 was. Keep your best prompts in your own library so they work on any assistant, and do not build a critical process on a single tool."
+  },
+  {
+   "who": "Corporate & Operations",
+   "t": "Botsitting is real. AI only saves time if you build a quick check step into the task. Use a two-minute checklist: facts, numbers, names, tone."
+  },
+  {
+   "who": "Students & Educators",
+   "t": "Governments are now funding AI skills for workers. Learning to use these tools well is becoming a normal career skill, not a niche one."
+  }
+ ],
+ "prompt": "Here are 5 tasks I used AI for this week: [list them]. For each, tell me (1) minutes saved, (2) minutes I spent checking or fixing, and (3) whether it was worth it. Then suggest a two-minute check step for the two tasks where I lost the most time.",
+ "reads": [
+  {
+   "h": "The AI Price War Is Here, Piling Pressure on OpenAI and Anthropic",
+   "s": "The Wall Street Journal",
+   "u": "https://www.wsj.com/tech/ai/the-ai-price-war-is-here-piling-pressure-on-openai-and-anthropic-86e1d21b"
+  },
+  {
+   "h": "Apple brings models and agents from Anthropic, Google and OpenAI into its developer tools",
+   "s": "Apple Newsroom",
+   "u": "https://www.apple.com/newsroom/2026/06/apple-aids-app-development-with-new-intelligence-frameworks-and-advanced-tools/"
+  }
+ ]
+}

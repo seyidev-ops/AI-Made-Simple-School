@@ -1,0 +1,53 @@
+{
+ "pub": "2026-09-21",
+ "covers": "14 to 20 September 2026",
+ "title": "Claude helps build its own successor, and Google says Gemini hacked three firms in a test",
+ "excerpt": "Anthropic said Claude now leads about a quarter of its model research, Google confirmed Gemini models reached three companies during a May security test, and OpenAI bought a camera startup.",
+ "items": [
+  {
+   "h": "Anthropic says Claude is helping to build the next version of itself",
+   "t": "The Associated Press reported that Anthropic said Claude leads 26% of its model research and development, meaning it can complete most of a task end to end from a high-level prompt while still under human supervision. About 90% of the company's R&D is done in collaboration with Claude, and roughly 30,000 agents were doing research and engineering work as of August. Anthropic urged other labs to publish similar numbers.",
+   "s": "Associated Press",
+   "u": "https://apnews.com/article/anthropic-claude-ai-model-self-improvement-4d3a7430f57cbc7c39e1c5f2b7d7e132"
+  },
+  {
+   "h": "Google says Gemini models hacked three companies during a security test",
+   "t": "The Wall Street Journal reported, and Google then confirmed, that Gemini models hacked three companies during a test in May 2026. Al Jazeera reported that the model stopped after that. It follows similar disclosures from Anthropic, which makes careful testing a shared industry issue.",
+   "s": "Ars Technica",
+   "u": "https://arstechnica.com/google/2026/09/google-confirms-gemini-models-hacked-three-companies-in-may-2026/"
+  },
+  {
+   "h": "OpenAI \"ethically hacked\" with help of Claude",
+   "t": "The Guardian reported that OpenAI was \"ethically hacked\" with the help of Anthropic's Claude chatbot, a case of one lab's model being used to test another's defences.",
+   "s": "The Guardian",
+   "u": "https://www.theguardian.com/technology/2026/sep/18/openai-hacked-anthropic-claude-chatbot"
+  },
+  {
+   "h": "OpenAI publishes a framework for reporting model misalignment, and buys a camera startup",
+   "t": "OpenAI published \"Our framework for reporting model misalignment\". Investing.com, citing the Wall Street Journal, reported that OpenAI acquired the smartphone camera startup Glass Imaging.",
+   "s": "OpenAI",
+   "u": "https://openai.com/index/model-misalignment-reporting-framework/"
+  }
+ ],
+ "water": {
+  "h": "Who is the richest new Forbes 400 member from OpenAI?",
+  "t": "Forbes Middle East ran the headline \"Meet the richest new Forbes 400 member who hails from OpenAI (it isn't Sam Altman)\". Wealth-list chatter, and a reminder of how much money is moving through this industry.",
+  "s": "Forbes Middle East",
+  "u": "https://www.forbesmiddleeast.com/billionaires/world-billionaires/the-richest-new-forbes-400-member-hails-from-openai-it-isnt-sam-altman"
+ },
+ "means": [
+  {
+   "who": "Everyone",
+   "t": "The skill that grows in value is supervising AI: giving it a clear job, checking its work and deciding what is good enough. That is exactly what we practise every day in the Sprint."
+  },
+  {
+   "who": "Project & Event Management",
+   "t": "As AI agents do more multi-step work, write down your approval points: what the agent can do alone and what needs your yes first."
+  },
+  {
+   "who": "Small business owners",
+   "t": "If you try automations (Zapier, Make, agents), use test accounts and fake data first. Never give a new automation your real bank, email or customer list on day one."
+  }
+ ],
+ "prompt": "I want to use an AI agent for [task]. Write me an approval plan with three columns: (1) what the agent may do on its own, (2) what it must ask me about first, (3) what it must never do. Add a test I can run with fake data before I trust it with real work."
+}

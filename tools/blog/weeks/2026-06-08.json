@@ -1,0 +1,71 @@
+{
+ "pub": "2026-06-08",
+ "covers": "1 to 7 June 2026",
+ "title": "Anthropic files to go public, and Meta puts an AI agent in WhatsApp",
+ "excerpt": "Anthropic filed confidentially for an IPO, Meta launched a business agent for WhatsApp, and Google struck a huge compute deal. What it means for your work.",
+ "items": [
+  {
+   "h": "Meta launches an AI agent for businesses on WhatsApp",
+   "t": "At its WhatsApp-focused Conversations conference in London, Meta unveiled a \"Business Agent\" that can act for a business, for example booking calendar appointments and closing sales. Meta is also opening a \"Business Agent Platform\" so companies can build their own agents, connected to systems such as Shopify, Zendesk and Shopee.",
+   "s": "Reuters",
+   "u": "https://www.reuters.com/business/meta-launches-enterprise-focused-ai-business-agent-automate-daily-operations-2026-06-03/"
+  },
+  {
+   "h": "Anthropic files confidentially for a US stock market listing",
+   "t": "Anthropic announced on 1 June that it had confidentially filed to go public. CNBC reported that the week was dominated by talk of the planned listings of SpaceX, Anthropic and OpenAI.",
+   "s": "CNBC",
+   "u": "https://www.cnbc.com/2026/06/05/tech-download-anthropic-ipo-ai-valuations.html"
+  },
+  {
+   "h": "Anthropic opens its security-testing model to 150 more partners",
+   "t": "Anthropic said an additional 150 partners will get access to Mythos, a powerful model that CNBC says is good at finding weaknesses in software.",
+   "s": "CNBC",
+   "u": "https://www.cnbc.com/2026/06/05/tech-download-anthropic-ipo-ai-valuations.html"
+  },
+  {
+   "h": "Google will rent computing power from SpaceX's AI data centres",
+   "t": "CNBC reported that Google will pay SpaceX $920 million a month for 32 months for capacity at xAI data centres. SpaceX announced a similar arrangement with Anthropic in May.",
+   "s": "CNBC",
+   "u": "https://www.cnbc.com/2026/06/05/google-to-pay-spacex-920-million-a-month-for-xai-compute-capacity.html"
+  },
+  {
+   "h": "Nigeria eyes gas-powered data centres",
+   "t": "Tech Africa News reported that Nigeria is looking at an AI infrastructure boom backed by gas-powered data centres.",
+   "s": "Tech Africa News",
+   "u": "https://techafricanews.com/2026/06/01/nigeria-eyes-ai-infrastructure-boom-backed-by-gas-powered-data-centers/"
+  }
+ ],
+ "water": {
+  "h": "Microsoft says it is \"less concerned\" about its rivals",
+  "t": "Yahoo Finance reported that Microsoft's AI chief said the company is \"less concerned\" about Google, Meta and OpenAI as the battle with Anthropic heats up. Reported remarks, so treat them as one executive's view.",
+  "s": "Yahoo Finance",
+  "u": "https://finance.yahoo.com/sectors/technology/articles/microsofts-ai-chief-says-company-003108308.html"
+ },
+ "means": [
+  {
+   "who": "Small business owners",
+   "t": "If you sell on WhatsApp, AI assistants that take bookings and answer customers are coming to the apps you already use. Get ready by writing your prices, opening hours, delivery rules and refund policy in one clear document. Good AI answers start with good source material."
+  },
+  {
+   "who": "Sales & Customer Service",
+   "t": "Practise writing the \"rules\" for an assistant: what it may promise, what it must never promise, and when it hands over to a person."
+  },
+  {
+   "who": "Everyone",
+   "t": "Big money flowing into these companies usually means faster releases and more business features. Our take: the skill that lasts is knowing how to brief an AI well, whichever company wins."
+  }
+ ],
+ "prompt": "I run [type of business] in [city] and sell on WhatsApp. Turn the notes below into a one-page \"assistant rulebook\": prices, opening hours, delivery areas and fees, refund policy, 10 common questions with answers, and a list of things the assistant must hand to a human. Mark anything you had to guess. Notes: [paste your notes]",
+ "reads": [
+  {
+   "h": "We need to stop AI developing without humans, says Anthropic co-founder",
+   "s": "BBC News",
+   "u": "https://www.bbc.com/news/articles/cx2124z7g45o"
+  },
+  {
+   "h": "Trump to meet AI leaders to discuss US investment in their companies",
+   "s": "BBC News",
+   "u": "https://www.bbc.com/news/articles/c98r8r7dz5no"
+  }
+ ]
+}

@@ -1,0 +1,65 @@
+{
+ "pub": "2026-07-06",
+ "covers": "29 June to 5 July 2026",
+ "title": "Claude Sonnet 5 arrives, the Fable ban is lifted, and Altman wants a \"new world order\"",
+ "excerpt": "Anthropic launched Claude Sonnet 5 as a cheaper agent model, the US lifted its export ban on Fable and Mythos, and Nigeria launched an AI Scaling Hub.",
+ "items": [
+  {
+   "h": "Claude Sonnet 5 launches",
+   "t": "TechCrunch reported that Claude Sonnet 5 is a more agentic version of Anthropic's midsize model: it can plan, use tools such as browsers and terminals, and run on its own. It is positioned as a cheaper alternative to rivals. Launch pricing is $2 per million input tokens and $10 per million output tokens through 31 August, rising to $3 and $15. It is the default model on the free and Pro plans.",
+   "s": "TechCrunch",
+   "u": "https://techcrunch.com/2026/06/30/anthropic-launches-claude-sonnet-5-as-a-cheaper-way-to-run-agents/"
+  },
+  {
+   "h": "US lifts the export ban on Fable and Mythos",
+   "t": "The BBC reported that the US Department of Commerce lifted restrictions on Claude Fable 5 and Mythos 5 after Anthropic agreed to proactively detect and address security risks, collaborate with the government on future releases and alert it to malicious activity. Access was to be restored on Wednesday 1 July.",
+   "s": "BBC News",
+   "u": "https://www.bbc.co.uk/news/articles/cdr42623e1do"
+  },
+  {
+   "h": "Nigeria launches an AI Scaling Hub",
+   "t": "Tech Africa News reported that Nigeria has launched an AI Scaling Hub to accelerate artificial intelligence development.",
+   "s": "Tech Africa News",
+   "u": "https://techafricanews.com/2026/06/29/nigeria-launches-ai-scaling-hub-to-accelerate-artificial-intelligence-development/"
+  },
+  {
+   "h": "Is a paid AI plan worth it?",
+   "t": "CNET published a breakdown of what premium AI chatbot plans cost and whether they are worth it, and the American Psychological Association looked at how AI is reshaping human skills and thinking.",
+   "s": "CNET",
+   "u": "https://www.cnet.com/tech/services-and-software/upgrading-your-ai-chatbot-heres-how-much-itll-cost-you/"
+  }
+ ],
+ "water": {
+  "h": "Altman and the \"new world order\"",
+  "t": "Fortune ran the headline \"Sam Altman seeks new world order for AI as OpenAI slowly loses ground to Google and Anthropic\". That is Fortune's framing, not an OpenAI statement.",
+  "s": "Fortune",
+  "u": "https://fortune.com/2026/07/02/sam-altman-new-world-order-ai-openai-google-anthropic/"
+ },
+ "means": [
+  {
+   "who": "Everyone",
+   "t": "Sonnet 5 being the default model on Claude's free plan means free users now get a stronger, agent-capable model. Before paying for any plan, test the free tier on your real work for a week."
+  },
+  {
+   "who": "Sales & Customer Service",
+   "t": "Cheaper agent models make it affordable to automate follow-ups and first replies. Keep a human check on anything that goes to a customer."
+  },
+  {
+   "who": "Students & Educators",
+   "t": "Read the APA piece on how AI changes the way we think. Use AI to practise and check your understanding, not to skip the thinking."
+  }
+ ],
+ "prompt": "Here is my real work this month: [list of tasks]. Which of these can I do well on a free AI plan, and which would justify paying (and at what monthly budget in Naira)? Give a simple test I can run this week to find out. Do not recommend anything I cannot afford.",
+ "reads": [
+  {
+   "h": "How AI is reshaping human skills and thinking",
+   "s": "American Psychological Association",
+   "u": "https://www.apa.org/monitor/2026/07-08/ai-job-skills-thinking"
+  },
+  {
+   "h": "Are ChatGPT and other AI chatbots politically biased? We tested them.",
+   "s": "The Washington Post",
+   "u": "https://www.washingtonpost.com/technology/interactive/2026/06/24/are-ai-chatbots-like-chatgpt-politically-biased-we-tested-them/"
+  }
+ ]
+}

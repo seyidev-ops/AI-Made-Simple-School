@@ -1,0 +1,70 @@
+{
+ "pub": "2026-09-14",
+ "covers": "7 to 13 September 2026",
+ "title": "ChatGPT Images 2.5, new voice models, and Anthropic's misuse report",
+ "excerpt": "OpenAI released ChatGPT Images 2.5 and a new voice model, Google put the Gemini app on Windows, and Anthropic published a report on how its models are misused.",
+ "items": [
+  {
+   "h": "OpenAI introduces ChatGPT Images 2.5",
+   "t": "OpenAI introduced ChatGPT Images 2.5, an update to its image tool. Always check any text or numbers inside an AI-made flyer or poster before you print or post it.",
+   "s": "OpenAI",
+   "u": "https://openai.com/index/introducing-chatgpt-images-2-5/"
+  },
+  {
+   "h": "OpenAI releases GPT-Live-1 for natural voice experiences",
+   "t": "OpenAI introduced GPT-Live-1 in its API for building more natural voice experiences. Voice AI is getting good enough for customer calls and voice notes, which matters in a WhatsApp-voice-note culture like ours.",
+   "s": "OpenAI",
+   "u": "https://openai.com/index/introducing-gpt-live-1-in-the-api/"
+  },
+  {
+   "h": "Anthropic publishes its September misuse report",
+   "t": "Anthropic published \"Detecting and countering misuse of AI: September 2026\". Reuters summarised it as the company disrupting bioweapons research efforts, Russian hacking and Chinese misuse of Claude, and Al Jazeera reported Anthropic's claims that Claude was used for missile projects and espionage. These are Anthropic's own claims in its own report.",
+   "s": "Reuters",
+   "u": "https://www.reuters.com/legal/litigation/anthropic-disrupts-russian-chinese-ai-campaigns-targeting-its-claude-models-2026-09-10/"
+  },
+  {
+   "h": "The Gemini app arrives on Windows",
+   "t": "Google announced that the Gemini app is now available for Windows. Separately, Missouri's education agencies announced a partnership with Google for free AI training, and Accenture formed a new business group around Gemini Enterprise.",
+   "s": "Google",
+   "u": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-app-now-on-windows/"
+  }
+ ],
+ "water": {
+  "h": "\"The AI policy window is open\"",
+  "t": "OpenAI published a post titled \"The AI policy window is open. We need to act.\" Anthropic published \"An alignment assessment of recent cybersecurity incidents\". Both are company views on safety and policy.",
+  "s": "OpenAI",
+  "u": "https://openai.com/index/ai-policy-window/"
+ },
+ "means": [
+  {
+   "who": "Small business owners",
+   "t": "Use the image tools for flyers and product mock-ups, but proof-read every word and number, and never show a product the way it is not."
+  },
+  {
+   "who": "Students & Educators",
+   "t": "Free training exists. Look at the official learning sites run by the AI companies themselves, including OpenAI Academy and Anthropic's Claude Academy. We link to both in our lessons."
+  },
+  {
+   "who": "Sales & Customer Service",
+   "t": "Voice AI will answer more customer calls. Decide now what it may say and when a human takes over."
+  }
+ ],
+ "prompt": "Design a flyer for [business] promoting [offer] on [date]. Give me: a headline under 7 words, three bullet benefits, the price in Naira, a call to action, and the exact text for the image tool with the layout described (colours, where the logo goes, what the image shows). Then give me a proof-reading checklist for the final image.",
+ "reads": [
+  {
+   "h": "Missouri education agencies partner with Google to provide free AI training",
+   "s": "Missouri DESE",
+   "u": "https://dese.mo.gov/google-free-ai-training"
+  },
+  {
+   "h": "Accenture and Google Cloud form a new Gemini Enterprise business group",
+   "s": "Accenture",
+   "u": "https://newsroom.accenture.com/news/2026/accenture-and-google-cloud-deepen-partnership-with-formation-of-new-accenture-gemini-enterprise-business-group"
+  },
+  {
+   "h": "An alignment assessment of recent cybersecurity incidents",
+   "s": "Anthropic",
+   "u": "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents"
+  }
+ ]
+}

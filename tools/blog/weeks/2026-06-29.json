@@ -1,0 +1,65 @@
+{
+ "pub": "2026-06-29",
+ "covers": "22 to 28 June 2026",
+ "title": "Users shift from \"tokenmaxxing\" to efficiency, and Claude wins paying fans",
+ "excerpt": "AI users are trading volume for efficiency, Claude is gaining paying consumers, Google's search grip is being tested, and Africa asks who will own the AI infrastructure.",
+ "items": [
+  {
+   "h": "From \"tokenmaxxing\" to efficiency",
+   "t": "CNBC reported that OpenAI and Anthropic face a new reality as users move from \"tokenmaxxing\", using as much AI as possible, to caring about efficiency and cost.",
+   "s": "CNBC",
+   "u": "https://www.cnbc.com/2026/06/26/openai-anthropic-new-ai-spending-reality-as-users-shift-to-efficiency.html"
+  },
+  {
+   "h": "Claude is winning over paid consumers",
+   "t": "TechCrunch reported that Anthropic's Claude is winning over paying consumers in a market ChatGPT has long owned.",
+   "s": "TechCrunch",
+   "u": "https://techcrunch.com/2026/06/25/anthropics-claude-is-winning-over-paid-consumers-a-market-owned-by-chatgpt/"
+  },
+  {
+   "h": "Google's online dominance shows signs of cracking",
+   "t": "CNBC reported that Google's dominance online is showing signs of cracking in the AI era.",
+   "s": "CNBC",
+   "u": "https://www.cnbc.com/2026/06/23/googles-online-dominance-is-showing-signs-of-cracking-in-ai-era.html"
+  },
+  {
+   "h": "Who will control Africa's AI infrastructure, and at what cost?",
+   "t": "Al Jazeera examined who will control the data centres and networks behind Africa's AI boom, noting that the physical infrastructure remains uneven.",
+   "s": "Al Jazeera",
+   "u": "https://www.aljazeera.com/news/2026/6/26/who-will-control-africas-ai-infrastructure-and-at-what-cost"
+  }
+ ],
+ "water": {
+  "h": "Why AI labs are hiring philosophers",
+  "t": "The Economist asked why big AI labs are hiring so many philosophers. Our take: it shows how much of AI work is about judgement and values, not only code.",
+  "s": "The Economist",
+  "u": "https://www.economist.com/science-and-technology/2026/06/24/why-big-ai-labs-are-hiring-so-many-philosophers"
+ },
+ "means": [
+  {
+   "who": "Everyone",
+   "t": "Two practical reads this week: a writer who uses ChatGPT, Claude and Gemini daily but never for the same job (MakeUseOf), and a guide to connecting NotebookLM with Claude for research (Tom's Guide). The lesson is to give each tool a job."
+  },
+  {
+   "who": "Students & Educators",
+   "t": "Research tip: load your own sources into a tool like NotebookLM so answers come from your documents, with citations you can check."
+  },
+  {
+   "who": "Small business owners",
+   "t": "Fewer, better prompts cost less and work better. Write the full brief once, then reuse it."
+  }
+ ],
+ "prompt": "I use AI for these jobs: [list]. Build me a \"tool per job\" table: job | best tool for it (ChatGPT, Claude, Gemini, NotebookLM, other) | why | the prompt template I should save. Mark anything you are unsure about so I can check.",
+ "reads": [
+  {
+   "h": "I use ChatGPT, Claude, and Gemini every day, but never for the same job",
+   "s": "MakeUseOf",
+   "u": "https://www.makeuseof.com/i-use-chatgpt-claude-gemini-every-day-but-never-for-same-job/"
+  },
+  {
+   "h": "I connected NotebookLM and Claude and built the ultimate AI research assistant",
+   "s": "Tom's Guide",
+   "u": "https://www.tomsguide.com/ai/i-connected-notebooklm-and-claude-and-built-the-ultimate-ai-research-assistant"
+  }
+ ]
+}

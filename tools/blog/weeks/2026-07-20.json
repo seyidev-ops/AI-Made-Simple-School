@@ -1,0 +1,60 @@
+{
+ "pub": "2026-07-20",
+ "covers": "13 to 19 July 2026",
+ "title": "Google's Gemini 3.5 Pro slips, and Claude gets local prices in India",
+ "excerpt": "Google's flagship Gemini 3.5 Pro is reportedly months late, Anthropic began pricing Claude in rupees, and ChatGPT's WhatsApp chatbot had a wobble.",
+ "items": [
+  {
+   "h": "Gemini 3.5 Pro is delayed",
+   "t": "Reuters, citing Bloomberg, reported that Google is months behind schedule on Gemini 3.5 Pro, its most powerful flagship model. It was due in June. Google is working to improve its capabilities, particularly in coding. The Los Angeles Times followed with a report on coding stumbles and frustrated engineers inside the company.",
+   "s": "Reuters",
+   "u": "https://www.reuters.com/business/google-gemini-launch-delayed-tech-falls-short-internal-goals-bloomberg-news-2026-07-16/"
+  },
+  {
+   "h": "Anthropic starts local pricing for India",
+   "t": "TechCrunch reported that Claude subscriptions in India are now priced in rupees: Pro at ₹2,000 a month when billed annually, Max from ₹11,999 a month, and Team from ₹2,399 per seat. UPI payments are not yet supported, so users pay by card or app-store billing. The report is about India only. Nigerian users should check the price and payment options shown in their own app.",
+   "s": "TechCrunch",
+   "u": "https://techcrunch.com/2026/07/13/anthropic-starts-localizing-claude-pricing-for-india-its-biggest-market-after-the-us/"
+  },
+  {
+   "h": "ChatGPT's WhatsApp chatbot \"apparently working again\"",
+   "t": "Neowin reported that ChatGPT's WhatsApp chatbot was \"apparently working again\", which suggests it had been down. A reminder that AI services have outages, so keep a manual way to do critical tasks.",
+   "s": "Neowin",
+   "u": "https://www.neowin.net/reports/chatgpts-whatsapp-chatbot-is-apparently-working-again/"
+  },
+  {
+   "h": "Japan redraws its AI strategy over security fears",
+   "t": "The Asahi Shimbun reported that Japan hastily redrew its AI strategy amid security fears.",
+   "s": "The Asahi Shimbun",
+   "u": "https://www.asahi.com/ajw/articles/16724916"
+  }
+ ],
+ "water": {
+  "h": "Do AI models have different \"values\" in different languages?",
+  "t": "Anthropic published research on how Claude's values vary by model and language. It is a useful reminder to test your assistant in the language your customers actually use.",
+  "s": "Anthropic",
+  "u": "https://www.anthropic.com/research/claude-values-models-languages"
+ },
+ "means": [
+  {
+   "who": "Small business owners",
+   "t": "Test your AI assistant in the way your customers write: Pidgin, Yoruba, Igbo, Hausa or mixed English. Check tone and meaning before you use it in customer messages."
+  },
+  {
+   "who": "Everyone",
+   "t": "Outages happen. Know the manual way to do your critical tasks and keep important prompts and outputs saved outside the app."
+  },
+  {
+   "who": "Students & Educators",
+   "t": "Delays show even the biggest labs miss targets. Do not build your plans around features that have only been announced."
+  }
+ ],
+ "prompt": "Translate and adapt this customer message into [Pidgin / Yoruba / Hausa / Igbo], keeping the tone [polite / friendly]: \"[your message]\". Then translate your version back to English word for word so I can check the meaning, and list any phrase a native speaker might say differently.",
+ "reads": [
+  {
+   "h": "Inside Google's Gemini delay: coding stumbles, clashing teams and frustrated engineers",
+   "s": "Los Angeles Times",
+   "u": "https://www.latimes.com/business/story/2026-07-17/inside-googles-gemini-delay-coding-stumbles-clashing-teams-frustrated-engineers"
+  }
+ ]
+}

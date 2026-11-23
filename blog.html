@@ -73,6 +73,9 @@ nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:b
 .detail-body ul{padding-left:1.4rem;margin-bottom:1.1rem;}
 .detail-body li{margin-bottom:0.5rem;}
 .detail-body strong{color:var(--text);font-weight:600;}
+.detail-body a{color:var(--gold);text-underline-offset:2px;}
+.detail-body em{color:var(--text-muted);font-size:.86em;}
+.detail-body blockquote{border-left:3px solid var(--gold);background:var(--gold-dim);padding:.85rem 1rem;border-radius:0 8px 8px 0;margin:0 0 1.2rem;font-size:.86rem;line-height:1.7;color:var(--text);font-style:normal;}
 
 /* FEATURED ARTICLE */
 .featured-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:2.5rem;margin-bottom:1.75rem;cursor:pointer;position:relative;overflow:hidden;transition:all 0.22s;z-index:1;}
@@ -106,6 +109,7 @@ nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:b
 .cat-badge.business{background:rgba(76,201,112,0.1);border-color:rgba(76,201,112,0.3);color:#5fd48a;}
 .cat-badge.tutorials{background:rgba(201,130,76,0.1);border-color:rgba(201,130,76,0.3);color:#D4956B;}
 .cat-badge.industry{background:rgba(180,76,201,0.1);border-color:rgba(180,76,201,0.3);color:#C47AD4;}
+.cat-badge.brief{background:rgba(201,168,76,0.16);border-color:rgba(201,168,76,0.45);color:var(--gold);}
 .cat-badge.africa{background:rgba(76,201,180,0.1);border-color:rgba(76,201,180,0.3);color:#4CC9B4;}
 .meta-date,.meta-rt{font-size:0.68rem;color:var(--text-muted);}
 .meta-sep{color:var(--border);font-size:0.6rem;}
@@ -365,7 +369,7 @@ function applyTheme(m){const d=window.matchMedia('(prefers-color-scheme:dark)').
 (function(){const s=localStorage.getItem('ams-theme')||'dark';applyTheme(s);const map={light:'themeLight',dark:'themeDark',system:'themeSystem'};document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));document.getElementById(map[s])?.classList.add('active');});})();
 
 /* ── ARTICLES DATA ── */
-const CATS=['All','AI Models','Tools & Apps','Business','Tutorials','Industry','Nigeria & Africa'];
+const CATS=['All','Weekly AI Brief','AI Models','Tools & Apps','Business','Tutorials','Industry','Nigeria & Africa'];
 let POSTS=[
 {id:1,cat:'AI Models',date:'May 2026',rt:'5 min',feat:true,
  title:'Claude 4 Redefines What AI Can Do for Your Business',
@@ -469,7 +473,7 @@ let currentFilter = 'All';
 let openArticleId = null;
 
 /* ── CATEGORY CLASS MAP ── */
-function catClass(cat){const m={'Tools & Apps':'tools','Business':'business','Tutorials':'tutorials','Industry':'industry','Nigeria & Africa':'africa'};return m[cat]||'';}
+function catClass(cat){const m={'Tools & Apps':'tools','Business':'business','Tutorials':'tutorials','Industry':'industry','Nigeria & Africa':'africa','Weekly AI Brief':'brief'};return m[cat]||'';}
 
 /* ── RENDER FILTER BAR ── */
 function renderFilters(){

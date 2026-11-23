@@ -1478,6 +1478,19 @@ function init(){
     else if(acc.m2m)ST.currentProg='m2m';
   }
   buildProgTabs();buildSidebar();renderMain();
+  loadNewsFromPosts();
+}
+/* AI News tab: use the same posts as the blog (weekly briefs first), falling back to the built-in list offline */
+function loadNewsFromPosts(){
+  fetch('posts.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(d=>{
+    if(!Array.isArray(d)||!d.length) return;
+    const list=d.slice().sort((a,b)=>b.id-a.id).slice(0,24);
+    BLOG_POSTS.length=0;
+    list.forEach((p,i)=>BLOG_POSTS.push({id:p.id,cat:p.cat,date:p.date,rt:p.rt+' read',featured:i===0,title:p.title,excerpt:p.excerpt,body:p.body}));
+    if(!BLOG_CATS.includes('Weekly AI Brief')) BLOG_CATS.splice(1,0,'Weekly AI Brief');
+    if(!BLOG_CATS.includes('Nigeria & Africa')) BLOG_CATS.push('Nigeria & Africa');
+    if(ST.currentProg==='news'){renderMain();buildSidebar();}
+  }).catch(()=>{});
 }
 document.addEventListener('DOMContentLoaded',init);
 
