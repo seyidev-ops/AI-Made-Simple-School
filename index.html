@@ -20,10 +20,10 @@
   <meta name="twitter:description" content="Nigeria's practical AI school. Go from beginner to AI-proficient in 90 days.">
   <meta name="twitter:image"       content="https://aimadesimpleschool.com/og-image.png">
   <!-- SEO meta -->
-  <meta name="description" content="Nigeria's practical AI school. Go from beginner to AI-proficient in 90 days. Practical. Step-by-step. Built for results.">
+  <meta name="description" content="Use AI to be better at your job, your studies or your business. The 30-Day AI Sprint: 30 minutes a day, written for your field, ₦10,000. Try Day 1 free.">
   <meta name="theme-color" content="#C9A84C">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Made Simple — Master AI in 30 Minutes a Day | Nigeria</title>
+<title>Use AI to Be Better at Your Job: 30-Day AI Sprint | AI Made Simple</title>
 <link rel="icon" type="image/svg+xml" href="logo.svg">
   <link rel="apple-touch-icon" href="logo.svg">
   <link rel="manifest" href="manifest.json">
@@ -1114,6 +1114,52 @@ html.no-anim *,html.no-anim *::before,html.no-anim *::after{transition:none!impo
 .n-hero-new{margin-top:.6rem;font-size:.9rem;}
 @media (max-width:900px){.n-trks{grid-template-columns:1fr 1fr;}.n-sprint-grid{grid-template-columns:1fr;}}
 @media (max-width:560px){.n-trks,.n-sprint-5{grid-template-columns:1fr;}}
+
+/* Rotating headline word: every word stacked in one grid cell, so the box never changes size (no layout shift) */
+.n-rot{display:inline-grid;vertical-align:top;color:var(--gold);font-style:italic;white-space:nowrap;}
+.n-rot>em{grid-area:1/1;opacity:0;transform:translateY(.35em);transition:opacity .45s ease,transform .45s ease;}
+.n-rot>em.on{opacity:1;transform:none;}
+@media (prefers-reduced-motion:reduce){.n-rot>em{transition:none;transform:none;}}
+/* Get-started quiz */
+.n-quiz{max-width:720px;margin:0 auto;background:var(--card-bg);border:1px solid var(--card-border);border-radius:18px;padding:clamp(1.25rem,4vw,2rem);display:grid;gap:1.25rem;}
+.n-q-prog{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem;}
+.n-q-prog i{height:4px;border-radius:4px;background:var(--border);transition:background .3s;}
+.n-q-prog i.on{background:var(--gold);}
+.n-q{border:0;padding:0;margin:0;min-width:0;}
+.n-q:not(.on){display:none;}
+.n-q legend{font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,4vw,1.6rem);font-weight:700;color:var(--text);line-height:1.25;margin-bottom:.8rem;padding:0;}
+.n-q legend span{display:block;font:700 .7rem 'DM Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem;}
+.n-q-select{width:100%;font:500 16px 'DM Sans',sans-serif;padding:.85rem .9rem;border-radius:12px;border:1px solid var(--card-border);background:var(--bg2);color:var(--text);min-height:48px;}
+.n-q-select:focus{outline:2px solid var(--gold);outline-offset:2px;}
+.n-q-opts{display:grid;gap:.55rem;}
+.n-q-opts button{text-align:left;padding:.85rem 1rem;border-radius:12px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font:500 .95rem 'DM Sans',sans-serif;cursor:pointer;min-height:48px;transition:border-color .2s,background .2s;}
+.n-q-opts button:hover,.n-q-opts button:focus-visible{border-color:var(--gold);outline:none;}
+.n-q-opts button[aria-pressed="true"]{border-color:var(--gold);background:var(--n-glow);font-weight:600;}
+.n-q-result{border-top:1px solid var(--border);padding-top:1.25rem;}
+.n-q-result h3{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,4.5vw,1.9rem);line-height:1.2;margin:.2rem 0 .6rem;color:var(--text);}
+.n-q-result p{color:var(--text-secondary);font-size:.95rem;margin-bottom:.9rem;}
+.n-q-result .n-q-tag{font:700 .7rem 'DM Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);}
+.n-q-actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.4rem;}
+.n-q-actions .n-btn{flex:1 1 220px;}
+.n-q-restart{background:none;border:none;color:var(--text-muted);font:500 .85rem 'DM Sans',sans-serif;text-decoration:underline;cursor:pointer;margin-top:.9rem;padding:.3rem 0;}
+.n-sprint-quizlink{display:block;text-align:center;margin-top:.8rem;font-size:.88rem;}
+/* Go further */
+.n-further{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:1000px;margin:0 auto;}
+.n-fur{display:flex;flex-direction:column;gap:.35rem;padding:1.3rem;border-radius:16px;border:1px solid var(--border);background:var(--card-bg);text-decoration:none;color:var(--text);transition:border-color .25s,transform .2s;}
+.n-fur:hover,.n-fur:focus-visible{border-color:var(--gold);transform:translateY(-2px);}
+.n-fur>span{font-size:1.5rem;}
+.n-fur b{font-size:1.05rem;}
+.n-fur small{color:var(--text-secondary);font-size:.86rem;line-height:1.5;}
+.n-fur em{font-style:normal;color:var(--gold);font-weight:600;font-size:.86rem;margin-top:auto;padding-top:.4rem;}
+/* Programmes page header + Sprint band */
+.n-page-head{padding-top:calc(64px + clamp(3rem,8vw,5rem));}
+.n-page-head .section-title{font-size:clamp(2.2rem,6vw,3.4rem);}
+.n-band{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:1.25rem;align-items:center;justify-content:space-between;border:1px solid var(--card-border);background:var(--card-bg);border-radius:18px;padding:clamp(1.25rem,4vw,2rem);}
+.n-band h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,4vw,2rem);line-height:1.2;margin:.4rem 0 .4rem;color:var(--text);}
+.n-band p{color:var(--text-secondary);margin:0;}
+.n-band-cta{display:flex;flex-wrap:wrap;gap:.6rem;}
+.n-sprint-band{padding-top:clamp(2rem,5vw,3rem);padding-bottom:clamp(2rem,5vw,3rem);}
+@media (max-width:900px){.n-further{grid-template-columns:1fr;}}
 .n-plans{display:grid;gap:1.25rem;margin:0 auto;align-items:stretch;}
 .n-plans-1{grid-template-columns:minmax(0,440px);justify-content:center;}
 .n-plans-3{grid-template-columns:repeat(3,1fr);max-width:1100px;}
@@ -1270,9 +1316,8 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
   <!-- Centre: nav links (desktop inline / mobile drawer) -->
   <div class="nav-links" id="navLinks">
     <a href="#sprint" class="nav-link" onclick="closeMobileNav()">30-Day Sprint</a>
-    <a href="#programs" class="nav-link" onclick="closeMobileNav()">Programmes</a>
-    <a href="#how" class="nav-link" onclick="closeMobileNav()">How it works</a>
-    <a href="#pricing" class="nav-link" onclick="closeMobileNav()">Pricing</a>
+    <a href="programmes.html" class="nav-link" onclick="closeMobileNav()">Programmes</a>
+    <a href="about.html" class="nav-link" onclick="closeMobileNav()">About</a>
     <a href="blog.html" class="nav-link" onclick="closeMobileNav()">Blog</a>
     <a href="#faq" class="nav-link" onclick="closeMobileNav()">FAQ</a>
     <!-- Mobile-only CTA inside drawer -->
@@ -1299,19 +1344,18 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
 
   <div class="n-hero-copy">
     <div class="n-pill">🇳🇬 Nigeria's practical AI school</div>
-    <h1 class="n-h1"><span style="white-space:nowrap">Stop watching AI.</span><br><em>Start using it.</em></h1>
-    <p class="n-sub">Thirty minutes a day, on your phone or laptop. In 90 days you go from total beginner to confidently using 30+ AI tools for your job, your business, or a brand-new income.</p>
+    <h1 class="n-h1">Use AI to be better at<br><span class="n-rot" id="nRot"><em class="on">your job.</em><em aria-hidden="true">your studies.</em><em aria-hidden="true">your business.</em><em aria-hidden="true">your career.</em><em aria-hidden="true">your sales.</em><em aria-hidden="true">your events.</em><em aria-hidden="true">your family life.</em></span></h1>
+    <p class="n-sub">The 30-Day AI Sprint: 30 minutes a day, on your phone or laptop, with lessons written for your field. You use AI on real work from Day 1. <b data-sprint-price>₦10,000</b> for the full 30 days.</p>
     <div class="n-cta">
-      <a href="#programs" class="n-btn n-btn-gold">Find my programme <span aria-hidden="true">→</span></a>
-      <a href="login.html" class="n-btn n-btn-ghost">I have an access code</a>
+      <a href="#start" class="n-btn n-btn-gold">Get started <span aria-hidden="true">→</span></a>
+      <a href="#sprint" class="n-btn n-btn-ghost">Learn more</a>
     </div>
-    <p class="n-hero-free"><a href="day1.html" class="n-link">Try the Day 1 lesson free <span aria-hidden="true">→</span></a></p>
-    <p class="n-hero-free n-hero-new"><b>New:</b> <a href="#sprint" class="n-link">30-Day AI Sprint for your job, <span data-sprint-price>₦10,000</span> <span aria-hidden="true">→</span></a></p>
+    <p class="n-hero-free"><a href="sprint-day1.html" class="n-link">Or try Day 1 free, no payment <span aria-hidden="true">→</span></a></p>
     <ul class="n-trust">
       <li><span class="n-tick">✓</span>No coding needed</li>
       <li><span class="n-tick">✓</span>30 minutes a day</li>
-      <li><span class="n-tick">✓</span>Learn at your own pace</li>
-      <li><span class="n-tick">✓</span>Start as soon as your code arrives</li>
+      <li><span class="n-tick">✓</span>Written for your field</li>
+      <li><span class="n-tick">✓</span>Certificate at the end</li>
     </ul>
   </div>
 
@@ -1358,6 +1402,62 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
 </div>
 
 
+<!-- ═══════════════ GET STARTED QUIZ ═══════════════ -->
+<section class="n-section n-alt" id="start">
+  <div class="section-header reveal">
+    <span class="section-tag">Get started · 1 minute</span>
+    <h2 class="section-title">Let's find your best start.</h2>
+    <p class="section-desc">Four quick questions. We'll point you to the right option, including a free one.</p>
+  </div>
+
+  <form class="n-quiz reveal" id="nQuiz" onsubmit="return false" novalidate>
+    <div class="n-q-prog" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+    <fieldset class="n-q on" data-q="1">
+      <legend><span>1 of 4</span>Which of these best describes you?</legend>
+      <select id="qTrack" class="n-q-select" aria-label="Which of these best describes you?">
+        <option value="">Choose one…</option>
+        <option value="ops">Corporate &amp; Operations (HR, admin, finance, ops)</option>
+        <option value="pm">Project &amp; Event Management</option>
+        <option value="sales">Sales &amp; Customer Service</option>
+        <option value="creative">Freelancer or Creative</option>
+        <option value="biz">Small Business Owner</option>
+        <option value="student">Student, Researcher or Educator</option>
+        <option value="other">Something else</option>
+      </select>
+    </fieldset>
+
+    <fieldset class="n-q" data-q="2">
+      <legend><span>2 of 4</span>Are you ready to commit 30 minutes a day to practise?</legend>
+      <div class="n-q-opts">
+        <button type="button" data-v="yes">Yes, I can do 30 minutes a day</button>
+        <button type="button" data-v="some">Most days, yes</button>
+        <button type="button" data-v="no">Not right now</button>
+      </div>
+    </fieldset>
+
+    <fieldset class="n-q" data-q="3">
+      <legend><span>3 of 4</span>How would you like to learn?</legend>
+      <div class="n-q-opts">
+        <button type="button" data-v="self">Self-paced, on the learning portal</button>
+        <button type="button" data-v="guided">Guided, with one-on-one sessions</button>
+        <button type="button" data-v="unsure">Not sure yet</button>
+      </div>
+    </fieldset>
+
+    <fieldset class="n-q" data-q="4">
+      <legend><span>4 of 4</span>Are you ready to invest between ₦10,000 and ₦50,000 a month in this?</legend>
+      <div class="n-q-opts">
+        <button type="button" data-v="yes">Yes</button>
+        <button type="button" data-v="low">Only about ₦10,000 to start</button>
+        <button type="button" data-v="no">Not right now</button>
+      </div>
+    </fieldset>
+
+    <div class="n-q-result" id="qResult" hidden></div>
+  </form>
+</section>
+
 <!-- ═══════════════ 30-DAY AI SPRINT (entry product) ═══════════════ -->
 <section class="n-section n-sprint" id="sprint">
   <div class="section-header reveal">
@@ -1400,375 +1500,42 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
       </ul>
       <a href="https://paystack.shop/pay/47k86yk7f2" data-sprint-pay target="_blank" rel="noopener" class="n-btn n-btn-gold n-btn-block" data-programme="ai-sprint">Join the Sprint · Pay on Paystack ↗</a>
       <a href="sprint-day1.html" class="n-btn n-btn-line n-btn-block" style="margin-top:.6rem">Try Day 1 free</a>
-      <p class="n-pay-hint" style="text-align:center">After paying, send your receipt and your track on WhatsApp.</p>
+      <a href="#start" class="n-link n-sprint-quizlink">Not sure it's for you? Take the 1-minute quiz</a>
+      <p class="n-pay-hint" style="text-align:center">After paying, send your receipt and your track on WhatsApp. <a href="programmes.html#enrol" class="n-link">Prefer a bank transfer?</a></p>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ WHAT AI DOES FOR YOU ═══════════════ -->
-<section class="n-section" id="for-you">
+
+
+
+
+
+
+
+
+
+
+<!-- ═══════════════ GO FURTHER ═══════════════ -->
+<section class="n-section n-alt" id="further">
   <div class="section-header reveal">
-    <span class="section-tag">What changes for you</span>
-    <h2 class="section-title">AI won't replace you.<br>Someone who uses it might.</h2>
-    <p class="section-desc">Pick what describes you best and see what you'll be doing with AI, and where in the programme you learn it.</p>
+    <span class="section-tag">After your 30 days</span>
+    <h2 class="section-title">Want to take it further?</h2>
+    <p class="section-desc">When the Sprint is done, these programmes take you deeper. Full details and prices are on the programmes page.</p>
   </div>
-
-  <div class="n-chips reveal" role="tablist" aria-label="Who are you?">
-    <button class="n-chip active" data-who="biz" role="tab" aria-selected="true">Business owner</button>
-    <button class="n-chip" data-who="pro" role="tab" aria-selected="false">9-to-5 professional</button>
-    <button class="n-chip" data-who="edu" role="tab" aria-selected="false">Teacher / lecturer</button>
-    <button class="n-chip" data-who="job" role="tab" aria-selected="false">Student / job seeker</button>
-    <button class="n-chip" data-who="cre" role="tab" aria-selected="false">Creator / freelancer</button>
+  <div class="n-further reveal">
+    <a class="n-fur" href="programmes.html#prog-expert"><span aria-hidden="true">🧠</span><b>AI Expert User</b><small>12 weeks across 30+ AI tools for your work and life.</small><em>Learn more →</em></a>
+    <a class="n-fur" href="programmes.html#prog-m2m"><span aria-hidden="true">💰</span><b>AI Mastery to Money</b><small>90 days to turn AI skills into a new income.</small><em>Learn more →</em></a>
+    <a class="n-fur" href="programmes.html#masterclasses"><span aria-hidden="true">⚡</span><b>AI Masterclasses</b><small>One skill in one sitting: WhatsApp leads, CVs, grants and more.</small><em>Learn more →</em></a>
   </div>
-
-  <div class="n-uses reveal">
-    <div class="n-use-panel active" data-panel="biz">
-      <div class="n-use"><span class="n-use-ico">✍️</span><div><h4>A week of posts and WhatsApp broadcasts, written in minutes</h4><p>Captions, promos and replies in your own brand voice.</p></div><span class="n-when">Week 1</span></div>
-      <div class="n-use"><span class="n-use-ico">🎨</span><div><h4>Flyers, price lists and product photos without a designer</h4><p>Canva AI, Firefly and MidJourney for everyday marketing.</p></div><span class="n-when">Week 2</span></div>
-      <div class="n-use"><span class="n-use-ico">🤖</span><div><h4>Customer enquiries answered automatically, day and night</h4><p>Connect WhatsApp, forms and spreadsheets so follow-ups happen on their own.</p></div><span class="n-when">Week 7</span></div>
-    </div>
-    <div class="n-use-panel" data-panel="pro">
-      <div class="n-use"><span class="n-use-ico">📄</span><div><h4>Long reports turned into a one-page brief</h4><p>Summarise, compare and pull out the numbers that matter.</p></div><span class="n-when">Week 1</span></div>
-      <div class="n-use"><span class="n-use-ico">🎙️</span><div><h4>Meeting notes and action points written for you</h4><p>Record, transcribe and share the summary before you leave the room.</p></div><span class="n-when">Week 3</span></div>
-      <div class="n-use"><span class="n-use-ico">📊</span><div><h4>Presentations and dashboards in a fraction of the time</h4><p>Gamma for slides, AI data tools for analysis, with no formulas to memorise.</p></div><span class="n-when">Weeks 3 & 6</span></div>
-    </div>
-    <div class="n-use-panel" data-panel="edu">
-      <div class="n-use"><span class="n-use-ico">📚</span><div><h4>Lesson plans, quizzes and marking guides on demand</h4><p>Adapted to your class level and syllabus.</p></div><span class="n-when">Week 1</span></div>
-      <div class="n-use"><span class="n-use-ico">🧠</span><div><h4>Study material and flashcards your students will use</h4><p>Personalised revision plans built from your notes.</p></div><span class="n-when">Week 10</span></div>
-      <div class="n-use"><span class="n-use-ico">🎓</span><div><h4>Your knowledge packaged into an online course</h4><p>Design, record and sell a course with AI doing the heavy lifting.</p></div><span class="n-when">Masterclass 9</span></div>
-    </div>
-    <div class="n-use-panel" data-panel="job">
-      <div class="n-use"><span class="n-use-ico">💼</span><div><h4>A CV and LinkedIn profile built for global remote roles</h4><p>Tailored to each job you apply for.</p></div><span class="n-when">Masterclass 5</span></div>
-      <div class="n-use"><span class="n-use-ico">🔎</span><div><h4>Research and assignments done faster and properly cited</h4><p>NotebookLM and Consensus for reading, sources and notes.</p></div><span class="n-when">Week 6</span></div>
-      <div class="n-use"><span class="n-use-ico">🗣️</span><div><h4>Interview practice with an AI that plays the recruiter</h4><p>Realistic questions and honest feedback on your answers.</p></div><span class="n-when">Week 1</span></div>
-    </div>
-    <div class="n-use-panel" data-panel="cre">
-      <div class="n-use"><span class="n-use-ico">🎬</span><div><h4>One long video turned into ten short clips</h4><p>Captions, hooks and formats for Reels, TikTok and Shorts.</p></div><span class="n-when">Week 4</span></div>
-      <div class="n-use"><span class="n-use-ico">🔊</span><div><h4>Voiceovers, music and talking-avatar videos</h4><p>ElevenLabs, Suno and HeyGen with no studio needed.</p></div><span class="n-when">Week 4</span></div>
-      <div class="n-use"><span class="n-use-ico">💸</span><div><h4>Your first paying clients on Fiverr and Upwork</h4><p>Gig setup, pricing and pitches that win work in dollars.</p></div><span class="n-when">Mastery to Money · Week 5</span></div>
-    </div>
-  </div>
-
-  <div class="n-center reveal"><a href="#programs" class="n-link">Find the programme that teaches this <span aria-hidden="true">→</span></a></div>
-</section>
-
-<!-- ═══════════════ PROGRAMMES ═══════════════ -->
-<section class="n-section n-alt" id="programs">
-  <div class="section-header reveal">
-    <span class="section-tag">Our programmes</span>
-    <h2 class="section-title">Three ways to learn.<br>One fits your goal.</h2>
-    <p class="section-desc">Not sure where to start? Tell us what you want and we'll point you to the right one.</p>
-  </div>
-
-  <div class="n-finder reveal" role="group" aria-label="What's your main goal?">
-    <span class="n-finder-q">My main goal is to…</span>
-    <a class="n-finder-btn n-finder-link" href="#sprint">get better at my job in 30 days</a>
-    <button class="n-finder-btn" data-goal="expert">use AI in my job or business</button>
-    <button class="n-finder-btn" data-goal="m2m">build a new income with AI</button>
-    <button class="n-finder-btn" data-goal="mc">learn one specific skill, fast</button>
-  </div>
-
-  <div class="n-programs">
-    <!-- AI EXPERT USER -->
-    <article class="n-prog reveal" id="prog-expert" data-prog="expert">
-      <div class="n-prog-flag">Recommended for you</div>
-      <div class="n-prog-ico">🧠</div>
-      <h3 class="n-prog-name">AI Expert User</h3>
-      <p class="n-prog-line">Become the person at work who knows AI.</p>
-      <div class="n-meta"><span>12 weeks</span><span>30 min / day</span><span>30+ tools</span></div>
-      <p class="n-prog-for"><strong>Best for:</strong> professionals, business owners and lifelong learners who want to be fluent in AI.</p>
-      <ul class="n-list">
-        <li>Write, research and summarise in minutes with Claude, ChatGPT and Gemini</li>
-        <li>Create images, video, voiceovers and slides with no design skills</li>
-        <li>Automate repetitive work with Zapier and Make.com</li>
-        <li>Every lesson explains the idea in plain English, gives you a ready-to-copy prompt, and links to free Anthropic courses for going deeper</li>
-        <li>Finish with your own AI solo-preneur capstone project</li>
-      </ul>
-      <details class="n-syl">
-        <summary>See the week-by-week syllabus</summary>
-        <div class="n-syl-body">
-          <h5>Month 1: Foundations</h5>
-          <ul><li><b>Week 1</b> How AI works and how to talk to it: prompting with Claude, ChatGPT &amp; Gemini, research you can check</li><li><b>Week 2</b> AI images &amp; design: Ideogram, Canva AI, Firefly, logo ideas</li><li><b>Week 3</b> Productivity: Projects, Gamma, planning, meeting notes</li><li><b>Week 4</b> Audio &amp; video: ElevenLabs, HeyGen, Suno, CapCut, Descript</li></ul>
-          <h5>Month 2: Business integration</h5>
-          <ul><li><b>Week 5</b> Marketing &amp; content: customer profile, content calendar, sales copy, SEO basics</li><li><b>Week 6</b> Research &amp; data: deep research, NotebookLM, spreadsheets and charts with AI</li><li><b>Week 7</b> Automation: Zapier, Make.com, your first AI workflow, WhatsApp follow-ups</li><li><b>Week 8</b> Websites &amp; apps: a one-page site, tools built by describing them, payments</li></ul>
-          <h5>Month 3: Advanced mastery</h5>
-          <ul><li><b>Week 9</b> Advanced video: Runway, Veo, Luma, a 30-second ad end to end</li><li><b>Week 10</b> Learning with AI: tutor mode, study plans, flashcards</li><li><b>Week 11</b> Life admin: travel, documents, budgeting, health and languages, used safely</li><li><b>Week 12</b> Capstone: your personal AI setup, AI agents, your AI rules and a mini launch</li></ul>
-        </div>
-      </details>
-      <a href="#pricing" class="n-btn n-btn-line n-goplan" data-plan="expert">See plans for this programme <span aria-hidden="true">↓</span></a>
-    </article>
-
-    <!-- AI MASTERY TO MONEY -->
-    <article class="n-prog n-prog-star reveal" id="prog-m2m" data-prog="m2m">
-      <div class="n-prog-badge">For new income</div>
-      <div class="n-prog-flag">Recommended for you</div>
-      <div class="n-prog-ico">💰</div>
-      <h3 class="n-prog-name">AI Mastery to Money</h3>
-      <p class="n-prog-line">Learn AI and turn it into income.</p>
-      <div class="n-meta"><span>90 days</span><span>3 phases</span><span>7 income models</span></div>
-      <p class="n-prog-for"><strong>Best for:</strong> anyone ready to earn with AI through freelancing, services or digital products.</p>
-      <div class="n-path" aria-label="Income milestones">
-        <div class="n-path-step"><span class="n-path-dot"></span><b>Days 1–30</b><small>First income · $300 target</small></div>
-        <div class="n-path-step"><span class="n-path-dot"></span><b>Days 31–60</b><small>First serious client · $1,500/mo</small></div>
-        <div class="n-path-step"><span class="n-path-dot"></span><b>Days 61–90</b><small>Scale up · $5,000+/mo</small></div>
-      </div>
-      <ul class="n-list">
-        <li>A lesson every day, an income task every week</li>
-        <li>Freelancing, clipping, automation, chatbots, agency, micro-SaaS and digital products</li>
-        <li>Client-acquisition sprints to land real, paying clients</li>
-        <li>Plain-English explanations, ready-to-copy prompts and links to free Anthropic courses in every lesson</li>
-      </ul>
-      <details class="n-syl">
-        <summary>See the week-by-week syllabus</summary>
-        <div class="n-syl-body">
-          <h5>Phase 1 (Days 1–30): Foundations + first income</h5>
-          <ul><li><b>Week 1</b> Text AI and your first digital product</li><li><b>Week 2</b> Image AI and your first Fiverr gig live</li><li><b>Week 3</b> Productivity AI and business systems</li><li><b>Week 4</b> Audio/video AI and content clipping</li></ul>
-          <h5>Phase 2 (Days 31–60): Business integration</h5>
-          <ul><li><b>Week 5</b> AI freelancing: scale on Fiverr &amp; Upwork</li><li><b>Week 6</b> Short-form content clipping service</li><li><b>Week 7</b> Automation services: Make.com, Zapier, Airtable, n8n</li><li><b>Week 8</b> Chatbots intro + digital products</li></ul>
-          <h5>Phase 3 (Days 61–90): Professional mastery</h5>
-          <ul><li><b>Week 9</b> Professional chatbot builds (typical market rates: $500–$3,000 per bot)</li><li><b>Week 10</b> AI agency: GoHighLevel, AdCreative.ai, Meta Ads</li><li><b>Week 11</b> Micro-SaaS: Lovable, Bubble, Stripe</li><li><b>Week 12</b> Capstone: the AI solo-preneur launch</li></ul>
-        </div>
-      </details>
-      <a href="#pricing" class="n-btn n-btn-gold n-goplan" data-plan="m2m">See plans for this programme <span aria-hidden="true">↓</span></a>
-    </article>
-
-    <!-- MASTERCLASSES -->
-    <article class="n-prog reveal" id="prog-mc" data-prog="mc">
-      <div class="n-prog-flag">Recommended for you</div>
-      <div class="n-prog-ico">⚡</div>
-      <h3 class="n-prog-name">AI Masterclasses</h3>
-      <p class="n-prog-line">One skill. One sitting. Done.</p>
-      <div class="n-meta"><span>9 classes</span><span>2–3 hours each</span><span>Pick any</span></div>
-      <p class="n-prog-for"><strong>Best for:</strong> people with a specific goal who want results without a full programme.</p>
-      <ul class="n-list">
-        <li>Deep-dives into the AI skills that pay the most</li>
-        <li>Book publishing, faceless YouTube, WhatsApp leads, grants and more</li>
-        <li>Take one, or build your own path class by class</li>
-      </ul>
-      <a href="#masterclasses" class="n-btn n-btn-line">See all 9 classes <span aria-hidden="true">↓</span></a>
-    </article>
-  </div>
-</section>
-
-<!-- ═══════════════ HOW IT WORKS ═══════════════ -->
-<section class="n-section" id="how">
-  <div class="section-header reveal">
-    <span class="section-tag">How it works</span>
-    <h2 class="section-title">Built for busy people.</h2>
-    <p class="section-desc">Every lesson fits into a lunch break or a commute, and every day ends with something real: a post, a design, a workflow, a pitch.</p>
-  </div>
-
-  <div class="n-day reveal" aria-label="A 30-minute lesson">
-    <div class="n-day-head"><span>Your 30 minutes</span><span class="n-day-clock" id="nClock">00:00</span></div>
-    <div class="n-day-bar">
-      <div class="n-seg n-seg-1"><b>10 min</b><span>Learn the idea</span></div>
-      <div class="n-seg n-seg-2"><b>15 min</b><span>Do it with a real AI tool</span></div>
-      <div class="n-seg n-seg-3"><b>5 min</b><span>Apply it to your work</span></div>
-    </div>
-  </div>
-
-  <div class="n-feats">
-    <div class="n-feat reveal"><span class="n-feat-ico">📱</span><h4>Phone, tablet or laptop</h4><p>Install the portal like an app and pick up exactly where you stopped.</p></div>
-    <div class="n-feat reveal"><span class="n-feat-ico">⏸️</span><h4>Your pace, no deadlines</h4><p>Miss a day, repeat a week. Your Day 1 starts when you do.</p></div>
-    <div class="n-feat reveal"><span class="n-feat-ico">🔥</span><h4>Streaks and progress</h4><p>See how far you've come, so you keep going.</p></div>
-    <div class="n-feat reveal"><span class="n-feat-ico">🆓</span><h4>Mostly free tools</h4><p>Paid tools are optional and clearly marked. No surprises.</p></div>
-  </div>
-
-  <div class="n-journey">
-    <div class="n-phase reveal"><span class="n-phase-n">01</span><h4>Foundations</h4><small>Days 1–30</small><p>Text, image, productivity and video AI. 20+ tools in your hands by Day 30.</p></div>
-    <div class="n-phase reveal"><span class="n-phase-n">02</span><h4>Business</h4><small>Days 31–60</small><p>Marketing, research, automation and building your own workflows.</p></div>
-    <div class="n-phase reveal"><span class="n-phase-n">03</span><h4>Mastery</h4><small>Days 61–90</small><p>Advanced video, chatbots and systems, then your capstone launch.</p></div>
-  </div>
-</section>
-
-<!-- ═══════════════ MASTERCLASSES ═══════════════ -->
-<section class="n-section n-alt" id="masterclasses">
-  <div class="section-header reveal">
-    <span class="section-tag">Focused intensives</span>
-    <h2 class="section-title">AI Masterclasses</h2>
-    <p class="section-desc">Nine standalone deep-dives of 2–3 hours each. Pick what you need and master it fast.</p>
-  </div>
-  <div class="n-mc-grid">
-    <div class="n-mc reveal"><span>01</span><h4>AI Social Media &amp; WhatsApp Lead Automations</h4><p>Automated lead generation across social platforms and WhatsApp.</p></div>
-    <div class="n-mc reveal"><span>02</span><h4>AI Book Writing &amp; Amazon KDP</h4><p>Write, format and publish income-generating books.</p></div>
-    <div class="n-mc reveal"><span>03</span><h4>Viral Short-Form Video Creation</h4><p>High-performing short videos with AI clipping and captions.</p></div>
-    <div class="n-mc reveal"><span>04</span><h4>AI Faceless YouTube Content</h4><p>A faceless channel run on AI content pipelines.</p></div>
-    <div class="n-mc reveal"><span>05</span><h4>AI Resume &amp; LinkedIn Makeovers</h4><p>CVs and profiles that win global remote opportunities.</p></div>
-    <div class="n-mc reveal"><span>06</span><h4>Automated CRM &amp; Lead Follow-ups</h4><p>CRM automations that nurture and convert leads 24/7.</p></div>
-    <div class="n-mc reveal"><span>07</span><h4>AI Business Proposals &amp; Grants</h4><p>Winning proposals, pitch decks and grant applications.</p></div>
-    <div class="n-mc reveal"><span>08</span><h4>AI Data Analysis &amp; Dashboards</h4><p>Analyse data and build dashboards without code.</p></div>
-    <div class="n-mc reveal"><span>09</span><h4>AI E-Learning &amp; Course Creation</h4><p>Design, build and sell online courses with AI.</p></div>
-  </div>
-  <div class="n-center reveal"><a href="#pricing" class="n-btn n-btn-line n-goplan" data-plan="mc">See masterclass pricing <span aria-hidden="true">↓</span></a></div>
-</section>
-
-<!-- ═══════════════ PRICING (the only place prices appear) ═══════════════ -->
-<section class="n-section" id="pricing">
-  <div class="section-header reveal">
-    <span class="section-tag">Pricing</span>
-    <h2 class="section-title">Choose your plan</h2>
-    <p class="section-desc">Every plan includes the learning portal on any device. Pay monthly, or once for all three months.</p>
-  </div>
-
-  <div class="n-ptabs reveal" role="tablist" aria-label="Programme">
-    <button class="n-ptab" data-tab="sprint" role="tab" aria-selected="false">30-Day Sprint</button>
-    <button class="n-ptab" data-tab="expert" role="tab" aria-selected="false">AI Expert User</button>
-    <button class="n-ptab active" data-tab="m2m" role="tab" aria-selected="true">AI Mastery to Money</button>
-    <button class="n-ptab" data-tab="mc" role="tab" aria-selected="false">Masterclasses</button>
-  </div>
-
-  <div class="n-ppanel" data-tabpanel="sprint" hidden>
-    <div class="n-plans n-plans-1">
-      <div class="n-plan">
-        <div class="n-plan-tag">30-Day Professional AI Sprint</div>
-        <h3 class="n-plan-name">One payment, 30 days</h3>
-        <div class="n-price"><span data-sprint-price>₦10,000</span><small>one-off</small></div>
-        <p class="n-plan-note">For using AI to do your current job better: operations, projects and events, sales, freelance and creative work, small business, or study.</p>
-        <ul class="n-list">
-          <li>30 daily lessons (5 min learn, 15 min practise, 10 min real work)</li>
-          <li>Six tracks with prompts written for your field</li>
-          <li>Daily WhatsApp nudge with the day's prompt</li>
-          <li>Practical portfolio and certificate at the end</li>
-        </ul>
-        <a href="https://paystack.shop/pay/47k86yk7f2" data-sprint-pay target="_blank" rel="noopener" class="n-btn n-btn-gold n-btn-block" data-programme="ai-sprint">Join the Sprint · Pay on Paystack ↗</a>
-        <p class="n-pay-hint" style="text-align:center"><a href="sprint-day1.html" class="n-link">Try Day 1 free first</a></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="n-ppanel" data-tabpanel="expert" hidden>
-    <div class="n-plans n-plans-1">
-      <div class="n-plan">
-        <div class="n-plan-tag">AI Expert User</div>
-        <h3 class="n-plan-name">Monthly Access</h3>
-        <div class="n-price">₦25,000<small>/ month</small></div>
-        <p class="n-plan-note">Pay ₦25,000 each month for 3 months. For using AI in the job or business you already have.</p>
-        <ul class="n-list">
-          <li>The full 12-week curriculum, 30+ AI tools step by step</li>
-          <li>3 business masterclasses included: WhatsApp Lead Automations, CRM &amp; Lead Follow-ups, Data &amp; Dashboards</li>
-          <li>Prompt of the Day library and weekly AI updates</li>
-          <li>Self-paced learning portal</li>
-          <li>Questions answered on WhatsApp</li>
-        </ul>
-        <p class="n-plan-note"><b>Choose this if</b> you want posts, flyers, replies, reports and slides done faster. Want a new income instead? See AI Mastery to Money.</p>
-        <a href="https://paystack.shop/pay/aiexpertuser" target="_blank" rel="noopener" class="n-btn n-btn-gold n-btn-block" data-programme="expert-user">Enrol now · Pay on Paystack ↗</a>
-        <p class="n-pay-hint" style="text-align:center">Enter ₦25,000 on the Paystack page.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="n-ppanel" data-tabpanel="m2m">
-    <div class="n-plans n-plans-3">
-      <div class="n-plan">
-        <div class="n-plan-tag">Learn on your own</div>
-        <h3 class="n-plan-name">Self-Study</h3>
-        <div class="n-price">₦50,000<small>/ month</small></div>
-        <ul class="n-list">
-          <li>The full 90-day income curriculum with a weekly income task</li>
-          <li>All 9 masterclasses included</li>
-          <li>Tool Library + Prompt Vault</li>
-          <li>Questions answered on WhatsApp</li>
-        </ul>
-        <p class="n-plan-note">Pay ₦50,000 each month for 3 months. <b>Choose this if</b> you want to sell AI services, content or digital products. Want AI for your current work? See AI Expert User.</p>
-        <a href="https://paystack.shop/pay/AIM2MSelfStudy" target="_blank" rel="noopener" class="n-btn n-btn-line n-btn-block" data-programme="m2m-self-study">Enrol in Self-Study ↗</a>
-        <p class="n-pay-hint" style="text-align:center">Enter ₦50,000 on the Paystack page.</p>
-      </div>
-      <div class="n-plan n-plan-star">
-        <div class="n-plan-badge">Recommended</div>
-        <div class="n-plan-tag">Learn with support</div>
-        <h3 class="n-plan-name">Standard</h3>
-        <div class="n-price">₦300,000<small>for all 3 months</small></div>
-        <ul class="n-list">
-          <li>Everything in Self-Study</li>
-          <li>Weekly 30-minute group session</li>
-          <li>Private accountability community</li>
-          <li>Live Q&amp;A support</li>
-          <li>Milestone review after each phase</li>
-        </ul>
-        <a href="https://paystack.shop/pay/aim2mstandard" target="_blank" rel="noopener" class="n-btn n-btn-gold n-btn-block">Enrol in Standard ↗</a>
-      </div>
-      <div class="n-plan">
-        <div class="n-plan-tag">Fastest path to clients</div>
-        <h3 class="n-plan-name">VIP</h3>
-        <div class="n-price">₦500,000<small>for all 3 months</small></div>
-        <ul class="n-list">
-          <li>Everything in Standard</li>
-          <li>1:1 kickoff strategy session</li>
-          <li>Done-for-you starter templates</li>
-          <li>Priority support channel</li>
-        </ul>
-        <a href="https://paystack.shop/pay/AIM2Mvip" target="_blank" rel="noopener" class="n-btn n-btn-line n-btn-block">Enrol in VIP ↗</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="n-ppanel" data-tabpanel="mc" hidden>
-    <div class="n-plans n-plans-1">
-      <div class="n-plan">
-        <div class="n-plan-tag">AI Masterclasses</div>
-        <h3 class="n-plan-name">Per Masterclass</h3>
-        <div class="n-price">₦30,000<small>/ class</small></div>
-        <ul class="n-list">
-          <li>Choose any of the 9 classes</li>
-          <li>2–3 hour focused intensive</li>
-          <li>Practical, tool-by-tool walkthrough</li>
-          <li>Tell us which class when you send your receipt</li>
-        </ul>
-        <a href="https://paystack.shop/pay/aishortcourses" target="_blank" rel="noopener" class="n-btn n-btn-gold n-btn-block">Book a masterclass ↗</a>
-        <p class="n-plan-note">Tip: all 9 classes are included with Mastery to Money, and 3 business classes with AI Expert User.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="n-steps reveal" id="enrol">
-    <h3 class="n-steps-title">How enrolment works</h3>
-    <ol>
-      <li><span>1</span><div><b>Pay securely</b><p>On Paystack (card, transfer or USSD) or by direct bank transfer.</p></div></li>
-      <li><span>2</span><div><b>Send your receipt</b><p>Message us on WhatsApp with your name and programme.</p></div></li>
-      <li><span>3</span><div><b>Get your access code</b><p>Usually sent the same business day after we confirm your payment. Log in and start Day 1.</p></div></li>
-    </ol>
-
-    <div class="n-pay-grid">
-      <div class="n-pay-card">
-        <div class="n-pay-kicker">Option 1</div>
-        <h4 class="n-pay-title">Pay on Paystack</h4>
-        <p class="n-pay-sub">Card, bank transfer or USSD. Pick your programme:</p>
-        <div class="n-pay-links">
-          <a href="https://paystack.shop/pay/47k86yk7f2" data-sprint-pay target="_blank" rel="noopener" data-programme="ai-sprint"><span>30-Day AI Sprint</span><b><span data-sprint-price>₦10,000</span></b></a>
-          <a href="https://paystack.shop/pay/aiexpertuser" target="_blank" rel="noopener" data-programme="expert-user"><span>AI Expert User</span><b>₦25,000<small>/mo</small></b></a>
-          <a href="https://paystack.shop/pay/AIM2MSelfStudy" target="_blank" rel="noopener" data-programme="m2m-self-study"><span>Mastery to Money · Self-Study</span><b>₦50,000<small>/mo</small></b></a>
-          <a href="https://paystack.shop/pay/aim2mstandard" target="_blank" rel="noopener" data-programme="m2m-standard"><span>Mastery to Money · Standard</span><b>₦300,000</b></a>
-          <a href="https://paystack.shop/pay/AIM2Mvip" target="_blank" rel="noopener" data-programme="m2m-vip"><span>Mastery to Money · VIP</span><b>₦500,000</b></a>
-          <a href="https://paystack.shop/pay/aishortcourses" target="_blank" rel="noopener" data-programme="masterclass"><span>One masterclass</span><b>₦30,000</b></a>
-        </div>
-        <p class="n-pay-hint">Enter the amount shown here on the Paystack page.</p>
-      </div>
-
-      <div class="n-pay-card">
-        <div class="n-pay-kicker">Option 2</div>
-        <h4 class="n-pay-title">Direct bank transfer</h4>
-        <p class="n-pay-sub">Tap Copy, then paste into your bank app.</p>
-        <div class="n-acct">
-          <div class="n-acct-row"><span class="n-acct-k">Bank</span><span class="n-acct-v">Guaranty Trust Bank (GTBank)</span></div>
-          <div class="n-acct-row"><span class="n-acct-k">Account number</span><span class="n-acct-v n-mono">0710642377</span><button type="button" class="n-copy" data-copy="0710642377" aria-label="Copy account number"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span>Copy</span></button></div>
-          <div class="n-acct-row"><span class="n-acct-k">Account name</span><span class="n-acct-v">Ona Services Limited</span><button type="button" class="n-copy" data-copy="Ona Services Limited" aria-label="Copy account name"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span>Copy</span></button></div>
-          <div class="n-acct-row"><span class="n-acct-k">Reference</span><span class="n-acct-v">Your name + programme</span></div>
-        </div>
-        <button type="button" class="n-btn n-btn-line n-btn-block n-copy-all" data-copy="Bank: Guaranty Trust Bank (GTBank)&#10;Account number: 0710642377&#10;Account name: Ona Services Limited&#10;Reference: your name + programme"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span>Copy all details</span></button>
-      </div>
-    </div>
-
-    <p class="n-wall-note">AI Made Simple is run by Ona Services Ltd. You'll see this name on Paystack and on your bank statement.</p>
-
-    <a href="https://wa.me/2347033134979?text=Hello%20AI%20Made%20Simple%2C%20I%27ve%20just%20paid%20for%20a%20programme.%20My%20name%20is%3A%20%0AProgramme%3A%20%0AI%27m%20attaching%20my%20payment%20receipt." target="_blank" rel="noopener" class="n-btn n-btn-gold n-receipt-btn">Send your receipt on WhatsApp <span aria-hidden="true">→</span></a>
-  </div>
+  <div class="n-center reveal"><a href="programmes.html" class="n-btn n-btn-line">See all programmes &amp; prices <span aria-hidden="true">→</span></a></div>
 </section>
 
 <section id="faq" class="faq-section">
   <div class="section-header reveal">
     <span class="section-tag">Got Questions?</span>
     <h2 class="section-title">Frequently Asked Questions</h2>
-    <p class="section-desc">Everything you need to know before you take the most important step in your AI journey.</p>
+    <p class="section-desc">Quick answers about the 30-Day AI Sprint. Questions about the other programmes are answered on the <a href="programmes.html#faq" class="n-link">programmes page</a>.</p>
     <div class="divider"></div>
   </div>
 
@@ -1797,56 +1564,8 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
       </button>
       <div class="faq-answer">
         <div class="faq-answer-inner">
-          <p><strong>Absolutely not.</strong> AI Made Simple was built specifically for people who have never written a single line of code. Every tool in our curriculum has a free or trial tier, works in a web browser, and is operated by clicking — not coding.</p>
-          <div class="faq-highlight">If you can send a WhatsApp message and use Google, you already have 100% of the technical skills needed to start Day 1.</div>
-          <p>The course is written for teachers, traders, civil servants, parents and business owners with no technical background. By Week 2 of the syllabus you are generating images, writing copy and building simple automation workflows.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Q2 -->
-    <div class="faq-item reveal">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        <span class="faq-q-text">How exactly does the 30-minutes-a-day model work? Can I really learn AI that fast?</span>
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        <div class="faq-answer-inner">
-          <p>The 30-minute model is not a shortcut — it is a <strong>precision learning system</strong>. Every daily lesson is structured into three parts: a 10-minute concept introduction, a 15-minute hands-on tool exercise, and a 5-minute business application reflection.</p>
-          <p><strong>Short, regular, hands-on sessions are easier to keep up than long study binges</strong>, and you practise each skill the day you learn it. You do not need to clear your calendar. You need to protect 30 minutes — the length of a lunch break or a commute.</p>
-          <div class="faq-highlight">By Day 30 alone, you will have hands-on experience with 20+ AI tools. That is more structured practice than most people get from months of casual use.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Q3 -->
-    <div class="faq-item reveal">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Is the income target of $5,000/month in 90 days realistic for a Nigerian?</span>
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        <div class="faq-answer-inner">
-          <p>It is a <strong>target, not a promise</strong>. Results depend on your effort, your skills and your market, and many people will earn less. What works in your favour is that AI services are often priced in dollars. A $500 chatbot project from a UK or US client pays you the same whether you are in Lagos, Abuja, or Port Harcourt. Your cost of living is significantly lower than your client's, which means your profit margin is higher.</p>
-          <p>The programme does not promise overnight millions. It gives you a <strong>structured 90-day execution plan</strong> with daily income tasks and weekly targets. The $300, $1,500 and $5,000 figures are milestones to aim for, not guaranteed outcomes.</p>
-          <div class="faq-highlight">The income models — freelancing, content clipping, automation, chatbots, agency, SaaS, and digital products — are all accessible from Nigeria with a laptop and internet.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Q4 -->
-    <div class="faq-item reveal">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        <span class="faq-q-text">What is the difference between AI Expert User, AI Mastery to Money, and the Masterclasses?</span>
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        <div class="faq-answer-inner">
-          <p><strong>AI Expert User</strong> is for people who want to become highly competent with AI for their current career, business, or daily life — without a specific goal of creating a new income stream from AI. Think of it as becoming fluent in a powerful new language.</p>
-          <p><strong>AI Mastery to Money</strong> is for people who want to use AI to build a new income. It layers business strategy, client acquisition, pricing, and service delivery on top of the same tool training — and runs for the full 90 days across three phases.</p>
-          <p><strong>AI Masterclasses</strong> are standalone 2–3 hour intensives. They are ideal if you already have a specific use case in mind — writing a book, building a YouTube channel, generating leads on WhatsApp — and want to go deep on that one skill fast, without a full programme commitment.</p>
-          <p>AI Expert User costs ₦25,000 a month and includes three business masterclasses. Mastery to Money Self-Study costs ₦50,000 a month and includes all nine.</p>
-          <div class="faq-highlight">Not sure which fits you? Message us on WhatsApp and we will tell you in under 5 minutes which programme matches your goals.</div>
+          <p><strong>Not at all.</strong> If you can send a WhatsApp message and use Google, you can do the Sprint. Everything happens in free apps like ChatGPT, Claude and Gemini, by typing or talking. No coding.</p>
+          <div class="faq-highlight">Day 1 walks you through setting up the apps on your phone, step by step. You can try it free before paying.</div>
         </div>
       </div>
     </div>
@@ -1859,9 +1578,8 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
       </button>
       <div class="faq-answer">
         <div class="faq-answer-inner">
-          <p>Your access code is <strong>usually sent the same business day</strong> after we confirm your payment. Send proof of payment on WhatsApp and our team activates your access manually. Payments show as Ona Services Ltd, the company that runs AI Made Simple.</p>
-          <p>The learning portal is a clean, structured dashboard that tracks your daily progress, shows today's task, measures your streak, and shows your completion percentage across all 90 days. It works on any device — phone, tablet, or laptop — and can be saved to your home screen as an app.</p>
-          <div class="faq-highlight">Everything is self-paced. You can start on Day 1 on a Monday and take a day off on a Sunday — the platform remembers exactly where you are.</div>
+          <p>Your access code is <strong>usually sent the same business day</strong> after we confirm your payment. Pay on Paystack (or by bank transfer), then send your receipt and your track on WhatsApp. Payments show as Ona Services Ltd, our parent company.</p>
+          <p>You log in to the learning portal on your phone or laptop. It shows today's lesson for your track, a copy button for each prompt, and your progress through the 30 days. You can save it to your home screen like an app.</p>
         </div>
       </div>
     </div>
@@ -1869,14 +1587,12 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
     <!-- Q6 -->
     <div class="faq-item reveal">
       <button class="faq-question" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Will the AI tools taught in this programme cost me extra money?</span>
+        <span class="faq-q-text">Will I need to pay for AI tools?</span>
         <span class="faq-icon">+</span>
       </button>
       <div class="faq-answer">
         <div class="faq-answer-inner">
-          <p>The curriculum is designed to use <strong>free or freemium tools wherever possible</strong>, especially in Phase 1. Tools like ChatGPT (free tier), Gemini, Ideogram, Canva, CapCut, Fireflies, and Make.com all have fully functional free plans that are sufficient for the learning exercises.</p>
-          <p>As you move into Phase 2 and Phase 3 and begin working with paying clients, certain tools become worth the investment — for example, MidJourney at $10/month or GoHighLevel at $97/month. But by then, a single client project typically covers these costs several times over.</p>
-          <div class="faq-highlight">We clearly mark tool costs in the curriculum so you always know what is free and what is optional. You will never be surprised.</div>
+          <p><strong>No.</strong> Every Sprint lesson works with the free plans of ChatGPT, Claude or Gemini, plus free tools like Google Sheets, Canva and NotebookLM. Paid plans are optional and we tell you when one would help.</p>
         </div>
       </div>
     </div>
@@ -1889,39 +1605,8 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
       </button>
       <div class="faq-answer">
         <div class="faq-answer-inner">
-          <p><strong>Yes — this programme was built for exactly this situation.</strong> The 30-minute daily structure means you never need to carve out large chunks of time. It is designed for bankers, civil servants, teachers and 9-to-5 employees who can do the daily lesson during a lunch break, in the evening or as a weekend catch-up.</p>
-          <p>The income activities in the early weeks — publishing a digital product, listing a Fiverr gig — are also things you can do evenings and weekends. By the time your income starts to grow meaningfully in Phase 2 and 3, you will naturally decide whether you want to transition, scale, or just earn on the side.</p>
-          <div class="faq-highlight">The programme builds at a pace that respects your existing life — not one that requires you to abandon it.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Q8 -->
-    <div class="faq-item reveal">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        <span class="faq-q-text">What makes AI Made Simple different from YouTube tutorials or other online AI courses?</span>
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        <div class="faq-answer-inner">
-          <p>YouTube tutorials give you random information. Other online courses give you content to watch. <strong>AI Made Simple gives you a system with daily execution steps, real business assets, and income targets.</strong></p>
-          <p>Three things set us apart. First, the curriculum is structured for the Nigerian and African market — the tools, payment methods, client acquisition channels, and income models are all relevant to your context, not just US or UK scenarios. Second, every single lesson produces a tangible output — a product, a gig, a pitch, a workflow — not just knowledge. Third, the programme is sequenced: Day 1 builds the foundation for Day 7, which builds the foundation for Day 30. You are not choosing what to watch next — you are following a set roadmap.</p>
-          <div class="faq-highlight">The question is not whether you can find AI content for free. You can. The question is whether random content will get you to your first client, your first income, and your first scalable business in 90 days. Our structure will.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Q9 -->
-    <div class="faq-item reveal">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        <span class="faq-q-text">What if I fall behind? Can I restart or pause my progress?</span>
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        <div class="faq-answer-inner">
-          <p>Life happens. The platform is fully self-paced, meaning <strong>your Day 1 starts when you start</strong> — not on a fixed calendar. If you miss a day, the lesson is there waiting. If you need to repeat a week, you can. There are no penalties, no group deadlines, and no pressure to keep up with other students.</p>
-          <p>Your streak and progress are saved in your account so you always know exactly where you are. The dashboard also shows you how far you've come — not just how far you have left to go — which keeps motivation high even when life gets busy.</p>
-          <div class="faq-highlight">The goal is completion, not speed. A student who finishes in 120 days still has every tool, skill, and business asset they built along the way.</div>
+          <p><strong>Yes, that's who it's for.</strong> Each day is 30 minutes: 5 to learn, 15 to practise and 10 to use it on real work. Many learners do it at lunch or in the evening. Because you practise on your actual tasks, the Sprint saves you time at work while you're doing it.</p>
+          <div class="faq-highlight">Miss a day? Pick up where you stopped. A new lesson unlocks every 24 hours, and you can switch on fast-track to open all 30.</div>
         </div>
       </div>
     </div>
@@ -1934,9 +1619,8 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
       </button>
       <div class="faq-answer">
         <div class="faq-answer-inner">
-          <p>You are not alone. Support levels depend on your chosen tier. <strong>Self-Study students</strong> have access to the WhatsApp enquiries channel for general questions. <strong>Standard students</strong> also attend a weekly 30-minute group session with live Q&A. <strong>VIP students</strong> get a direct 1:1 kickoff session, done-for-you templates, and priority response from the mentorship team.</p>
-          <p>Regardless of tier, you can always reach us on WhatsApp for time-sensitive questions. We pride ourselves on fast, practical responses — not automated bots.</p>
-          <div class="faq-highlight">The higher your tier, the faster you progress — because accountability and direct guidance compress the learning curve dramatically.</div>
+          <p>Yes. Message us on WhatsApp any time you're stuck and a person will reply. You can also opt in to a short daily WhatsApp nudge with the day's lesson and prompt.</p>
+          <p>Want more hands-on help? Choose <strong>guided one-on-one</strong> in the quiz above and we'll suggest a plan with personal sessions.</p>
         </div>
       </div>
     </div>
@@ -1962,9 +1646,9 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
   <canvas id="nNeural2" aria-hidden="true"></canvas>
   <div class="n-final-inner reveal">
     <h2>Your Day 1 is only <em>30 minutes</em> away.</h2>
-    <p>Choose a programme today, get your access code, and do your first lesson tonight.</p>
+    <p>Take the 1-minute quiz, or start the free Day 1 lesson tonight.</p>
     <div class="n-cta n-cta-center">
-      <a href="#programs" class="n-btn n-btn-gold">Choose my programme <span aria-hidden="true">→</span></a>
+      <a href="#start" class="n-btn n-btn-gold">Get started <span aria-hidden="true">→</span></a>
       <a href="https://wa.me/2347033134979?text=Hello%20AI%20Made%20Simple%2C%20I%27d%20like%20help%20choosing%20the%20right%20programme%20for%20me." target="_blank" rel="noopener" class="n-btn n-btn-ghost">Ask us on WhatsApp</a>
     </div>
   </div>
@@ -1973,13 +1657,14 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">AI Made Simple</div>
-    <div class="footer-copy">© 2026 Ona Services Ltd, the company that runs AI Made Simple. Coded by Oluwaseyi Ashiru.</div>
+    <div class="footer-copy">© 2026 Ona Services Ltd. AI Made Simple School is a subsidiary of Ona Services Limited. Coded by Oluwaseyi Ashiru.</div>
     <div class="footer-links">
       <a href="index.html">Home</a>
+      <a href="programmes.html">Programmes</a>
+      <a href="programmes.html#pricing">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
       <a href="login.html">Login</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
       <a href="admin-login.html">Admin</a>
     </div>
     <button type="button" class="footer-cache" id="clearCacheBtn" title="Site looks outdated or broken? This loads the latest version. Your login and progress are kept.">↻ Clear cache &amp; reload</button>
@@ -2150,20 +1835,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Live AI console ── */
   var EXAMPLES = [
-    { skill: 'Day 1 · the Persona–Context–Task formula',
+    { skill: 'Sprint Day 2 · Small Business track',
       prompt: 'You are a marketing expert. My bakery in Lekki has 20% off all cakes until 24 December. Write a short WhatsApp broadcast that gets replies.',
       answer: '🎄 Christmas came early at [Your Bakery]!\n\nEvery cake is 20% OFF until 24 Dec: birthdays, weddings, or "just because".\n\nReply CAKE and we\'ll send this week\'s menu. Daily slots are limited 🍰' },
-    { skill: 'Day 4 · summarising long documents',
+    { skill: 'Sprint Day 18 · Corporate & Operations track',
       prompt: 'Summarise this 40-page staff policy into 4 bullet points my manager can read in one minute.',
       answer: '• Hybrid work starts 1 January: 3 office days, 2 remote.\n• Leave requests need 2 weeks\' notice in the HR portal.\n• Overtime is paid only when approved in advance.\n• All staff complete data-privacy training by 31 March.' },
-    { skill: 'Week 5 · content planning with AI',
-      prompt: 'Plan 5 days of Instagram posts for my Abuja fashion brand launching new ankara jackets.',
-      answer: 'Mon: Teaser close-up of the fabric, "Something bold is coming"\nTue: Behind the scenes with our tailor\nWed: Launch reveal + price + order link\nThu: Reel: 3 ways to style one jacket\nFri: Flash offer for the first 20 orders' }
+    { skill: 'Sprint Day 10 · Project & Event Management track',
+      prompt: 'List the top 5 risks for a 300-guest outdoor product launch in Abuja next month, with a backup plan for each.',
+      answer: '1. Rain → book a canopy now; confirm the indoor hall as fallback\n2. Power cut → two generators, fuel bought the day before\n3. Vendor no-show → a backup caterer on standby\n4. Late guests → 30-minute buffer before the keynote\n5. Sound failure → test at 2pm; spare microphones' }
   ];
   var elP = document.getElementById('nPrompt'), elA = document.getElementById('nAnswer'),
       elS = document.getElementById('nSkill'), think = document.getElementById('nThinking'),
       cP = document.getElementById('nCaretP'), cA = document.getElementById('nCaretA'),
       tabs = document.querySelectorAll('.n-tab'), cur = 0, timers = [], visible = true;
+  /* Lock the chat box to the height of its tallest example. Without this, the box grew and shrank as
+     examples changed and pushed the whole page up and down on phones (Safari has no scroll anchoring). */
+  var body = elP ? elP.closest('.n-console-body') : null, lockedW = 0;
+  function lockHeight(){
+    if(!body) return;
+    var w = body.clientWidth; if(w === lockedW) return; lockedW = w;
+    var keepP = elP.textContent, keepA = elA.textContent, max = 0;
+    body.style.height = 'auto';
+    EXAMPLES.forEach(function(ex){ elP.textContent = ex.prompt; elA.textContent = ex.answer; max = Math.max(max, body.scrollHeight); });
+    elP.textContent = keepP; elA.textContent = keepA;
+    body.style.height = Math.ceil(max + 8) + 'px';
+  }
+  lockHeight();
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ lockedW = 0; lockHeight(); });
+  window.addEventListener('resize', function(){ lockHeight(); });
   function clear(){ timers.forEach(clearTimeout); timers = []; }
   function later(fn, ms){ timers.push(setTimeout(fn, ms)); }
   function setTab(i){ tabs.forEach(function(t, k){ t.classList.toggle('active', k===i); }); }
@@ -2336,6 +2036,83 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
   </script>
+<script>
+/* ═══ Rotating headline + Get-started quiz ═══ */
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rot = document.getElementById('nRot');
+  if(rot && !reduce){
+    var ws = rot.querySelectorAll('em'), i = 0;
+    setInterval(function(){
+      if(document.hidden) return;
+      ws[i].classList.remove('on'); ws[i].setAttribute('aria-hidden','true');
+      i = (i + 1) % ws.length;
+      ws[i].classList.add('on'); ws[i].removeAttribute('aria-hidden');
+    }, 2200);
+  }
+
+  var form = document.getElementById('nQuiz'); if(!form) return;
+  var cfg = window.AMS_SPRINT_CFG || {payUrl:'https://paystack.shop/pay/47k86yk7f2', priceText:'₦10,000'};
+  var WA = 'https://wa.me/2347033134979?text=';
+  var NAMES = {ops:'Corporate & Operations', pm:'Project & Event Management', sales:'Sales & Customer Service', creative:'Freelancers & Creatives', biz:'Small Business Owners', student:'Students, Researchers & Educators', other:'Something else'};
+  var A = {};
+  var qs = form.querySelectorAll('.n-q'), bars = form.querySelectorAll('.n-q-prog i'), out = document.getElementById('qResult');
+  function show(n){
+    qs.forEach(function(q){ if(+q.dataset.q <= n) q.classList.add('on'); });
+    bars.forEach(function(b, k){ b.classList.toggle('on', k < n); });
+    var q = form.querySelector('.n-q[data-q="'+n+'"]');
+    if(q && n > 1){ var f = q.querySelector('button,select'); if(f) f.focus({preventScroll:true}); }
+  }
+  function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function result(){
+    var t = A.track, tn = NAMES[t] || 'your field', day1 = 'sprint-day1.html' + (t && t !== 'other' ? '?track=' + t : '');
+    var summary = 'Track: ' + tn + '. 30 min a day: ' + A.commit + '. Learning style: ' + A.mode + '. Budget: ' + A.invest + '.';
+    var h;
+    if(A.commit === 'no' || A.invest === 'no'){
+      h = '<span class="n-q-tag">Our suggestion</span><h3>Start free, and come back when you\'re ready.</h3>'
+        + '<p>No pressure at all. Do the free Day 1 lesson for ' + esc(tn) + ' today. It takes 30 minutes and you keep what you make. Whenever you\'re ready for the full 30 days, we\'ll be here.</p>'
+        + '<div class="n-q-actions"><a class="n-btn n-btn-gold" href="' + day1 + '">Try Day 1 free <span aria-hidden="true">→</span></a>'
+        + '<a class="n-btn n-btn-line" target="_blank" rel="noopener" href="' + WA + encodeURIComponent('Hello AI Made Simple, please remind me about the 30-Day AI Sprint later. ' + summary) + '">Remind me on WhatsApp</a></div>';
+    } else if(A.mode === 'guided'){
+      h = '<span class="n-q-tag">Best fit: guided one-on-one</span><h3>Let\'s set up a one-on-one plan for you.</h3>'
+        + '<p>You\'d like a guide. Message us and we\'ll recommend a plan for ' + esc(tn) + ': usually the 30-Day AI Sprint with one-on-one coaching, or a programme with live support. We\'ll confirm the price before you pay anything.</p>'
+        + '<div class="n-q-actions"><a class="n-btn n-btn-gold" target="_blank" rel="noopener" href="' + WA + encodeURIComponent('Hello AI Made Simple, I took the quiz and I\'d like guided one-on-one sessions. ' + summary + ' My name is: ') + '">Book a one-on-one on WhatsApp <span aria-hidden="true">↗</span></a>'
+        + '<a class="n-btn n-btn-line" href="programmes.html#pricing">See programmes with live support</a></div>';
+    } else {
+      h = '<span class="n-q-tag">Best fit: self-paced</span><h3>The 30-Day AI Sprint is your best start.</h3>'
+        + '<p>Thirty minutes a day on the learning portal, with lessons written for ' + esc(tn) + '. One payment of <b>' + esc(cfg.priceText) + '</b> for the full 30 days. After paying, send your receipt on WhatsApp and you\'ll get your access code, usually the same business day.</p>'
+        + '<div class="n-q-actions"><a class="n-btn n-btn-gold" target="_blank" rel="noopener" data-programme="ai-sprint" href="' + cfg.payUrl + '">Join the Sprint · ' + esc(cfg.priceText) + ' <span aria-hidden="true">↗</span></a>'
+        + '<a class="n-btn n-btn-line" href="' + day1 + '">Try Day 1 free first</a></div>'
+        + '<p style="margin-top:.9rem;font-size:.85rem">Paid already? <a class="n-link" target="_blank" rel="noopener" href="' + WA + encodeURIComponent('Hello AI Made Simple, I\'ve paid for the 30-Day AI Sprint. ' + summary + ' My name is: ') + '">Send your receipt on WhatsApp</a> · <a class="n-link" href="programmes.html#enrol">Pay by bank transfer</a></p>';
+    }
+    out.innerHTML = h + '<button type="button" class="n-q-restart" id="qRestart">Start the quiz again</button>';
+    out.hidden = false;
+    bars.forEach(function(b){ b.classList.add('on'); });
+    document.getElementById('qRestart').addEventListener('click', restart);
+    var hd = out.querySelector('h3'); if(hd){ hd.setAttribute('tabindex','-1'); hd.focus({preventScroll:true}); }
+  }
+  function restart(){
+    A = {}; out.hidden = true; out.innerHTML = '';
+    document.getElementById('qTrack').value = '';
+    form.querySelectorAll('[aria-pressed]').forEach(function(b){ b.setAttribute('aria-pressed','false'); });
+    qs.forEach(function(q){ q.classList.toggle('on', q.dataset.q === '1'); });
+    bars.forEach(function(b, k){ b.classList.toggle('on', k < 1); });
+  }
+  document.getElementById('qTrack').addEventListener('change', function(){
+    A.track = this.value; if(!A.track) return;
+    if(A.track !== 'other'){ try{ localStorage.setItem('ams-sprint-track', A.track); }catch(e){} }
+    show(2);
+  });
+  form.querySelectorAll('.n-q-opts button').forEach(function(b){ b.setAttribute('aria-pressed','false'); b.addEventListener('click', function(){
+    var q = +b.closest('.n-q').dataset.q;
+    b.parentElement.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed', String(x === b)); });
+    A[{2:'commit',3:'mode',4:'invest'}[q]] = b.dataset.v;
+    if(q < 4) show(q + 1);
+    if(A.track && A.commit && A.mode && A.invest) result();
+  }); });
+  show(1);
+})();
+</script>
 <script>
 /* Copy buttons for the bank details */
 (function(){
