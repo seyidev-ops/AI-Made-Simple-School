@@ -1170,6 +1170,88 @@ html.no-anim *,html.no-anim *::before,html.no-anim *::after{transition:none!impo
 .n-band-cta{display:flex;flex-wrap:wrap;gap:.6rem;}
 .n-sprint-band{padding-top:clamp(2rem,5vw,3rem);padding-bottom:clamp(2rem,5vw,3rem);}
 @media (max-width:900px){.n-further{grid-template-columns:1fr;}}
+
+/* ── AI-interface sales sections ── */
+.hud{position:relative;background:linear-gradient(180deg,rgba(201,168,76,.05),transparent 60%),var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:1.3rem;overflow:hidden;}
+.hud::before,.hud::after{content:'';position:absolute;width:14px;height:14px;border-color:var(--gold);border-style:solid;opacity:.8;pointer-events:none;}
+.hud::before{top:7px;left:7px;border-width:2px 0 0 2px;border-radius:4px 0 0 0;}
+.hud::after{bottom:7px;right:7px;border-width:0 2px 2px 0;border-radius:0 0 4px 0;}
+.ai-label{font:700 .72rem 'Space Mono',monospace;letter-spacing:.04em;color:var(--gold);}
+.ai-ok{font:700 .66rem 'Space Mono',monospace;color:#3ECF6B;letter-spacing:.06em;text-transform:uppercase;}
+.ai-chip{font:700 .64rem 'Space Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);border:1px solid var(--card-border);border-radius:999px;padding:.2rem .6rem;}
+.ai-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:1100px;margin:0 auto;}
+/* stats */
+.ai-stats{padding:0 clamp(1.25rem,6vw,5rem);margin:-1rem auto 0;position:relative;z-index:2;}
+.ai-stats-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding:1.1rem .6rem;}
+.ai-stat{text-align:center;padding:.3rem .5rem;border-right:1px solid var(--border);}
+.ai-stat:last-child{border-right:none;}
+.ai-stat b{display:block;font:700 clamp(1.5rem,4vw,2.2rem) 'Space Mono',monospace;color:var(--gold);font-variant-numeric:tabular-nums;line-height:1.1;}
+.ai-stat span{font-size:.78rem;color:var(--text-secondary);}
+/* results */
+.ai-res{display:flex;flex-direction:column;gap:.75rem;}
+.ai-res-top{display:flex;justify-content:space-between;align-items:center;gap:.5rem;}
+.ai-res-in,.ai-res-out{margin:0;font-size:.9rem;color:var(--text-secondary);line-height:1.5;}
+.ai-res-out{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;color:var(--text);line-height:1.25;}
+.ai-res-in span,.ai-res-out span{display:block;font:700 .62rem 'Space Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.15rem;}
+.ai-res-out span{color:var(--gold);}
+.ai-who{display:flex;align-items:center;gap:.7rem;margin-top:auto;padding-top:.75rem;border-top:1px dashed var(--border);}
+.ai-av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--n-glow);border:1px solid var(--gold);color:var(--gold);font:700 .95rem 'Space Mono',monospace;flex-shrink:0;box-shadow:0 0 18px -4px rgba(201,168,76,.6);}
+.ai-who b{display:block;font-size:.92rem;color:var(--text);}
+.ai-who small{color:var(--text-muted);font-size:.8rem;}
+/* problem */
+.ai-warn code{display:block;font:700 .66rem 'Space Mono',monospace;color:#E8A23B;letter-spacing:.04em;margin-bottom:.6rem;}
+.ai-warn b{display:block;font-size:1rem;color:var(--text);margin-bottom:.35rem;}
+.ai-warn span{font-size:.88rem;color:var(--text-secondary);line-height:1.55;}
+/* outcomes */
+.ai-caps{display:grid;grid-template-columns:repeat(2,1fr);gap:.9rem;max-width:900px;margin:0 auto 2.5rem;}
+.ai-cap code{display:inline-block;font:700 .62rem 'Space Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#3ECF6B;border:1px solid rgba(62,207,107,.35);border-radius:999px;padding:.15rem .55rem;margin-bottom:.55rem;}
+.ai-cap b{display:block;color:var(--text);font-size:1rem;}
+.ai-cap span{color:var(--text-secondary);font-size:.86rem;line-height:1.5;}
+/* pipeline */
+.ai-pipe{list-style:none;margin:0 auto;padding:0;max-width:1000px;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;position:relative;}
+.ai-pipe::before{content:'';position:absolute;top:22px;left:8%;right:8%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.6;}
+.ai-pipe li{position:relative;text-align:center;padding:0 .5rem;}
+.ai-pipe i{position:relative;z-index:1;display:inline-grid;place-items:center;width:46px;height:46px;border-radius:50%;background:var(--bg);border:2px solid var(--gold);color:var(--gold);font:700 .85rem 'Space Mono',monospace;font-style:normal;box-shadow:0 0 22px -6px rgba(201,168,76,.7);}
+.ai-pipe b{display:block;color:var(--text);margin:.7rem 0 .25rem;}
+.ai-pipe span{color:var(--text-secondary);font-size:.86rem;line-height:1.5;}
+/* offer */
+.ai-offer{max-width:640px;margin:0 auto;padding:clamp(1.4rem,4vw,2.2rem);box-shadow:0 30px 80px -40px rgba(201,168,76,.5);}
+.ai-offer-bar{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding-bottom:.8rem;border-bottom:1px dashed var(--border);}
+.ai-offer h3{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,4.5vw,2.2rem);color:var(--text);margin:1rem 0;line-height:1.15;}
+.ai-list{list-style:none;display:grid;gap:.6rem;margin:0 0 1.3rem;padding:0;}
+.ai-list li{display:flex;gap:.6rem;color:var(--text-secondary);font-size:.95rem;line-height:1.5;}
+.ai-list li::before{content:'[✓]';font:700 .8rem 'Space Mono',monospace;color:var(--gold);flex-shrink:0;padding-top:.15rem;}
+.ai-price{display:flex;align-items:baseline;gap:.6rem;margin-bottom:1rem;flex-wrap:wrap;}
+.ai-price b{font:700 clamp(2.4rem,7vw,3rem) 'Cormorant Garamond',Georgia,serif;color:var(--text);line-height:1;}
+.ai-price small{color:var(--text-muted);}
+.ai-guar{display:flex;gap:.8rem;align-items:center;border:1px solid rgba(62,207,107,.35);background:rgba(62,207,107,.06);border-radius:12px;padding:.8rem 1rem;margin-bottom:1.2rem;}
+.ai-guar>span{font-size:1.4rem;}
+.ai-guar b{display:block;color:var(--text);font-size:.92rem;}
+.ai-guar small{color:var(--text-secondary);font-size:.82rem;line-height:1.45;}
+.ai-offer .n-cta{margin:0;}
+/* AI tour guide */
+.tour-fab{position:fixed;bottom:calc(1.75rem + 6px);left:50%;transform:translateX(-50%);z-index:9000;display:inline-flex;align-items:center;gap:.5rem;height:44px;padding:0 1.1rem;border-radius:999px;border:1px solid var(--gold);background:#0E0E10;color:#E2C46F;font:700 .82rem 'DM Sans',sans-serif;white-space:nowrap;cursor:pointer;box-shadow:0 0 0 4px rgba(201,168,76,.08),0 8px 28px -8px rgba(201,168,76,.6);}
+.tour-fab .orb,.tour-head .orb{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#F3DC9A,#C9A84C 55%,#6b5418);box-shadow:0 0 12px #C9A84C;animation:orbPulse 2.4s ease-in-out infinite;}
+@keyframes orbPulse{50%{box-shadow:0 0 22px #E2C46F;}}
+.tour-fab[hidden],.tour-panel[hidden]{display:none;}
+.tour-panel{position:fixed;z-index:9500;left:50%;transform:translateX(-50%);bottom:1.25rem;width:min(460px,calc(100vw - 2rem));background:rgba(14,14,16,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--gold);border-radius:16px;padding:1rem 1.1rem;color:#F0EDE6;box-shadow:0 20px 60px -20px rgba(0,0,0,.8),0 0 40px -12px rgba(201,168,76,.5);}
+.tour-head{display:flex;align-items:center;gap:.55rem;margin-bottom:.6rem;}
+.tour-head b{font:700 .72rem 'Space Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#E2C46F;flex:1;}
+.tour-step{font:700 .68rem 'Space Mono',monospace;color:#8A877F;}
+.tour-x{background:none;border:none;color:#8A877F;font-size:1.2rem;cursor:pointer;width:32px;height:32px;line-height:1;}
+.tour-text{font-size:.95rem;line-height:1.6;min-height:4.8em;margin:0 0 .9rem;color:#F0EDE6;}
+.tour-text::after{content:'▍';color:#C9A84C;animation:blink 1s steps(1) infinite;margin-left:1px;}
+.tour-text.done::after{content:'';}
+@keyframes blink{50%{opacity:0;}}
+.tour-nav{display:flex;gap:.5rem;}
+.tour-nav button,.tour-nav a{flex:1;height:42px;border-radius:10px;font:700 .85rem 'DM Sans',sans-serif;white-space:nowrap;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;}
+.tour-prev{background:transparent;border:1px solid rgba(255,255,255,.15);color:#B8B5AE;}
+.tour-next{background:linear-gradient(135deg,#D9B95C,#B8933A);border:none;color:#141210;}
+.tour-on{outline:2px solid rgba(201,168,76,.7);outline-offset:-2px;box-shadow:inset 0 0 0 9999px rgba(201,168,76,.03);transition:outline-color .3s;}
+body.touring .cache-float,body.touring .wa-float{opacity:0;pointer-events:none;}
+@media (prefers-reduced-motion:reduce){.tour-fab .orb,.tour-head .orb{animation:none;}}
+@media (max-width:900px){.ai-grid3{grid-template-columns:1fr;}.ai-caps{grid-template-columns:1fr;}.ai-pipe{grid-template-columns:1fr;gap:1.4rem;}.ai-pipe::before{top:0;bottom:0;left:23px;right:auto;width:2px;height:auto;background:linear-gradient(180deg,transparent,var(--gold),transparent);}.ai-pipe li{display:grid;grid-template-columns:46px 1fr;column-gap:1rem;text-align:left;padding:0;}.ai-pipe i{grid-row:span 2;}.ai-pipe b{margin:.2rem 0 .15rem;}}
+@media (max-width:640px){.ai-stats-in{grid-template-columns:1fr 1fr;row-gap:.8rem;}.ai-stat:nth-child(2){border-right:none;}}
 .n-plans{display:grid;gap:1.25rem;margin:0 auto;align-items:stretch;}
 .n-plans-1{grid-template-columns:minmax(0,440px);justify-content:center;}
 .n-plans-3{grid-template-columns:repeat(3,1fr);max-width:1100px;}
@@ -1348,7 +1430,7 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
 <div class="nav-overlay" id="navOverlay" onclick="closeMobileNav()"></div>
 
 <!-- ═══════════════ HERO ═══════════════ -->
-<section class="n-hero" id="top">
+<section class="n-hero" id="top" data-tour="top">
   <canvas id="nNeural" aria-hidden="true"></canvas>
 
   <div class="n-hero-copy">
@@ -1364,7 +1446,7 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
       <li><span class="n-tick">✓</span>No coding needed</li>
       <li><span class="n-tick">✓</span>30 minutes a day</li>
       <li><span class="n-tick">✓</span>Written for your field</li>
-      <li><span class="n-tick">✓</span>Certificate at the end</li>
+      <li><span class="n-tick">✓</span>7-day money-back guarantee</li>
     </ul>
   </div>
 
@@ -1411,8 +1493,99 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
 </div>
 
 
+<!-- ═══ SALES 0 · LIVE STATS ═══ -->
+<section class="ai-stats" aria-label="AI Made Simple in numbers">
+  <div class="ai-stats-in hud">
+    <div class="ai-stat"><b data-count="280" data-suffix="+">280+</b><span>people trained</span></div>
+    <div class="ai-stat"><b data-count="4">4</b><span>companies trained</span></div>
+    <div class="ai-stat"><b data-count="6">6</b><span>career tracks</span></div>
+    <div class="ai-stat"><b data-count="7" data-suffix="-day">7-day</b><span>money-back guarantee</span></div>
+  </div>
+</section>
+
+<!-- ═══ SALES 1 · SOCIAL PROOF ═══ -->
+<section class="n-section" id="results" data-tour="results">
+  <div class="section-header reveal">
+    <span class="ai-label">// results.log</span>
+    <h2 class="section-title">Real people.<br>Real results.</h2>
+  </div>
+  <div class="ai-grid3 reveal">
+    <article class="hud ai-res">
+      <div class="ai-res-top"><span class="ai-chip">Operations</span><span class="ai-ok">● done</span></div>
+      <p class="ai-res-in"><span>input</span>5+ years of paper records</p>
+      <p class="ai-res-out"><span>output</span>Digitalised his company's records with AI.</p>
+      <div class="ai-who"><span class="ai-av" aria-hidden="true">W</span><div><b>Wale</b><small>Lagos</small></div></div>
+    </article>
+    <article class="hud ai-res">
+      <div class="ai-res-top"><span class="ai-chip">Family &amp; money</span><span class="ai-ok">● done</span></div>
+      <p class="ai-res-in"><span>input</span>Scattered household spending</p>
+      <p class="ai-res-out"><span>output</span>Manages his family's expenses with AI.</p>
+      <div class="ai-who"><span class="ai-av" aria-hidden="true">C</span><div><b>Chux</b><small>Abuja</small></div></div>
+    </article>
+    <article class="hud ai-res">
+      <div class="ai-res-top"><span class="ai-chip">Customer service</span><span class="ai-ok">● done</span></div>
+      <p class="ai-res-in"><span>input</span>Endless client messages</p>
+      <p class="ai-res-out"><span>output</span>Created AI scripts to reply to her clients.</p>
+      <div class="ai-who"><span class="ai-av" aria-hidden="true">J</span><div><b>Jane</b><small>Port Harcourt</small></div></div>
+    </article>
+  </div>
+</section>
+
+<!-- ═══ SALES 2 · THE PROBLEM ═══ -->
+<section class="n-section n-alt" id="problem" data-tour="problem">
+  <div class="section-header reveal">
+    <span class="ai-label">// diagnostics</span>
+    <h2 class="section-title">Everyone says “use AI”.<br>Nobody shows you how.</h2>
+  </div>
+  <div class="ai-grid3 reveal">
+    <div class="hud ai-warn"><code>WARN · generic_output</code><b>The answers feel generic</b><span>You tried ChatGPT once or twice, and what came back didn't fit your work.</span></div>
+    <div class="hud ai-warn"><code>WARN · workload_overflow</code><b>The work keeps piling up</b><span>Reports, replies, plans and records take your evenings and weekends.</span></div>
+    <div class="hud ai-warn"><code>WARN · no_time</code><b>Long courses don't fit your day</b><span>You don't have hours for videos. You need something you can use today.</span></div>
+  </div>
+</section>
+
+<!-- ═══ SALES 3 · THE OUTCOME + HOW IT WORKS ═══ -->
+<section class="n-section" id="how" data-tour="how">
+  <div class="section-header reveal">
+    <span class="ai-label">// 30_day_sprint.run()</span>
+    <h2 class="section-title">In 30 days, you will…</h2>
+  </div>
+  <div class="ai-caps reveal">
+    <div class="hud ai-cap"><code>unlocked</code><b>Write in minutes</b><span>Emails, reports, proposals and replies that sound like you.</span></div>
+    <div class="hud ai-cap"><code>unlocked</code><b>Read less, know more</b><span>Long documents, PDFs and spreadsheets summarised and checked.</span></div>
+    <div class="hud ai-cap"><code>unlocked</code><b>Turn paper into data</b><span>Photos, receipts and voice notes into tables and action lists.</span></div>
+    <div class="hud ai-cap"><code>unlocked</code><b>Prove it</b><span>A portfolio of real work and a certificate for your boss or clients.</span></div>
+  </div>
+  <ol class="ai-pipe reveal" aria-label="How it works">
+    <li><i>01</i><b>Take the 1-minute quiz</b><span>Tell us your field. Your lessons match your work.</span></li>
+    <li><i>02</i><b>Pay once, get your code</b><span>₦10,000 for 30 days. Your code usually arrives the same day.</span></li>
+    <li><i>03</i><b>30 minutes a day</b><span>Learn, practise with ready prompts, use it on real work.</span></li>
+  </ol>
+</section>
+
+<!-- ═══ SALES 4 · THE OFFER ═══ -->
+<section class="n-section n-alt" id="offer" data-tour="offer">
+  <div class="hud ai-offer reveal">
+    <div class="ai-offer-bar"><span class="ai-label">// access.package</span><span class="ai-ok">● available</span></div>
+    <h3>The 30-Day AI Sprint</h3>
+    <ul class="ai-list">
+      <li>30 daily lessons written for your field (6 tracks)</li>
+      <li>Copy-ready prompts for ChatGPT, Claude and Gemini</li>
+      <li>A daily WhatsApp nudge so you don't fall behind</li>
+      <li>Help on WhatsApp whenever you're stuck</li>
+      <li>A practical portfolio and certificate at the end</li>
+    </ul>
+    <div class="ai-price"><b data-sprint-price>₦10,000</b><small>one payment · 30 days</small></div>
+    <div class="ai-guar"><span aria-hidden="true">🛡</span><div><b>7-day money-back guarantee</b><small>If it isn't for you, message us within 7 days of paying for a full refund.</small></div></div>
+    <div class="n-cta">
+      <a href="#start" class="n-btn n-btn-gold">Get started <span aria-hidden="true">→</span></a>
+      <a href="sprint-day1.html" class="n-btn n-btn-ghost">Try Day 1 free</a>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════════ GET STARTED QUIZ ═══════════════ -->
-<section class="n-section n-alt" id="start">
+<section class="n-section" id="start" data-tour="start">
   <div class="section-header reveal">
     <span class="section-tag">Get started · 1 minute</span>
     <h2 class="section-title">Let's find your best start.</h2>
@@ -1501,6 +1674,20 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
           <p>The <strong>30-Day Professional AI Sprint</strong> costs ₦10,000 once and gives you 30 days of daily lessons for your field: Corporate &amp; Operations, Project &amp; Event Management, Sales &amp; Customer Service, Freelancers &amp; Creatives, Small Business, or Students &amp; Educators. Each day is 5 minutes of learning, 15 minutes of practice with ready-made prompts, and 10 minutes applying it to real work.</p>
           <p>It is about doing your current job better with AI. <strong>AI Expert User</strong> (₦25,000/month, 12 weeks) goes much deeper across 30+ tools, and <strong>AI Mastery to Money</strong> (₦50,000/month) teaches you to earn from AI services.</p>
           <div class="faq-highlight">Not sure? <a href="sprint-day1.html">Try Day 1 of the Sprint free</a>, then decide.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q-GUARANTEE -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What if the Sprint isn't for me?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>You're covered by our <strong>7-day money-back guarantee</strong>. If it isn't for you, message us on WhatsApp within 7 days of paying and we'll refund you in full.</p>
+          <div class="faq-highlight">You can also try Day 1 free before you pay anything.</div>
         </div>
       </div>
     </div>
@@ -1641,6 +1828,13 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
 })();
 </script>
 
+<!-- ─── AI TOUR GUIDE ─── -->
+<button type="button" class="tour-fab" id="tourFab" aria-haspopup="dialog"><span class="orb" aria-hidden="true"></span>AI tour</button>
+<div class="tour-panel" id="tourPanel" role="dialog" aria-label="AI guided tour of this page" hidden>
+  <div class="tour-head"><span class="orb" aria-hidden="true"></span><b>AI guide</b><span class="tour-step" id="tourStep"></span><button type="button" class="tour-x" id="tourX" aria-label="Close the tour">×</button></div>
+  <p class="tour-text" id="tourText" aria-live="polite"></p>
+  <div class="tour-nav" id="tourNav"></div>
+</div>
 <!-- ─── CLEAR CACHE (bottom-left, level with WhatsApp) ─── -->
 <button type="button" class="cache-float" id="clearCacheBtn" aria-label="Clear cache and reload the latest version of the site" title="Clear cache: loads the latest version. Your login and progress are kept.">
   <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5a9.5 9.5 0 1 0 9.5 9.6 3.6 3.6 0 0 1-4.6-3.5 3.6 3.6 0 0 1-4.9-3.4c0-1 .1-1.8 0-2.7z"/><circle cx="8.3" cy="10.2" r="1" fill="currentColor"/><circle cx="12.3" cy="15.6" r="1.1" fill="currentColor"/><circle cx="7.6" cy="15" r=".8" fill="currentColor"/><circle cx="16.4" cy="14.2" r=".8" fill="currentColor"/></svg>
@@ -1995,6 +2189,64 @@ document.addEventListener('DOMContentLoaded', () => {
     })();
   </script>
 <script>
+/* ═══ Live stats count-up + AI tour guide ═══ */
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* count-up: numbers only change inside fixed-height boxes, so nothing below moves */
+  var nums = document.querySelectorAll('[data-count]');
+  function run(el){
+    var n = +el.dataset.count, suf = el.dataset.suffix || '', t0 = null;
+    if(reduce){ el.textContent = n + suf; return; }
+    (function f(t){ if(!t0) t0 = t; var p = Math.min(1, (t - t0) / 1200); el.textContent = Math.round(n * (1 - Math.pow(1 - p, 3))) + suf; if(p < 1) requestAnimationFrame(f); })(performance.now());
+  }
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ run(e.target); io.unobserve(e.target); } }); }, {threshold:.6});
+    nums.forEach(function(el){ io.observe(el); });
+  }
+
+  /* AI tour: moves the page only when the visitor taps */
+  var STEPS = [
+    {s:'top', t:"Hi, I'm your AI guide. This is the 30-Day AI Sprint: 30 minutes a day, with lessons written for your field, for ₦10,000. Let me show you around."},
+    {s:'results', t:"Real people, real results. Wale digitalised over 5 years of company records. Chux manages his family's expenses. Jane replies to clients with AI scripts."},
+    {s:'problem', t:"Sound familiar? Generic answers, too much work and no time for long courses. The Sprint is built to fix exactly that."},
+    {s:'how', t:"In 30 days you'll write faster, read less, turn paper into data and prove it. It takes three steps: the quiz, one payment, then 30 minutes a day."},
+    {s:'offer', t:"Here's everything you get for ₦10,000. And if it isn't for you, you get a full refund within 7 days."},
+    {s:'start', t:"Last stop. Answer 4 quick questions and I'll point you to your best start. Or try Day 1 free, no payment needed.", end:true}
+  ];
+  var fab = document.getElementById('tourFab'), panel = document.getElementById('tourPanel');
+  if(!fab || !panel) return;
+  var txt = document.getElementById('tourText'), stepEl = document.getElementById('tourStep'), nav = document.getElementById('tourNav');
+  var i = 0, typer = null, lit = null;
+  function sec(k){ return document.querySelector('[data-tour="' + k + '"]'); }
+  function type(t){
+    clearInterval(typer); txt.classList.remove('done');
+    if(reduce){ txt.textContent = t; txt.classList.add('done'); return; }
+    var k = 0; txt.textContent = '';
+    typer = setInterval(function(){ k += 2; txt.textContent = t.slice(0, k); if(k >= t.length){ clearInterval(typer); txt.classList.add('done'); } }, 18);
+  }
+  function go(n){
+    i = n; var st = STEPS[i], el = sec(st.s);
+    stepEl.textContent = (i + 1) + ' / ' + STEPS.length;
+    if(lit) lit.classList.remove('tour-on');
+    if(el){ lit = el; el.classList.add('tour-on'); el.querySelectorAll('.reveal').forEach(function(r){ r.classList.add('visible'); });
+      window.scrollTo({top: Math.max(0, el.getBoundingClientRect().top + window.scrollY - 70), behavior: reduce ? 'auto' : 'smooth'}); }
+    type(st.t);
+    nav.innerHTML = (i > 0 ? '<button type="button" class="tour-prev">Back</button>' : '')
+      + (st.end ? '<a class="tour-next" href="#start" data-quiz>Start the quiz</a><a class="tour-prev" href="sprint-day1.html">Try Day 1 free</a>'
+                : '<button type="button" class="tour-next">' + (i === 0 ? 'Show me' : 'Next') + '</button>');
+    var b = nav.querySelector('button.tour-prev'); if(b) b.onclick = function(){ go(i - 1); };
+    var nx = nav.querySelector('button.tour-next'); if(nx){ nx.onclick = function(){ go(i + 1); }; nx.focus({preventScroll:true}); }
+    var q = nav.querySelector('[data-quiz]'); if(q) q.onclick = function(e){ e.preventDefault(); close(); var sel = document.getElementById('qTrack'); if(sel) sel.focus({preventScroll:true}); };
+  }
+  function open(){ panel.hidden = false; fab.hidden = true; document.body.classList.add('touring'); go(0); }
+  function close(){ clearInterval(typer); panel.hidden = true; fab.hidden = false; document.body.classList.remove('touring'); if(lit){ lit.classList.remove('tour-on'); lit = null; } }
+  fab.addEventListener('click', open);
+  document.getElementById('tourX').addEventListener('click', close);
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !panel.hidden) close(); });
+})();
+</script>
+<script>
 /* ═══ Rotating headline + Get-started quiz ═══ */
 (function(){
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2045,7 +2297,7 @@ document.addEventListener('DOMContentLoaded', () => {
         + '<a class="n-btn n-btn-line" href="programmes.html">See all programmes</a></div>';
     } else {
       h = '<span class="n-q-tag">Best fit: self-paced</span><h3>The 30-Day AI Sprint is your best start.</h3>'
-        + '<p>Thirty minutes a day on the learning portal, with lessons written for ' + esc(tn) + '. One payment of <b>' + esc(cfg.priceText) + '</b> for the full 30 days. After paying, send your receipt on WhatsApp and you\'ll get your access code, usually the same business day.</p>'
+        + '<p>Thirty minutes a day on the learning portal, with lessons written for ' + esc(tn) + '. One payment of <b>' + esc(cfg.priceText) + '</b> for the full 30 days. After paying, send your receipt on WhatsApp and you\'ll get your access code, usually the same business day. Backed by our <b>7-day money-back guarantee</b>.</p>'
         + '<div class="n-q-actions"><a class="n-btn n-btn-gold" target="_blank" rel="noopener" data-programme="ai-sprint" href="' + cfg.payUrl + '">Join · ' + esc(cfg.priceText) + ' <span aria-hidden="true">↗</span></a>'
         + '<a class="n-btn n-btn-line" href="' + day1 + '">Try Day 1 free</a></div>'
         + '<p style="margin-top:.9rem;font-size:.85rem">Paid already? <a class="n-link" target="_blank" rel="noopener" href="' + WA + encodeURIComponent('Hello AI Made Simple, I\'ve paid for the 30-Day AI Sprint. ' + summary + ' My name is: ') + '">Send your receipt on WhatsApp</a> · <a class="n-link" href="programmes.html#enrol">Pay by bank transfer</a></p>';
