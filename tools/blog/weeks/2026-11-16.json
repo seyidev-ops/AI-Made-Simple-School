@@ -1,0 +1,53 @@
+{
+ "pub": "2026-11-16",
+ "covers": "9 to 15 November 2026",
+ "title": "Claude Fable 5.2 and Mythos 5.2 launch, and ChatGPT gets a Wallet for AI agents",
+ "excerpt": "Anthropic released Fable 5.2 and Mythos 5.2, OpenAI launched ChatGPT Wallet so its 'dots' agents can buy things, and Anthropic must face a lawsuit over its subscription marketing.",
+ "items": [
+  {
+   "h": "Anthropic releases Claude Fable 5.2 and Mythos 5.2",
+   "t": "CNBC reported that Anthropic released two new models, Claude Fable 5.2 and Mythos 5.2, its first frontier models since CEO Dario Amodei called in September for the pace of AI development to slow. CNBC said the IPO could happen as soon as the following week.",
+   "s": "CNBC",
+   "u": "https://www.cnbc.com/2026/11/09/anthropic-claude-fable-5-2-mythos-5-2.html"
+  },
+  {
+   "h": "OpenAI launches ChatGPT Wallet for its 'dots' agents",
+   "t": "CNBC reported that OpenAI announced ChatGPT Wallet, a payment feature that lets its \"dots\" AI agents make purchases for users. Eligible users enter their card details once, ask their dot to find items to buy and approve each purchase with a security check.",
+   "s": "CNBC",
+   "u": "https://www.cnbc.com/2026/11/13/openai-chatgpt-wallet-dot-purchases.html"
+  },
+  {
+   "h": "\"Businesses in ChatGPT\" and Codex on Amazon Bedrock",
+   "t": "OpenAI introduced \"Businesses in ChatGPT\", and AWS announced OpenAI Codex on Amazon Bedrock. Both are more signs that AI tools are being sold as working systems for companies, not just chat windows.",
+   "s": "OpenAI",
+   "u": "https://openai.com/index/introducing-businesses-chatgpt/"
+  },
+  {
+   "h": "Anthropic must face a lawsuit over Claude subscription marketing",
+   "t": "Reuters reported that Anthropic must face a lawsuit over how it marketed Claude subscriptions. It is a court ruling that the case can go ahead, not a finding that the company did anything wrong.",
+   "s": "Reuters",
+   "u": "https://www.reuters.com/legal/government/anthropic-must-face-lawsuit-over-claude-subscription-marketing-2026-11-09/"
+  }
+ ],
+ "water": {
+  "h": "A product drop and three stocks",
+  "t": "Yahoo Finance ran the headline \"Anthropic's new Claude product drop just sent a message to these 3 tech stocks\". Market chatter about how AI product launches move share prices.",
+  "s": "Yahoo Finance",
+  "u": "https://finance.yahoo.com/technology/article/anthropics-new-claude-product-drop-just-sent-a-message-to-these-3-tech-stocks-133421409.html"
+ },
+ "means": [
+  {
+   "who": "Small business owners",
+   "t": "AI agents that can buy things are coming. Decide your rules before you switch them on: spending limit, approved shops, and a rule that you approve every purchase."
+  },
+  {
+   "who": "Everyone",
+   "t": "Check your bank or wallet statements weekly. If an AI agent can spend, you are the auditor."
+  },
+  {
+   "who": "Sales & Customer Service",
+   "t": "Customers will soon send agents to compare prices and place orders. Make sure your prices, stock and policies are clear and consistent everywhere online."
+  }
+ ],
+ "prompt": "Write purchase rules for an AI shopping agent acting for me: monthly spending limit ₦[amount], allowed categories [list], approved shops [list], a rule that I approve every purchase before it is paid, and what it must do if the price changes. Add a 5-point weekly statement check for me."
+}

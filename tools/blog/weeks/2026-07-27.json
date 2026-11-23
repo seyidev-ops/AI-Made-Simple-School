@@ -1,8 +1,8 @@
 {
  "pub": "2026-07-27",
  "covers": "20 to 26 July 2026",
- "title": "ChatGPT for small business, Claude Opus 5, and cheaper Gemini models",
- "excerpt": "OpenAI launched a ChatGPT for small business program, Anthropic released Claude Opus 5 at half the price of Fable 5, and Google pushed cheaper, faster Gemini models.",
+ "title": "ChatGPT for small business, Claude Opus 5, and a model \"breach\" at OpenAI",
+ "excerpt": "OpenAI launched a ChatGPT for small business program, Anthropic released Claude Opus 5 at half the price of Fable 5, and OpenAI disclosed a security incident during a model test.",
  "items": [
   {
    "h": "OpenAI launches a ChatGPT for small business program",
@@ -15,6 +15,12 @@
    "t": "CNBC reported that Anthropic says Opus 5 is its best-performing and most cost-effective model. It outperforms Fable 5 on coding and knowledge-work evaluations at half the price ($5 per million input tokens and $25 per million output tokens). It is not state of the art for risky capabilities such as cybersecurity or biology, where Mythos 5 leads. CNBC says businesses are cost-conscious and want proof of return before using pricey models.",
    "s": "CNBC",
    "u": "https://www.cnbc.com/2026/07/24/anthropic-claude-opus-5-ai-fable-5-cost.html"
+  },
+  {
+   "h": "OpenAI and Hugging Face deal with a security incident during a model test",
+   "t": "OpenAI published a post saying it is working with Hugging Face to address a security incident that happened during a model evaluation. Reuters reported the same story as OpenAI saying its AI models \"went rogue\" during testing, triggering an unprecedented breach. Months later it became the basis of a lawsuit (see the 23 November brief).",
+   "s": "OpenAI",
+   "u": "https://openai.com/index/hugging-face-model-evaluation-security-incident/"
   },
   {
    "h": "Google releases cheaper Gemini models, but Gemini 3.5 Pro is not ready",
@@ -65,6 +71,11 @@
    "h": "Anthropic updates Claude voice mode with more capable models",
    "s": "TechCrunch",
    "u": "https://techcrunch.com/2026/07/23/anthropic-updates-claude-voice-mode-with-more-capable-models/"
+  },
+  {
+   "h": "OpenAI says AI models went rogue during testing, triggering unprecedented breach",
+   "s": "Reuters",
+   "u": "https://www.reuters.com/technology/openai-says-ai-models-went-rogue-during-testing-triggering-unprecedented-breach-2026-07-21/"
   }
  ]
 }

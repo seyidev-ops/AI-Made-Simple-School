@@ -1,0 +1,53 @@
+{
+ "pub": "2026-11-02",
+ "covers": "26 October to 1 November 2026",
+ "title": "Gemini 4 Carbon targets cybersecurity, and OpenAI scales back its fundraising goal",
+ "excerpt": "Google launched Gemini 4 Carbon with a cybersecurity focus, OpenAI reportedly cut its fundraising target, and Forbes reported Claude now writes 90% of Anthropic's code.",
+ "items": [
+  {
+   "h": "Google launches Gemini 4 Carbon with a cybersecurity focus",
+   "t": "Reuters reported that Google launched Gemini 4 Carbon, an AI model with a cybersecurity focus. The Hacker News reported that it leads benchmarks for finding, exploiting and patching vulnerabilities, a claim from that outlet's report.",
+   "s": "Reuters",
+   "u": "https://www.reuters.com/technology/google-launches-gemini-4-carbon-ai-model-with-cybersecurity-focus-2026-10-28/"
+  },
+  {
+   "h": "OpenAI cuts its fundraising goal",
+   "t": "CNBC reported that OpenAI pared its fundraising goal and is now seeking up to $20 billion in its latest round. The Wall Street Journal reported OpenAI raised less than half of a $30 billion target.",
+   "s": "CNBC",
+   "u": "https://www.cnbc.com/2026/10/31/openai-fundraising-20-billion-valuation.html"
+  },
+  {
+   "h": "Claude 'writes 90% of Anthropic's code'",
+   "t": "Forbes reported that Claude now writes 90% of Anthropic's code, calling it both an advantage and a risk. Anthropic also expanded its partnership with the US General Services Administration to bring Claude to all levels of government.",
+   "s": "Forbes",
+   "u": "https://www.forbes.com/sites/rashishrivastava/2026/10/26/anthropic-relies-on-claude-to-build-claude-thats-an-advantage-and-a-risk/"
+  },
+  {
+   "h": "Anthropic blocks Claude from cloning video games",
+   "t": "Mashable reported that Anthropic is taking steps to block Claude from reverse-engineering video games, an example of AI companies adding rules about copying other people's work.",
+   "s": "Mashable",
+   "u": "https://mashable.com/tech/anthropic-takes-steps-to-block-video-game-cloning-and-reverse-engineering"
+  }
+ ],
+ "water": {
+  "h": "Where did the money go?",
+  "t": "Two reports in one week, one about OpenAI cutting its fundraising goal and one about it raising less than half of an earlier target, set off investor chatter about how long the AI funding boom lasts. That is market commentary, not a forecast.",
+  "s": "The Wall Street Journal",
+  "u": "https://www.wsj.com/tech/ai/openai-raises-less-than-half-of-30-billion-target-in-latest-round-91aecdc5"
+ },
+ "means": [
+  {
+   "who": "Everyone",
+   "t": "If AI writes most code (or most of your documents), the human job becomes reviewing. Practise reading AI output critically, line by line, and ask it to explain anything you do not understand."
+  },
+  {
+   "who": "Freelancers & Creatives",
+   "t": "Respect rules about copying. Use AI to learn and to create original work, not to clone someone else's product or style."
+  },
+  {
+   "who": "Corporate & Operations",
+   "t": "Security-focused AI is getting stronger. If you hold customer data, schedule a basic security review (passwords, backups, access)."
+  }
+ ],
+ "prompt": "Here is something an AI wrote for me: [paste]. Act as a careful reviewer. List (1) claims or numbers I must verify, (2) anything unclear or likely wrong, (3) risks if I use it as is, and (4) three specific edits. Then rewrite the weakest paragraph."
+}

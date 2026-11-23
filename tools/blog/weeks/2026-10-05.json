@@ -1,0 +1,65 @@
+{
+ "pub": "2026-10-05",
+ "covers": "28 September to 4 October 2026",
+ "title": "Google's Gemini 4 Argon arrives, and OpenAI faces questions over security",
+ "excerpt": "Google released Gemini 4 Argon with extra guardrails, Axios reported OpenAI's recurring revenue nears $70 billion, and reports questioned how OpenAI handled security warnings.",
+ "items": [
+  {
+   "h": "Google rolls out Gemini 4 Argon, its most advanced model",
+   "t": "CNBC reported that Google rolled out Gemini 4 Argon, which it calls its most advanced AI model. The New York Times described it as a new Gemini model released with guardrails amid the AI safety debate. Expect stricter refusals on risky topics. If a harmless request is refused, rephrase it with clear, legitimate context.",
+   "s": "CNBC",
+   "u": "https://www.cnbc.com/2026/09/30/google-gemini-4-argon-ai.html"
+  },
+  {
+   "h": "OpenAI's annual recurring revenue reportedly nears $70 billion",
+   "t": "Axios ran a scoop under the headline \"OpenAI's annual recurring revenue nears $70B\". It is a reported figure, not an official one. It shows how many people and businesses now pay for AI.",
+   "s": "Axios",
+   "u": "https://www.axios.com/2026/09/29/scoop-openais-annual-recurring-revenue-nears-70b"
+  },
+  {
+   "h": "Reports question how OpenAI handled security warnings",
+   "t": "The New York Times ran the headline \"OpenAI Ignored Employees Who Warned It Wasn't Doing Enough About Security\". The Atlantic published an essay titled \"I Quit OpenAI Because Its Culture Is Broken\". These are one newspaper's reporting and one writer's account, so read OpenAI's side in the full pieces before drawing conclusions.",
+   "s": "The New York Times",
+   "u": "https://www.nytimes.com/2026/09/29/technology/openai-warnings-security.html"
+  },
+  {
+   "h": "Barclays expands its use of Claude, and Claude for Government goes to FedRAMP High",
+   "t": "Bloomberg reported that Barclays is expanding its use of Anthropic's Claude in an efficiency push. ExecutiveBiz reported that Anthropic launched Claude for Government with FedRAMP High availability, a US security standard for government cloud services.",
+   "s": "Bloomberg",
+   "u": "https://www.bloomberg.com/news/articles/2026-10-01/barclays-expands-use-of-anthropic-s-claude-in-efficiency-push"
+  }
+ ],
+ "water": {
+  "h": "An essay from a former OpenAI insider",
+  "t": "The Atlantic essay titled \"I Quit OpenAI Because Its Culture Is Broken\" is the kind of insider account that fuels industry gossip. One person's view, not a verified finding.",
+  "s": "The Atlantic",
+  "u": "https://www.theatlantic.com/technology/2026/10/openai-safety-team-resignation/688881/"
+ },
+ "means": [
+  {
+   "who": "Corporate & Operations",
+   "t": "Banks and governments are formalising AI use. If your sector is regulated, ask what is approved, what data may be used, and who signs off. Those who can answer are valuable."
+  },
+  {
+   "who": "Everyone",
+   "t": "Before adopting any AI tool for your business, ask the vendor basic security questions. Where is data stored, is it used for training, who can see it, and how do I delete it?"
+  },
+  {
+   "who": "Freelancers & Creatives",
+   "t": "New models ship with stricter guardrails. If a legitimate task is refused, add context about who you are and why you need it, rather than trying tricks."
+  }
+ ],
+ "prompt": "I am considering the AI tool [name] for [purpose] at [my business or workplace]. Write 12 plain-English questions to ask the vendor about data storage, training on my data, access, deletion, security certifications, outages and costs. Then add a simple scoring sheet so I can compare two tools.",
+ "reads": [
+  {
+   "h": "Google releases new Gemini model with guardrails amid A.I. safety debate",
+   "s": "The New York Times",
+   "u": "https://www.nytimes.com/2026/09/30/technology/google-gemini-4-argon-ai-safety.html"
+  },
+  {
+   "h": "Claude for Government is generally available at FedRAMP High",
+   "s": "ExecutiveBiz",
+   "u": "https://www.executivebiz.com/articles/claude-for-government-fedramp-high-general-availability"
+  }
+ ]
+}

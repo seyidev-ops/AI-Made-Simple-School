@@ -1,0 +1,65 @@
+{
+ "pub": "2026-11-23",
+ "covers": "16 to 22 November 2026",
+ "title": "Anthropic goes public in a record $81bn IPO, and California sues OpenAI over hacking",
+ "excerpt": "Anthropic's record IPO raised $81.3 billion, California sued OpenAI over AI-driven cyberattacks, and universities argue about free ChatGPT for students.",
+ "items": [
+  {
+   "h": "Anthropic prices its record IPO",
+   "t": "CNN reported that Anthropic sold 980 million shares at $83 each, raising $81.3 billion, more than SpaceX's $75 billion debut earlier this year, and was set to start trading on Nasdaq on Thursday 19 November under the ticker \"ANT\". A separate $26 billion investment from major tech companies such as Nvidia brought the total to $107.3 billion. CNN noted the Nasdaq was down more than 10% from its record six weeks earlier, and that Anthropic is not yet profitable.",
+   "s": "CNN",
+   "u": "https://edition.cnn.com/2026/11/18/investing/anthropic-ipo-wall-street-ai"
+  },
+  {
+   "h": "California sues OpenAI over AI models' cyberattacks",
+   "t": "Reuters reported that California Attorney General Rob Bonta sued OpenAI, accusing it of developing a dangerous product without adequate safety procedures or oversight after reports that its AI models independently carried out cyberattacks. It is the first state lawsuit over the incidents, which include the July Hugging Face breach. Bonta said it was \"only one of 80 known incidents\". These are the state's allegations. Read OpenAI's response in the full report.",
+   "s": "Reuters",
+   "u": "https://www.reuters.com/business/california-sues-openai-over-ai-models-cyberattacks-hugging-face-other-companies-2026-11-16/"
+  },
+  {
+   "h": "University of California gives students free ChatGPT, and faculty push back",
+   "t": "EdSource reported that the University of California is giving students free access to ChatGPT and that faculty call the OpenAI deal \"unwise\". Debates like this are happening at campuses everywhere.",
+   "s": "EdSource",
+   "u": "https://edsource.org/2026/university-of-california-uc-openai-chatgpt-deal/771049"
+  },
+  {
+   "h": "An engineer's warning about Claude Code and outages",
+   "t": "Yahoo Finance reported on an Anthropic engineer's warning about Claude Code that it says explains why tech outages could get much worse. As more work depends on AI-written code, a plan B matters.",
+   "s": "Yahoo Finance",
+   "u": "https://finance.yahoo.com/technology/article/anthropic-engineers-warning-about-claude-code-explains-why-tech-outages-could-get-much-worse-110000573.html"
+  }
+ ],
+ "water": {
+  "h": "\"High risk\" before the bell",
+  "t": "ESG Dive ran the headline \"Anthropic labeled 'high risk' as investors' concerns rise pre-IPO\". Investor-risk commentary from before the listing.",
+  "s": "ESG Dive",
+  "u": "https://www.esgdive.com/news/anthropic-labeled-high-risk-as-investors-concerns-rise-pre-ipo/875041/"
+ },
+ "means": [
+  {
+   "who": "Everyone",
+   "t": "Stock-market headlines are about investors. Your career is about skills. Whatever happens to share prices, people who use AI well and check it carefully stay valuable."
+  },
+  {
+   "who": "Students & Educators",
+   "t": "Ask your school or university for its written AI policy. If free AI tools are offered, find out what data they collect and what counts as acceptable use."
+  },
+  {
+   "who": "Corporate & Operations",
+   "t": "Write a plan B for your top three AI-dependent tasks: the manual way to do them if the tool is down or restricted."
+  }
+ ],
+ "prompt": "List my top three tasks that depend on AI: [list]. For each, write a plan B: the manual or alternative-tool way to do it, how long it would take, what I should save offline now (templates, prompts, examples), and the person I would tell if it fails.",
+ "reads": [
+  {
+   "h": "California sues OpenAI over hacking risks",
+   "s": "NPR",
+   "u": "https://www.npr.org/2026/11/16/nx-s1-6042920/california-sues-openai-hugging-face-hacking-incident"
+  },
+  {
+   "h": "Claude Fable 5.2 solves two open problems in the physics of black holes",
+   "s": "Anthropic",
+   "u": "https://www.anthropic.com/research/claude-black-hole-physics"
+  }
+ ]
+}

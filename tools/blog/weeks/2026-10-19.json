@@ -1,0 +1,53 @@
+{
+ "pub": "2026-10-19",
+ "covers": "12 to 18 October 2026",
+ "title": "Gemini 4 Argon reaches businesses, and a celebrated 'proof' is not what it seemed",
+ "excerpt": "Google took Gemini 4 Argon to developers and businesses, Scientific American questioned a headline-grabbing OpenAI maths claim, and Anthropic added US voting information to Claude.",
+ "items": [
+  {
+   "h": "Google launches Gemini 4 Argon for developers and businesses",
+   "t": "Reuters reported that Google launched Gemini 4 Argon, its flagship model, for developers and businesses. Google Cloud says it is built to help solve businesses' hardest problems.",
+   "s": "Reuters",
+   "u": "https://www.reuters.com/business/google-launches-flagship-ai-model-gemini-4-argon-developers-businesses-2026-10-13/"
+  },
+  {
+   "h": "A famous OpenAI maths 'proof' isn't what we thought",
+   "t": "Scientific American published \"OpenAI's blockbuster Navier-Stokes proof isn't what we thought it was\". It is a good example of why big AI claims deserve a second look before you repeat them.",
+   "s": "Scientific American",
+   "u": "https://www.scientificamerican.com/article/openais-blockbuster-navier-stokes-proof-isnt-what-we-thought-it-was/"
+  },
+  {
+   "h": "Anthropic will add US voting information to Claude before the midterms",
+   "t": "Reuters reported that Anthropic will add US voting information to Claude ahead of the midterm elections. For election questions in your own country, go to the official electoral body. In Nigeria, that is INEC.",
+   "s": "Reuters",
+   "u": "https://www.reuters.com/world/us/anthropic-add-us-voting-information-claude-before-midterms-2026-10-14/"
+  },
+  {
+   "h": "Claude finds a CRISPR-like DNA pattern, and nobody is sure what it does",
+   "t": "Scientific American reported that Claude found a CRISPR-like DNA pattern, but even Anthropic's scientists are not sure what it does. AI is good at spotting patterns, but a pattern is not yet an explanation.",
+   "s": "Scientific American",
+   "u": "https://www.scientificamerican.com/article/claude-just-found-a-crispr-like-dna-pattern-but-even-anthropics-scientists-arent-sure-what-it-does/"
+  }
+ ],
+ "water": {
+  "h": "Brin on \"self-improvement\", and an arrest at OpenAI",
+  "t": "Business Insider reported that Sergey Brin said Google's AI models are reaching a critical moment of self-improvement. CNBC reported that the FBI arrested an OpenAI employee who allegedly planted a recording device in a conference room. That is an allegation, not a finding.",
+  "s": "Business Insider",
+  "u": "https://www.businessinsider.com/sergey-brin-google-gemini-ai-argon-recursive-self-improvement-rsi-2026-10"
+ },
+ "means": [
+  {
+   "who": "Students & Educators",
+   "t": "Train your \"claim check\" habit: Who says so? What is the evidence? Who disagrees? Check bold AI claims against a second source before you cite them."
+  },
+  {
+   "who": "Everyone",
+   "t": "For election, legal and health information, use official sources first and AI second."
+  },
+  {
+   "who": "Small business owners",
+   "t": "New flagship models are for hard problems. For daily work, the cheaper models are usually enough. Do not pay for more than you need."
+  }
+ ],
+ "prompt": "Someone shared this claim about AI: \"[paste]\". Act as a sceptical editor. List what is actually claimed, what evidence is given, who might disagree, what could be misleading, and the three checks I should do. Give a verdict: solid, unproven or misleading, with reasons."
+}

@@ -1,0 +1,53 @@
+{
+ "pub": "2026-11-09",
+ "covers": "2 to 8 November 2026",
+ "title": "OpenAI launches GPT-6 Cyber, and Claude gets a personal finance feature",
+ "excerpt": "OpenAI introduced GPT-6 Cyber and a new data-centre policy framework, Anthropic rolled out a personal finance feature for Claude, and The Economist questioned OpenAI's approach to mathematics.",
+ "items": [
+  {
+   "h": "OpenAI introduces GPT-6 Cyber",
+   "t": "OpenAI introduced GPT-6 Cyber, describing it as advancing the frontier of \"aligned cybersecurity agents\".",
+   "s": "OpenAI",
+   "u": "https://openai.com/index/introducing-gpt-6-cyber/"
+  },
+  {
+   "h": "Anthropic rolls out a personal finance feature for Claude",
+   "t": "Reuters reported that Anthropic rolled out a personal finance feature for Claude. Before connecting any financial account to an AI tool, check exactly what it can see and do, and whether it can move money.",
+   "s": "Reuters",
+   "u": "https://www.reuters.com/business/anthropic-rolls-out-personal-finance-feature-claude-2026-11-05/"
+  },
+  {
+   "h": "OpenAI lays out a policy framework for data centres",
+   "t": "Politico reported that OpenAI laid out a new policy framework for data centres, and OpenAI published \"Setting a new standard for responsible AI infrastructure\". Data centres need power and water, which is why they matter for countries like Nigeria that want to host them.",
+   "s": "Politico",
+   "u": "https://www.politico.com/news/2026/11/05/openai-new-policy-framework-data-centers-01150714"
+  },
+  {
+   "h": "The Economist: 'OpenAI's approach to mathematics does not add up'",
+   "t": "The Economist published a critical look at OpenAI's approach to mathematics, following earlier doubts about a headline maths claim.",
+   "s": "The Economist",
+   "u": "https://www.economist.com/science-and-technology/2026/11/04/openais-approach-to-mathematics-does-not-add-up"
+  }
+ ],
+ "water": {
+  "h": "Chip design as an investor pitch",
+  "t": "Yahoo Finance reported that Anthropic is touting Claude's chip design skills to investors ahead of its IPO, and Noahpinion argued that \"Anthropic's moat is Claude\". Investor-pitch chatter and one writer's opinion.",
+  "s": "Yahoo Finance",
+  "u": "https://finance.yahoo.com/technology/ai/articles/anthropic-touts-claude-chip-design-153547636.html"
+ },
+ "means": [
+  {
+   "who": "Everyone",
+   "t": "AI can help you budget, but never share bank logins, card numbers or PINs in a chat. Use rough figures and categories instead."
+  },
+  {
+   "who": "Small business owners",
+   "t": "AI for money tasks is best for organising and explaining: cash-flow tables, invoice reminders, price tests. Keep the final decisions and accounting records with you or your accountant."
+  },
+  {
+   "who": "Students & Educators",
+   "t": "A maths or science claim from an AI company is a claim, not a proof. Wait for independent experts to check it."
+  }
+ ],
+ "prompt": "Help me review my monthly money without sharing any account details. My rough monthly income is [amount] and spending by category is [list with rough amounts]. Show a simple budget table, the three biggest leaks, one saving goal, and a five-line monthly review checklist. Do not ask for account numbers."
+}

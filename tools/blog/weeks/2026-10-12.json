@@ -1,0 +1,53 @@
+{
+ "pub": "2026-10-12",
+ "covers": "5 to 11 October 2026",
+ "title": "Claude Haiku 5.5 completes a model family, and OpenAI's firings spark a safety row",
+ "excerpt": "Anthropic launched Claude Haiku 5.5, OpenAI defended its decision to fire researchers while former staff questioned its safety commitment, and Google launched a Gemini workplace agent.",
+ "items": [
+  {
+   "h": "Anthropic launches Claude Haiku 5.5",
+   "t": "Reuters reported that Anthropic launched its third Claude 5.5 model, Haiku 5.5, expanding its lineup before a planned IPO. Smaller, faster models like this are useful for high-volume jobs such as sorting messages, summaries and first drafts, where speed and cost matter more than depth.",
+   "s": "Reuters",
+   "u": "https://www.reuters.com/business/anthropic-launches-third-claude-55-model-expanding-ai-lineup-before-planned-ipo-2026-10-07/"
+  },
+  {
+   "h": "OpenAI defends its decision to fire researchers",
+   "t": "CNBC reported that OpenAI said its decisions to fire researchers \"were not about raising safety concerns or speaking out\". NPR reported that the fired employees question the company's commitment to safety. Both sides are in the reports, and the facts are disputed.",
+   "s": "CNBC",
+   "u": "https://www.cnbc.com/2026/10/09/openai-fired-researchers-ai-concerns.html"
+  },
+  {
+   "h": "Google launches a Gemini workplace agent",
+   "t": "CBS News reported that Google launched a Gemini AI workplace agent that can write code and run tasks, according to the company. SiliconANGLE described it as a Gemini agent that can work across enterprise systems.",
+   "s": "CBS News",
+   "u": "https://www.cbsnews.com/news/google-gemini-ai-workplace-agent/"
+  },
+  {
+   "h": "Google publishes a Gemini guide for small businesses",
+   "t": "Google Cloud published \"Empowering SMBs to do more with Gemini\", a practical guide for small businesses. Treat vendor guides as ideas to test, not proof of results.",
+   "s": "Google Cloud",
+   "u": "https://cloud.google.com/blog/topics/startups/how-to-grow-your-small-business-using-google-gemini"
+  }
+ ],
+ "water": {
+  "h": "\"This is nuts\"",
+  "t": "The New York Times opinion podcast ran an interview with a former OpenAI insider titled \"'This Is Nuts.' An OpenAI Insider Explains Why He Quit.\" It is one person's account and OpenAI disputes characterisations of the firings.",
+  "s": "The New York Times",
+  "u": "https://www.nytimes.com/2026/10/07/opinion/ezra-klein-podcast-david-robinson.html"
+ },
+ "means": [
+  {
+   "who": "Small business owners",
+   "t": "Match the model to the job. Use a small, fast model for repetitive work such as sorting messages, and a stronger one for planning and writing."
+  },
+  {
+   "who": "Sales & Customer Service",
+   "t": "Workplace agents will soon handle ticket sorting and first replies. Learn to write the rules and checks, since that is the human skill that stays."
+  },
+  {
+   "who": "Everyone",
+   "t": "Disputes like the OpenAI firings are reminders to read both sides. Look for what is documented, what is claimed and what is still unknown."
+  }
+ ],
+ "prompt": "Here are the repetitive tasks in my week: [list]. For each, say whether a small fast model or a stronger model fits best and why. Then write the simplest prompt for the three most repetitive tasks, and a one-line check I should do on each output."
+}

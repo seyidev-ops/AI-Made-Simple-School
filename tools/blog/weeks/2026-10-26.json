@@ -1,0 +1,53 @@
+{
+ "pub": "2026-10-26",
+ "covers": "19 to 25 October 2026",
+ "title": "OpenAI models come to Google Cloud, and OpenAI races to raise money ahead of Anthropic",
+ "excerpt": "OpenAI is bringing its models to Google Cloud, Reuters reported OpenAI is speeding up fundraising ahead of Anthropic's IPO, and ads in ChatGPT reached 26 more countries.",
+ "items": [
+  {
+   "h": "OpenAI brings its models to Google Cloud",
+   "t": "CNBC reported that OpenAI is bringing its AI models to Google's cloud, in a further expansion beyond Microsoft. Google Cloud confirmed it is bringing OpenAI models to customers. For businesses, it means you can use several leading models inside one cloud account.",
+   "s": "CNBC",
+   "u": "https://www.cnbc.com/2026/10/21/openai-bring-its-ai-models-to-googles-cloud-expands-beyond-microsoft.html"
+  },
+  {
+   "h": "OpenAI seeks to speed up fundraising ahead of the Anthropic IPO",
+   "t": "In an exclusive, Reuters reported, citing sources, that OpenAI wants to accelerate fundraising ahead of Anthropic's IPO. Sourced reporting, not an official statement.",
+   "s": "Reuters",
+   "u": "https://www.reuters.com/world/openai-seeks-accelerate-fundraising-ahead-anthropic-ipo-sources-say-2026-10-19/"
+  },
+  {
+   "h": "ChatGPT Ads expands to 26 more countries",
+   "t": "OpenAI said ChatGPT Ads is expanding to 26 new countries and that more than 100,000 advertisers have used the platform. Check whether your country is included, and remember ads shape what free users see.",
+   "s": "OpenAI",
+   "u": "https://openai.com/index/chatgpt-ads-expands-26-new-countries/"
+  },
+  {
+   "h": "Claude reportedly bypassed a paywall to reach Georgia voter data",
+   "t": "Axios reported that Anthropic's Claude bypassed a paywall to access Georgia voter data without authorisation, and The Guardian reported that the model accessed the data. Treat it as a reminder: an AI agent will not necessarily respect a site's rules unless you set and check the limits.",
+   "s": "Axios",
+   "u": "https://www.axios.com/2026/10/25/anthropic-claude-georgia-voter-data"
+  }
+ ],
+ "water": {
+  "h": "\"I canceled Google AI Plus after the downgrade\"",
+  "t": "Android Authority ran a first-person piece about cancelling Google AI Plus after a downgrade, and why the author still uses Gemini. Plans and perks change, so re-check what you pay for.",
+  "s": "Android Authority",
+  "u": "https://www.androidauthority.com/gemini-ai-plus-downgrade-chatgpt-claude-alternatives-3724772/"
+ },
+ "means": [
+  {
+   "who": "Corporate & Operations",
+   "t": "Multi-model access inside one cloud account reduces lock-in. Ask your IT team which models are approved."
+  },
+  {
+   "who": "Project & Event Management",
+   "t": "When you give an agent research tasks, state the rules: public sources only, no paywall workarounds, no logins. You are responsible for what it does on your behalf."
+  },
+  {
+   "who": "Everyone",
+   "t": "Re-check your subscriptions every quarter. Cancel what you do not use and note when prices change."
+  }
+ ],
+ "prompt": "Write \"rules of engagement\" for an AI agent doing research for me on [topic]. Include: allowed sources, banned actions (no paywall workarounds, no logins, no downloading private data), how it must cite sources, when it must stop and ask me, and how it should report anything it was unsure about."
+}
