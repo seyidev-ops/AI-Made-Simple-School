@@ -32,3 +32,11 @@ html[data-theme-mode="system"] .theme-cycle .tc-auto{display:block;animation:tcI
 @media (prefers-reduced-motion:reduce){
   .theme-cycle svg{animation:none!important;}
 }
+
+/* Shared footer: identical on every page. Line 1 copyright, line 2 menu. */
+footer.ams-foot{display:flex;flex-direction:column;align-items:center;gap:.7rem;text-align:center;padding:2rem 1rem 2.25rem;margin:0;background:var(--bg2,transparent);border-top:1px solid var(--border,rgba(255,255,255,.08));}
+footer.ams-foot .ams-foot-copy{margin:0;font:400 .8rem/1.5 'DM Sans',sans-serif;color:var(--text-muted,#8A877F);}
+footer.ams-foot .ams-foot-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem 1.4rem;}
+footer.ams-foot .ams-foot-nav a{font:600 .82rem 'DM Sans',sans-serif;color:var(--text-secondary,#B8B5AE);text-decoration:none;}
+footer.ams-foot .ams-foot-nav a:hover,footer.ams-foot .ams-foot-nav a:focus-visible{color:var(--gold,#C9A84C);}
+@media (max-width:768px){footer.ams-foot{padding-bottom:6.5rem;}}

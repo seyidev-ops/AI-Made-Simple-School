@@ -219,11 +219,9 @@ body:has(.pwa-banner.show){padding-bottom:140px;}
     </form>
   </div>
 </main>
-<footer>
-  <div class="footer-inner">
-    <div class="footer-copy">© 2026 AI Made Simple School by Ona Services Ltd.</div>
-    <div class="footer-links"><a href="index.html">Home</a><a href="login.html">Sign In</a><a href="blog.html">Blog</a></div>
-  </div>
+<footer class="ams-foot">
+  <p class="ams-foot-copy">© 2026 AI Made Simple School by Ona Services Ltd.</p>
+  <div class="ams-foot-nav" role="navigation" aria-label="Footer"><a href="index.html">Home</a><a href="programmes.html">Programmes</a><a href="about.html">About</a><a href="admin-login.html">Admin</a></div>
 </footer>
 <script>
 function setTheme(m){localStorage.setItem('ams-theme',m);applyTheme(m);document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));const map={light:'themeLight',dark:'themeDark',system:'themeSystem'};document.getElementById(map[m])?.classList.add('active');}
