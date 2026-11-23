@@ -1093,6 +1093,27 @@ html.no-anim *,html.no-anim *::before,html.no-anim *::after{transition:none!impo
 .n-ptab:hover{color:var(--text);}
 .n-ptab.active{background:linear-gradient(135deg,#D9B95C,#B8933A);color:#141210;}
 .n-ppanel{animation:nIn .4s ease both;}
+
+/* 30-Day Sprint */
+.n-sprint-5{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;max-width:900px;margin:0 auto 2rem;}
+.n-sprint-5 div{border:1px solid var(--border);border-radius:14px;padding:1rem 1.1rem;background:var(--card-bg);}
+.n-sprint-5 b{display:block;font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--gold);line-height:1.1;}
+.n-sprint-5 span{font-size:.86rem;color:var(--text-secondary);}
+.n-trks{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;max-width:1100px;margin:0 auto 2.25rem;}
+.n-trk{display:flex;flex-direction:column;gap:.25rem;padding:1.1rem 1.15rem;border-radius:14px;border:1px solid var(--border);background:var(--card-bg);text-decoration:none;color:var(--text);transition:border-color .25s,transform .2s;}
+.n-trk:hover,.n-trk:focus-visible{border-color:var(--gold);transform:translateY(-2px);}
+.n-trk-ico{font-size:1.4rem;}
+.n-trk b{font-size:1rem;}
+.n-trk small{font-size:.78rem;color:var(--text-muted);line-height:1.4;}
+.n-trk em{font-style:normal;font-size:.84rem;color:var(--text-secondary);margin-top:.35rem;}
+.n-trk em::after{content:' · Try Day 1 →';color:var(--gold);font-weight:600;}
+.n-sprint-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:1.25rem;max-width:1100px;margin:0 auto;align-items:start;}
+.n-sprint-weeks{display:grid;gap:.7rem;}
+.n-sprint-weeks div{border-left:3px solid var(--gold);background:var(--card-bg);border-radius:0 12px 12px 0;padding:.85rem 1rem;font-size:.9rem;color:var(--text-secondary);line-height:1.5;}
+.n-sprint-weeks b{color:var(--text);margin-right:.35rem;}
+.n-hero-new{margin-top:.6rem;font-size:.9rem;}
+@media (max-width:900px){.n-trks{grid-template-columns:1fr 1fr;}.n-sprint-grid{grid-template-columns:1fr;}}
+@media (max-width:560px){.n-trks,.n-sprint-5{grid-template-columns:1fr;}}
 .n-plans{display:grid;gap:1.25rem;margin:0 auto;align-items:stretch;}
 .n-plans-1{grid-template-columns:minmax(0,440px);justify-content:center;}
 .n-plans-3{grid-template-columns:repeat(3,1fr);max-width:1100px;}
@@ -1248,6 +1269,7 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
 
   <!-- Centre: nav links (desktop inline / mobile drawer) -->
   <div class="nav-links" id="navLinks">
+    <a href="#sprint" class="nav-link" onclick="closeMobileNav()">30-Day Sprint</a>
     <a href="#programs" class="nav-link" onclick="closeMobileNav()">Programmes</a>
     <a href="#how" class="nav-link" onclick="closeMobileNav()">How it works</a>
     <a href="#pricing" class="nav-link" onclick="closeMobileNav()">Pricing</a>
@@ -1284,6 +1306,7 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
       <a href="login.html" class="n-btn n-btn-ghost">I have an access code</a>
     </div>
     <p class="n-hero-free"><a href="day1.html" class="n-link">Try the Day 1 lesson free <span aria-hidden="true">→</span></a></p>
+    <p class="n-hero-free n-hero-new"><b>New:</b> <a href="#sprint" class="n-link">30-Day AI Sprint for your job, <span data-sprint-price>₦10,000</span> <span aria-hidden="true">→</span></a></p>
     <ul class="n-trust">
       <li><span class="n-tick">✓</span>No coding needed</li>
       <li><span class="n-tick">✓</span>30 minutes a day</li>
@@ -1333,6 +1356,54 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
     </div>
   </div>
 </div>
+
+
+<!-- ═══════════════ 30-DAY AI SPRINT (entry product) ═══════════════ -->
+<section class="n-section n-sprint" id="sprint">
+  <div class="section-header reveal">
+    <span class="section-tag">New · <span data-sprint-price>₦10,000</span> · 30 days</span>
+    <h2 class="section-title">The 30-Day AI Sprint.<br>Get better at the job you already have.</h2>
+    <p class="section-desc">One focused lesson a day for your field, built on what OpenAI and Anthropic teach in their own free courses. You do real work with AI from Day 1, and finish with a portfolio that proves it.</p>
+  </div>
+
+  <div class="n-sprint-5 reveal" aria-label="How each day works">
+    <div><b>5 min</b><span>Learn one idea or tool</span></div>
+    <div><b>15 min</b><span>Practise with copy-ready prompts for your field</span></div>
+    <div><b>10 min</b><span>Use it on a real task on your desk</span></div>
+  </div>
+
+  <div class="n-trks reveal">
+      <a class="n-trk" href="sprint-day1.html?track=ops"><span class="n-trk-ico" aria-hidden="true">🏢</span><b>Corporate &amp; Operations</b><small>HR, admin, finance, ops, civil service</small><em>Reports, memos and minutes in half the time</em></a>
+      <a class="n-trk" href="sprint-day1.html?track=pm"><span class="n-trk-ico" aria-hidden="true">📋</span><b>Project &amp; Event Management</b><small>Project managers, event planners, coordinators</small><em>Scope, timelines, risk registers and status updates</em></a>
+      <a class="n-trk" href="sprint-day1.html?track=sales"><span class="n-trk-ico" aria-hidden="true">🤝</span><b>Sales &amp; Customer Service</b><small>Sales reps, business developers, customer service</small><em>Prospect research, outreach, proposals, better replies</em></a>
+      <a class="n-trk" href="sprint-day1.html?track=creative"><span class="n-trk-ico" aria-hidden="true">🎨</span><b>Freelancers &amp; Creatives</b><small>Marketers, designers, writers, VAs, creators</small><em>Client work delivered faster, room for more clients</em></a>
+      <a class="n-trk" href="sprint-day1.html?track=biz"><span class="n-trk-ico" aria-hidden="true">🏪</span><b>Small Business Owners</b><small>Shops, online sellers, service businesses</small><em>WhatsApp replies, promos, pricing and stock</em></a>
+      <a class="n-trk" href="sprint-day1.html?track=student"><span class="n-trk-ico" aria-hidden="true">🎓</span><b>Students &amp; Educators</b><small>Students, researchers, teachers, lecturers</small><em>Study plans, papers, sources and writing, with integrity</em></a>
+  </div>
+
+  <div class="n-sprint-grid reveal">
+    <div class="n-sprint-weeks">
+      <div><b>Week 1</b> Foundations: prompts that work, AI that knows your job, professional outputs, research you can trust</div>
+      <div><b>Week 2</b> Your track: five workflows for your field, then your own toolkit</div>
+      <div><b>Week 3</b> Power tools: photos and scans, voice notes and meetings, spreadsheets, long documents, your own AI assistant, AI agents</div>
+      <div><b>Week 4</b> Make it stick: SOPs and templates, automation, privacy and honesty, proving your value, certificate and CV</div>
+    </div>
+    <div class="n-plan n-plan-star n-sprint-offer" id="prog-sprint">
+      <div class="n-plan-badge">Start here</div>
+      <div class="n-plan-tag">30-Day Professional AI Sprint</div>
+      <div class="n-price"><span data-sprint-price>₦10,000</span><small>one payment · 30 days</small></div>
+      <ul class="n-list">
+        <li>A 30-minute lesson every day, tailored to your track</li>
+        <li>Copy-ready prompts for ChatGPT, Claude and Gemini</li>
+        <li>Daily WhatsApp nudge with the day's prompt</li>
+        <li>Certificate when you submit your practical portfolio</li>
+      </ul>
+      <a href="https://paystack.shop/pay/47k86yk7f2" data-sprint-pay target="_blank" rel="noopener" class="n-btn n-btn-gold n-btn-block" data-programme="ai-sprint">Join the Sprint · Pay on Paystack ↗</a>
+      <a href="sprint-day1.html" class="n-btn n-btn-line n-btn-block" style="margin-top:.6rem">Try Day 1 free</a>
+      <p class="n-pay-hint" style="text-align:center">After paying, send your receipt and your track on WhatsApp.</p>
+    </div>
+  </div>
+</section>
 
 <!-- ═══════════════ WHAT AI DOES FOR YOU ═══════════════ -->
 <section class="n-section" id="for-you">
@@ -1391,6 +1462,7 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
 
   <div class="n-finder reveal" role="group" aria-label="What's your main goal?">
     <span class="n-finder-q">My main goal is to…</span>
+    <a class="n-finder-btn n-finder-link" href="#sprint">get better at my job in 30 days</a>
     <button class="n-finder-btn" data-goal="expert">use AI in my job or business</button>
     <button class="n-finder-btn" data-goal="m2m">build a new income with AI</button>
     <button class="n-finder-btn" data-goal="mc">learn one specific skill, fast</button>
@@ -1539,9 +1611,29 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
   </div>
 
   <div class="n-ptabs reveal" role="tablist" aria-label="Programme">
+    <button class="n-ptab" data-tab="sprint" role="tab" aria-selected="false">30-Day Sprint</button>
     <button class="n-ptab" data-tab="expert" role="tab" aria-selected="false">AI Expert User</button>
     <button class="n-ptab active" data-tab="m2m" role="tab" aria-selected="true">AI Mastery to Money</button>
     <button class="n-ptab" data-tab="mc" role="tab" aria-selected="false">Masterclasses</button>
+  </div>
+
+  <div class="n-ppanel" data-tabpanel="sprint" hidden>
+    <div class="n-plans n-plans-1">
+      <div class="n-plan">
+        <div class="n-plan-tag">30-Day Professional AI Sprint</div>
+        <h3 class="n-plan-name">One payment, 30 days</h3>
+        <div class="n-price"><span data-sprint-price>₦10,000</span><small>one-off</small></div>
+        <p class="n-plan-note">For using AI to do your current job better: operations, projects and events, sales, freelance and creative work, small business, or study.</p>
+        <ul class="n-list">
+          <li>30 daily lessons (5 min learn, 15 min practise, 10 min real work)</li>
+          <li>Six tracks with prompts written for your field</li>
+          <li>Daily WhatsApp nudge with the day's prompt</li>
+          <li>Practical portfolio and certificate at the end</li>
+        </ul>
+        <a href="https://paystack.shop/pay/47k86yk7f2" data-sprint-pay target="_blank" rel="noopener" class="n-btn n-btn-gold n-btn-block" data-programme="ai-sprint">Join the Sprint · Pay on Paystack ↗</a>
+        <p class="n-pay-hint" style="text-align:center"><a href="sprint-day1.html" class="n-link">Try Day 1 free first</a></p>
+      </div>
+    </div>
   </div>
 
   <div class="n-ppanel" data-tabpanel="expert" hidden>
@@ -1642,6 +1734,7 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
         <h4 class="n-pay-title">Pay on Paystack</h4>
         <p class="n-pay-sub">Card, bank transfer or USSD. Pick your programme:</p>
         <div class="n-pay-links">
+          <a href="https://paystack.shop/pay/47k86yk7f2" data-sprint-pay target="_blank" rel="noopener" data-programme="ai-sprint"><span>30-Day AI Sprint</span><b><span data-sprint-price>₦10,000</span></b></a>
           <a href="https://paystack.shop/pay/aiexpertuser" target="_blank" rel="noopener" data-programme="expert-user"><span>AI Expert User</span><b>₦25,000<small>/mo</small></b></a>
           <a href="https://paystack.shop/pay/AIM2MSelfStudy" target="_blank" rel="noopener" data-programme="m2m-self-study"><span>Mastery to Money · Self-Study</span><b>₦50,000<small>/mo</small></b></a>
           <a href="https://paystack.shop/pay/aim2mstandard" target="_blank" rel="noopener" data-programme="m2m-standard"><span>Mastery to Money · Standard</span><b>₦300,000</b></a>
@@ -1680,6 +1773,21 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
   </div>
 
   <div class="faq-grid">
+
+    <!-- Q-SPRINT -->
+    <div class="faq-item reveal">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What is the 30-Day AI Sprint, and how is it different from the programmes?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          <p>The <strong>30-Day Professional AI Sprint</strong> costs ₦10,000 once and gives you 30 days of daily lessons for your field: Corporate &amp; Operations, Project &amp; Event Management, Sales &amp; Customer Service, Freelancers &amp; Creatives, Small Business, or Students &amp; Educators. Each day is 5 minutes of learning, 15 minutes of practice with ready-made prompts, and 10 minutes applying it to real work.</p>
+          <p>It is about doing your current job better with AI. <strong>AI Expert User</strong> (₦25,000/month, 12 weeks) goes much deeper across 30+ tools, and <strong>AI Mastery to Money</strong> (₦50,000/month) teaches you to earn from AI services.</p>
+          <div class="faq-highlight">Not sure? <a href="sprint-day1.html">Try Day 1 of the Sprint free</a>, then decide.</div>
+        </div>
+      </div>
+    </div>
 
     <!-- Q1 -->
     <div class="faq-item reveal">
@@ -1877,6 +1985,7 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
     <button type="button" class="footer-cache" id="clearCacheBtn" title="Site looks outdated or broken? This loads the latest version. Your login and progress are kept.">↻ Clear cache &amp; reload</button>
   </div>
 </footer>
+<script src="sprint-config.js"></script>
 <script>
 /* Clear cache: removes this site's offline files and service worker, then loads the newest version.
    Login, lesson progress and theme (localStorage) are kept. */
@@ -2092,9 +2201,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Programme finder ── */
   var grid = document.querySelector('.n-programs');
-  document.querySelectorAll('.n-finder-btn').forEach(function(b){ b.addEventListener('click', function(){
+  document.querySelectorAll('.n-finder-btn:not(.n-finder-link)').forEach(function(b){ b.addEventListener('click', function(){
     var goal = b.getAttribute('data-goal');
-    document.querySelectorAll('.n-finder-btn').forEach(function(x){ x.classList.toggle('active', x===b); });
+    document.querySelectorAll('.n-finder-btn:not(.n-finder-link)').forEach(function(x){ x.classList.toggle('active', x===b); });
     document.querySelectorAll('.n-prog').forEach(function(p){ p.classList.toggle('n-pick', p.getAttribute('data-prog')===goal); });
     grid.classList.add('n-picking');
     var card = document.getElementById('prog-' + goal);
@@ -2109,7 +2218,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   document.querySelectorAll('.n-ptab').forEach(function(t){ t.addEventListener('click', function(){ showPlan(t.getAttribute('data-tab')); }); });
   document.querySelectorAll('.n-goplan').forEach(function(a){ a.addEventListener('click', function(){ showPlan(a.getAttribute('data-plan')); }); });
-  try{ var g = localStorage.getItem('ams-goal'); if(g==='expert'||g==='m2m'||g==='mc') showPlan(g); }catch(e){}
+  try{ var g = localStorage.getItem('ams-goal'); if(g==='expert'||g==='m2m'||g==='mc'||g==='sprint') showPlan(g); }catch(e){}
 
   /* ── 30-minute clock ── */
   var day = document.querySelector('.n-day'), clock = document.getElementById('nClock');

@@ -180,6 +180,20 @@ nav{position:sticky;top:0;z-index:200;background:var(--nav-bg);backdrop-filter:b
 .deep-src li{display:flex;flex-direction:column;gap:1px;}
 .deep-src a{color:var(--text);font-size:0.8rem;font-weight:600;text-decoration:none;border-bottom:1px solid transparent;align-self:flex-start;}
 .deep-src a:hover{color:var(--gold);border-bottom-color:var(--gold);}
+.sp-block{margin:0 0 1rem;}
+.sp-block p{font-size:.86rem;line-height:1.75;color:var(--text);margin:0;}
+.sp-k{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.45rem;display:flex;gap:.45rem;align-items:baseline;}
+.sp-k b{font-family:'Cormorant Garamond',serif;font-size:1.05rem;letter-spacing:0;text-transform:none;color:var(--text);}
+.sp-steps{margin:0 0 .75rem 1.1rem;display:grid;gap:.4rem;font-size:.82rem;line-height:1.6;color:var(--text-secondary);}
+.sp-picker{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.5rem;}
+.sp-trk{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;padding:.7rem .8rem;border-radius:8px;border:1px solid var(--border);background:var(--card-bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;cursor:pointer;min-height:44px;}
+.sp-trk small{font-weight:400;font-size:.7rem;color:var(--text-muted);line-height:1.35;}
+.sp-trk.on{border-color:var(--gold);background:var(--gold-dim);}
+.sp-tools{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;justify-content:space-between;margin:0 0 1.25rem;}
+.sp-wa{background:#25D366;color:#06210F;text-decoration:none;font-size:.78rem;font-weight:700;padding:9px 14px;border-radius:6px;min-height:40px;display:inline-flex;align-items:center;}
+.sp-fast{font-size:.78rem;color:var(--text-secondary);display:flex;gap:.45rem;align-items:center;cursor:pointer;}
+.sp-next{font-size:.8rem;color:var(--text-secondary);border:1px dashed var(--border);border-radius:8px;padding:.8rem .9rem;margin-bottom:1.5rem;}
+.sp-next a{color:var(--gold);}
 .deep-src li span{font-size:0.66rem;color:var(--text-muted);letter-spacing:0.02em;}
 /* ── PAGE FOOTER ── */
 footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.125rem clamp(1.25rem,3vw,2.5rem);position:relative;z-index:10;flex-shrink:0;}
@@ -479,6 +493,8 @@ document.addEventListener('click',function(e){
   </div>
 </footer>
 <script src="lessons-plus.js"></script>
+<script src="sprint-content.js"></script>
+<script src="sprint-config.js"></script>
 <script>
 
 /* ══ THEME ══ */
@@ -858,7 +874,7 @@ const BLOG_POSTS=[
 ];
 
 /* ══ STATE ══ */
-let ST={currentDay:1,completedDays:[],streak:0,lastEngaged:null,timerRunning:false,timerSeconds:0,timerInterval:null,currentProg:'expert',currentArticle:null,newsFilter:'all'};
+let ST={currentDay:1,completedDays:[],sprintDay:1,sprintDone:[],sprintTrack:null,sprintStart:null,sprintFast:false,streak:0,lastEngaged:null,timerRunning:false,timerSeconds:0,timerInterval:null,currentProg:'expert',currentArticle:null,newsFilter:'all'};
 function loadSt(){const s=localStorage.getItem('ams-progress');if(s){const p=JSON.parse(s);ST={...ST,...p};}}
 function saveSt(){localStorage.setItem('ams-progress',JSON.stringify(ST));}
 function getSession(){return JSON.parse(localStorage.getItem('ams-session')||'null');}
@@ -899,6 +915,122 @@ function trackGroups(){
      {n:2,key:'mo',lbl:'MONTH',nm:'Business integration',sub:'Marketing · Research & Data · Automation · Websites',s:21,e:40},
      {n:3,key:'mo',lbl:'MONTH',nm:'Advanced mastery',sub:'AI Video · Learning with AI · Life Admin · Capstone',s:41,e:60}];
 }
+
+/* ══ 30-DAY PROFESSIONAL AI SPRINT ══
+   Content: sprint-content.js (window.AMS_SPRINT). Access: session.access.sprint.
+   Days unlock one per day from the learner's first visit, unless they switch on fast-track. */
+const SPRINT_ORDER=['ops','pm','sales','creative','biz','student'];
+const SPRINT_WEEKS=[{n:1,nm:'Foundations',s:1,e:7},{n:2,nm:'Your track',s:8,e:14},{n:3,nm:'Power tools',s:15,e:21},{n:4,nm:'Make it stick',s:22,e:30}];
+function hasSprint(){return !!getAcc().sprint||isDemo();}
+function sprintData(){return window.AMS_SPRINT||null;}
+function sprintTrack(){const S=sprintData();let t=ST.sprintTrack;if(!t){try{t=localStorage.getItem('ams-sprint-track');}catch(e){}}return S&&S.tracks[t]?t:null;}
+function sprintFill(txt,tr){return String(txt).replace(/\{(\w+)\}/g,(m,k)=>tr[k]!=null?tr[k]:m);}
+function sprintLesson(d){const S=sprintData();const t=sprintTrack()||'ops';return (d>=8&&d<=12)?S.trackDays[t][d]:S.days[d];}
+function sprintDaysOpen(){
+  if(isDemo()) return 1;
+  if(ST.sprintFast) return 30;
+  if(!ST.sprintStart){ST.sprintStart=new Date().toISOString();saveSt();}
+  const days=Math.floor((Date.now()-new Date(ST.sprintStart).getTime())/86400000);
+  return Math.min(30,Math.max(1,days+1));
+}
+function sprintUnlocked(d){return hasSprint()&&d<=sprintDaysOpen();}
+function sprintDone(){return ST.sprintDone||(ST.sprintDone=[]);}
+function setSprintTrack(t){ST.sprintTrack=t;try{localStorage.setItem('ams-sprint-track',t);}catch(e){}saveSt();buildSidebar();renderMain();}
+function setSprintFast(on){ST.sprintFast=!!on;saveSt();buildSidebar();renderMain();showToast(on?'Fast-track on: all 30 days unlocked.':'Daily unlocks on: one new day every 24 hours.');}
+function selectSprintDay(d){ST.sprintDay=d;saveSt();renderMain();buildSidebar();closeSidebar();window.scrollTo({top:0,behavior:'smooth'});}
+
+function buildSprintSidebar(c){
+  const S=sprintData();if(!S){c.innerHTML='';return;}
+  const cur=ST.sprintDay||1;
+  SPRINT_WEEKS.forEach((g,gi)=>{
+    const sec=document.createElement('div');
+    sec.className='sidebar-section'+((cur>=g.s&&cur<=g.e)||(!sprintTrack()&&gi===0)?' open':'');
+    let h='';
+    for(let d=g.s;d<=g.e;d++){
+      const l=sprintLesson(d);const u=sprintUnlocked(d);const done=sprintDone().includes(d);
+      h+=`<div class="s-lesson ${cur===d?'active':''} ${!u?'locked':''}" onclick="${u?`selectSprintDay(${d})`:''}"><div class="s-dot ${done?'done':cur===d?'cur':''}"></div><div class="s-title">Day ${d}: ${escH(l.t)}</div>${!u?'<span class="s-lock">🔒</span>':''}${done?'<span class="s-check">✓</span>':''}</div>`;
+    }
+    sec.innerHTML=`<div class="sidebar-section-hdr" onclick="this.parentElement.classList.toggle('open')"><span class="sidebar-section-title">Week ${g.n} — ${g.nm}</span><span class="sidebar-arrow">▼</span></div><div class="sidebar-lessons">${h}</div>`;
+    c.appendChild(sec);
+  });
+}
+
+function renderSprintTrackPicker(){
+  const S=sprintData();const cur=sprintTrack();
+  return `<div class="sp-picker">${SPRINT_ORDER.map(k=>{const t=S.tracks[k];return `<button type="button" class="sp-trk ${cur===k?'on':''}" onclick="setSprintTrack('${k}')" aria-pressed="${cur===k}"><span>${t.icon} ${escH(t.name)}</span><small>${escH(t.who)}</small></button>`;}).join('')}</div>`;
+}
+
+function renderSprintMain(main){
+  const S=sprintData();
+  if(!S){main.innerHTML='<div class="payment-gate"><div class="gate-title">Sprint content is loading</div><div class="gate-desc">Refresh the page. If this keeps happening, use “Clear cache &amp; reload” at the bottom of the home page.</div></div>';return;}
+  if(!hasSprint()){main.innerHTML=renderSprintGate();return;}
+  const track=sprintTrack();
+  if(!track){
+    main.innerHTML=`<div class="dash-header"><div class="welcome-tag">30-Day Professional AI Sprint</div><div class="welcome-title">Choose your track</div><div class="welcome-sub">Your daily prompts and Week 2 lessons are written for your field. You can change this later.</div></div>${renderSprintTrackPicker()}`;
+    return;
+  }
+  const tr=S.tracks[track];
+  const open=sprintDaysOpen();
+  let d=ST.sprintDay||1;if(d<1||d>30)d=1;ST.sprintDay=d;
+  const l=sprintLesson(d);const u=sprintUnlocked(d);const done=sprintDone().includes(d);
+  const doneN=sprintDone().filter(x=>x<=30).length;
+  const nudge=encodeURIComponent(`Hello AI Made Simple, please add me to the 30-Day AI Sprint daily WhatsApp nudges. My name: ${(getSession()?.name||'')}. My track: ${tr.name}.`);
+  const srcs=(l.src||[]).map(k=>S.src[k]).filter(Boolean);
+  const F=x=>escH(sprintFill(x,tr));
+  main.innerHTML=`
+    <div class="dash-header">
+      <div class="welcome-tag">30-Day Professional AI Sprint · ${tr.icon} ${escH(tr.name)}</div>
+      <div class="welcome-title" id="wTitle">Loading…</div>
+      <div class="welcome-sub">Day ${d} of 30 · ${doneN} days complete · ${Math.round(doneN/30*100)}% · ${ST.sprintFast?'fast-track on':`${open} of 30 days unlocked`}</div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-card-label">Today</div><div class="stat-card-value">${d}</div><div class="stat-card-sub">of 30 days</div></div>
+      <div class="stat-card"><div class="stat-card-label">Completed</div><div class="stat-card-value">${doneN}</div><div class="stat-card-sub">days done</div></div>
+      <div class="stat-card"><div class="stat-card-label">Unlocked</div><div class="stat-card-value">${open}</div><div class="stat-card-sub">${ST.sprintFast?'fast-track':'1 new day daily'}</div></div>
+      <div class="stat-card"><div class="stat-card-label">Your goal</div><div class="stat-card-value" style="font-size:.95rem;line-height:1.3">${escH(tr.win)}</div></div>
+    </div>
+    <div class="today-card">
+      <div class="today-hdr"><span class="today-label">Today's Sprint Lesson</span>
+        <div class="timer-wrap"><span>Session:</span><span class="timer-display" id="tmr">00:00</span><button id="tBtn" class="timer-btn" onclick="toggleTimer()">Start</button></div></div>
+      <div class="today-body">${u?`
+        <div class="today-day">DAY ${d} OF 30 — WEEK ${l.w}${d>=8&&d<=12?' — '+escH(tr.name.toUpperCase()):''}</div>
+        <div class="today-title">${escH(l.t)}</div>
+        <div class="tool-badge">🔧 ${escH(l.tool)}</div>
+        <div class="sp-block"><div class="sp-k"><b>5 min</b> Learn</div><p>${F(l.concept)}</p></div>
+        <div class="sp-block"><div class="sp-k"><b>15 min</b> Practise</div><ol class="sp-steps">${l.steps.map(x=>`<li>${F(x)}</li>`).join('')}</ol>
+          <div class="deep-prompt"><div class="deep-prompt-hd"><span class="deep-k">✍️ Your prompt for today</span><button type="button" class="deep-copy" onclick="copyPrompt(this)">Copy prompt</button></div><pre>${F(l.prompt)}</pre><div class="deep-fine">Replace anything in [square brackets] with your real details.</div></div></div>
+        <div class="sp-block"><div class="sp-k"><b>10 min</b> Real work</div><p>${F(l.apply)}</p></div>
+        <div class="deep-watch"><b>Watch out:</b> ${F(l.watch)}</div>
+        ${srcs.length?`<div class="deep-src"><div class="deep-k">📚 Go deeper · free courses from OpenAI and Anthropic</div><ul>${srcs.map(x=>`<li><a href="${x.u}" target="_blank" rel="noopener">${escH(x.t)} ↗</a><span>${escH(x.by)}</span></li>`).join('')}</ul><div class="deep-fine">Lessons are written by AI Made Simple and draw on free material from OpenAI and Anthropic. Neither company endorses this course.</div></div>`:''}`
+      :`<div style="text-align:center;padding:2rem 0;"><div style="font-size:2.5rem;margin-bottom:.75rem">⏳</div><div style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--text);margin-bottom:.5rem">Day ${d} unlocks ${d-open===1?'tomorrow':'in '+(d-open)+' days'}</div><div style="font-size:.83rem;color:var(--text-secondary);max-width:360px;margin:0 auto 1rem">One new lesson opens every 24 hours so the habit sticks. In a hurry? Switch on fast-track below.</div><button class="btn-next" onclick="setSprintFast(true)">Unlock all 30 days</button></div>`}
+      </div>
+      ${u?`<div class="today-footer"><button class="btn-complete ${done?'done':''}" onclick="markSprintDone()" ${done?'disabled':''}>${done?'✓ Completed':'✓ Mark as Complete'}</button><button class="btn-next" onclick="selectSprintDay(${Math.max(1,d-1)})">← Prev</button><button class="btn-next" onclick="selectSprintDay(${Math.min(30,d+1)})">Next →</button></div>`:''}
+    </div>
+    <div class="sp-tools">
+      <a class="sp-wa" href="https://wa.me/2347033134979?text=${nudge}" target="_blank" rel="noopener">💬 Get the daily WhatsApp nudge</a>
+      <label class="sp-fast"><input type="checkbox" ${ST.sprintFast?'checked':''} onchange="setSprintFast(this.checked)"> Fast-track: unlock all 30 days</label>
+    </div>
+    <div class="modules-list"><div class="modules-label">Your 4 weeks</div>${SPRINT_WEEKS.map(g=>{const tot=g.e-g.s+1;const dn=sprintDone().filter(x=>x>=g.s&&x<=g.e).length;const pct=Math.round(dn/tot*100);const act=d>=g.s&&d<=g.e;
+      return `<div class="module-card" onclick="selectSprintDay(${g.s})"><div class="module-card-hdr"><span class="module-phase-tag">WEEK ${g.n} · DAYS ${g.s}–${g.e}</span><span class="module-status ${pct===100?'status-done':act?'status-active':'status-locked'}">${pct===100?'✓ Done':act?'● Active':'◦ '+dn+'/'+tot}</span></div><div class="module-title">Week ${g.n} — ${g.nm}</div><div class="module-bar"><div class="module-bar-fill" style="width:${pct}%"></div></div></div>`;}).join('')}</div>
+    <div class="modules-list"><div class="modules-label">Your track</div>${renderSprintTrackPicker()}</div>
+    <div class="sp-next"><b>Finished the Sprint?</b> Go deeper with <a href="index.html#programs">AI Expert User</a> (₦25,000/month, 12 weeks) or learn to earn with <a href="index.html#programs">AI Mastery to Money</a> (₦50,000/month).</div>`;
+  setGreeting();
+  const pb=document.getElementById('globalProgressBar');if(pb)pb.style.width=Math.round(doneN/30*100)+'%';
+  const pp=document.getElementById('globalProgressPct');if(pp)pp.textContent=Math.round(doneN/30*100)+'%';
+}
+function markSprintDone(){
+  const d=ST.sprintDay||1;if(sprintDone().includes(d))return;
+  sprintDone().push(d);
+  const today=new Date().toDateString();const yesterday=new Date(Date.now()-86400000).toDateString();
+  ST.streak=ST.lastEngaged===yesterday?(ST.streak||0)+1:(ST.lastEngaged===today?(ST.streak||1):1);ST.lastEngaged=today;
+  if(d<30&&sprintUnlocked(d+1))ST.sprintDay=d+1;
+  saveSt();if(ST.timerRunning)toggleTimer();
+  showToast(d===30?'Sprint complete! 🎓 Send your portfolio on WhatsApp for your certificate.':`Day ${d} complete! 🎉`);renderMain();buildSidebar();
+}
+function renderSprintGate(){
+  return `<div class="payment-gate"><div class="gate-icon">🚀</div><div class="gate-title">Unlock the 30-Day AI Sprint</div><div class="gate-desc">₦10,000 once for 30 days of daily lessons for your field. Try Day 1 free first if you like.</div><div class="gate-actions"><a href="${(window.AMS_SPRINT_CFG||{}).payUrl||'https://paystack.shop/pay/47k86yk7f2'}" target="_blank" rel="noopener" class="btn-pay">Pay ₦10,000 on Paystack ↗</a><a href="sprint-day1.html" class="btn-outline">Try Day 1 free</a></div><p style="font-size:.72rem;color:var(--text-muted);margin-top:1.5rem">Paid already? Send your receipt and track on WhatsApp to get your access code.</p></div>`;
+}
+
 function groupUnlocked(g){return g.key==='ph'?hasM2MPhase(g.n):hasExpertMonth(g.n);}
 
 /* ══ THEME ══ */
@@ -915,6 +1047,7 @@ function buildSidebar(){
   const p=ST.currentProg;
   if(p==='masterclasses'){buildMCSidebar(c);return;}
   if(p==='news'){buildNewsSidebar(c);return;}
+  if(p==='sprint'){buildSprintSidebar(c);return;}
   clampDay();
   const groups=trackGroups();
   groups.forEach((g,gi)=>{
@@ -972,6 +1105,7 @@ function buildProgTabs(){
   const c=document.getElementById('navProgTabs');
   const acc=getAcc();
   const tabs=[];
+  if(acc.sprint||isDemo()) tabs.push({id:'sprint',lbl:'🚀 30-Day AI Sprint'});
   if(acc.expert?.months?.length||isDemo()) tabs.push({id:'expert',lbl:'AI Expert User'});
   if(acc.m2m?.phases?.length||(isDemo())) tabs.push({id:'m2m',lbl:'AI Mastery to Money'});
   tabs.push({id:'masterclasses',lbl:'AI Masterclass'});
@@ -988,6 +1122,7 @@ function renderMain(){
   const hasSome=isDemo()||(p==='expert'&&acc.expert?.months?.length>0)||(p==='m2m'&&acc.m2m?.phases?.length>0);
   if(p==='masterclasses'){renderMCMain(main);return;}
   if(p==='news'){renderNewsMain(main);return;}
+  if(p==='sprint'){renderSprintMain(main);return;}
   if(!hasSome){main.innerHTML=renderGate(p);return;}
   clampDay();
   const lesson=getCur().find(l=>l.d===ST.currentDay)||getCur()[0];
@@ -1340,7 +1475,8 @@ function init(){
   loadSt();if(!ST.currentDay||ST.currentDay<1)ST.currentDay=1;if(ST.currentDay>90)ST.currentDay=90;
   const acc=session.access||{};
   if(!acc[ST.currentProg]&&!isDemo()){
-    if(acc.expert)ST.currentProg='expert';
+    if(acc.sprint&&!acc.expert&&!acc.m2m)ST.currentProg='sprint';
+    else if(acc.expert)ST.currentProg='expert';
     else if(acc.m2m)ST.currentProg='m2m';
   }
   buildProgTabs();buildSidebar();renderMain();

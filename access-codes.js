@@ -482,5 +482,53 @@ window.AMS_CODES = [
     ]
    }
   }
+ },
+ {
+  "h": "0fe791da0757dcd902a64b546d7d30956db6fb19f2d5726a676aac196271a5e7",
+  "programme": "sprint",
+  "label": "30-Day AI Sprint — November 2026 buyers",
+  "from": "2026-11-01T00:00:00+01:00",
+  "until": "2027-01-05T23:59:59+01:00",
+  "access": {
+   "sprint": {
+    "days": 30
+   }
+  }
+ },
+ {
+  "h": "802e842884ecd4ccf5939fb8ce35c0331c0fa76ebaf58820c8da766799726ef0",
+  "programme": "sprint",
+  "label": "30-Day AI Sprint — December 2026 buyers",
+  "from": "2026-12-01T00:00:00+01:00",
+  "until": "2027-02-05T23:59:59+01:00",
+  "access": {
+   "sprint": {
+    "days": 30
+   }
+  }
+ },
+ {
+  "h": "02f1583c9ec9d80f2d57a65f039c01c3be46b39f6690bc73dab4d676a204d5a1",
+  "programme": "sprint",
+  "label": "30-Day AI Sprint — January 2027 buyers",
+  "from": "2027-01-01T00:00:00+01:00",
+  "until": "2027-03-05T23:59:59+01:00",
+  "access": {
+   "sprint": {
+    "days": 30
+   }
+  }
+ },
+ {
+  "h": "b52a425298bf12793a37c467f60de620ec90eda602258f07712067c19f70bf96",
+  "programme": "sprint",
+  "label": "30-Day AI Sprint — February 2027 buyers",
+  "from": "2027-02-01T00:00:00+01:00",
+  "until": "2027-04-05T23:59:59+01:00",
+  "access": {
+   "sprint": {
+    "days": 30
+   }
+  }
  }
 ];
