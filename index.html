@@ -572,6 +572,15 @@ section { padding:clamp(4rem,10vw,8rem) clamp(1.5rem,8vw,6rem);position:relative
   transform: translateY(-3px);
 }
 
+/* Clear-cache cookie button: mirrors the WhatsApp button on the left */
+.cache-float{position:fixed;bottom:1.75rem;left:1.75rem;z-index:9000;width:56px;height:56px;border-radius:50%;border:2px solid #C9A84C;background:#0E0E10;color:#D9B95C;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;box-shadow:0 4px 16px rgba(201,168,76,.3);transition:transform .2s ease,box-shadow .2s ease;}
+.cache-float:hover,.cache-float:focus-visible{transform:translateY(-3px);box-shadow:0 6px 24px rgba(201,168,76,.5);outline:none;}
+.cache-float[disabled]{opacity:.7;cursor:wait;}
+.cache-float .cache-label{position:absolute;left:68px;white-space:nowrap;background:#0E0E10;color:#D9B95C;border:1px solid rgba(201,168,76,.4);font:600 .78rem 'DM Sans',sans-serif;padding:6px 12px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s ease;}
+.cache-float:hover .cache-label,.cache-float:focus-visible .cache-label{opacity:1;}
+.cache-float.busy svg{animation:cacheSpin .8s linear infinite;}
+@keyframes cacheSpin{to{transform:rotate(360deg);}}
+@media (max-width:768px){.cache-float .cache-label{display:none;}}
 /* The green circle button */
 .wa-btn-circle {
   width: 56px;
@@ -648,9 +657,6 @@ footer { background:var(--bg2);border-top:1px solid var(--border);padding:3rem c
 .footer-brand { font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--text); }
 .footer-copy { font-size:0.78rem;color:var(--text-muted);text-align:center; }
 .footer-links { display:flex;gap:1.5rem;flex-wrap:wrap; }
-.footer-cache { background:none;border:1px solid var(--border);color:var(--text-muted);font:inherit;font-size:0.78rem;padding:6px 12px;border-radius:999px;cursor:pointer;min-height:32px;transition:color var(--transition),border-color var(--transition); }
-.footer-cache:hover,.footer-cache:focus-visible { color:var(--gold);border-color:var(--gold); }
-.footer-cache[disabled] { opacity:.6;cursor:wait; }
 .footer-links a { font-size:0.78rem;color:var(--text-muted);text-decoration:none;transition:color var(--transition); }
 .footer-links a:hover { color:var(--gold); }
 
@@ -662,6 +668,7 @@ footer { background:var(--bg2);border-top:1px solid var(--border);padding:3rem c
   .hero-stats { gap:2rem; }
   .footer-inner { flex-direction:column;text-align:center; }
   .footer-links { justify-content:center; }
+  footer { padding-bottom:7rem; }
   .wa-label { display:none; }
 }
 
@@ -915,7 +922,7 @@ html.no-anim *,html.no-anim *::before,html.no-anim *::after{transition:none!impo
 @media (max-width:768px){body::before{display:none;}}
 
 /* buttons */
-.n-btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.95rem 1.6rem;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:transform .2s ease,box-shadow .25s ease,background .25s ease,border-color .25s ease,color .25s ease;-webkit-tap-highlight-color:transparent;}
+.n-btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.95rem 1.6rem;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:transform .2s ease,box-shadow .25s ease,background .25s ease,border-color .25s ease,color .25s ease;-webkit-tap-highlight-color:transparent;}
 .n-btn:active{transform:scale(.97);}
 .n-btn-gold{background:linear-gradient(135deg,#D9B95C,#B8933A);color:#141210;box-shadow:0 6px 24px rgba(201,168,76,.28);}
 .n-btn-gold:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(201,168,76,.42);}
@@ -1132,7 +1139,7 @@ html.no-anim *,html.no-anim *::before,html.no-anim *::after{transition:none!impo
 .n-q-select{width:100%;font:500 16px 'DM Sans',sans-serif;padding:.85rem .9rem;border-radius:12px;border:1px solid var(--card-border);background:var(--bg2);color:var(--text);min-height:48px;}
 .n-q-select:focus{outline:2px solid var(--gold);outline-offset:2px;}
 .n-q-opts{display:grid;gap:.55rem;}
-.n-q-opts button{text-align:left;padding:.85rem 1rem;border-radius:12px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font:500 .95rem 'DM Sans',sans-serif;cursor:pointer;min-height:48px;transition:border-color .2s,background .2s;}
+.n-q-opts button{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left;padding:.85rem 1rem;border-radius:12px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font:500 .95rem 'DM Sans',sans-serif;cursor:pointer;min-height:48px;transition:border-color .2s,background .2s;}
 .n-q-opts button:hover,.n-q-opts button:focus-visible{border-color:var(--gold);outline:none;}
 .n-q-opts button[aria-pressed="true"]{border-color:var(--gold);background:var(--n-glow);font-weight:600;}
 .n-q-result{border-top:1px solid var(--border);padding-top:1.25rem;}
@@ -1141,7 +1148,9 @@ html.no-anim *,html.no-anim *::before,html.no-anim *::after{transition:none!impo
 .n-q-result p{color:var(--text-secondary);font-size:.95rem;margin-bottom:.9rem;}
 .n-q-result .n-q-tag{font:700 .7rem 'DM Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);}
 .n-q-actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.4rem;}
-.n-q-actions .n-btn{flex:1 1 220px;}
+.n-q-actions .n-btn{flex:1 1 200px;}
+.n-q-back{justify-self:start;background:none;border:none;color:var(--text-secondary);font:600 .88rem 'DM Sans',sans-serif;cursor:pointer;padding:.3rem 0;}
+.n-q-back[hidden]{display:none;}
 .n-q-restart{background:none;border:none;color:var(--text-muted);font:500 .85rem 'DM Sans',sans-serif;text-decoration:underline;cursor:pointer;margin-top:.9rem;padding:.3rem 0;}
 .n-sprint-quizlink{display:block;text-align:center;margin-top:.8rem;font-size:.88rem;}
 /* Go further */
@@ -1316,7 +1325,6 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
 
   <!-- Centre: nav links (desktop inline / mobile drawer) -->
   <div class="nav-links" id="navLinks">
-    <a href="#sprint" class="nav-link" onclick="closeMobileNav()">30-Day Sprint</a>
     <a href="programmes.html" class="nav-link" onclick="closeMobileNav()">Programmes</a>
     <a href="about.html" class="nav-link" onclick="closeMobileNav()">About</a>
     <a href="blog.html" class="nav-link" onclick="closeMobileNav()">Blog</a>
@@ -1349,7 +1357,7 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
     <p class="n-sub">The 30-Day AI Sprint: 30 minutes a day, on your phone or laptop, with lessons written for your field. You use AI on real work from Day 1. <b data-sprint-price>₦10,000</b> for the full 30 days.</p>
     <div class="n-cta">
       <a href="#start" class="n-btn n-btn-gold">Get started <span aria-hidden="true">→</span></a>
-      <a href="#sprint" class="n-btn n-btn-ghost">Learn more</a>
+      <a href="programmes.html#prog-sprint" class="n-btn n-btn-ghost">Learn more</a>
     </div>
     <p class="n-hero-free"><a href="sprint-day1.html" class="n-link">Or try Day 1 free, no payment <span aria-hidden="true">→</span></a></p>
     <ul class="n-trust">
@@ -1429,10 +1437,10 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
     </fieldset>
 
     <fieldset class="n-q" data-q="2">
-      <legend><span>2 of 4</span>Are you ready to commit 30 minutes a day to practise?</legend>
+      <legend><span>2 of 4</span>Can you commit 30 minutes a day to practise?</legend>
       <div class="n-q-opts">
-        <button type="button" data-v="yes">Yes, I can do 30 minutes a day</button>
-        <button type="button" data-v="some">Most days, yes</button>
+        <button type="button" data-v="yes">Yes, every day</button>
+        <button type="button" data-v="some">Most days</button>
         <button type="button" data-v="no">Not right now</button>
       </div>
     </fieldset>
@@ -1440,72 +1448,26 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
     <fieldset class="n-q" data-q="3">
       <legend><span>3 of 4</span>How would you like to learn?</legend>
       <div class="n-q-opts">
-        <button type="button" data-v="self">Self-paced, on the learning portal</button>
-        <button type="button" data-v="guided">Guided, with one-on-one sessions</button>
+        <button type="button" data-v="self">Self-paced on the portal</button>
+        <button type="button" data-v="guided">Guided one-on-one</button>
         <button type="button" data-v="unsure">Not sure yet</button>
       </div>
     </fieldset>
 
     <fieldset class="n-q" data-q="4">
-      <legend><span>4 of 4</span>Are you ready to invest between ₦10,000 and ₦50,000 a month in this?</legend>
+      <legend><span>4 of 4</span>Are you ready to invest ₦10,000 to ₦50,000 a month in this?</legend>
       <div class="n-q-opts">
         <button type="button" data-v="yes">Yes</button>
-        <button type="button" data-v="low">Only about ₦10,000 to start</button>
+        <button type="button" data-v="low">Only ₦10,000 to start</button>
         <button type="button" data-v="no">Not right now</button>
       </div>
     </fieldset>
 
+    <button type="button" class="n-q-back" id="qBack" hidden>← Back</button>
     <div class="n-q-result" id="qResult" hidden></div>
   </form>
 </section>
 
-<!-- ═══════════════ 30-DAY AI SPRINT (entry product) ═══════════════ -->
-<section class="n-section n-sprint" id="sprint">
-  <div class="section-header reveal">
-    <span class="section-tag">New · <span data-sprint-price>₦10,000</span> · 30 days</span>
-    <h2 class="section-title">The 30-Day AI Sprint.<br>Get better at the job you already have.</h2>
-    <p class="section-desc">One focused lesson a day for your field, built on what OpenAI and Anthropic teach in their own free courses. You do real work with AI from Day 1, and finish with a portfolio that proves it.</p>
-  </div>
-
-  <div class="n-sprint-5 reveal" aria-label="How each day works">
-    <div><b>5 min</b><span>Learn one idea or tool</span></div>
-    <div><b>15 min</b><span>Practise with copy-ready prompts for your field</span></div>
-    <div><b>10 min</b><span>Use it on a real task on your desk</span></div>
-  </div>
-
-  <div class="n-trks reveal">
-      <a class="n-trk" href="sprint-day1.html?track=ops"><span class="n-trk-ico" aria-hidden="true">🏢</span><b>Corporate &amp; Operations</b><small>HR, admin, finance, ops, civil service</small><em>Reports, memos and minutes in half the time</em></a>
-      <a class="n-trk" href="sprint-day1.html?track=pm"><span class="n-trk-ico" aria-hidden="true">📋</span><b>Project &amp; Event Management</b><small>Project managers, event planners, coordinators</small><em>Scope, timelines, risk registers and status updates</em></a>
-      <a class="n-trk" href="sprint-day1.html?track=sales"><span class="n-trk-ico" aria-hidden="true">🤝</span><b>Sales &amp; Customer Service</b><small>Sales reps, business developers, customer service</small><em>Prospect research, outreach, proposals, better replies</em></a>
-      <a class="n-trk" href="sprint-day1.html?track=creative"><span class="n-trk-ico" aria-hidden="true">🎨</span><b>Freelancers &amp; Creatives</b><small>Marketers, designers, writers, VAs, creators</small><em>Client work delivered faster, room for more clients</em></a>
-      <a class="n-trk" href="sprint-day1.html?track=biz"><span class="n-trk-ico" aria-hidden="true">🏪</span><b>Small Business Owners</b><small>Shops, online sellers, service businesses</small><em>WhatsApp replies, promos, pricing and stock</em></a>
-      <a class="n-trk" href="sprint-day1.html?track=student"><span class="n-trk-ico" aria-hidden="true">🎓</span><b>Students &amp; Educators</b><small>Students, researchers, teachers, lecturers</small><em>Study plans, papers, sources and writing, with integrity</em></a>
-  </div>
-
-  <div class="n-sprint-grid reveal">
-    <div class="n-sprint-weeks">
-      <div><b>Week 1</b> Foundations: prompts that work, AI that knows your job, professional outputs, research you can trust</div>
-      <div><b>Week 2</b> Your track: five workflows for your field, then your own toolkit</div>
-      <div><b>Week 3</b> Power tools: photos and scans, voice notes and meetings, spreadsheets, long documents, your own AI assistant, AI agents</div>
-      <div><b>Week 4</b> Make it stick: SOPs and templates, automation, privacy and honesty, proving your value, certificate and CV</div>
-    </div>
-    <div class="n-plan n-plan-star n-sprint-offer" id="prog-sprint">
-      <div class="n-plan-badge">Start here</div>
-      <div class="n-plan-tag">30-Day Professional AI Sprint</div>
-      <div class="n-price"><span data-sprint-price>₦10,000</span><small>one payment · 30 days</small></div>
-      <ul class="n-list">
-        <li>A 30-minute lesson every day, tailored to your track</li>
-        <li>Copy-ready prompts for ChatGPT, Claude and Gemini</li>
-        <li>Daily WhatsApp nudge with the day's prompt</li>
-        <li>Certificate when you submit your practical portfolio</li>
-      </ul>
-      <a href="https://paystack.shop/pay/47k86yk7f2" data-sprint-pay target="_blank" rel="noopener" class="n-btn n-btn-gold n-btn-block" data-programme="ai-sprint">Join the Sprint · Pay on Paystack ↗</a>
-      <a href="sprint-day1.html" class="n-btn n-btn-line n-btn-block" style="margin-top:.6rem">Try Day 1 free</a>
-      <a href="#start" class="n-link n-sprint-quizlink">Not sure it's for you? Take the 1-minute quiz</a>
-      <p class="n-pay-hint" style="text-align:center">After paying, send your receipt and your track on WhatsApp. <a href="programmes.html#enrol" class="n-link">Prefer a bank transfer?</a></p>
-    </div>
-  </div>
-</section>
 
 
 
@@ -1517,20 +1479,6 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
 
 
 
-<!-- ═══════════════ GO FURTHER ═══════════════ -->
-<section class="n-section n-alt" id="further">
-  <div class="section-header reveal">
-    <span class="section-tag">After your 30 days</span>
-    <h2 class="section-title">Want to take it further?</h2>
-    <p class="section-desc">When the Sprint is done, these programmes take you deeper. Full details and prices are on the programmes page.</p>
-  </div>
-  <div class="n-further reveal">
-    <a class="n-fur" href="programmes.html#prog-expert"><span aria-hidden="true">🧠</span><b>AI Expert User</b><small>12 weeks across 30+ AI tools for your work and life.</small><em>Learn more →</em></a>
-    <a class="n-fur" href="programmes.html#prog-m2m"><span aria-hidden="true">💰</span><b>AI Mastery to Money</b><small>90 days to turn AI skills into a new income.</small><em>Learn more →</em></a>
-    <a class="n-fur" href="programmes.html#masterclasses"><span aria-hidden="true">⚡</span><b>AI Masterclasses</b><small>One skill in one sitting: WhatsApp leads, CVs, grants and more.</small><em>Learn more →</em></a>
-  </div>
-  <div class="n-center reveal"><a href="programmes.html" class="n-btn n-btn-line">See all programmes &amp; prices <span aria-hidden="true">→</span></a></div>
-</section>
 
 <section id="faq" class="faq-section">
   <div class="section-header reveal">
@@ -1621,7 +1569,7 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
       <div class="faq-answer">
         <div class="faq-answer-inner">
           <p>Yes. Message us on WhatsApp any time you're stuck and a person will reply. You can also opt in to a short daily WhatsApp nudge with the day's lesson and prompt.</p>
-          <p>Want more hands-on help? Choose <strong>guided one-on-one</strong> in the quiz above and we'll suggest a plan with personal sessions.</p>
+          <p>Want more hands-on help? One-on-one coaching is <strong>₦50,000 per week</strong>. Choose <strong>guided one-on-one</strong> in the quiz above to book.</p>
         </div>
       </div>
     </div>
@@ -1638,6 +1586,22 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
   </div>
 
 </section>
+
+<!-- ═══════════════ GO FURTHER ═══════════════ -->
+<section class="n-section n-alt" id="further">
+  <div class="section-header reveal">
+    <span class="section-tag">After your 30 days</span>
+    <h2 class="section-title">Want to take it further?</h2>
+    <p class="section-desc">When the Sprint is done, these programmes take you deeper. Full details and prices are on the programmes page.</p>
+  </div>
+  <div class="n-further reveal">
+    <a class="n-fur" href="programmes.html#prog-expert"><span aria-hidden="true">🧠</span><b>AI Expert User</b><small>12 weeks across 30+ AI tools for your work and life.</small><em>Learn more →</em></a>
+    <a class="n-fur" href="programmes.html#prog-m2m"><span aria-hidden="true">💰</span><b>AI Mastery to Money</b><small>90 days to turn AI skills into a new income.</small><em>Learn more →</em></a>
+    <a class="n-fur" href="programmes.html#masterclasses"><span aria-hidden="true">⚡</span><b>AI Masterclasses</b><small>One skill in one sitting: WhatsApp leads, CVs, grants and more.</small><em>Learn more →</em></a>
+  </div>
+  <div class="n-center reveal"><a href="programmes.html" class="n-btn n-btn-line">See all programmes &amp; prices <span aria-hidden="true">→</span></a></div>
+</section>
+
 
 <!-- ─── FOOTER ─── -->
 
@@ -1658,17 +1622,13 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">AI Made Simple</div>
-    <div class="footer-copy">© 2026 Ona Services Ltd. AI Made Simple School is a subsidiary of Ona Services Limited. Coded by Oluwaseyi Ashiru.</div>
+    <div class="footer-copy">© 2026 AI Made Simple School by Ona Services Ltd.</div>
     <div class="footer-links">
       <a href="index.html">Home</a>
       <a href="programmes.html">Programmes</a>
-      <a href="programmes.html#pricing">Pricing</a>
       <a href="about.html">About</a>
-      <a href="blog.html">Blog</a>
-      <a href="login.html">Login</a>
       <a href="admin-login.html">Admin</a>
     </div>
-    <button type="button" class="footer-cache" id="clearCacheBtn" title="Site looks outdated or broken? This loads the latest version. Your login and progress are kept.">↻ Clear cache &amp; reload</button>
   </div>
 </footer>
 <script src="sprint-config.js"></script>
@@ -1678,7 +1638,7 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
 (function(){
   var btn=document.getElementById('clearCacheBtn');if(!btn)return;
   btn.addEventListener('click',async function(){
-    btn.disabled=true;btn.textContent='Clearing…';
+    btn.disabled=true;btn.classList.add('busy');
     try{
       if('caches' in window){var keys=await caches.keys();await Promise.all(keys.map(function(k){return caches.delete(k);}));}
       if('serviceWorker' in navigator){var regs=await navigator.serviceWorker.getRegistrations();await Promise.all(regs.map(function(r){return r.unregister();}));}
@@ -1689,6 +1649,11 @@ document.querySelectorAll('.nav-link[href^="#"]').forEach(a =>
 })();
 </script>
 
+<!-- ─── CLEAR CACHE (bottom-left, level with WhatsApp) ─── -->
+<button type="button" class="cache-float" id="clearCacheBtn" aria-label="Clear cache and reload the latest version of the site" title="Clear cache: loads the latest version. Your login and progress are kept.">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5a9.5 9.5 0 1 0 9.5 9.6 3.6 3.6 0 0 1-4.6-3.5 3.6 3.6 0 0 1-4.9-3.4c0-1 .1-1.8 0-2.7z"/><circle cx="8.3" cy="10.2" r="1" fill="currentColor"/><circle cx="12.3" cy="15.6" r="1.1" fill="currentColor"/><circle cx="7.6" cy="15" r=".8" fill="currentColor"/><circle cx="16.4" cy="14.2" r=".8" fill="currentColor"/></svg>
+  <span class="cache-label">Clear cache</span>
+</button>
 <!-- ─── WHATSAPP FLOATING BUTTON ─── -->
 <a href="https://wa.me/2347033134979?text=Hello%20AI%20Made%20Simple%2C%20I%27d%20like%20to%20know%20more%20about%20your%20AI%20programmes." target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Chat with us on WhatsApp">
   <div class="wa-label">Chat with us 💬</div>
@@ -2058,12 +2023,19 @@ document.addEventListener('DOMContentLoaded', () => {
   var NAMES = {ops:'Corporate & Operations', pm:'Project & Event Management', sales:'Sales & Customer Service', creative:'Freelancers & Creatives', biz:'Small Business Owners', student:'Students, Researchers & Educators', other:'Something else'};
   var A = {};
   var qs = form.querySelectorAll('.n-q'), bars = form.querySelectorAll('.n-q-prog i'), out = document.getElementById('qResult');
+  var cur = 1, back = document.getElementById('qBack');
   function show(n){
-    qs.forEach(function(q){ if(+q.dataset.q <= n) q.classList.add('on'); });
+    cur = n; out.hidden = true; out.innerHTML = '';
+    qs.forEach(function(q){ q.classList.toggle('on', +q.dataset.q === n); });
     bars.forEach(function(b, k){ b.classList.toggle('on', k < n); });
+    back.hidden = n === 1;
     var q = form.querySelector('.n-q[data-q="'+n+'"]');
     if(q && n > 1){ var f = q.querySelector('button,select'); if(f) f.focus({preventScroll:true}); }
+    keepInView();
   }
+  /* keep the quiz card in view as it changes, without jumping when it is already visible */
+  function keepInView(){ var r = form.getBoundingClientRect(); if(r.top < 60 || r.top > window.innerHeight * .5) form.scrollIntoView({behavior:'smooth', block:'start'}); }
+  back.addEventListener('click', function(){ show(Math.max(1, cur - 1)); });
   function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   function result(){
     var t = A.track, tn = NAMES[t] || 'your field', day1 = 'sprint-day1.html' + (t && t !== 'other' ? '?track=' + t : '');
@@ -2073,31 +2045,31 @@ document.addEventListener('DOMContentLoaded', () => {
       h = '<span class="n-q-tag">Our suggestion</span><h3>Start free, and come back when you\'re ready.</h3>'
         + '<p>No pressure at all. Do the free Day 1 lesson for ' + esc(tn) + ' today. It takes 30 minutes and you keep what you make. Whenever you\'re ready for the full 30 days, we\'ll be here.</p>'
         + '<div class="n-q-actions"><a class="n-btn n-btn-gold" href="' + day1 + '">Try Day 1 free <span aria-hidden="true">→</span></a>'
-        + '<a class="n-btn n-btn-line" target="_blank" rel="noopener" href="' + WA + encodeURIComponent('Hello AI Made Simple, please remind me about the 30-Day AI Sprint later. ' + summary) + '">Remind me on WhatsApp</a></div>';
+        + '<a class="n-btn n-btn-line" target="_blank" rel="noopener" href="' + WA + encodeURIComponent('Hello AI Made Simple, please remind me about the 30-Day AI Sprint later. ' + summary) + '">Remind me later</a></div>';
     } else if(A.mode === 'guided'){
       h = '<span class="n-q-tag">Best fit: guided one-on-one</span><h3>Let\'s set up a one-on-one plan for you.</h3>'
-        + '<p>You\'d like a guide. Message us and we\'ll recommend a plan for ' + esc(tn) + ': usually the 30-Day AI Sprint with one-on-one coaching, or a programme with live support. We\'ll confirm the price before you pay anything.</p>'
-        + '<div class="n-q-actions"><a class="n-btn n-btn-gold" target="_blank" rel="noopener" href="' + WA + encodeURIComponent('Hello AI Made Simple, I took the quiz and I\'d like guided one-on-one sessions. ' + summary + ' My name is: ') + '">Book a one-on-one on WhatsApp <span aria-hidden="true">↗</span></a>'
-        + '<a class="n-btn n-btn-line" href="programmes.html#pricing">See programmes with live support</a></div>';
+        + '<p>You\'d like a guide. One-on-one coaching is <b>₦50,000 per week</b>: personal sessions built around your work in ' + esc(tn) + ', with the 30-Day AI Sprint lessons to practise between sessions. Message us to book your first session.</p>'
+        + '<div class="n-q-actions"><a class="n-btn n-btn-gold" target="_blank" rel="noopener" href="' + WA + encodeURIComponent('Hello AI Made Simple, I took the quiz and I\'d like guided one-on-one sessions. ' + summary + ' My name is: ') + '">Book on WhatsApp <span aria-hidden="true">↗</span></a>'
+        + '<a class="n-btn n-btn-line" href="programmes.html">See all programmes</a></div>';
     } else {
       h = '<span class="n-q-tag">Best fit: self-paced</span><h3>The 30-Day AI Sprint is your best start.</h3>'
         + '<p>Thirty minutes a day on the learning portal, with lessons written for ' + esc(tn) + '. One payment of <b>' + esc(cfg.priceText) + '</b> for the full 30 days. After paying, send your receipt on WhatsApp and you\'ll get your access code, usually the same business day.</p>'
-        + '<div class="n-q-actions"><a class="n-btn n-btn-gold" target="_blank" rel="noopener" data-programme="ai-sprint" href="' + cfg.payUrl + '">Join the Sprint · ' + esc(cfg.priceText) + ' <span aria-hidden="true">↗</span></a>'
-        + '<a class="n-btn n-btn-line" href="' + day1 + '">Try Day 1 free first</a></div>'
+        + '<div class="n-q-actions"><a class="n-btn n-btn-gold" target="_blank" rel="noopener" data-programme="ai-sprint" href="' + cfg.payUrl + '">Join · ' + esc(cfg.priceText) + ' <span aria-hidden="true">↗</span></a>'
+        + '<a class="n-btn n-btn-line" href="' + day1 + '">Try Day 1 free</a></div>'
         + '<p style="margin-top:.9rem;font-size:.85rem">Paid already? <a class="n-link" target="_blank" rel="noopener" href="' + WA + encodeURIComponent('Hello AI Made Simple, I\'ve paid for the 30-Day AI Sprint. ' + summary + ' My name is: ') + '">Send your receipt on WhatsApp</a> · <a class="n-link" href="programmes.html#enrol">Pay by bank transfer</a></p>';
     }
     out.innerHTML = h + '<button type="button" class="n-q-restart" id="qRestart">Start the quiz again</button>';
-    out.hidden = false;
+    qs.forEach(function(q){ q.classList.remove('on'); }); back.hidden = true;
+    out.hidden = false; keepInView();
     bars.forEach(function(b){ b.classList.add('on'); });
     document.getElementById('qRestart').addEventListener('click', restart);
     var hd = out.querySelector('h3'); if(hd){ hd.setAttribute('tabindex','-1'); hd.focus({preventScroll:true}); }
   }
   function restart(){
-    A = {}; out.hidden = true; out.innerHTML = '';
+    A = {};
     document.getElementById('qTrack').value = '';
     form.querySelectorAll('[aria-pressed]').forEach(function(b){ b.setAttribute('aria-pressed','false'); });
-    qs.forEach(function(q){ q.classList.toggle('on', q.dataset.q === '1'); });
-    bars.forEach(function(b, k){ b.classList.toggle('on', k < 1); });
+    show(1);
   }
   document.getElementById('qTrack').addEventListener('change', function(){
     A.track = this.value; if(!A.track) return;
@@ -2108,10 +2080,9 @@ document.addEventListener('DOMContentLoaded', () => {
     var q = +b.closest('.n-q').dataset.q;
     b.parentElement.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed', String(x === b)); });
     A[{2:'commit',3:'mode',4:'invest'}[q]] = b.dataset.v;
-    if(q < 4) show(q + 1);
-    if(A.track && A.commit && A.mode && A.invest) result();
+    if(q < 4) show(q + 1); else result();
   }); });
-  show(1);
+  qs.forEach(function(q){ q.classList.toggle('on', q.dataset.q === '1'); });
 })();
 </script>
 <script>

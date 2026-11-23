@@ -64,7 +64,7 @@ p strong{color:var(--text);}
 .prompt mark{background:none;font-weight:700;}
 .prompt .mp{color:var(--p);} .prompt .mc{color:var(--c);} .prompt .mt{color:var(--t);}
 .row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem;}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;padding:.85rem 1.2rem;border-radius:11px;font:700 .92rem 'DM Sans',sans-serif;text-decoration:none;border:1px solid transparent;cursor:pointer;}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:.45rem;padding:.85rem 1.2rem;border-radius:11px;font:700 .92rem 'DM Sans',sans-serif;text-decoration:none;border:1px solid transparent;cursor:pointer;}
 .btn-gold{background:linear-gradient(135deg,#D9B95C,#B8933A);color:#141210;box-shadow:0 6px 22px rgba(201,168,76,.25);}
 .btn-line{background:transparent;color:var(--ink);border-color:var(--gold-border);}
 .btn:active{transform:scale(.98);}
@@ -107,6 +107,7 @@ ol.do li span{color:var(--text-secondary);}
 .top-nav a{font-size:.85rem;font-weight:600;text-decoration:none;color:var(--text-secondary);}
 .top-nav a[aria-current="page"],.top-nav a:hover{color:var(--ink);}
 .parent{display:flex;gap:1rem;align-items:center;border:1px solid var(--gold-border);border-radius:14px;padding:1rem;background:var(--bg2);margin:1rem 0;}
+.ona-logo{flex-shrink:0;width:76px;height:76px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px var(--border);}
 .wordmark{flex-shrink:0;width:76px;height:76px;border-radius:14px;background:var(--card-bg);border:1px solid var(--border);display:grid;place-items:center;text-align:center;font-family:'Cormorant Garamond',serif;font-weight:700;line-height:1;color:var(--ink);}
 .wordmark b{display:block;font-size:1.6rem;}
 .wordmark small{display:block;font:700 .55rem 'DM Sans',sans-serif;letter-spacing:.12em;color:var(--text-muted);margin-top:.2rem;}
@@ -122,7 +123,7 @@ ol.do li span{color:var(--text-secondary);}
 .links{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:1rem;}
 @media (max-width:640px){.vals{grid-template-columns:1fr;}.links{grid-template-columns:1fr;}.top-nav{display:none;}}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"AI Made Simple School","url":"https://aimadesimpleschool.com/","parentOrganization":{"@type":"Organization","name":"Ona Services Limited","address":{"@type":"PostalAddress","addressLocality":"Abuja","addressCountry":"NG"},"email":"onaservicesltd@gmail.com","sameAs":["https://www.facebook.com/onaservicesltd/"]}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"AI Made Simple School","url":"https://aimadesimpleschool.com/","parentOrganization":{"@type":"Organization","name":"Ona Services Limited","address":{"@type":"PostalAddress","addressLocality":"Abuja","addressCountry":"NG"},"email":"onaservicesltd@gmail.com","logo":"https://aimadesimpleschool.com/assets/ona-services-logo.png","sameAs":["https://www.facebook.com/onaservicesltd","https://www.instagram.com/onaservicesltd"]}}</script>
 </head>
 <body data-page="about">
 <header class="top">
@@ -157,7 +158,7 @@ ol.do li span{color:var(--text-secondary);}
     <div class="part-k">Our parent company</div>
     <h2>A subsidiary of Ona Services Limited</h2>
     <div class="parent">
-      <div class="wordmark" aria-hidden="true"><div><b>Ona</b><small>SERVICES LTD</small></div></div>
+      <img class="ona-logo" src="assets/ona-services-logo.png" width="76" height="76" alt="Ona Services Limited logo">
       <p>AI Made Simple School is a subsidiary of <strong>Ona Services Limited</strong>, a registered company in Abuja, Nigeria, that takes care of businesses' day-to-day needs.</p>
     </div>
     <p>All enrolment, payments, access codes, certificates and support for AI Made Simple run through Ona Services Limited. That's why you'll see <strong>“Ona Services Ltd”</strong> on Paystack and on your bank statement, and why our bank account is in the company's name.</p>
@@ -182,15 +183,15 @@ ol.do li span{color:var(--text-secondary);}
       <div><span>WhatsApp</span><a href="https://wa.me/2347033134979" target="_blank" rel="noopener">+234 703 313 4979</a></div>
       <div><span>Phone</span><a href="tel:+2347067547610">+234 706 754 7610</a></div>
       <div><span>Email</span><a href="mailto:onaservicesltd@gmail.com">onaservicesltd@gmail.com</a></div>
-      <div><span>Facebook</span><a href="https://www.facebook.com/onaservicesltd/" target="_blank" rel="noopener">Ona Services Ltd (@onaservicesltd)</a></div>
+      <div><span>Facebook</span><a href="https://www.facebook.com/onaservicesltd" target="_blank" rel="noopener">facebook.com/onaservicesltd</a></div>
+      <div><span>Instagram</span><a href="https://www.instagram.com/onaservicesltd" target="_blank" rel="noopener">instagram.com/onaservicesltd</a></div>
       <div><span>Location</span><b>Abuja, Nigeria</b></div>
       <div><span>Bank (for payments)</span><b>GTBank · Ona Services Limited · 0710642377</b></div>
     </div>
-    <p class="fine">Website coded by Oluwaseyi Ashiru.</p>
   </section>
 </div>
 
-<footer>© 2026 Ona Services Ltd. AI Made Simple School is a subsidiary of Ona Services Limited. · <a href="index.html">Home</a> · <a href="programmes.html">Programmes</a> · <a href="about.html">About</a></footer>
+<footer>© 2026 AI Made Simple School by Ona Services Ltd. · <a href="index.html">Home</a> · <a href="programmes.html">Programmes</a> · <a href="about.html">About</a></footer>
 <script src="ams-track.js"></script>
 <script src="site-ui.js"></script>
 </body>
