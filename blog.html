@@ -343,12 +343,14 @@ body:has(.pwa-banner.show){padding-bottom:140px;}
 <!-- SUBSCRIBE STRIP -->
 <div class="subscribe-strip">
   <div class="sub-title">Stay Ahead of <em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);">AI</em></div>
-  <div class="sub-sub">Get weekly insights delivered to your inbox. No spam. Unsubscribe anytime.</div>
-  <div class="sub-form">
-    <input type="email" class="sub-input" placeholder="your@email.com" id="subEmail">
-    <button class="sub-btn" onclick="handleSubscribe()">Subscribe</button>
-  </div>
-  <div id="subMsg" style="font-size:0.8rem;color:var(--gold);margin-top:0.75rem;display:none;"></div>
+  <div class="sub-sub">One short brief every Monday: what happened in AI, what it means for your work, one thing to try.</div>
+  <form class="sub-form" id="subForm" onsubmit="handleSubscribe(event)" novalidate>
+    <input type="email" class="sub-input" placeholder="your@email.com" id="subEmail" autocomplete="email" inputmode="email" aria-label="Your email address" required>
+    <input type="text" id="subWebsite" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+    <button class="sub-btn" id="subBtn" type="submit">Subscribe</button>
+  </form>
+  <div id="subMsg" role="status" style="font-size:0.84rem;color:var(--gold);margin-top:0.75rem;display:none;"></div>
+  <div class="sub-fine" style="font-size:0.72rem;color:var(--text-muted);margin-top:.8rem;max-width:440px;margin-left:auto;margin-right:auto;line-height:1.5">Free. Unsubscribe in one click. We never sell your email. <a href="privacy.html" style="color:var(--text-secondary)">Privacy</a></div>
 </div>
 
 <footer class="ams-foot">
@@ -618,6 +620,30 @@ function closeDetail(){
   history.pushState({}, document.title, window.location.pathname);
 }
 
+/* ── SUBSCRIBE ("Stay ahead of AI") ── */
+async function handleSubscribe(ev){
+  if(ev) ev.preventDefault();
+  var inp=document.getElementById('subEmail'), msg=document.getElementById('subMsg'), btn=document.getElementById('subBtn');
+  var email=inp.value.trim().toLowerCase();
+  function say(t,good){ msg.style.display='block'; msg.style.color=good?'var(--gold)':'#e05a5a'; msg.textContent=t; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ say('Please enter a valid email address.',false); inp.focus(); return false; }
+  var cfg=window.AMS_API||{};
+  if(!cfg.apiUrl){
+    /* Mailer not connected yet: hand the lead to WhatsApp so it is never lost (and never faked). */
+    window.open('https://wa.me/'+(cfg.whatsapp||'2347033134979')+'?text='+encodeURIComponent('Hello AI Made Simple, please add me to the weekly AI brief. My email: '+email),'_blank','noopener');
+    say('Almost done: tap Send in WhatsApp and we will add you to the list.',true); return false;
+  }
+  btn.disabled=true; btn.textContent='Subscribing…';
+  try{
+    var r=await fetch(cfg.apiUrl+(cfg.apiUrl.indexOf('?')<0?'?':'&')+'action=subscribe&source=Blog&email='+encodeURIComponent(email)+'&website='+encodeURIComponent(document.getElementById('subWebsite').value),{cache:'no-store'});
+    var j=await r.json();
+    if(j.status==='success'){ inp.value=''; say('You\'re in. Check your inbox for a welcome email (and your spam folder).',true); }
+    else if(j.status==='duplicate'){ say('You\'re already subscribed. See you on Monday.',true); }
+    else say('That email did not look right. Please check it and try again.',false);
+  }catch(e){ say('Could not subscribe just now. Please try again, or message us on WhatsApp.',false); }
+  btn.disabled=false; btn.textContent='Subscribe'; return false;
+}
+
 /* ── INIT ── */
 renderFilters();
 renderContent();
@@ -744,6 +770,7 @@ window.addEventListener('hashchange',openFromUrl);
     })();
   </script>
 <script src="ams-track.js"></script>
+<script src="ams-config.js"></script>
 <script src="site-ui.js"></script>
 </body>
 </html>

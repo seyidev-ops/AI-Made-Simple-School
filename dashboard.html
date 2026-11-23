@@ -927,7 +927,7 @@ function sprintLesson(d){const S=sprintData();const t=sprintTrack()||'ops';retur
 function sprintDaysOpen(){
   if(isDemo()) return 1;
   if(ST.sprintFast) return 30;
-  if(!ST.sprintStart){ST.sprintStart=new Date().toISOString();saveSt();}
+  if(!ST.sprintStart){ST.sprintStart=(getSession()&&getSession().startedAt)||new Date().toISOString();saveSt();}
   const days=Math.floor((Date.now()-new Date(ST.sprintStart).getTime())/86400000);
   return Math.min(30,Math.max(1,days+1));
 }
@@ -979,7 +979,7 @@ function renderSprintMain(main){
     <div class="dash-header">
       <div class="welcome-tag">30-Day Professional AI Sprint · ${tr.icon} ${escH(tr.name)}</div>
       <div class="welcome-title" id="wTitle">Loading…</div>
-      <div class="welcome-sub">Day ${d} of 30 · ${doneN} days complete · ${Math.round(doneN/30*100)}% · ${ST.sprintFast?'fast-track on':`${open} of 30 days unlocked`}</div>
+      <div class="welcome-sub">Day ${d} of 30 · ${doneN} days complete · ${Math.round(doneN/30*100)}% · ${ST.sprintFast?'fast-track on':`${open} of 30 days unlocked`}${getSession()&&getSession().validUntil?` · access until ${new Date(getSession().validUntil).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'Africa/Lagos'})}`:''}</div>
     </div>
     <div class="stats-row">
       <div class="stat-card"><div class="stat-card-label">Today</div><div class="stat-card-value">${d}</div><div class="stat-card-sub">of 30 days</div></div>
@@ -1466,7 +1466,7 @@ function init(){
   const session=getSession();if(!session){window.location.href='login.html';return;}
   if(session.validUntil&&!session.demo&&new Date()>new Date(session.validUntil)){
     localStorage.removeItem('ams-session');
-    alert('Your access code has expired. Please log in with this month\'s code.');
+    alert('Your access has ended. Message us on WhatsApp to renew or to continue with another programme.');
     window.location.href='login.html';return;
   }
   document.getElementById('navUserName').textContent=(session.name||session.email||'').split(' ')[0];

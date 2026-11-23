@@ -177,6 +177,8 @@ body:has(.pwa-banner.show){padding-bottom:140px;}
 
 <script src="ams-sha256.js"></script>
 <script src="access-codes.js"></script>
+<script src="access-firstuse.js"></script>
+<script src="ams-config.js"></script>
 <!-- Service Worker + PWA Install -->
 <script>
   if('serviceWorker' in navigator){
@@ -227,6 +229,37 @@ function findOfficialCode(code){
 function fmtDate(d){ return new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'Africa/Lagos'}); }
 function showAlert(id,type,msg){const e=document.getElementById(id);e.className='alert '+type+' visible';e.textContent=msg;setTimeout(()=>e.classList.remove('visible'),6000);}
 
+/* ── FIRST-USE CODES (PBKDF2 hash check, then start the clock on first use) ── */
+function fuHex(buf){ return Array.prototype.map.call(new Uint8Array(buf),function(b){return ('0'+b.toString(16)).slice(-2);}).join(''); }
+async function fuHash(canon, FU){
+  var enc=new TextEncoder();
+  var key=await crypto.subtle.importKey('raw',enc.encode(canon),'PBKDF2',false,['deriveBits']);
+  var bits=await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:enc.encode(FU.salt),iterations:FU.iterations},key,256);
+  return fuHex(bits);
+}
+function fuDevice(){ try{ var d=localStorage.getItem('ams-dev'); if(!d){ d=fuHex(crypto.getRandomValues(new Uint8Array(8))); localStorage.setItem('ams-dev',d);} return d; }catch(e){ return 'nodev'; } }
+async function tryFirstUse(rawCode, name){
+  var FU=window.AMS_FU; if(!FU || !window.crypto || !crypto.subtle) return null;
+  var canon=rawCode.replace(/[^A-Z0-9]/g,''); if(canon.length<8) return null;
+  var h=await fuHash(canon, FU); if(FU.hashes.indexOf(h)<0) return null;
+  var acts={}; try{ acts=JSON.parse(localStorage.getItem('ams-activations')||'{}'); }catch(e){}
+  var a=acts[h], first=false, api=(window.AMS_API||{}).apiUrl;
+  if(api){
+    try{
+      var r=await fetch(api+(api.indexOf('?')<0?'?':'&')+'action=redeem&h='+h+'&name='+encodeURIComponent(name)+'&dev='+fuDevice(),{cache:'no-store'});
+      var j=await r.json();
+      if(j.status==='taken') return {error:'This code is already in use by someone else. If it is yours, message us on WhatsApp and we will sort it out.'};
+      if(j.status==='device_limit') return {error:'This code is already in use on 3 devices. Message us on WhatsApp if you changed phones.'};
+      if(j.status==='expired') return {error:'This code expired on '+fmtDate(j.until)+'. Message us on WhatsApp to renew.'};
+      if(j.status==='ok'){ first=!!j.first; a={name:name,startedAt:j.startedAt,until:j.until}; }
+    }catch(e){ /* offline or script unreachable: fall back to this device's own record */ }
+  }
+  if(!a){ var s=new Date(); a={name:name,startedAt:s.toISOString(),until:new Date(s.getTime()+FU.days*864e5).toISOString()}; first=true; }
+  if(new Date()>new Date(a.until)) return {error:'This code expired on '+fmtDate(a.until)+'. Message us on WhatsApp to renew.'};
+  acts[h]=a; try{ localStorage.setItem('ams-activations',JSON.stringify(acts)); }catch(e){}
+  return {first:first, session:{name:name, code:'FU-'+h.slice(0,8), access:FU.access, paid:true, adminSession:false, validUntil:a.until, startedAt:a.startedAt, programme:FU.programme, label:FU.label}};
+}
+
 function handleCodeLogin(){
   const name = document.getElementById('accessName').value.trim();
   const rawCode = document.getElementById('accessCode').value.trim().toUpperCase().replace(/\s/g,'');
@@ -237,8 +270,21 @@ function handleCodeLogin(){
 
   btn.classList.add('loading'); btn.disabled=true;
 
-  setTimeout(function(){
+  setTimeout(async function(){
     btn.classList.remove('loading'); btn.disabled=false;
+
+    /* 0) First-use codes: the 30 days start the first time the code is used */
+    var fu = null;
+    try{ fu = await tryFirstUse(rawCode, name); }catch(e){ fu = null; }
+    if(fu){
+      if(fu.error){ showAlert('loginAlert','error',fu.error); return; }
+      saveSession(fu.session);
+      showAlert('loginAlert','success', fu.first
+        ? 'Welcome, '+name+'! Your 30 days start today. Redirecting\u2026'
+        : 'Welcome back, '+name+'! Your access runs until '+fmtDate(fu.session.validUntil)+'. Redirecting\u2026');
+      setTimeout(function(){ window.location.href='dashboard.html'; }, 1200);
+      return;
+    }
 
     /* 1) Official monthly codes (access-codes.js) — work on every device */
     var official = findOfficialCode(rawCode);
