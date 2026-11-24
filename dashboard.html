@@ -180,6 +180,18 @@ nav{position:sticky;top:0;z-index:200;background:var(--nav-bg);backdrop-filter:b
 .deep-src li{display:flex;flex-direction:column;gap:1px;}
 .deep-src a{color:var(--text);font-size:0.8rem;font-weight:600;text-decoration:none;border-bottom:1px solid transparent;align-self:flex-start;}
 .deep-src a:hover{color:var(--gold);border-bottom-color:var(--gold);}
+.sp-video{margin:0 0 1rem;background:#000;border-radius:12px;overflow:hidden;border:1px solid var(--border);}
+.sp-video video{display:block;width:100%;max-height:72vh;aspect-ratio:9/16;object-fit:contain;background:#0E0E10;margin:0 auto;}
+.sp-vcap{font-size:.72rem;color:var(--text-muted);padding:.45rem .75rem;background:var(--card-bg);}
+.sp-win{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;line-height:1.3;color:var(--text);margin:0 0 .35rem;}
+.sp-win span{display:block;font-family:'DM Sans',sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem;}
+.sp-why{font-size:.86rem;line-height:1.65;color:var(--text-secondary);margin:0 0 1rem;}
+.sp-proof{margin-top:.6rem;font-size:.8rem;line-height:1.55;color:var(--text);background:rgba(201,168,76,.08);border-left:3px solid var(--gold);padding:.5rem .75rem;border-radius:0 6px 6px 0;}
+.sp-proof b{color:var(--gold);}
+.sp-more{margin:.25rem 0 1rem;border:1px solid var(--border);border-radius:8px;padding:.6rem .85rem;}
+.sp-more summary{cursor:pointer;font-size:.8rem;font-weight:600;color:var(--text-secondary);}
+.sp-more p{font-size:.82rem;line-height:1.7;color:var(--text-secondary);margin:.6rem 0;}
+@media(min-width:700px){.sp-video video{max-height:560px;}}
 .sp-block{margin:0 0 1rem;}
 .sp-block p{font-size:.86rem;line-height:1.75;color:var(--text);margin:0;}
 .sp-k{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.45rem;display:flex;gap:.45rem;align-items:baseline;}
@@ -994,11 +1006,14 @@ function renderSprintMain(main){
         <div class="today-day">DAY ${d} OF 30 — WEEK ${l.w}${d>=8&&d<=12?' — '+escH(tr.name.toUpperCase()):''}</div>
         <div class="today-title">${escH(l.t)}</div>
         <div class="tool-badge">🔧 ${escH(l.tool)}</div>
-        <div class="sp-block"><div class="sp-k"><b>5 min</b> Learn</div><p>${F(l.concept)}</p></div>
-        <div class="sp-block"><div class="sp-k"><b>15 min</b> Practise</div><ol class="sp-steps">${l.steps.map(x=>`<li>${F(x)}</li>`).join('')}</ol>
+        ${l.vid?`<div class="sp-video"><video controls playsinline preload="none" poster="${l.vid}.jpg" src="${l.vid}.mp4"></video><div class="sp-vcap">📺 Video class · about 1 minute · sound on</div></div>`:''}
+        <div class="sp-win"><span>Today's win</span>${F(l.win||l.t)}</div>
+        ${l.why?`<p class="sp-why">${F(l.why)}</p>`:''}
+        <div class="sp-block"><div class="sp-k"><b>15 min</b> Do it now</div><ol class="sp-steps">${(l.do||l.steps).map(x=>`<li>${F(x)}</li>`).join('')}</ol>
           <div class="deep-prompt"><div class="deep-prompt-hd"><span class="deep-k">✍️ Your prompt for today</span><button type="button" class="deep-copy" onclick="copyPrompt(this)">Copy prompt</button></div><pre>${F(l.prompt)}</pre><div class="deep-fine">Replace anything in [square brackets] with your real details.</div></div></div>
-        <div class="sp-block"><div class="sp-k"><b>10 min</b> Real work</div><p>${F(l.apply)}</p></div>
-        <div class="deep-watch"><b>Watch out:</b> ${F(l.watch)}</div>
+        <div class="sp-block"><div class="sp-k"><b>10 min</b> Use it on real work</div><p>${F(l.task||l.apply)}</p>${l.proof?`<div class="sp-proof">📁 <b>Save for your portfolio:</b> ${F(l.proof)}</div>`:''}</div>
+        <div class="deep-watch"><b>Watch out:</b> ${F(l.warn||l.watch)}</div>
+        ${l.win?`<details class="sp-more"><summary>More detail (optional reading)</summary><p>${F(l.concept)}</p><ol class="sp-steps">${l.steps.map(x=>`<li>${F(x)}</li>`).join('')}</ol><p><b>Real work idea:</b> ${F(l.apply)}</p><p><b>Also watch out:</b> ${F(l.watch)}</p></details>`:''}
         ${srcs.length?`<div class="deep-src"><div class="deep-k">📚 Go deeper · free courses from OpenAI and Anthropic</div><ul>${srcs.map(x=>`<li><a href="${x.u}" target="_blank" rel="noopener">${escH(x.t)} ↗</a><span>${escH(x.by)}</span></li>`).join('')}</ul><div class="deep-fine">Lessons are written by AI Made Simple and draw on free material from OpenAI and Anthropic. Neither company endorses this course.</div></div>`:''}`
       :`<div style="text-align:center;padding:2rem 0;"><div style="font-size:2.5rem;margin-bottom:.75rem">⏳</div><div style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--text);margin-bottom:.5rem">Day ${d} unlocks ${d-open===1?'tomorrow':'in '+(d-open)+' days'}</div><div style="font-size:.83rem;color:var(--text-secondary);max-width:360px;margin:0 auto 1rem">One new lesson opens every 24 hours so the habit sticks. In a hurry? Switch on fast-track below.</div><button class="btn-next" onclick="setSprintFast(true)">Unlock all 30 days</button></div>`}
       </div>

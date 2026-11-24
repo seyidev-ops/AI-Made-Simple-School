@@ -102,6 +102,11 @@ ol.do li span{color:var(--text-secondary);}
 .srcs span{display:block;font-size:.72rem;color:var(--text-muted);}
 @media (max-width:640px){.tracks{grid-template-columns:1fr 1fr;}.formula{grid-template-columns:1fr;}}
 @media (max-width:380px){.tracks{grid-template-columns:1fr;}}
+.vclass{margin:.75rem 0 1rem;border-radius:14px;overflow:hidden;border:1px solid rgba(201,168,76,.3);background:#0E0E10}
+.vclass video{display:block;width:100%;max-height:72vh;aspect-ratio:9/16;object-fit:contain;background:#0E0E10}
+@media(min-width:700px){.vclass video{max-height:560px}}
+.win{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;line-height:1.3;margin:.25rem 0 .4rem}
+.win span{display:block;font-family:'DM Sans',sans-serif;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#C9A84C;margin-bottom:.2rem}
 </style>
 </head>
 <body data-page="sprint-day1">
@@ -129,8 +134,10 @@ ol.do li span{color:var(--text-secondary);}
   </section>
 
   <section class="part">
-    <div class="part-k">5 minutes · Learn</div>
+    <div class="part-k">1 minute · Watch the video class</div>
     <h2 id="dTitle">Set Up Your AI Power-Stack</h2>
+    <div class="vclass"><video controls playsinline preload="none" poster="videos/sprint/d01.jpg" src="videos/sprint/d01.mp4"></video></div>
+    <p id="dWin" class="win"></p>
     <p id="dConcept"></p>
     <div class="formula">
       <div><b>Context</b><span>Who you are, the situation, and why it matters.</span></div>
@@ -202,11 +209,12 @@ ol.do li span{color:var(--text-secondary);}
     var tr=S.tracks[cur], d=S.days['1'];
     box.querySelectorAll('.trk').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.t===cur));});
     document.getElementById('dTitle').textContent=d.t;
-    document.getElementById('dConcept').textContent=fill(d.concept,tr);
-    document.getElementById('dSteps').innerHTML=d.steps.map(function(s){return '<li><span>'+esc(fill(s,tr))+'</span></li>';}).join('');
+    document.getElementById('dWin').innerHTML='<span>Today\'s win</span>'+esc(fill(d.win||'',tr));
+    document.getElementById('dConcept').textContent=fill(d.why||d.concept,tr);
+    document.getElementById('dSteps').innerHTML=(d.do||d.steps).map(function(s){return '<li><span>'+esc(fill(s,tr))+'</span></li>';}).join('');
     document.getElementById('dPrompt').textContent=fill(d.prompt,tr);
-    document.getElementById('dApply').textContent=fill(d.apply,tr);
-    document.getElementById('dWatch').innerHTML='<b style="color:#e05a5a">Watch out:</b> '+esc(fill(d.watch,tr));
+    document.getElementById('dApply').innerHTML=esc(fill(d.task||d.apply,tr))+(d.proof?'<br><b style="color:var(--gold,#C9A84C)">Save for your portfolio:</b> '+esc(fill(d.proof,tr)):'');
+    document.getElementById('dWatch').innerHTML='<b style="color:#e05a5a">Watch out:</b> '+esc(fill(d.warn||d.watch,tr));
     document.getElementById('nextTitle').textContent='Your 30 days as '+tr.name;
     var td=S.trackDays[cur];
     var w2=[8,9,10,11,12].map(function(n){return td[n].t;}).join(' · ');

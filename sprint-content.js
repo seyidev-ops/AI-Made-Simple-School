@@ -108,7 +108,18 @@ window.AMS_SPRINT={
     "oa_found",
     "claude101",
     "fluency"
-   ]
+   ],
+   "win": "Set up two free AI assistants and get your first real win.",
+   "why": "One assistant you know well beats thirty tools. The free plans of ChatGPT, Claude and Gemini are enough.",
+   "do": [
+    "Install ChatGPT and Claude (or Gemini) on your phone and laptop.",
+    "In Settings, switch off training on your chats for work content.",
+    "Paste today's prompt into both. Keep the one that helps you more."
+   ],
+   "task": "Use the answer on one real task at work today, and note how long it took.",
+   "proof": "A screenshot of your first useful answer.",
+   "warn": "Never paste passwords, BVN, account numbers or confidential files into AI.",
+   "vid": "videos/sprint/d01"
   },
   "2": {
    "d": 2,
@@ -129,7 +140,18 @@ window.AMS_SPRINT={
     "clear",
     "oa_found",
     "best"
-   ]
+   ],
+   "win": "Write prompts that get usable answers the first time.",
+   "why": "Weak prompts get generic answers. Add Context, Task, Constraints and Output, and the answer fits your work.",
+   "do": [
+    "Run a one-line prompt for a real task and save the answer.",
+    "Rewrite it with Context, Task, Constraints and Output.",
+    "Compare both. Save the strong prompt in your Prompt Library."
+   ],
+   "task": "Use the formula on the first real message or document you write today.",
+   "proof": "Your weak prompt, your strong prompt and both answers.",
+   "warn": "If the AI keeps missing, add more context. Changing tools rarely fixes it.",
+   "vid": "videos/sprint/d02"
   },
   "3": {
    "d": 3,
@@ -150,7 +172,18 @@ window.AMS_SPRINT={
     "projects",
     "personal",
     "oa_found"
-   ]
+   ],
+   "win": "Teach your assistant who you are, so you stop repeating yourself.",
+   "why": "Custom instructions and Projects give the AI your role, tone and examples every time.",
+   "do": [
+    "Add your role, audience and tone in Settings, Personalisation.",
+    "Create a Project called My work with 2 or 3 non-confidential examples.",
+    "Ask it for a task you do every week. See how little you explain."
+   ],
+   "task": "Draft part of a real weekly task inside your new Project.",
+   "proof": "Your custom instructions text.",
+   "warn": "Check what the AI has saved to memory, and delete anything sensitive.",
+   "vid": "videos/sprint/d03"
   },
   "4": {
    "d": 4,
@@ -170,7 +203,18 @@ window.AMS_SPRINT={
    "src": [
     "artifacts",
     "examples"
-   ]
+   ],
+   "win": "Turn AI drafts into documents you're proud to send.",
+   "why": "Good structure makes work look professional. AI lays it out, you finish it.",
+   "do": [
+    "Ask for a clear structure, then open it in Canvas or Artifacts.",
+    "Fix one section with a specific request.",
+    "Remove AI clichés, then export to Word or PDF."
+   ],
+   "task": "Produce one real document you'll send this week, formatted and exported.",
+   "proof": "The final PDF.",
+   "warn": "Read it once as the reader would. Your name goes on it, not the AI's.",
+   "vid": "videos/sprint/d04"
   },
   "5": {
    "d": 5,
@@ -191,7 +235,18 @@ window.AMS_SPRINT={
     "halluc",
     "limits",
     "oa_found"
-   ]
+   ],
+   "win": "Research fast with AI, then check it like a professional.",
+   "why": "AI can sound sure and still be wrong. Web search shows its sources, so you can verify.",
+   "do": [
+    "Turn on web search or Deep research.",
+    "Ask a real work question and ask for sources.",
+    "Open 3 sources and check they really say it."
+   ],
+   "task": "Use one verified finding in a real decision or document, with the links.",
+   "proof": "Your question, the answer and 3 checked links.",
+   "warn": "A neat citation is not proof. Always open the link.",
+   "vid": "videos/sprint/d05"
   },
   "6": {
    "d": 6,
@@ -211,7 +266,18 @@ window.AMS_SPRINT={
    "src": [
     "chain",
     "fluency"
-   ]
+   ],
+   "win": "Finish one real piece of work end to end with AI in 30 minutes.",
+   "why": "This week's skills work best together: research, draft, edit and format.",
+   "do": [
+    "Pick a real deliverable. Note how long it usually takes.",
+    "Research, draft, edit and format it with your saved prompts.",
+    "Stop at 30 minutes. Note what AI did well and badly."
+   ],
+   "task": "Send or submit the deliverable for real.",
+   "proof": "The deliverable, with your before and after times.",
+   "warn": "Ask the AI to list its assumptions, and check them before you send.",
+   "vid": "videos/sprint/d06"
   },
   "7": {
    "d": 7,
@@ -231,7 +297,18 @@ window.AMS_SPRINT={
    "src": [
     "character",
     "examples"
-   ]
+   ],
+   "win": "Get honest feedback and organise your prompt library.",
+   "why": "Feedback turns good work into great work. A tidy library saves you time every day.",
+   "do": [
+    "Paste your Week 1 work. Ask for the 3 weakest points.",
+    "Fix the top 2, if you agree with them.",
+    "Sort your prompts: writing, research, planning, data, communication."
+   ],
+   "task": "Share one AI tip from this week with your team or class.",
+   "proof": "Your organised prompt library.",
+   "warn": "If the AI only praises you, ask it directly for weaknesses.",
+   "vid": "videos/sprint/d07"
   },
   "13": {
    "d": 13,
@@ -252,7 +329,18 @@ window.AMS_SPRINT={
     "oa_applied",
     "skills",
     "projects"
-   ]
+   ],
+   "win": "Turn this week's best prompts into a reusable toolkit.",
+   "why": "Prompts saved with [blanks] turn an hour's work into minutes next time.",
+   "do": [
+    "List the 5 tasks you'll repeat most.",
+    "Save each final prompt with [blanks] in your library.",
+    "Add your best examples to your Project."
+   ],
+   "task": "Use one toolkit prompt on a fresh real task, and time it.",
+   "proof": "Your 5 template prompts.",
+   "warn": "When a template gives weak results, fix the template itself.",
+   "vid": "videos/sprint/d13"
   },
   "14": {
    "d": 14,
@@ -271,7 +359,18 @@ window.AMS_SPRINT={
    "watch": "Never put real client names, figures or confidential documents in a portfolio without permission.",
    "src": [
     "fluency"
-   ]
+   ],
+   "win": "Show the difference AI makes with two before-and-after examples.",
+   "why": "Proof beats claims. Before-and-after notes show your boss or clients real value.",
+   "do": [
+    "Pick 2 tasks you did with AI. Remove names and figures.",
+    "Note the task, the time before and the time with AI.",
+    "Ask AI to write a short case note for each."
+   ],
+   "task": "Share one before-and-after with your manager, a client or a friend.",
+   "proof": "Two case notes in your AI Sprint Portfolio folder.",
+   "warn": "Remove client names and confidential figures first.",
+   "vid": "videos/sprint/d14"
   },
   "15": {
    "d": 15,
@@ -290,7 +389,18 @@ window.AMS_SPRINT={
    "watch": "Don't photograph other people's IDs, bank details or confidential papers into AI tools.",
    "src": [
     "limits"
-   ]
+   ],
+   "win": "Turn photos of paper into editable text and tables.",
+   "why": "AI can read photos, screenshots and scans, so you stop retyping.",
+   "do": [
+    "Photograph a printed table, receipts or handwritten notes.",
+    "Upload it and ask for a clean table.",
+    "Check 5 values against the original."
+   ],
+   "task": "Digitise one real paper document you would have typed by hand.",
+   "proof": "The photo and the finished table.",
+   "warn": "Don't upload other people's IDs or bank details.",
+   "vid": "videos/sprint/d15"
   },
   "16": {
    "d": 16,
@@ -309,7 +419,18 @@ window.AMS_SPRINT={
    "watch": "Always tell people you are recording, and check names and figures in the transcript. Accents and Pidgin can be misheard.",
    "src": [
     "xml"
-   ]
+   ],
+   "win": "Turn meetings and voice notes into clear action lists.",
+   "why": "Talking is faster than typing. AI turns a recording into who does what, by when.",
+   "do": [
+    "Record a meeting or a 5-minute voice note, with consent.",
+    "Transcribe it and run today's prompt.",
+    "Check names and figures, then send the actions."
+   ],
+   "task": "Use it on a real meeting and send the follow-up within an hour.",
+   "proof": "Your action list.",
+   "warn": "Always tell people you're recording. Accents and Pidgin can be misheard.",
+   "vid": "videos/sprint/d16"
   },
   "17": {
    "d": 17,
@@ -329,7 +450,18 @@ window.AMS_SPRINT={
    "src": [
     "oa_applied",
     "limits"
-   ]
+   ],
+   "win": "Get answers from your spreadsheet without writing formulas.",
+   "why": "Upload a sheet and ask in plain English. AI finds patterns and makes charts.",
+   "do": [
+    "Remove names, phone numbers and salaries from a copy.",
+    "Upload it and ask for a data check first.",
+    "Ask your real question and one chart. Check one number by hand."
+   ],
+   "task": "Share one real insight from your own data in a short message.",
+   "proof": "The chart and your one-line insight.",
+   "warn": "Don't upload sensitive data unless your organisation allows it.",
+   "vid": "videos/sprint/d17"
   },
   "18": {
    "d": 18,
@@ -349,7 +481,18 @@ window.AMS_SPRINT={
    "src": [
     "longdoc",
     "halluc"
-   ]
+   ],
+   "win": "Get the key points from a 100-page document in 10 minutes.",
+   "why": "AI reads long documents fast and can quote the exact lines, so you can check.",
+   "do": [
+    "Upload a long document to your assistant or NotebookLM.",
+    "Ask for a summary, the risks and exact quotes.",
+    "Check 3 quotes against the document."
+   ],
+   "task": "Use the summary in a real decision, meeting or assignment this week.",
+   "proof": "Your summary and risk table.",
+   "warn": "For legal or money decisions, still read the key clauses yourself.",
+   "vid": "videos/sprint/d18"
   },
   "19": {
    "d": 19,
@@ -370,7 +513,18 @@ window.AMS_SPRINT={
     "projects",
     "skills",
     "oa_applied"
-   ]
+   ],
+   "win": "Build your own AI assistant for one repetitive job.",
+   "why": "A custom GPT, Claude Project or Gemini Gem remembers your instructions and examples.",
+   "do": [
+    "Pick one repetitive job.",
+    "Create a GPT, Project or Gem with clear instructions.",
+    "Test it with 3 real requests, and improve it each time."
+   ],
+   "task": "Use your assistant on one real task today.",
+   "proof": "Your assistant's instructions.",
+   "warn": "Don't put confidential files in an assistant you share.",
+   "vid": "videos/sprint/d19"
   },
   "20": {
    "d": 20,
@@ -391,7 +545,18 @@ window.AMS_SPRINT={
     "oa_agents",
     "agents",
     "cowork"
-   ]
+   ],
+   "win": "Hand AI a multi-step task, and check what it brings back.",
+   "why": "Agents can search, compile and draft in several steps while you watch.",
+   "do": [
+    "Pick a low-risk research or compiling task.",
+    "Brief the agent with today's template.",
+    "Watch it work, then spot-check 3 facts."
+   ],
+   "task": "Use the agent's checked output in real work this week.",
+   "proof": "Your brief and your 3 fact-checks.",
+   "warn": "Never give an agent access to money or passwords.",
+   "vid": "videos/sprint/d20"
   },
   "21": {
    "d": 21,
@@ -411,7 +576,18 @@ window.AMS_SPRINT={
    "src": [
     "oa_applied",
     "chain"
-   ]
+   ],
+   "win": "Combine two AI skills into one real workflow.",
+   "why": "Real work mixes tasks. Joining skills, like photos plus spreadsheets, saves the most time.",
+   "do": [
+    "Pick a job that uses 2 skills: photos, voice, data, documents or agents.",
+    "Write the steps: input, AI step, your check, output.",
+    "Run it on real work in 30 minutes."
+   ],
+   "task": "Run the workflow on real work and record the time saved.",
+   "proof": "Your written workflow.",
+   "warn": "Every workflow needs a human check before anything leaves your hands.",
+   "vid": "videos/sprint/d21"
   },
   "22": {
    "d": 22,
@@ -431,7 +607,18 @@ window.AMS_SPRINT={
    "src": [
     "econ",
     "fluency"
-   ]
+   ],
+   "win": "Find the 5 tasks where AI will save you the most time.",
+   "why": "A quick time audit shows where AI pays off, so you focus there.",
+   "do": [
+    "List last week's tasks with rough minutes.",
+    "Run today's prompt to rank them.",
+    "Pick your top 5 and put them in order."
+   ],
+   "task": "Put your top 5 at the top of your Project instructions.",
+   "proof": "Your ranked top 5.",
+   "warn": "Keep negotiations, hard conversations and final decisions human-led.",
+   "vid": "videos/sprint/d22"
   },
   "23": {
    "d": 23,
@@ -451,7 +638,18 @@ window.AMS_SPRINT={
    "src": [
     "oa_applied",
     "skills"
-   ]
+   ],
+   "win": "Write a one-page SOP for your best AI workflow.",
+   "why": "A standard operating procedure makes your win repeatable, by you or a colleague.",
+   "do": [
+    "Take win number 1 from Day 22.",
+    "Run today's prompt to draft the SOP.",
+    "Test it on a real task and fix unclear steps."
+   ],
+   "task": "Use the SOP on today's real version of the task.",
+   "proof": "SOP 1: one page, with your name and date.",
+   "warn": "Keep it short. An SOP nobody uses is wasted.",
+   "vid": "videos/sprint/d23"
   },
   "24": {
    "d": 24,
@@ -470,7 +668,18 @@ window.AMS_SPRINT={
    "src": [
     "skills",
     "examples"
-   ]
+   ],
+   "win": "Write SOP 2, and turn your best outputs into templates.",
+   "why": "Two SOPs and three templates make a toolkit you'll use long after the Sprint.",
+   "do": [
+    "Draft SOP 2 with yesterday's prompt.",
+    "Turn your 3 best AI outputs into templates with [blanks].",
+    "Keep the SOPs and templates in one folder."
+   ],
+   "task": "Use one new template on a real task before the day ends.",
+   "proof": "SOP 2 and your 3 templates.",
+   "warn": "Remove confidential details before sharing templates.",
+   "vid": "videos/sprint/d24"
   },
   "25": {
    "d": 25,
@@ -490,7 +699,18 @@ window.AMS_SPRINT={
    "src": [
     "oa_applied",
     "agents"
-   ]
+   ],
+   "win": "Stop retyping the same messages and reminders.",
+   "why": "Saved replies, templates and simple automations handle the repetitive hand-offs.",
+   "do": [
+    "List 3 hand-offs you repeat every week.",
+    "Ask AI to write saved replies for the most common one.",
+    "Set a recurring reminder or scheduled message for another."
+   ],
+   "task": "Save the templates on your phone or email, and use one today.",
+   "proof": "Your saved replies.",
+   "warn": "Check drafts for a while before automating messages to customers or your boss.",
+   "vid": "videos/sprint/d25"
   },
   "26": {
    "d": 26,
@@ -510,7 +730,18 @@ window.AMS_SPRINT={
    "src": [
     "fluency",
     "oa_found"
-   ]
+   ],
+   "win": "Write your personal rules for using AI safely at work.",
+   "why": "Knowing what you may share protects you, your customers and your employer.",
+   "do": [
+    "Ask HR or IT if there's an AI policy or approved tools.",
+    "Check the data settings in every AI tool you use.",
+    "Run today's prompt to draft your rules."
+   ],
+   "task": "Remove personal details from one real document before using AI on it.",
+   "proof": "Your one-page AI rules.",
+   "warn": "This isn't legal advice. Follow your organisation's policy.",
+   "vid": "videos/sprint/d26"
   },
   "27": {
    "d": 27,
@@ -530,7 +761,18 @@ window.AMS_SPRINT={
     "character",
     "fluency",
     "oa_found"
-   ]
+   ],
+   "win": "Decide when to use AI, when not to, and when to say so.",
+   "why": "Your reputation depends on trust. Checked, honest AI use protects it.",
+   "do": [
+    "Review 3 things you made with AI. Were they checked?",
+    "Decide where you'll tell people you used AI.",
+    "Test one output for bias or unfair wording."
+   ],
+   "task": "Add a 'When I won't use AI' section to your rules.",
+   "proof": "Your updated rules.",
+   "warn": "Students: follow your school's AI rules exactly.",
+   "vid": "videos/sprint/d27"
   },
   "28": {
    "d": 28,
@@ -549,7 +791,18 @@ window.AMS_SPRINT={
    "watch": "Don't overclaim. If a number is an estimate, say so.",
    "src": [
     "oa_applied"
-   ]
+   ],
+   "win": "Show your value with real numbers: hours saved.",
+   "why": "Managers and clients respond to results. Numbers turn your new skill into proof.",
+   "do": [
+    "Collect your before-and-after times from the Sprint.",
+    "Work out weekly hours saved, times 4 for a month.",
+    "Run today's prompt for a one-page summary."
+   ],
+   "task": "Share your summary with one person who matters to your career.",
+   "proof": "Your one-page impact summary.",
+   "warn": "Don't overclaim. Call estimates estimates.",
+   "vid": "videos/sprint/d28"
   },
   "29": {
    "d": 29,
@@ -569,7 +822,18 @@ window.AMS_SPRINT={
    "src": [
     "fluency",
     "limits"
-   ]
+   ],
+   "win": "Complete your practical assessment and send your portfolio.",
+   "why": "Your portfolio proves what you can do, and earns your certificate.",
+   "do": [
+    "Do one new real task end to end in 30 minutes.",
+    "Assemble your portfolio: 3 before-and-afters, SOP, rules, impact summary.",
+    "Send it on WhatsApp to request your certificate."
+   ],
+   "task": "Submit your portfolio for your certificate today.",
+   "proof": "Your portfolio PDF or link.",
+   "warn": "Use real work, with confidential details removed.",
+   "vid": "videos/sprint/d29"
   },
   "30": {
    "d": 30,
@@ -590,7 +854,18 @@ window.AMS_SPRINT={
     "oa_students",
     "teams",
     "fluency"
-   ]
+   ],
+   "win": "Turn your new AI skill into career growth.",
+   "why": "Skills you can show open doors. Put your proof where people will see it.",
+   "do": [
+    "Add an AI skills line to your CV, backed by one result.",
+    "Use today's prompt for 3 CV bullets and a LinkedIn post.",
+    "Plan the next 90 days: 3 skills, 1 project, 1 habit."
+   ],
+   "task": "Post on LinkedIn or send your CV to one opportunity this week.",
+   "proof": "Your new CV line and post.",
+   "warn": "Only claim skills you can demonstrate.",
+   "vid": "videos/sprint/d30"
   }
  },
  "trackDays": {
@@ -613,7 +888,18 @@ window.AMS_SPRINT={
     "src": [
      "clear",
      "examples"
-    ]
+    ],
+    "win": "Write emails and memos people read and act on.",
+    "why": "A clear subject, one request and a deadline. AI drafts it, you add judgement.",
+    "do": [
+     "Pick a real message, ideally a tricky one.",
+     "Run the prompt and choose the best version.",
+     "Ask what the reader might misunderstand, and fix it."
+    ],
+    "task": "Clear your 3 most overdue emails or memos this way.",
+    "proof": "One before-and-after email.",
+    "warn": "Check names, dates and policy references yourself.",
+    "vid": "videos/sprint/ops-d08"
    },
    "9": {
     "d": 9,
@@ -632,7 +918,18 @@ window.AMS_SPRINT={
     "watch": "Get consent before recording meetings.",
     "src": [
      "xml"
-    ]
+    ],
+    "win": "Turn any meeting into minutes and an action tracker.",
+    "why": "A tracker with owners and dates gets things done. Long minutes don't.",
+    "do": [
+     "Use notes or a transcript from a recent meeting.",
+     "Run the prompt for minutes and a tracker.",
+     "Paste the tracker into Sheets and send it."
+    ],
+    "task": "Use the format for your next real meeting.",
+    "proof": "Your minutes and tracker.",
+    "warn": "Get consent before recording meetings.",
+    "vid": "videos/sprint/ops-d09"
    },
    "10": {
     "d": 10,
@@ -652,7 +949,18 @@ window.AMS_SPRINT={
     "src": [
      "examples",
      "oa_applied"
-    ]
+    ],
+    "win": "Turn raw notes and numbers into a clear report.",
+    "why": "Give AI last report's format and this period's numbers. It drafts, you check and judge.",
+    "do": [
+     "Gather last report, new numbers and key events.",
+     "Run the prompt.",
+     "Check every number. Add your own recommendations."
+    ],
+    "task": "Draft your next real report this way.",
+    "proof": "The draft, with your checks marked.",
+    "warn": "Every number must match your source data.",
+    "vid": "videos/sprint/ops-d10"
    },
    "11": {
     "d": 11,
@@ -671,7 +979,18 @@ window.AMS_SPRINT={
     "watch": "Slides are where made-up statistics slip in. Check every one.",
     "src": [
      "artifacts"
-    ]
+    ],
+    "win": "Build a management briefing deck in under an hour.",
+    "why": "Start from the decision you need. AI outlines, Gamma or Canva designs.",
+    "do": [
+     "Write down the audience and the decision you want.",
+     "Run the prompt for an outline.",
+     "Paste into Gamma or Canva. Check every number."
+    ],
+    "task": "Build a real deck for an upcoming meeting.",
+    "proof": "Your deck as a PDF.",
+    "warn": "Check every statistic on every slide.",
+    "vid": "videos/sprint/ops-d11"
    },
    "12": {
     "d": 12,
@@ -690,7 +1009,18 @@ window.AMS_SPRINT={
     "watch": "AI is not a lawyer. Have policies reviewed before adoption.",
     "src": [
      "character"
-    ]
+    ],
+    "win": "Draft HR and admin documents in minutes.",
+    "why": "Policies, letters and checklists follow patterns AI knows. You add your organisation's details.",
+    "do": [
+     "Pick one HR or admin document you need.",
+     "Run the prompt with your details.",
+     "Check it's fair and compliant. Save it as a template."
+    ],
+    "task": "Produce one real HR or admin document you need this month.",
+    "proof": "The document, saved as a template.",
+    "warn": "AI is not a lawyer. Have policies reviewed.",
+    "vid": "videos/sprint/ops-d12"
    }
   },
   "pm": {
@@ -711,7 +1041,18 @@ window.AMS_SPRINT={
     "watch": "Confirm assumptions in writing with the client. Don't plan on AI guesses.",
     "src": [
      "clear"
-    ]
+    ],
+    "win": "Turn a messy client brief into a clear scope.",
+    "why": "Most project trouble starts with a vague brief. AI spots the gaps and drafts your questions.",
+    "do": [
+     "Collect the brief: messages, notes and emails.",
+     "Run the prompt for a scope and questions.",
+     "Send the questions to the client."
+    ],
+    "task": "Turn a real brief into a scope and send your questions.",
+    "proof": "Your scope document.",
+    "warn": "Confirm assumptions in writing. Don't plan on AI guesses.",
+    "vid": "videos/sprint/pm-d08"
    },
    "9": {
     "d": 9,
@@ -731,7 +1072,18 @@ window.AMS_SPRINT={
     "src": [
      "oa_applied",
      "chain"
-    ]
+    ],
+    "win": "Turn a scope into tasks, owners and dates.",
+    "why": "A clear task list with dates keeps everyone moving.",
+    "do": [
+     "Use yesterday's scope.",
+     "Run the prompt for tasks with owners and dates.",
+     "Paste into Sheets, Trello or ClickUp, and adjust."
+    ],
+    "task": "Build the real plan for a current project or event.",
+    "proof": "Your task list with dates.",
+    "warn": "Check dates against public holidays and vendor lead times.",
+    "vid": "videos/sprint/pm-d09"
    },
    "10": {
     "d": 10,
@@ -750,7 +1102,18 @@ window.AMS_SPRINT={
     "watch": "Don't let the list paralyse you. Focus on the top risks.",
     "src": [
      "oa_applied"
-    ]
+    ],
+    "win": "Spot what could go wrong before it does.",
+    "why": "A short risk list with owners and backup plans prevents panic on the day.",
+    "do": [
+     "Run the prompt for your project or event.",
+     "Score each risk 1 to 5 for likelihood and impact.",
+     "Give the top 5 an owner and a backup plan."
+    ],
+    "task": "Share your top 5 risks with your team.",
+    "proof": "Your risk register.",
+    "warn": "Focus on the top risks. Don't let the list paralyse you.",
+    "vid": "videos/sprint/pm-d10"
    },
    "11": {
     "d": 11,
@@ -769,7 +1132,18 @@ window.AMS_SPRINT={
     "watch": "Confirm every timing with the people responsible.",
     "src": [
      "examples"
-    ]
+    ],
+    "win": "Create a run-of-show, vendor briefs and a budget tracker.",
+    "why": "Clear timings and briefs mean fewer panicked calls on the day.",
+    "do": [
+     "Run the prompt for a run-of-show.",
+     "Generate one vendor brief.",
+     "Get a budget tracker, then check it against real quotes."
+    ],
+    "task": "Produce the real run-of-show for your next event or project.",
+    "proof": "Your run-of-show and budget tracker.",
+    "warn": "Confirm every timing with the people responsible.",
+    "vid": "videos/sprint/pm-d11"
    },
    "12": {
     "d": 12,
@@ -788,7 +1162,18 @@ window.AMS_SPRINT={
     "watch": "Never hide bad news in an update. AI can help you say it clearly and calmly.",
     "src": [
      "clear"
-    ]
+    ],
+    "win": "Send status updates that stakeholders actually read.",
+    "why": "A short update with progress, risks and requests builds trust.",
+    "do": [
+     "Paste your current tracker.",
+     "Run the prompt for this week's update.",
+     "Edit for tone and accuracy, then send."
+    ],
+    "task": "Send a real status update this week.",
+    "proof": "Your status update.",
+    "warn": "Never hide bad news. Say it clearly and calmly.",
+    "vid": "videos/sprint/pm-d12"
    }
   },
   "sales": {
@@ -810,7 +1195,18 @@ window.AMS_SPRINT={
     "src": [
      "oa_agents",
      "halluc"
-    ]
+    ],
+    "win": "Research a prospect in 10 minutes before you reach out.",
+    "why": "Knowing the buyer's business makes your message relevant.",
+    "do": [
+     "Pick 3 real prospects.",
+     "Run the research prompt for each.",
+     "Check key facts on their website or LinkedIn."
+    ],
+    "task": "Prepare notes on 3 real prospects in your pipeline.",
+    "proof": "Your 3 prospect notes.",
+    "warn": "Use only public information. Respect privacy.",
+    "vid": "videos/sprint/sales-d08"
    },
    "9": {
     "d": 9,
@@ -829,7 +1225,18 @@ window.AMS_SPRINT={
     "watch": "Only message people with a legitimate business reason, and stop after 3 unanswered touches.",
     "src": [
      "examples"
-    ]
+    ],
+    "win": "Write outreach messages that get replies.",
+    "why": "Short, personal and specific beats long and generic.",
+    "do": [
+     "Use yesterday's research.",
+     "Run the prompt for one prospect.",
+     "Rewrite the first line yourself, then send to 3."
+    ],
+    "task": "Send personal messages to 3 to 5 real prospects today.",
+    "proof": "Your 3 messages.",
+    "warn": "Stop after 3 unanswered messages.",
+    "vid": "videos/sprint/sales-d09"
    },
    "10": {
     "d": 10,
@@ -848,7 +1255,18 @@ window.AMS_SPRINT={
     "watch": "Role-play builds confidence, but listen to the real customer. They won't follow a script.",
     "src": [
      "oa_found"
-    ]
+    ],
+    "win": "Practise sales calls and objections with an AI buyer.",
+    "why": "Role-play in voice mode builds confidence before the real call.",
+    "do": [
+     "Open voice mode and paste the role-play prompt.",
+     "Do a 10-minute practice call.",
+     "Say END, read the feedback, save your best answers."
+    ],
+    "task": "Practise before your next real sales call.",
+    "proof": "Your 3 best answers to objections.",
+    "warn": "Listen to the real customer. They won't follow a script.",
+    "vid": "videos/sprint/sales-d10"
    },
    "11": {
     "d": 11,
@@ -867,7 +1285,18 @@ window.AMS_SPRINT={
     "watch": "Don't promise what your company can't deliver. Check prices, timelines and terms.",
     "src": [
      "chain"
-    ]
+    ],
+    "win": "Turn a sales call into a proposal or quote that closes.",
+    "why": "A proposal that repeats the client's own words shows you listened.",
+    "do": [
+     "Use notes from a real call.",
+     "Run the prompt, then the critique.",
+     "Format it with your template and send."
+    ],
+    "task": "Send one real proposal or quote this week.",
+    "proof": "Your proposal.",
+    "warn": "Check prices, timelines and terms before you send.",
+    "vid": "videos/sprint/sales-d11"
    },
    "12": {
     "d": 12,
@@ -887,7 +1316,18 @@ window.AMS_SPRINT={
     "src": [
      "projects",
      "clear"
-    ]
+    ],
+    "win": "Build a bank of replies for customer questions and complaints.",
+    "why": "Ready, kind replies save time and keep customers happy.",
+    "do": [
+     "Collect 5 common questions and 1 complaint.",
+     "Run the prompt.",
+     "Save the replies as quick replies or email templates."
+    ],
+    "task": "Use your reply bank on real conversations today.",
+    "proof": "Your reply bank.",
+    "warn": "Don't promise refunds or discounts outside policy.",
+    "vid": "videos/sprint/sales-d12"
    }
   },
   "creative": {
@@ -908,7 +1348,18 @@ window.AMS_SPRINT={
     "watch": "Don't present AI ideas as finished strategy. Refine them with your expertise.",
     "src": [
      "clear"
-    ]
+    ],
+    "win": "Turn a vague client request into clear creative directions.",
+    "why": "Good questions and three options save rounds of revisions.",
+    "do": [
+     "Take a real client request.",
+     "Run the prompt for questions and 3 directions.",
+     "Send the questions. Present the directions."
+    ],
+    "task": "Use this on your next real client request.",
+    "proof": "Your 3 directions.",
+    "warn": "AI ideas are a start. Refine them with your expertise.",
+    "vid": "videos/sprint/creative-d08"
    },
    "9": {
     "d": 9,
@@ -927,7 +1378,18 @@ window.AMS_SPRINT={
     "watch": "Watch for clichés and repeated phrases across posts. Clients notice.",
     "src": [
      "examples"
-    ]
+    ],
+    "win": "Plan two weeks of content and copy in one sitting.",
+    "why": "Give AI the brand voice and past posts. It drafts, you polish.",
+    "do": [
+     "Collect 3 strong past posts and the brand guide.",
+     "Run the prompt for a 2-week calendar.",
+     "Polish 3 posts and get approval."
+    ],
+    "task": "Deliver real content using this workflow.",
+    "proof": "Your 2-week calendar.",
+    "warn": "Watch for clichés and repeated phrases.",
+    "vid": "videos/sprint/creative-d09"
    },
    "10": {
     "d": 10,
@@ -946,7 +1408,18 @@ window.AMS_SPRINT={
     "watch": "Check licence terms for commercial use, and never generate images of real people without consent.",
     "src": [
      "oa_lib"
-    ]
+    ],
+    "win": "Create visuals and mockups with AI image tools.",
+    "why": "Direct the AI like a designer: subject, style, light and layout.",
+    "do": [
+     "Write an art-director prompt for a real piece.",
+     "Generate 4 options. Edit the best one by instruction.",
+     "Finish in Canva with brand fonts and logo."
+    ],
+    "task": "Produce one real visual for a client or your portfolio.",
+    "proof": "Your final visual.",
+    "warn": "Check licences. Never make images of real people without consent.",
+    "vid": "videos/sprint/creative-d10"
    },
    "11": {
     "d": 11,
@@ -965,7 +1438,18 @@ window.AMS_SPRINT={
     "watch": "Only repurpose content you own or have permission to use.",
     "src": [
      "chain"
-    ]
+    ],
+    "win": "Turn one long piece of content into several clips.",
+    "why": "AI finds the best moments and writes hooks and captions.",
+    "do": [
+     "Take one long piece of content you own.",
+     "Run the prompt for clips, hooks and captions.",
+     "Edit 2 clips in CapCut with auto-captions."
+    ],
+    "task": "Turn one real piece of content into 3 assets.",
+    "proof": "Your 3 assets.",
+    "warn": "Only reuse content you own or have permission to use.",
+    "vid": "videos/sprint/creative-d11"
    },
    "12": {
     "d": 12,
@@ -984,7 +1468,18 @@ window.AMS_SPRINT={
     "watch": "Keep agreements in writing. AI drafts don't replace a proper contract.",
     "src": [
      "clear"
-    ]
+    ],
+    "win": "Handle pricing, scope creep and late payment calmly.",
+    "why": "Firm, friendly messages protect your time and income.",
+    "do": [
+     "Pick one tricky client situation.",
+     "Run the prompt.",
+     "Edit, send, and save it as a template."
+    ],
+    "task": "Send one real client message you've been avoiding.",
+    "proof": "Your message template.",
+    "warn": "Keep agreements in writing. A draft is not a contract.",
+    "vid": "videos/sprint/creative-d12"
    }
   },
   "biz": {
@@ -1005,7 +1500,18 @@ window.AMS_SPRINT={
     "watch": "Keep prices and policies up to date, or quick replies will mislead customers.",
     "src": [
      "oa_smb"
-    ]
+    ],
+    "win": "Set up WhatsApp Business with ready replies for customers.",
+    "why": "Fast answers win sales. Quick replies let you answer in seconds.",
+    "do": [
+     "Switch to WhatsApp Business and add your catalogue.",
+     "List your 10 most common questions and run the prompt.",
+     "Save the answers as quick replies. Add labels."
+    ],
+    "task": "Use your quick replies on real customer chats today.",
+    "proof": "A screenshot of your quick replies.",
+    "warn": "Keep prices up to date, or replies will mislead customers.",
+    "vid": "videos/sprint/biz-d08"
    },
    "9": {
     "d": 9,
@@ -1024,7 +1530,18 @@ window.AMS_SPRINT={
     "watch": "Don't make claims you can't back up (\"best in Lagos\", \"100% guaranteed\").",
     "src": [
      "examples"
-    ]
+    ],
+    "win": "Write posts, broadcasts and flyers that sell.",
+    "why": "A clear offer, a real benefit and one call to action.",
+    "do": [
+     "Pick one product or offer for this week.",
+     "Run the prompt for a post, a broadcast and flyer text.",
+     "Design the flyer in Canva."
+    ],
+    "task": "Publish or send one real promotion today.",
+    "proof": "Your promotion.",
+    "warn": "Don't make claims you can't back up.",
+    "vid": "videos/sprint/biz-d09"
    },
    "10": {
     "d": 10,
@@ -1043,7 +1560,18 @@ window.AMS_SPRINT={
     "watch": "A plan you'll follow beats an impressive plan you won't.",
     "src": [
      "oa_smb"
-    ]
+    ],
+    "win": "Plan a month of marketing you'll actually do.",
+    "why": "A simple plan with one goal beats random posting.",
+    "do": [
+     "Set one goal, such as 50 orders.",
+     "Run the prompt for a 4-week plan.",
+     "Cut what you won't do. Put posting days in your calendar."
+    ],
+    "task": "Plan your real next 4 weeks of marketing.",
+    "proof": "Your 4-week plan.",
+    "warn": "A plan you'll follow beats an impressive one you won't.",
+    "vid": "videos/sprint/biz-d10"
    },
    "11": {
     "d": 11,
@@ -1062,7 +1590,18 @@ window.AMS_SPRINT={
     "watch": "AI isn't an accountant. For tax and formal accounts, use a professional.",
     "src": [
      "oa_applied"
-    ]
+    ],
+    "win": "Track prices, costs, profit and stock in one sheet.",
+    "why": "Knowing your numbers shows what to sell more of, and what to drop.",
+    "do": [
+     "Upload your sales or stock sheet, without customer phone numbers.",
+     "Run the prompt.",
+     "Check one product's profit by hand."
+    ],
+    "task": "Build your tracking sheet and make one decision from it.",
+    "proof": "Your tracking sheet.",
+    "warn": "For tax and formal accounts, use a professional.",
+    "vid": "videos/sprint/biz-d11"
    },
    "12": {
     "d": 12,
@@ -1081,7 +1620,18 @@ window.AMS_SPRINT={
     "watch": "Use only public competitor information, and don't copy their content.",
     "src": [
      "halluc"
-    ]
+    ],
+    "win": "Learn from customer feedback and your competitors.",
+    "why": "Customers tell you what to fix. Competitors show what's possible.",
+    "do": [
+     "Collect 10 to 20 reviews or messages, without names.",
+     "Run the prompt for common themes.",
+     "Check 3 competitors' public pages. Pick one improvement."
+    ],
+    "task": "Make one real improvement this month.",
+    "proof": "Your feedback summary and chosen improvement.",
+    "warn": "Use only public competitor information. Don't copy.",
+    "vid": "videos/sprint/biz-d12"
    }
   },
   "student": {
@@ -1103,7 +1653,18 @@ window.AMS_SPRINT={
     "src": [
      "oa_students",
      "limits"
-    ]
+    ],
+    "win": "Build a study plan and use AI as a tutor, not a cheat.",
+    "why": "Explaining and quizzing help you remember. Copying doesn't.",
+    "do": [
+     "Turn on study mode, or use today's prompt.",
+     "Build a plan for your next exam or deadline.",
+     "Do a 15-minute tutor session, then a 5-question quiz."
+    ],
+    "task": "Follow your plan for the next 7 days.",
+    "proof": "Your study plan and quiz score.",
+    "warn": "If AI does the thinking, you won't remember it in the exam.",
+    "vid": "videos/sprint/student-d08"
    },
    "9": {
     "d": 9,
@@ -1123,7 +1684,18 @@ window.AMS_SPRINT={
     "src": [
      "longdoc",
      "oa_students"
-    ]
+    ],
+    "win": "Summarise readings properly, and remember them.",
+    "why": "AI finds key points and quotes. Writing your own summary makes it stick.",
+    "do": [
+     "Upload a reading to NotebookLM or your assistant.",
+     "Run the prompt for key points and quotes.",
+     "Check 3 quotes. Write your own 5-line summary."
+    ],
+    "task": "Summarise one real course reading this way.",
+    "proof": "Your 5-line summary.",
+    "warn": "Cite the original source, not the AI summary.",
+    "vid": "videos/sprint/student-d09"
    },
    "10": {
     "d": 10,
@@ -1143,7 +1715,18 @@ window.AMS_SPRINT={
     "src": [
      "halluc",
      "oa_students"
-    ]
+    ],
+    "win": "Find and verify real sources for your literature review.",
+    "why": "AI search tools find papers fast. Fake references are serious, so verify.",
+    "do": [
+     "Search your question in Consensus or Elicit.",
+     "Open every paper you plan to cite.",
+     "Build a source table with full references."
+    ],
+    "task": "Start a real source table for your project.",
+    "proof": "Your source table.",
+    "warn": "Check every citation exists and says what you claim.",
+    "vid": "videos/sprint/student-d10"
    },
    "11": {
     "d": 11,
@@ -1163,7 +1746,18 @@ window.AMS_SPRINT={
     "src": [
      "oa_students",
      "fluency"
-    ]
+    ],
+    "win": "Improve your own writing with AI feedback, honestly.",
+    "why": "AI can coach your writing without writing it for you.",
+    "do": [
+     "Check your course rules on AI.",
+     "Write your own paragraph, then run the feedback prompt.",
+     "Revise it yourself."
+    ],
+    "task": "Improve one real piece of your writing this way.",
+    "proof": "Your paragraph, before and after.",
+    "warn": "Handing in AI-written work as your own can be misconduct.",
+    "vid": "videos/sprint/student-d11"
    },
    "12": {
     "d": 12,
@@ -1183,7 +1777,18 @@ window.AMS_SPRINT={
     "src": [
      "oa_students",
      "oa_edu"
-    ]
+    ],
+    "win": "Create presentations, group plans or applications (educators: lesson plans).",
+    "why": "AI drafts the structure fast. You make it accurate and yours.",
+    "do": [
+     "Choose a presentation, group plan, CV or lesson plan.",
+     "Run the prompt.",
+     "Edit it and check every fact."
+    ],
+    "task": "Produce one real presentation, application or lesson plan.",
+    "proof": "The finished file.",
+    "warn": "Check every fact. Examiners and students will.",
+    "vid": "videos/sprint/student-d12"
    }
   }
  },

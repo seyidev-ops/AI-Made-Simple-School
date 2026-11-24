@@ -7,6 +7,14 @@ exec(open(os.path.join(HERE, '..', 'lessons', 'gen_src.py'), encoding='utf-8').r
 exec(open(os.path.join(HERE, 'gen_sprint.py'), encoding='utf-8').read(), ns)
 SRC = dict(ns['SRC']); SRC.update(ns['SPRINT_SRC'])
 DAYS, TRACK_DAYS, TRACKS = ns['DAYS'], ns['TRACK_DAYS'], ns['TRACKS']
+# short, practical version + video class for every lesson (tools/sprint/short.py; videos made by marketing/.../source/lessonvid.py)
+sh = {}
+exec(open(os.path.join(HERE, 'short.py'), encoding='utf-8').read(), sh)
+def add_short(L, S, vid):
+    L.update(win=S['win'], why=S['why'], do=S['do'], task=S['task'], proof=S['proof'], warn=S['watch'], vid=vid)
+for k, L in DAYS.items(): add_short(L, sh['SHORT'][k], f'videos/sprint/d{k:02d}')
+for t, days in TRACK_DAYS.items():
+    for k, L in days.items(): add_short(L, sh['TRACK_SHORT'][t][k], f'videos/sprint/{t}-d{k:02d}')
 core = set(range(1, 31)) - set(range(8, 13))
 assert set(DAYS) == core, core ^ set(DAYS)
 for t in TRACKS: assert set(TRACK_DAYS[t]) == set(range(8, 13)), t
